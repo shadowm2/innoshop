@@ -12,7 +12,11 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="api-token" content="{{ session('front_api_token') }}">
   <link rel="shortcut icon" href="{{ image_origin(system_setting('favicon', 'images/favicon.png')) }}">
-  <link rel="stylesheet" href="{{ mix('build/front/css/bootstrap.css') }}">
+  @if (front_locale_direction() == 'ltr')
+    <link rel="stylesheet" href="{{ mix('build/front/css/bootstrap.css') }}">
+  @else
+    <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.rtl.min.css') }}">
+  @endif
   <script src="{{ mix('build/front/js/app.js') }}"></script>
   <script src="{{ asset('vendor/jquery/jquery-3.7.1.min.js') }}"></script>
   <script src="{{ asset('vendor/layer/3.5.1/layer.js') }}"></script>
@@ -37,7 +41,7 @@
       currency: {
         code: '{{ current_currency_code() }}',
         symbol_left: '{{ default_currency()->symbol_left ?? "$" }}',
-        symbol_right: '{{ default_currency()->symbol_right ?? "" }}',
+        symbol_right: '{{ default_currency()->symbol_right ?? '' }}',
         decimal_place: {{ default_currency()->decimal_place ?? 2 }},
         rate: {{ default_currency()->value ?? 1 }}
       }
@@ -55,7 +59,7 @@
   @endif
 
   <div class="m-0 p-0" id="appContent">
-      @yield('content')
+    @yield('content')
   </div>
 
   @if (!request('iframe'))
