@@ -42,6 +42,13 @@ class LocaleSeeder extends Seeder
                 'position' => 1,
                 'active'   => 1,
             ],
+            [
+                'name'     => 'فارسی',
+                'code'     => 'fa',
+                'image'    => 'images/flag/fa.png',
+                'position' => 2,
+                'active'   => 1,
+            ],
         ];
     }
 }
