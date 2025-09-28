@@ -1,131 +1,131 @@
-{{-- 卡片轮播编辑模块 - 现代化风格 --}}
+{{-- ماژول ویرایش اسلایدر کارتی - سبک مدرن --}}
 <template id="module-editor-card-slider-template">
   <div class="card-slider-editor">
     <div class="top-spacing"></div>
     
-    {{-- 模块宽度设置 --}}
+    {{-- تنظیمات عرض ماژول --}}
     <div class="editor-section">
-      <div class="section-title">模块宽度</div>
+      <div class="section-title">عرض ماژول</div>
       <div class="section-content">
         <div class="segmented-buttons">
           <div 
             :class="['segmented-btn', { active: form.width === 'narrow' }]" 
             @click="form.width = 'narrow'"
           >
-            窄屏
+            عرض کوتاه
           </div>
           <div 
             :class="['segmented-btn', { active: form.width === 'wide' }]" 
             @click="form.width = 'wide'"
           >
-            宽屏
+            عرض وسیع
           </div>
           <div 
             :class="['segmented-btn', { active: form.width === 'full' }]" 
             @click="form.width = 'full'"
           >
-            全屏
+            تمام صفحه
           </div>
         </div>
       </div>
     </div>
 
-    {{-- 模块标题 --}}
+    {{-- عنوان ماژول --}}
     <div class="editor-section">
-      <div class="section-title">模块标题</div>
+      <div class="section-title">عنوان ماژول</div>
       <div class="section-content">
-        <text-i18n v-model="form.title" @change="onChange" placeholder="请输入模块标题"></text-i18n>
+        <text-i18n v-model="form.title" @change="onChange" placeholder="لطفا عنوان ماژول را وارد کنید"></text-i18n>
       </div>
     </div>
 
-    {{-- 显示设置 --}}
+    {{-- تنظیمات نمایش --}}
     <div class="editor-section">
-      <div class="section-title">显示设置</div>
+      <div class="section-title">تنظیمات نمایش</div>
       <div class="section-content">
-        {{-- 每行显示数量设置 --}}
+        {{-- تنظیم تعداد آیتم در هر سطر --}}
         <div class="setting-group">
-          <div class="setting-label">每行显示数量</div>
+          <div class="setting-label">تعداد آیتم در هر سطر</div>
           <div class="segmented-buttons">
             <div 
               :class="['segmented-btn', { active: form.items_per_row === 2 }]" 
               @click="form.items_per_row = 2"
             >
-              2个
+              2 آیتم
             </div>
             <div 
               :class="['segmented-btn', { active: form.items_per_row === 3 }]" 
               @click="form.items_per_row = 3"
             >
-              3个
+              3 آیتم
             </div>
             <div 
               :class="['segmented-btn', { active: form.items_per_row === 4 }]" 
               @click="form.items_per_row = 4"
             >
-              4个
+              4 آیتم
             </div>
             <div 
               :class="['segmented-btn', { active: form.items_per_row === 6 }]" 
               @click="form.items_per_row = 6"
             >
-              6个
+              6 آیتم
             </div>
           </div>
         </div>
 
-        {{-- 自动轮播设置 --}}
+        {{-- تنظیم خودکار چرخش --}}
         <div class="setting-group">
-          <div class="setting-label">自动轮播</div>
+          <div class="setting-label">چرخش خودکار</div>
           <div class="switch-wrapper">
             <el-switch 
               v-model="form.autoplay" 
               @change="onChange"
               :disabled="form.screens.length > 1" 
-              active-text="启用" 
-              inactive-text="禁用"
+              active-text="فعال" 
+              inactive-text="غیرفعال"
               size="small"
             ></el-switch>
           </div>
           <div v-if="form.screens.length > 1" class="form-tip">
             <i class="el-icon-info"></i>
-            请先删除多余的屏幕才能禁用轮播
+            لطفاً ابتدا صفحات اضافی را حذف کنید تا چرخش خودکار را غیرفعال کنید
           </div>
         </div>
       </div>
     </div>
 
-    {{-- 商品内容 --}}
+    {{-- محتوای محصولات --}}
     <div class="editor-section">
-      <div class="section-title">商品内容</div>
+      <div class="section-title">محتوای محصولات</div>
       <div class="section-content">
         <div class="tab-container">
           <el-tabs v-model="activeTab" type="card" @tab-click="handleTabClick" class="custom-tabs">
             <el-tab-pane 
               v-for="(screen, index) in form.screens" 
               :key="index" 
-              :label="'屏幕 ' + (index + 1)"
+              :label="'صفحه ' + (index + 1)"
               :name="index"
             >
               <div class="screen-content">
-                {{-- 商品搜索 --}}
+                {{-- جستجوی محصولات --}}
                 <div class="search-section">
-                  <div class="section-subtitle">添加商品</div>
+                  <div class="section-subtitle">افزودن محصول</div>
                   <el-autocomplete 
                     class="search-input" 
                     v-model="keyword" 
                     value-key="name" 
                     size="small"
                     :fetch-suggestions="querySearch" 
-                    placeholder="请输入关键字搜索商品" 
+                    placeholder="لطفاً کلمه کلیدی محصول را وارد کنید" 
                     :highlight-first-item="true"
                     @select="handleSelect"
                     style="width: 100%;"
                   ></el-autocomplete>
                 </div>
 
-                {{-- 商品列表 --}}
+                {{-- لیست محصولات --}}
                 <div class="products-section">
-                  <div class="section-subtitle">已选商品</div>
+                  <div class="section-subtitle">محصولات انتخاب شده</div>
                   <div class="products-list" v-loading="loading">
                     <template v-if="screen.products.length">
                       <draggable 
@@ -162,7 +162,7 @@
                     </template>
                     <div v-else class="empty-state">
                       <i class="el-icon-shopping-cart-2"></i>
-                      <p>暂无商品，请在上方搜索并添加</p>
+                      <p>هیچ محصولی وجود ندارد، لطفاً در بالا جستجو کرده و اضافه کنید</p>
                     </div>
                   </div>
                 </div>
@@ -170,7 +170,7 @@
             </el-tab-pane>
           </el-tabs>
 
-          {{-- 屏幕操作按钮 --}}
+          {{-- دکمه‌های عملیات صفحه --}}
           <div class="screen-actions">
             <el-button 
               type="primary" 
@@ -179,7 +179,7 @@
               :disabled="!form.autoplay"
               icon="el-icon-plus"
             >
-              添加屏幕
+              افزودن صفحه
             </el-button>
             <el-button 
               type="danger" 
@@ -188,7 +188,7 @@
               :disabled="form.screens.length <= 1"
               icon="el-icon-delete"
             >
-              删除当前屏幕
+              حذف صفحه فعلی
             </el-button>
           </div>
         </div>
@@ -197,7 +197,7 @@
   </div>
 </template>
 
-{{-- 商品编辑模块脚本 --}}
+{{-- ماژول ویرایش محصولات پایتون --}}
 <script type="text/javascript">
   Vue.component('module-editor-card-slider', {
     delimiters: ['${', '}'],
@@ -235,14 +235,14 @@
         this.form = JSON.parse(JSON.stringify(this.module));
       }
 
-      // 确保 screens 数组存在且有效
+      // گرفتن آرایه screens و اطمینان از آن
       if (!this.form.screens || !Array.isArray(this.form.screens)) {
         this.$set(this.form, 'screens', [{
           products: []
         }]);
       }
 
-      // 确保每个屏幕都有 products 数组
+      // اطمینان از آرایه products در هر صفحه
       this.form.screens.forEach(screen => {
         if (!screen.products || !Array.isArray(screen.products)) {
           this.$set(screen, 'products', []);
@@ -271,12 +271,12 @@
 
     methods: {
       onChange() {
-        // 清除之前的定时器
+        // پاک کردن زمانبندی قبلی
         if (this.debounceTimer) {
           clearTimeout(this.debounceTimer);
         }
         
-        // 设置新的定时器
+        // تنظیم زمانبندی جدید
         this.debounceTimer = setTimeout(() => {
           this.$emit('on-changed', this.form);
         }, 300);
@@ -345,7 +345,7 @@
 
       removeProduct(index) {
         if (this.form.screens[this.activeTab].products.length <= 1) {
-          this.$message.warning('每个屏幕至少需要保留一个商品');
+          this.$message.warning('هر صفحه باید حداقل یک محصول داشته باشد');
           return;
         }
         this.form.screens[this.activeTab].products.splice(index, 1);
@@ -366,7 +366,7 @@
 
       removeScreen() {
         if (this.form.screens.length <= 1) {
-          this.$message.warning('至少需要保留一个屏幕');
+          this.$message.warning('حداقل یک صفحه باید باقی بماند');
           return;
         }
         this.form.screens.splice(this.activeTab, 1);

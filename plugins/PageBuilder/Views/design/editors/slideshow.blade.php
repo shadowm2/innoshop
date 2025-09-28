@@ -1,12 +1,12 @@
-{{-- 幻灯片编辑模块 - 简洁版 --}}
+{{-- ماژول ویرایش اسلایدشو - نسخه ساده --}}
 <template id="module-editor-slideshow">
   <div class="slideshow-editor">
     <div class="top-spacing"></div>
-    {{-- 模块宽度设置 --}}
+    {{-- تنظیم عرض ماژول --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-monitor"></i>
-        模块宽度
+        عرض ماژول
       </div>
       <div class="section-content">
         <div class="segmented-buttons">
@@ -14,29 +14,29 @@
             :class="['segmented-btn', { active: module.width === 'narrow' }]" 
             @click="module.width = 'narrow'"
           >
-            窄屏
+            عرض کوتاه
           </div>
           <div 
             :class="['segmented-btn', { active: module.width === 'wide' }]" 
             @click="module.width = 'wide'"
           >
-            宽屏
+            عرض وسیع
           </div>
           <div 
             :class="['segmented-btn', { active: module.width === 'full' }]" 
             @click="module.width = 'full'"
           >
-            全屏
+            تمام صفحه
           </div>
         </div>
       </div>
     </div>
 
-    {{-- 幻灯片内容 --}}
+    {{-- محتوای اسلایدشو --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-picture"></i>
-        幻灯片管理
+        مدیریت اسلایدشو
       </div>
       <div class="slideshow-list">
         <draggable
@@ -45,7 +45,7 @@
           :options="{animation: 330, handle: '.drag-handle'}"
         >
           <div class="slide-item" v-for="(item, index) in module.images" :key="index">
-            {{-- 幻灯片头部 --}}
+            {{-- سربرگ اسلاید --}}
             <div class="slide-header" @click="toggleSlide(index)">
               <div class="slide-info">
                 <div class="drag-handle">
@@ -59,7 +59,7 @@
                   <span v-if="getTitleText(item)">
                     @{{ getTitleText(item) }}
                   </span>
-                  <span v-else>未设置标题</span>
+                  <span v-else>عنوان تنظیم نشده</span>
                 </div>
               </div>
               
@@ -75,101 +75,101 @@
               </div>
             </div>
 
-            {{-- 幻灯片内容编辑 --}}
+            {{-- ویرایش محتوای اسلاید --}}
             <div :class="'slide-content ' + (item.show ? 'expanded' : '')">
-              {{-- 图片设置 --}}
+              {{-- تنظیم تصویر --}}
               <div class="content-section">
                 <div class="section-subtitle">
                   <i class="el-icon-picture-outline"></i>
-                  图片设置
+                  تنظیمات تصویر
                 </div>
                 <div class="image-selector-wrapper">
                   <single-image-selector v-model="item.image" @change="onChange"></single-image-selector>
-                  <div class="image-tips">建议尺寸(宽x高): 1920 x 600</div>
+                  <div class="image-tips">پیشنهادات اندازه (عرض x ارتفاع): 1920 x 600</div>
                 </div>
               </div>
 
-              {{-- 链接设置 --}}
+              {{-- تنظیم لینک --}}
               <div class="content-section">
                 <div class="section-subtitle">
                   <i class="el-icon-link"></i>
-                  链接设置
+                  تنظیمات لینک
                 </div>
                 <link-selector v-model="item.link" @change="onChange" ></link-selector>
               </div>
 
-              {{-- 标题设置 --}}
+              {{-- تنظیم عنوان --}}
               <div class="content-section">
                 <div class="section-subtitle">
                   <i class="el-icon-edit"></i>
-                  标题设置
+                  تنظیمات عنوان
                 </div>
-                <text-i18n v-model="item.title" @change="onChange" placeholder="请输入标题"></text-i18n>
+                <text-i18n v-model="item.title" @change="onChange" placeholder="لطفا عنوان را وارد کنید"></text-i18n>
                 <div class="form-row">
                   <div class="form-group">
-                    <label class="form-label">标题颜色</label>
+                    <label class="form-label">رنگ عنوان</label>
                     <el-color-picker v-model="item.title_color" @change="onChange" show-alpha size="small"></el-color-picker>
                   </div>
                   <div class="form-group">
-                    <label class="form-label">标题大小</label>
+                    <label class="form-label">اندازه عنوان</label>
                     <el-input-number v-model="item.title_size" @change="onChange" :min="12" :max="72" :step="2" size="small"></el-input-number>
                   </div>
                 </div>
               </div>
 
-              {{-- 副标题设置 --}}
+              {{-- تنظیم زیرعنوان --}}
               <div class="content-section">
                 <div class="section-subtitle">
                   <i class="el-icon-document"></i>
-                  副标题设置
+                  تنظیمات زیرعنوان
                 </div>
-                <text-i18n v-model="item.subtitle" @change="onChange" placeholder="请输入副标题"></text-i18n>
+                <text-i18n v-model="item.subtitle" @change="onChange" placeholder="لطفا زیرعنوان را وارد کنید"></text-i18n>
                 <div class="form-row">
                   <div class="form-group">
-                    <label class="form-label">副标题颜色</label>
+                    <label class="form-label">رنگ زیرعنوان</label>
                     <el-color-picker v-model="item.subtitle_color" @change="onChange" show-alpha size="small"></el-color-picker>
                   </div>
                   <div class="form-group">
-                    <label class="form-label">副标题大小</label>
+                    <label class="form-label">اندازه زیرعنوان</label>
                     <el-input-number v-model="item.subtitle_size" @change="onChange" :min="12" :max="48" :step="2" size="small"></el-input-number>
                   </div>
                 </div>
               </div>
 
-              {{-- 按钮设置 --}}
+              {{-- تنظیم دکمه --}}
               <div class="content-section">
                 <div class="section-subtitle">
                   <i class="el-icon-mouse"></i>
-                  按钮设置
+                  تنظیمات دکمه
                 </div>
-                <text-i18n v-model="item.button_text" @change="onChange" placeholder="请输入按钮文本"></text-i18n>
+                <text-i18n v-model="item.button_text" @change="onChange" placeholder="لطفا متن دکمه را وارد کنید"></text-i18n>
                 <div class="setting-group mt-3">
                   <div class="section-subtitle">
                     <i class="el-icon-link"></i>
-                    按钮链接
+                    لینک دکمه
                   </div>
                   <link-selector v-model="item.button_link" @change="onChange"></link-selector>
                 </div>
                 <div class="form-row">
                   <div class="form-group">
-                    <label class="form-label">按钮背景色</label>
+                    <label class="form-label">رنگ پس زمینه دکمه</label>
                     <el-color-picker v-model="item.button_color" @change="onChange" show-alpha size="small"></el-color-picker>
                   </div>
                   <div class="form-group">
-                    <label class="form-label">按钮文字色</label>
+                    <label class="form-label">رنگ متن دکمه</label>
                     <el-color-picker v-model="item.button_text_color" @change="onChange" show-alpha size="small"></el-color-picker>
                   </div>
                 </div>
               </div>
 
-              {{-- 位置设置 --}}
+              {{-- تنظیم موقعیت --}}
               <div class="content-section">
                 <div class="section-subtitle">
                   <i class="el-icon-s-grid"></i>
-                  位置设置
+                  تنظیم موقعیت
                 </div>
                 <div class="setting-group">
-                  <label class="form-label">内容位置</label>
+                  <label class="form-label">موقعیت محتوا</label>
                   <div style="display: flex; gap: 10px; margin-top: 10px;">
                     <el-button 
                       :type="item.title_align === 'left' ? 'primary' : 'default'"
@@ -177,7 +177,7 @@
                       @click="item.title_align = 'left'; onChange()"
                       icon="el-icon-s-fold"
                     >
-                      左侧
+                      چپ
                     </el-button>
                     <el-button 
                       :type="item.title_align === 'center' ? 'primary' : 'default'"
@@ -185,7 +185,7 @@
                       @click="item.title_align = 'center'; onChange()"
                       icon="el-icon-s-operation"
                     >
-                      居中
+                      مرکز
                     </el-button>
                     <el-button 
                       :type="item.title_align === 'right' ? 'primary' : 'default'"
@@ -193,7 +193,7 @@
                       @click="item.title_align = 'right'; onChange()"
                       icon="el-icon-s-unfold"
                     >
-                      右侧
+                      راست
                     </el-button>
                   </div>
                 </div>
@@ -202,16 +202,16 @@
           </div>
         </draggable>
 
-        {{-- 空状态 --}}
+        {{-- وضعیت خالی --}}
         <div v-if="!module.images || module.images.length === 0" class="empty-state">
           <i class="el-icon-picture-outline"></i>
-          <p>暂无幻灯片，点击下方按钮添加</p>
+          <p>هیچ اسلایدی وجود ندارد، لطفا دکمه زیر را برای اضافه کردن کلیک کنید</p>
         </div>
 
-        {{-- 添加按钮 --}}
+        {{-- دکمه اضافه کردن --}}
         <div class="add-button-wrapper">
           <el-button type="primary" size="small" @click="addImage" icon="el-icon-plus">
-            添加幻灯片
+            افزودن اسلاید
           </el-button>
         </div>
       </div>
@@ -245,7 +245,7 @@ Vue.component('module-editor-slideshow', {
   },
 
   created: function () {
-    // 初始化默认值
+    // مقداردهی اولیه پیش‌فرض
     if (!this.module.images) {
       this.module.images = [{
         image: this.getDefaultImage(),
@@ -270,7 +270,7 @@ Vue.component('module-editor-slideshow', {
         show: true
       }];
     } else {
-      // 确保现有数据有正确的结构
+      // مطمئن شوید داده‌های موجود دارای ساختار درست هستند
       this.module.images.forEach(item => {
         if (!item.title) {
           this.$set(item, 'title', this.languagesFill(''));
@@ -320,54 +320,54 @@ Vue.component('module-editor-slideshow', {
 
   methods: {
     onChange() {
-      // 清除之前的定时器
+      // پاک کردن زمان‌بندی قبلی
       if (this.debounceTimer) {
         clearTimeout(this.debounceTimer);
       }
       
-      // 设置新的定时器
+      // تنظیم زمان‌بندی جدید
       this.debounceTimer = setTimeout(() => {
         this.$emit('on-changed', this.module);
       }, 300);
     },
 
     removeImage(index) {
-      this.$confirm('确定要删除这个幻灯片吗？', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
+      this.$confirm('آیا مطمئن هستید که می‌خواهید این اسلاید را حذف کنید؟', 'هشدار', {
+        confirmButtonText: 'تأیید',
+        cancelButtonText: 'لغو',
         type: 'warning'
       }).then(() => {
         this.module.images.splice(index, 1);
-        this.$message.success('删除成功');
+        this.$message.success('حذف با موفقیت انجام شد');
       }).catch(() => {});
     },
 
     toggleSlide(index) {
       this.isToggling = true;
       
-      // 关闭其他幻灯片
+      // بستن اسلایدهای دیگر
       this.module.images.forEach((item, key) => {
         if (key !== index) {
           this.$set(item, 'show', false);
         }
       });
-      // 切换当前幻灯片
+      // تغییر وضعیت اسلاید فعلی
       const currentShow = this.module.images[index].show;
       this.$set(this.module.images[index], 'show', !currentShow);
       
-      // 延迟重置标志，确保DOM更新完成
+      // تاخیر بازگشت به علامت، تضمین کنید که DOM به‌روزرسانی شده است
       this.$nextTick(() => {
         this.isToggling = false;
       });
     },
 
     addImage() {
-      // 关闭所有幻灯片
+      // بستن تمام اسلایدها
       this.module.images.forEach(item => {
         item.show = false;
       });
       
-      // 添加新幻灯片
+      // اضافه کردن اسلاید جدید
       this.module.images.push({
         image: this.getDefaultImage(), 
         link: {
@@ -391,7 +391,7 @@ Vue.component('module-editor-slideshow', {
         show: true
       });
       
-      this.$message.success('添加幻灯片成功');
+      this.$message.success('افزودن اسلاید با موفقیت انجام شد');
     },
     
     languagesFill(text) {
@@ -423,15 +423,15 @@ Vue.component('module-editor-slideshow', {
         }
       }
       
-      // 如果是完整URL，直接返回
+      // اگر URL کامل باشد، مستقیماً برگردانید
       if (imageUrl.indexOf('http') === 0) {
         return imageUrl;
       }
       
-      // 如果是相对路径，添加asset前缀
+      // اگر مسیر نسبی باشد، asset را اضافه کنید
       const fullUrl = asset + imageUrl;
       
-      // 使用image_resize函数生成缩略图
+      // از تابع image_resize برای تولید تصویر کوچکتر استفاده کنید
       if (typeof image_resize === 'function') {
         return image_resize(fullUrl, width, height);
       }

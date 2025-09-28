@@ -32,7 +32,7 @@
                     @if ($item->item_type_label)
                       <span class="badge bg-danger">{{ $item->item_type_label }}</span>
                     @endif
-                    {{-- 显示订单项选项信息 --}}
+                    {{-- نمایش اطلاعات گزینه‌های آیتم سفارش --}}
                     @if ($item->options && $item->options->count() > 0)
                       <div class="item-options mt-1">
                         @foreach ($item->options as $option)

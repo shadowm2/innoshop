@@ -38,7 +38,7 @@
     </div>
 
     <div class="text-center mt-3">
-      <button type="submit" class="btn btn-primary">{{ __('提交') }}</button>
+      <button type="submit" class="btn btn-primary">{{ __('panel/common.submit') }}</button>
     </div>
   </form>
 </div> 

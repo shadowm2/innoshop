@@ -12,7 +12,7 @@
         @include('shared.account-sidebar')
       </div>
       <div class="col-12 col-lg-9">
-        <!-- 余额概览 -->
+        <!-- نمای کلی موجودی -->
         <div class="wallet-card-box wallet-balance">
           <div class="wallet-card-title d-flex justify-content-between align-items-center">
             <span class="fw-bold">{{ __('front/account.balance_overview') }}</span>

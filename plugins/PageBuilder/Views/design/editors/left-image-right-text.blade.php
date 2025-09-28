@@ -1,13 +1,13 @@
-{{-- 左右图文编辑模块 - 现代化UI风格 --}}
+{{-- ماژول ویرایش تصویر چپ و متن راست - سبک مدرن --}}
 <template id="module-editor-left-image-right-text-template">
   <div class="left-image-right-text-editor">
     <div class="top-spacing"></div>
     
-    {{-- 模块宽度设置 --}}
+    {{-- تنظیم عرض ماژول --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-monitor"></i>
-        模块宽度
+        عرض ماژول
       </div>
       <div class="section-content">
         <div class="segmented-buttons">
@@ -15,33 +15,33 @@
             :class="['segmented-btn', { active: form.width === 'narrow' }]" 
             @click="form.width = 'narrow'"
           >
-            窄屏
+            عرض کوتاه
           </div>
           <div 
             :class="['segmented-btn', { active: form.width === 'wide' }]" 
             @click="form.width = 'wide'"
           >
-            宽屏
+            عرض وسیع
           </div>
           <div 
             :class="['segmented-btn', { active: form.width === 'full' }]" 
             @click="form.width = 'full'"
           >
-            全屏
+            تمام صفحه
           </div>
         </div>
       </div>
     </div>
 
-    {{-- 基础设置 --}}
+    {{-- تنظیمات پایه --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-setting"></i>
-        基础设置
+        تنظیمات پایه
       </div>
       <div class="section-content">
         <div class="setting-group">
-          <div class="setting-label">图片位置</div>
+          <div class="setting-label">موقعیت تصویر</div>
           <div class="option-buttons">
             <div 
               :class="['option-btn', { active: form.image_position === 'left' }]" 
@@ -51,7 +51,7 @@
                 <div class="preview-image"></div>
                 <div class="preview-text"></div>
               </div>
-              <span>左图右文</span>
+              <span>تصویر سمت چپ و متن راست</span>
             </div>
             <div 
               :class="['option-btn', { active: form.image_position === 'right' }]" 
@@ -61,77 +61,77 @@
                 <div class="preview-text"></div>
                 <div class="preview-image"></div>
               </div>
-              <span>右图左文</span>
+              <span>تصویر سمت راست و متن چپ</span>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    {{-- 内容设置 --}}
+    {{-- تنظیمات محتوا --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-edit"></i>
-        内容设置
+        تنظیمات محتوا
       </div>
       <div class="section-content">
         <div class="setting-group">
-          <div class="setting-label">模块标题</div>
-          <text-i18n v-model="form.title" placeholder="请输入模块标题"></text-i18n>
+          <div class="setting-label">عنوان ماژول</div>
+          <text-i18n v-model="form.title" placeholder="لطفاً عنوان ماژول را وارد کنید"></text-i18n>
         </div>
         
         <div class="setting-group">
-          <div class="setting-label">副标题</div>
-          <text-i18n v-model="form.subtitle" placeholder="请输入副标题"></text-i18n>
+          <div class="setting-label">زیر عنوان</div>
+          <text-i18n v-model="form.subtitle" placeholder="لطفاً زیر عنوان را وارد کنید"></text-i18n>
         </div>
         
         <div class="setting-group">
-          <div class="setting-label">描述内容</div>
-          <text-i18n v-model="form.description" placeholder="请输入描述内容"></text-i18n>
+          <div class="setting-label">محتوای توضیحات</div>
+          <text-i18n v-model="form.description" placeholder="لطفاً محتوای توضیحات را وارد کنید"></text-i18n>
         </div>
         
         <div class="setting-group">
-          <div class="setting-label">文字对齐方式</div>
+          <div class="setting-label">روشن کردن متن</div>
           <div class="option-buttons">
             <div 
               :class="['option-btn', { active: form.text_align === 'left' }]" 
               @click="form.text_align = 'left'"
             >
               <i class="el-icon-s-fold"></i>
-              <span>居左</span>
+              <span>چپ</span>
             </div>
             <div 
               :class="['option-btn', { active: form.text_align === 'center' }]" 
               @click="form.text_align = 'center'"
             >
               <i class="el-icon-s-operation"></i>
-              <span>居中</span>
+              <span>مرکز</span>
             </div>
             <div 
               :class="['option-btn', { active: form.text_align === 'end' }]" 
               @click="form.text_align = 'end'"
             >
               <i class="el-icon-s-unfold"></i>
-              <span>居右</span>
+              <span>راست</span>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    {{-- 边距设置 --}}
+    {{-- تنظیمات فاصله --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-position"></i>
-        边距设置
+        فاصله ها
       </div>
       <div class="section-content">
         <div class="setting-group">
-          <div class="setting-label">整体边距</div>
+          <div class="setting-label">فاصله کلی</div>
           <div class="control-group">
             <div class="control-row">
               <div class="control-item">
-                <div class="control-label">左边距</div>
+                <div class="control-label">فاصله چپ</div>
                 <el-input-number 
                   v-model="form.content_margin_left" 
                   :min="0" 
@@ -139,10 +139,10 @@
                   size="small"
                   controls-position="right"
                 ></el-input-number>
-                <span class="control-unit">px</span>
+                <span class="control-unit">پیکسل</span>
               </div>
               <div class="control-item">
-                <div class="control-label">右边距</div>
+                <div class="control-label">فاصله راست</div>
                 <el-input-number 
                   v-model="form.content_margin_right" 
                   :min="0" 
@@ -150,12 +150,12 @@
                   size="small"
                   controls-position="right"
                 ></el-input-number>
-                <span class="control-unit">px</span>
+                <span class="control-unit">پیکسل</span>
               </div>
             </div>
             <div class="control-row">
               <div class="control-item">
-                <div class="control-label">上边距</div>
+                <div class="control-label">فاصله بالا</div>
                 <el-input-number 
                   v-model="form.content_margin_top" 
                   :min="0" 
@@ -163,10 +163,10 @@
                   size="small"
                   controls-position="right"
                 ></el-input-number>
-                <span class="control-unit">px</span>
+                <span class="control-unit">پیکسل</span>
               </div>
               <div class="control-item">
-                <div class="control-label">下边距</div>
+                <div class="control-label">فاصله پایین</div>
                 <el-input-number 
                   v-model="form.content_margin_bottom" 
                   :min="0" 
@@ -174,7 +174,7 @@
                   size="small"
                   controls-position="right"
                 ></el-input-number>
-                <span class="control-unit">px</span>
+                <span class="control-unit">پیکسل</span>
               </div>
             </div>
           </div>
@@ -182,17 +182,17 @@
       </div>
     </div>
 
-    {{-- 内容间距 --}}
+    {{-- فاصله محتوا --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-s-grid"></i>
-        内容间距
+        فاصله محتوا
       </div>
       <div class="section-content">
         <div class="setting-group">
           <div class="control-group">
             <div class="control-item">
-              <div class="control-label">标题间距</div>
+              <div class="control-label">فاصله عنوان</div>
               <el-input-number 
                 v-model="form.title_spacing" 
                 :min="0" 
@@ -200,10 +200,10 @@
                 size="small"
                 controls-position="right"
               ></el-input-number>
-              <span class="control-unit">px</span>
+              <span class="control-unit">پیکسل</span>
             </div>
             <div class="control-item">
-              <div class="control-label">副标题间距</div>
+              <div class="control-label">فاصله زیر عنوان</div>
               <el-input-number 
                 v-model="form.subtitle_spacing" 
                 :min="0" 
@@ -211,10 +211,10 @@
                 size="small"
                 controls-position="right"
               ></el-input-number>
-              <span class="control-unit">px</span>
+              <span class="control-unit">پیکسل</span>
             </div>
             <div class="control-item">
-              <div class="control-label">描述间距</div>
+              <div class="control-label">فاصله توضیحات</div>
               <el-input-number 
                 v-model="form.description_spacing" 
                 :min="0" 
@@ -222,22 +222,22 @@
                 size="small"
                 controls-position="right"
               ></el-input-number>
-              <span class="control-unit">px</span>
+              <span class="control-unit">پیکسل</span>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    {{-- 图片设置 --}}
+    {{-- تنظیمات تصویر --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-picture"></i>
-        图片设置
+        تنظیمات تصویر
       </div>
       <div class="section-content">
         <div class="setting-group">
-          <div class="setting-label">图片选择</div>
+          <div class="setting-label">انتخاب تصویر</div>
           <single-image-selector 
             v-model="form.image" 
             :aspectRatio="16 / 9" 
@@ -246,16 +246,16 @@
           ></single-image-selector>
           <div class="setting-tip">
             <i class="el-icon-info"></i>
-            建议尺寸: 800 x 450，图片比例16:9
+            پیشنهاد: 800 x 450، نسبت تصویر 16:9
           </div>
         </div>
         
         <div class="setting-group">
-          <div class="setting-label">图片内边距</div>
+          <div class="setting-label">فاصله داخلی تصویر</div>
           <div class="control-group">
             <div class="control-row">
               <div class="control-item">
-                <div class="control-label">左右内边距</div>
+                <div class="control-label">فاصله افقی داخلی</div>
                 <el-input-number 
                   v-model="form.image_padding_x" 
                   :min="0" 
@@ -263,10 +263,10 @@
                   size="small"
                   controls-position="right"
                 ></el-input-number>
-                <span class="control-unit">px</span>
+                <span class="control-unit">پیکسل</span>
               </div>
               <div class="control-item">
-                <div class="control-label">上下内边距</div>
+                <div class="control-label">فاصله عمودی داخلی</div>
                 <el-input-number 
                   v-model="form.image_padding_y" 
                   :min="0" 
@@ -274,7 +274,7 @@
                   size="small"
                   controls-position="right"
                 ></el-input-number>
-                <span class="control-unit">px</span>
+                <span class="control-unit">پیکسل</span>
               </div>
             </div>
           </div>
@@ -282,20 +282,20 @@
       </div>
     </div>
 
-    {{-- 按钮设置 --}}
+    {{-- تنظیمات دکمه --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-link"></i>
-        按钮设置
+        تنظیمات دکمه
       </div>
       <div class="section-content">
         <div class="setting-group">
-          <div class="setting-label">按钮文字</div>
-          <text-i18n v-model="form.button_text" placeholder="请输入按钮文字"></text-i18n>
+          <div class="setting-label">متن دکمه</div>
+          <text-i18n v-model="form.button_text" placeholder="لطفاً متن دکمه را وارد کنید"></text-i18n>
         </div>
         
         <div class="setting-group">
-          <div class="setting-label">按钮链接</div>
+          <div class="setting-label">پیوند دکمه</div>
           <link-selector 
             :hide-types="['catalog', 'static']" 
             v-model="form.link"
@@ -307,13 +307,13 @@
 </template>
 
 <style>
-/* 左右图文编辑器特定样式 - 只保留真正特定的样式 */
+/* خصوصیات ویرایشگر تصویر چپ و متن راست - فقط خصوصیات واقعی را حفظ کنید */
 .left-image-right-text-editor {
   padding: 0;
   background: #fff;
 }
 
-/* 布局选项特定样式 - 恢复预览效果 */
+/* خصوصیات گزینه‌ای خصوصی - بازیابی اثر پیش‌بینی */
 .option-btn .preview-container {
   display: flex;
   align-items: center;
@@ -379,7 +379,7 @@
         this.form = Object.assign({}, this.form, this.module);
       }
       
-      // 确保width有默认值
+      // گرفتن مقدار پیش‌فرض برای width
       if (!this.form.width) {
         this.$set(this.form, 'width', 'wide');
       }

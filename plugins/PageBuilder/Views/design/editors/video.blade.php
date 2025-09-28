@@ -1,13 +1,13 @@
-{{-- 视频编辑模块 - 现代化风格 --}}
+{{-- ماژول ویرایش ویدیو - سبک مدرن --}}
 <template id="module-editor-video-template">
   <div class="video-editor">
     <div class="top-spacing"></div>
     
-    {{-- 模块宽度设置 --}}
+    {{-- تنظیم عرض ماژول --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-monitor"></i>
-        模块宽度
+        عرض ماژول
       </div>
       <div class="section-content">
         <div class="segmented-buttons">
@@ -15,29 +15,29 @@
             :class="['segmented-btn', { active: module.width === 'narrow' }]" 
             @click="setModuleWidth('narrow')"
           >
-            窄屏
+            عرض کوتاه
           </div>
           <div 
             :class="['segmented-btn', { active: module.width === 'wide' }]" 
             @click="setModuleWidth('wide')"
           >
-            宽屏
+            عرض وسیع
           </div>
           <div 
             :class="['segmented-btn', { active: module.width === 'full' }]" 
             @click="setModuleWidth('full')"
           >
-            全屏
+            تمام صفحه
           </div>
         </div>
       </div>
     </div>
 
-    {{-- 视频类型选择 --}}
+    {{-- انتخاب نوع ویدیو --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-video-camera"></i>
-        视频类型
+        نوع ویدیو
       </div>
       <div class="section-content">
         <div class="segmented-buttons">
@@ -45,7 +45,7 @@
             :class="['segmented-btn', { active: module.videoType === 'local' }]" 
             @click="setVideoType('local')"
           >
-            本地视频
+            ویدیو محلی
           </div>
           <div 
             :class="['segmented-btn', { active: module.videoType === 'youtube' }]" 
@@ -63,19 +63,19 @@
       </div>
     </div>
 
-    {{-- 本地视频设置 --}}
+    {{-- تنظیمات ویدیو محلی --}}
     <div class="editor-section" v-if="module.videoType === 'local'">
       <div class="section-title">
         <i class="el-icon-upload"></i>
-        视频文件
+        فایل ویدیو
       </div>
       <div class="section-content">
         <div class="video-upload-wrapper">
           <div class="upload-area" @click="openVideoSelector">
             <div v-if="!module.videoUrl" class="upload-placeholder">
               <i class="el-icon-video-camera"></i>
-              <p>点击选择视频文件</p>
-              <span class="upload-tip">支持 MP4, WebM, OGV 格式</span>
+              <p>برای انتخاب فایل ویدیو کلیک کنید</p>
+              <span class="upload-tip">پشتیبانی می‌شود: MP4, WebM, OGV فرمت</span>
             </div>
             <div v-else class="video-preview">
               <video 
@@ -99,11 +99,11 @@
       </div>
     </div>
 
-    {{-- 在线视频设置 --}}
+    {{-- تنظیمات ویدیو آنلاین --}}
     <div class="editor-section" v-if="module.videoType === 'youtube' || module.videoType === 'vimeo'">
       <div class="section-title">
         <i class="el-icon-link"></i>
-        视频链接
+        لینک‌های ویدیو
       </div>
       <div class="section-content">
         <div class="video-url-wrapper">
@@ -124,11 +124,11 @@
       </div>
     </div>
 
-    {{-- 视频封面设置 --}}
+    {{-- تنظیمات تصویر کاور ویدیو --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-picture"></i>
-        视频封面
+        تصویر کاور ویدیو
       </div>
       <div class="section-content">
         <div class="cover-image-wrapper">
@@ -141,71 +141,71 @@
           ></single-image-selector>
           <div class="cover-tips">
             <i class="el-icon-info"></i>
-            建议尺寸: 1280 x 720 (16:9比例)
+            پیشنهاد: 1280 x 720 (نسبت ارتفاع به عرض 16:9)
           </div>
         </div>
       </div>
     </div>
 
-    {{-- 视频控制设置 --}}
+    {{-- تنظیمات کنترل ویدیو --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-setting"></i>
-        播放控制
+        کنترل پخش
       </div>
       <div class="section-content">
         <div class="control-settings">
-          {{-- 自动播放 --}}
+          {{-- خودکار پخش --}}
           <div class="setting-item">
-            <div class="setting-label">自动播放</div>
+            <div class="setting-label">خودکار پخش</div>
             <div class="setting-control">
               <el-switch 
                 v-model="module.autoplay" 
                 @change="onChange"
-                active-text="启用" 
-                inactive-text="禁用"
+                active-text="فعال" 
+                inactive-text="غیرفعال"
                 size="small"
               ></el-switch>
             </div>
           </div>
 
-          {{-- 循环播放 --}}
+          {{-- پخش مداوم --}}
           <div class="setting-item">
-            <div class="setting-label">循环播放</div>
+            <div class="setting-label">پخش مداوم</div>
             <div class="setting-control">
               <el-switch 
                 v-model="module.loop" 
                 @change="onChange"
-                active-text="启用" 
-                inactive-text="禁用"
+                active-text="فعال" 
+                inactive-text="غیرفعال"
                 size="small"
               ></el-switch>
             </div>
           </div>
 
-          {{-- 静音播放 --}}
+          {{-- صدای ساده پخش --}}
           <div class="setting-item">
-            <div class="setting-label">静音播放</div>
+            <div class="setting-label">صدای ساده پخش</div>
             <div class="setting-control">
               <el-switch 
                 v-model="module.muted" 
                 @change="onChange"
-                active-text="启用" 
-                inactive-text="禁用"
+                active-text="فعال" 
+                inactive-text="غیرفعال"
                 size="small"
               ></el-switch>
             </div>
           </div>
 
-          {{-- 显示控制栏 --}}
+          {{-- نمایش خط کنترل --}}
           <div class="setting-item">
-            <div class="setting-label">显示控制栏</div>
+            <div class="setting-label">نمایش خط کنترل</div>
             <div class="setting-control">
               <el-switch 
                 v-model="module.controls" 
                 @change="onChange"
-                active-text="显示" 
-                inactive-text="隐藏"
+                active-text="نمایش" 
+                inactive-text="مخفی"
                 size="small"
               ></el-switch>
             </div>
@@ -214,32 +214,32 @@
       </div>
     </div>
 
-    {{-- 视频标题 --}}
+    {{-- عنوان ویدیو --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-edit"></i>
-        视频标题
+        عنوان ویدیو
       </div>
       <div class="section-content">
         <text-i18n 
           v-model="module.title" 
           @change="onChange" 
-          placeholder="请输入视频标题"
+          placeholder="لطفاً عنوان ویدیو را وارد کنید"
         ></text-i18n>
       </div>
     </div>
 
-    {{-- 视频描述 --}}
+    {{-- توضیح ویدیو --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-document"></i>
-        视频描述
+        توضیح ویدیو
       </div>
       <div class="section-content">
         <text-i18n 
           v-model="module.description" 
           @change="onChange" 
-          placeholder="请输入视频描述"
+          placeholder="لطفاً توضیح ویدیو را وارد کنید"
           type="textarea"
           :rows="3"
         ></text-i18n>
@@ -248,7 +248,7 @@
   </div>
 </template>
 
-{{-- 视频编辑模块脚本 --}}
+{{-- اسکریپت ویرایش ماژول ویدیو --}}
 <script type="text/javascript">
   Vue.component('module-editor-video', {
     template: '#module-editor-video-template',
@@ -273,7 +273,7 @@
     },
 
     created: function() {
-      // 初始化默认值
+      // مقداردهی اولیه پیش‌فرض
       if (!this.module.videoType) {
         this.$set(this.module, 'videoType', 'local');
       }
@@ -308,12 +308,12 @@
 
     methods: {
       onChange() {
-        // 清除之前的定时器
+        // پاک کردن زمانبندی قبلی
         if (this.debounceTimer) {
           clearTimeout(this.debounceTimer);
         }
         
-        // 设置新的定时器
+        // تنظیم زمانبندی جدید
         this.debounceTimer = setTimeout(() => {
           this.$emit('on-changed', this.module);
         }, 300);
@@ -331,16 +331,16 @@
       },
 
       openVideoSelector() {
-        // 这里需要集成文件选择器
-        // 暂时使用简单的文件输入
+        // اینجا باید ابزار انتخاب فایل را پیاده‌سازی کنید
+        // در حال حاضر از ورودی فایل ساده استفاده می‌شود
         const input = document.createElement('input');
         input.type = 'file';
         input.accept = 'video/*';
         input.onchange = (e) => {
           const file = e.target.files[0];
           if (file) {
-            // 这里应该上传文件并获取URL
-            // 暂时使用本地URL
+            // اینجا فایل را باید آپلود کرده و آدرس URL را دریافت کنید
+            // در حال حاضر از آدرس URL محلی استفاده می‌شود
             this.$set(this.module, 'videoUrl', URL.createObjectURL(file));
             this.onChange();
           }
@@ -362,20 +362,20 @@
       getVideoUrlPlaceholder() {
         switch (this.module.videoType) {
           case 'youtube':
-            return '请输入YouTube视频链接，例如: https://www.youtube.com/watch?v=VIDEO_ID';
+            return 'لطفاً لینک YouTube را وارد کنید، مثل: https://www.youtube.com/watch?v=VIDEO_ID';
           case 'vimeo':
-            return '请输入Vimeo视频链接，例如: https://vimeo.com/VIDEO_ID';
+            return 'لطفاً لینک Vimeo را وارد کنید، مثل: https://vimeo.com/VIDEO_ID';
           default:
-            return '请输入视频链接';
+            return 'لطفاً لینک‌های ویدیو را وارد کنید';
         }
       },
 
       getVideoUrlTips() {
         switch (this.module.videoType) {
           case 'youtube':
-            return '支持YouTube分享链接或嵌入链接';
+            return 'پشتیبانی می‌شود: لینک‌های پخش یا لینک‌های گذاشته شده';
           case 'vimeo':
-            return '支持Vimeo分享链接或嵌入链接';
+            return 'پشتیبانی می‌شود: لینک‌های پخش یا لینک‌های گذاشته شده';
           default:
             return '';
         }

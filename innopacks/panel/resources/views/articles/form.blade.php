@@ -27,12 +27,12 @@
               </li>
               <li class="nav-item" role="presentation">
                 <button class="nav-link" id="content-tab" data-bs-toggle="tab" data-bs-target="#content-tab-pane" type="button"
-                  role="tab" aria-controls="content-tab-pane" aria-selected="false">文章内容</button>
+                  role="tab" aria-controls="content-tab-pane" aria-selected="false">محتوای مقاله</button>
               </li>
               <li class="nav-item" role="presentation">
                 <button class="nav-link" id="extra-tab" data-bs-toggle="tab" data-bs-target="#extra-tab-pane"
                   type="button" role="tab" aria-controls="extra-tab-pane"
-                  aria-selected="false">扩展信息</button>
+                  aria-selected="false">اطلاعات توسعه</button>
               </li>
               <li class="nav-item" role="presentation">
                 <button class="nav-link" id="seo-tab" data-bs-toggle="tab" data-bs-target="#seo-tab-pane" type="button"
@@ -40,11 +40,11 @@
               </li>
               <li class="nav-item" role="presentation">
                 <button class="nav-link" id="related-articles-tab" data-bs-toggle="tab" data-bs-target="#related-articles-tab-pane" type="button"
-                  role="tab" aria-controls="related-articles-tab-pane" aria-selected="false">相关文章</button>
+                  role="tab" aria-controls="related-articles-tab-pane" aria-selected="false">مقالات مرتبط</button>
               </li>
               <li class="nav-item" role="presentation">
                 <button class="nav-link" id="related-products-tab" data-bs-toggle="tab" data-bs-target="#related-products-tab-pane" type="button"
-                  role="tab" aria-controls="related-products-tab-pane" aria-selected="false">关联产品</button>
+                  role="tab" aria-controls="related-products-tab-pane" aria-selected="false">محصولات مرتبط</button>
               </li>
               @hookinsert('panel.article.edit.tab.nav.bottom')
             </ul>

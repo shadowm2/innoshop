@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) Since 2024 InnoShop - All Rights Reserved
  *
@@ -36,7 +37,7 @@ class AdminSeeder extends Seeder
                 'email'    => 'admin@innoshop.com',
                 'password' => '$2y$10$tsjDyAkcFU0qWuJpo3pAae/6PwtQi/AhSR4giHqmjehTJb4B0W0fi',
                 'active'   => true,
-                'locale'   => 'en',
+                'locale'   => 'fa',
             ],
         ];
     }

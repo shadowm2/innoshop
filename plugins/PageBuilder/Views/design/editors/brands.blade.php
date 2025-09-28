@@ -1,13 +1,13 @@
-{{-- 品牌模块编辑器 --}}
+{{-- ماژول ویرایش برند --}}
 <script type="text/x-template" id="module-editor-brands-template">
   <div class="module-editor">
     <div class="top-spacing"></div>
     
-    {{-- 模块宽度设置 --}}
+    {{-- تنظیم عرض ماژول --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-monitor"></i>
-        模块宽度
+        عرض ماژول
       </div>
       <div class="section-content">
         <div class="segmented-buttons">
@@ -15,48 +15,48 @@
             :class="['segmented-btn', { active: module.width === 'narrow' }]" 
             @click="setModuleWidth('narrow')"
           >
-            窄屏
+            عرض کوتاه
           </div>
           <div 
             :class="['segmented-btn', { active: module.width === 'wide' }]" 
             @click="setModuleWidth('wide')"
           >
-            宽屏
+            عرض وسیع
           </div>
           <div 
             :class="['segmented-btn', { active: module.width === 'full' }]" 
             @click="setModuleWidth('full')"
           >
-            全屏
+            تمام صفحه
           </div>
         </div>
       </div>
     </div>
 
-    {{-- 模块标题 --}}
+    {{-- عنوان ماژول --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-edit"></i>
-        模块标题
+        عنوان ماژول
       </div>
       <div class="section-content">
         <text-i18n 
           v-model="module.title" 
           @change="onChange" 
-          placeholder="请输入模块标题"
+          placeholder="لطفا عنوان ماژول را وارد کنید"
         ></text-i18n>
       </div>
     </div>
 
-    {{-- 内容设置 --}}
+    {{-- تنظیمات محتوا --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-picture"></i>
-        内容设置
+        تنظیمات محتوا
       </div>
       <div class="section-content">
         <div class="setting-group">
-          <div class="setting-label">选择品牌</div>
+          <div class="setting-label">انتخاب برند</div>
           <div class="search-section">
             <el-autocomplete 
               class="search-input" 
@@ -64,14 +64,14 @@
               value-key="name" 
               size="small"
               :fetch-suggestions="querySearch" 
-              placeholder="请输入关键字搜索品牌" 
+              placeholder="لطفا کلمه کلیدی برند را وارد کنید" 
               :highlight-first-item="true"
               @select="handleSelect"
               style="width: 100%;"
             ></el-autocomplete>
           </div>
           <div class="products-section">
-            <div class="section-subtitle">已选品牌</div>
+            <div class="section-subtitle">برندهای انتخاب شده</div>
             <div class="products-list" v-loading="loading">
               <template v-if="module.brands.length">
                 <div v-for="(brand, index) in module.brands" :key="brand.id" class="product-item">
@@ -96,7 +96,7 @@
               </template>
               <div v-else class="empty-state">
                 <i class="el-icon-award"></i>
-                <p>暂无品牌，请在上方搜索并添加</p>
+                <p>هیچ برندی وجود ندارد، لطفا در بالا جستجو و اضافه کنید</p>
               </div>
             </div>
           </div>
@@ -104,51 +104,51 @@
       </div>
     </div>
 
-    {{-- 样式设置 --}}
+    {{-- تنظیمات ظاهری --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-brush"></i>
-        样式设置
+        تنظیمات ظاهری
       </div>
       <div class="section-content">
         <div class="setting-group">
-          <div class="setting-label">显示列数</div>
+          <div class="setting-label">تعداد ستون‌ها</div>
           <div class="segmented-buttons">
             <div 
               :class="['segmented-btn', { active: module.columns === 3 }]" 
               @click="setColumns(3)"
             >
-              3个
+              3 عدد
             </div>
             <div 
               :class="['segmented-btn', { active: module.columns === 4 }]" 
               @click="setColumns(4)"
             >
-              4个
+              4 عدد
             </div>
             <div 
               :class="['segmented-btn', { active: module.columns === 6 }]" 
               @click="setColumns(6)"
             >
-              6个
+              6 عدد
             </div>
           </div>
         </div>
 
         <div class="setting-group">
-          <div class="setting-label">自动轮播</div>
+          <div class="setting-label">پخش خودکار</div>
           <div class="switch-wrapper">
             <el-switch 
               v-model="module.autoplay" 
               @change="onChange"
-              active-text="启用" 
-              inactive-text="禁用"
+              active-text="فعال" 
+              inactive-text="غیرفعال"
               size="small"
             ></el-switch>
           </div>
         </div>
         <div class="setting-group" v-if="module.autoplay">
-          <div class="setting-label">轮播间隔时间</div>
+          <div class="setting-label">فاصله زمانی پخش خودکار</div>
           <el-input-number 
             v-model="module.autoplaySpeed" 
             @change="onChange"
@@ -160,23 +160,23 @@
           ></el-input-number>
           <div class="setting-tip">
             <i class="el-icon-info"></i>
-            单位：毫秒，建议设置 3000-5000
+            واحد: میلی‌ثانیه، پیشنهاد 3000-5000
           </div>
         </div>
         <div class="setting-group">
-          <div class="setting-label">显示品牌名称</div>
+          <div class="setting-label">نمایش نام برند</div>
           <div class="switch-wrapper">
             <el-switch 
               v-model="module.showNames" 
               @change="onChange"
-              active-text="显示" 
-              inactive-text="隐藏"
+              active-text="نمایش" 
+              inactive-text="مخفی"
               size="small"
             ></el-switch>
           </div>
         </div>
         <div class="setting-group">
-          <div class="setting-label">图片高度</div>
+          <div class="setting-label">ارتفاع تصویر</div>
           <el-input-number 
             v-model="module.itemHeight" 
             @change="onChange"
@@ -188,11 +188,11 @@
           ></el-input-number>
           <div class="setting-tip">
             <i class="el-icon-info"></i>
-            单位：像素，建议设置 60-120
+            واحد: پیکسل، پیشنهاد 60-120
           </div>
         </div>
         <div class="setting-group">
-          <div class="setting-label">内边距</div>
+          <div class="setting-label">پدینگ داخلی</div>
           <el-input-number 
             v-model="module.padding" 
             @change="onChange"
@@ -204,11 +204,11 @@
           ></el-input-number>
           <div class="setting-tip">
             <i class="el-icon-info"></i>
-            单位：像素，0为无内边距，控制图片与卡片边缘的间距
+            واحد: پیکسل، 0 یعنی بدون پدینگ، فاصله بین تصویر و لبه کارت را کنترل می‌کند
           </div>
         </div>
         <div class="setting-group">
-          <div class="setting-label">边框圆角</div>
+          <div class="setting-label">شعاع گوشه‌ها</div>
           <el-input-number 
             v-model="module.borderRadius" 
             @change="onChange"
@@ -220,11 +220,11 @@
           ></el-input-number>
           <div class="setting-tip">
             <i class="el-icon-info"></i>
-            单位：像素，0为直角，建议设置 4-16
+            واحد: پیکسل، 0 یعنی گوشه تیز، پیشنهاد 4-16
           </div>
         </div>
         <div class="setting-group">
-          <div class="setting-label">边框宽度</div>
+          <div class="setting-label">ضخامت حاشیه</div>
           <el-input-number 
             v-model="module.borderWidth" 
             @change="onChange"
@@ -236,11 +236,11 @@
           ></el-input-number>
           <div class="setting-tip">
             <i class="el-icon-info"></i>
-            单位：像素，0为无边框
+            واحد: پیکسل، 0 یعنی بدون حاشیه
           </div>
         </div>
         <div class="setting-group">
-          <div class="setting-label">边框颜色</div>
+          <div class="setting-label">رنگ حاشیه</div>
           <el-color-picker 
             v-model="module.borderColor" 
             @change="onChange"
@@ -250,17 +250,17 @@
           ></el-color-picker>
         </div>
         <div class="setting-group">
-          <div class="setting-label">边框样式</div>
+          <div class="setting-label">استایل حاشیه</div>
           <el-select 
             v-model="module.borderStyle" 
             @change="onChange"
             size="small"
             style="width: 100%;"
           >
-            <el-option label="实线" value="solid"></el-option>
-            <el-option label="虚线" value="dashed"></el-option>
-            <el-option label="点线" value="dotted"></el-option>
-            <el-option label="双线" value="double"></el-option>
+            <el-option label="خط ساده" value="solid"></el-option>
+            <el-option label="خط چین" value="dashed"></el-option>
+            <el-option label="نقطه‌چین" value="dotted"></el-option>
+            <el-option label="دوبل" value="double"></el-option>
           </el-select>
         </div>
       </div>

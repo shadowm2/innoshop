@@ -37,7 +37,6 @@ class HomeController extends Controller
         ];
 
         $data = fire_hook_filter('home.index.data', $data);
-
         return inno_view('home', $data);
     }
 }

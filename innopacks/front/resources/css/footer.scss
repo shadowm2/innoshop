@@ -121,7 +121,7 @@ footer {
 
         .footer-item-content {
           display: none;
-          padding-right: 26px;
+          padding-inline-end: 26px;
 
           @media (min-width: 768px) {
             display: block;
@@ -135,7 +135,7 @@ footer {
         margin: 0;
 
         li {
-          margin-right: 20px;
+          margin-inline-end: 20px;
           font-size: 14px;
           font-weight: bold;
           padding: 6px 0;

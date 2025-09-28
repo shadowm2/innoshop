@@ -5,9 +5,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <base href="{{ front_route('home.index') }}">
-  <title>@yield('title', system_setting_locale('meta_title', 'InnoShop - 创新的开源电商系统 | 开源独立站系统 | Laravel 12，多语言和多货币支持'))</title>
-  <meta name="description" content="@yield('description', system_setting_locale('meta_description', 'innoshop是一款创新的开源电子商务平台，基于Laravel 12开发，具有多语言和多货币支持的特性。它采用了基于Hook的强大而灵活的插件架构，为用户提供了丰富的定制和扩展功能。欢迎体验innoshop，打造属于您自己的电子商务平台！'))">
-  <meta name="keywords" content="@yield('keywords', system_setting_locale('meta_keywords', 'innoshop, 创新, 开源, 电商, 跨境电商, 开源独立站, Laravel 12, 多语言, 多货币, Hook, 插件架构, 灵活, 强大'))">
+  <title>@yield('title', system_setting_locale('meta_title', 'InnoShop - سیستم تجارت الکترونیک منبع باز نوآورانه | سیستم سایت مستقل منبع باز | Laravel 12، پشتیبانی چند زبانه و چند ارزی'))</title>
+  <meta name="description" content="@yield('description', system_setting_locale('meta_description', 'innoshop یک پلتفرم تجارت الکترونیک منبع باز نوآورانه است که بر اساس Laravel 12 توسعه یافته و دارای ویژگی‌های پشتیبانی چند زبانه و چند ارزی است. این سیستم از معماری افزونه‌ای قدرتمند و انعطاف‌پذیر مبتنی بر Hook استفاده می‌کند و قابلیت‌های غنی سفارشی‌سازی و توسعه را برای کاربران فراهم می‌کند. innoshop را تجربه کنید و پلتفرم تجارت الکترونیک خود را بسازید!'))">
+  <meta name="keywords" content="@yield('keywords', system_setting_locale('meta_keywords', 'innoshop, نوآورانه, منبع باز, تجارت الکترونیک, تجارت الکترونیک بین‌المللی, سایت مستقل منبع باز, Laravel 12, چند زبانه, چند ارزی, Hook, معماری افزونه, انعطاف‌پذیر, قدرتمند'))">
   <meta name="generator" content="InnoShop {{ innoshop_version() }}">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="api-token" content="{{ session('front_api_token') }}">

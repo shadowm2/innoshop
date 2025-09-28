@@ -3,7 +3,7 @@
   <div>
     <textarea rows="4" type="text" name="{{ $name }}" class="form-control" @if ($required) required @endif placeholder="{{ $title }}" data-column="{{ $column ?? '' }}" data-lang="{{ $localeCode ?? '' }}">{{ $value }}</textarea>
     <span class="invalid-feedback" role="alert">
-      请填写 {{ $title }}
+      {{ __('front/common.error_required', ['name' => $title]) }}
     </span>
     @if ($description ?? '')
     <div class="text-secondary"><small>{!! $description !!}</small></div>

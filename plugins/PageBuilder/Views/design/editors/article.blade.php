@@ -1,13 +1,13 @@
-{{-- 文章编辑模块 - 现代化风格 --}}
+{{-- ماژول ویرایش مقاله - سبک مدرن --}}
 <template id="module-editor-article-template">
   <div class="article-editor">
     <div class="top-spacing"></div>
     
-    {{-- 模块宽度设置 --}}
+    {{-- تنظیم عرض ماژول --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-monitor"></i>
-        模块宽度
+        عرض ماژول
       </div>
       <div class="section-content">
         <div class="segmented-buttons">
@@ -15,92 +15,92 @@
             :class="['segmented-btn', { active: form.width === 'narrow' }]" 
             @click="setModuleWidth('narrow')"
           >
-            窄屏
+            عرض کوتاه
           </div>
           <div 
             :class="['segmented-btn', { active: form.width === 'wide' }]" 
             @click="setModuleWidth('wide')"
           >
-            宽屏
+            عرض وسیع
           </div>
           <div 
             :class="['segmented-btn', { active: form.width === 'full' }]" 
             @click="setModuleWidth('full')"
           >
-            全屏
+            تمام صفحه
           </div>
         </div>
       </div>
     </div>
 
-    {{-- 模块标题 --}}
+    {{-- عنوان ماژول --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-edit"></i>
-        模块标题
+        عنوان ماژول
       </div>
       <div class="section-content">
         <text-i18n 
           v-model="form.title" 
           @change="onChange" 
-          placeholder="请输入模块标题"
+          placeholder="لطفا عنوان ماژول را وارد کنید"
         ></text-i18n>
       </div>
     </div>
 
-    {{-- 副标题 --}}
+    {{-- زیر عنوان --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-edit-outline"></i>
-        副标题
+        زیر عنوان
       </div>
       <div class="section-content">
         <text-i18n 
           v-model="form.subtitle" 
           @change="onChange" 
-          placeholder="请输入副标题"
+          placeholder="لطفا زیر عنوان را وارد کنید"
         ></text-i18n>
       </div>
     </div>
 
-    {{-- 显示设置 --}}
+    {{-- تنظیم نمایش --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-setting"></i>
-        显示设置
+        تنظیمات نمایش
       </div>
       <div class="section-content">
-        {{-- 每行显示数量设置 --}}
+        {{-- تنظیم تعداد آیتم در هر سطر --}}
                         <div class="setting-group">
-                  <div class="setting-label">每行显示数量</div>
+                  <div class="setting-label">تعداد آیتم در هر سطر</div>
                   <div class="segmented-buttons">
                     <div
                       :class="['segmented-btn', { active: form.columns === 3 }]"
                       @click="setColumns(3)"
                     >
-                      3个
+                      3 آیتم
                     </div>
                     <div
                       :class="['segmented-btn', { active: form.columns === 4 }]"
                       @click="setColumns(4)"
                     >
-                      4个
+                      4 آیتم
                     </div>
                   </div>
                 </div>
       </div>
     </div>
 
-    {{-- 文章管理 --}}
+    {{-- مدیریت مقالات --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-document"></i>
-        文章管理
+        مدیریت مقالات
       </div>
       <div class="section-content">
         <div class="setting-tip">
           <i class="el-icon-info"></i>
-          支持拖拽排序，可添加多篇文章
+          پشتیبانی از رها کردن برای مرتب سازی، می‌توانید چند مقاله را اضافه کنید
         </div>
 
         <div class="search-section">
@@ -109,7 +109,7 @@
             value-key="name" 
             size="small"
             :fetch-suggestions="querySearch" 
-            placeholder="请输入关键字搜索文章" 
+            placeholder="لطفا کلمه کلیدی مقاله را وارد کنید" 
             :highlight-first-item="true"
             @select="handleSelect" 
             style="width: 100%;"
@@ -127,14 +127,14 @@
             >
               <div v-for="(item, index) in articleData" :key="index" class="article-item">
                 <div class="article-info">
-                  <el-tooltip class="drag-handle" effect="dark" content="拖动排序" placement="left">
+                  <el-tooltip class="drag-handle" effect="dark" content="رها کردن برای مرتب سازی" placement="left">
                     <i class="el-icon-rank"></i>
                   </el-tooltip>
                   <i class="el-icon-document"></i>
                   <span class="article-title">@{{ item.name }}</span>
                 </div>
                 <div class="article-actions">
-                  <el-tooltip effect="dark" content="删除" placement="left">
+                  <el-tooltip effect="dark" content="حذف" placement="left">
                     <div class="remove-btn" @click="removeArticle(index)">
                       <i class="el-icon-delete"></i>
                     </div>
@@ -146,8 +146,8 @@
           <template v-else>
             <div class="empty-state">
               <i class="el-icon-document"></i>
-              <p>暂无文章</p>
-              <span>请搜索并添加文章</span>
+              <p>هیچ مقاله‌ای وجود ندارد</p>
+              <span>لطفا جستجو کرده و مقاله اضافه کنید</span>
             </div>
           </template>
         </div>
@@ -156,7 +156,7 @@
   </div>
 </template>
 
-{{-- 文章编辑模块脚本 --}}
+{{-- اسکریپت ویرایش ماژول مقاله --}}
 <script type="text/javascript">
   Vue.component('module-editor-article', {
     template: '#module-editor-article-template',
@@ -214,12 +214,12 @@
     },
     methods: {
       onChange() {
-        // 清除之前的定时器
+        // پاک کردن زمانبندی قبلی
         if (this.debounceTimer) {
           clearTimeout(this.debounceTimer);
         }
         
-        // 设置新的定时器
+        // تنظیم زمانبندی جدید
         this.debounceTimer = setTimeout(() => {
           this.$emit('on-changed', this.form);
         }, 300);
@@ -276,7 +276,7 @@
           this.form.articles.push(item);
           this.articleData.push(item);
         } else {
-          this.$message.warning('该文章已添加');
+          this.$message.warning('این مقاله قبلا اضافه شده است');
         }
         this.keyword = "";
       },
@@ -294,7 +294,7 @@
 </script>
 
 <style>
-  /* article 编辑器特定样式 */
+  /* خصوصیات ویرایشگر مقاله */
   
   .search-section {
     margin-bottom: 16px;

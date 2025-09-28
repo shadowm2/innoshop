@@ -30,7 +30,7 @@
       <div class="modal-body"></div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('panel/common.close') }}</button>
       </div>
     </div>
   </div>
@@ -40,16 +40,16 @@
   $('.single-image-upload-wrapper .is-up-file .img-upload-item').click(function () {
     const _self = $(this);
 
-    // 调用文件管理器
+    // فراخوانی مدیر فایل
     window.inno.fileManagerIframe((file) => {
-      // 处理选中的文件
+      // پردازش فایل انتخاب شده
       let val = file.path;
       let url = file.url;
       _self.find('input').val(val);
       _self.find('.tool-wrap').removeClass('d-none');
       _self.find('.img-info').html('<img src="' + url + '" class="img-fluid" data-origin-img="' + url + '">');
       
-      // 手动触发 change 事件
+      // فعال‌سازی دستی رویداد تغییر
       _self.find('input').trigger('change');
     }, {
       multiple: false,
@@ -57,7 +57,7 @@
     });
   });
 
-  // 删除图片
+  // حذف تصویر
   $('.single-image-upload-wrapper .is-up-file .delete-img').on('click', function (e) {
     e.stopPropagation();
     let _self = $(this).parent().parent();
@@ -66,7 +66,7 @@
     _self.find('.img-info').html('<i class="bi bi-plus fs-1 text-secondary opacity-75"></i>');
   });
 
-  // 预览图片
+  // پیش‌نمایش تصویر
   $('.single-image-upload-wrapper .is-up-file .show-img').on('click', function (e) {
     e.stopPropagation();
     let src = $(this).parent().siblings('.img-info').find('img').data('origin-img');

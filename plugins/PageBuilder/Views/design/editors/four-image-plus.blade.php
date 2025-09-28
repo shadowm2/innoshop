@@ -1,58 +1,58 @@
-{{-- 一行四图Plus编辑模块 - 现代化风格 --}}
+{{-- ماژول ویرایش چهار تصویر پلاس در یک ردیف - سبک مدرن --}}
 <template id="module-editor-four-image-plus-template">
   <div class="four-image-plus-editor">
     <div class="top-spacing"></div>
     
-    {{-- 模块宽度设置 --}}
+    {{-- تنظیم عرض ماژول --}}
     <div class="editor-section">
-      <div class="section-title">模块宽度</div>
+      <div class="section-title">عرض ماژول</div>
       <div class="section-content">
         <div class="segmented-buttons">
           <div 
             :class="['segmented-btn', { active: form.width === 'narrow' }]" 
             @click="form.width = 'narrow'"
           >
-            窄屏
+            عرض کوتاه
           </div>
           <div 
             :class="['segmented-btn', { active: form.width === 'wide' }]" 
             @click="form.width = 'wide'"
           >
-            宽屏
+            عرض وسیع
           </div>
           <div 
             :class="['segmented-btn', { active: form.width === 'full' }]" 
             @click="form.width = 'full'"
           >
-            全屏
+            تمام صفحه
           </div>
         </div>
       </div>
     </div>
 
-    {{-- 模块标题 --}}
+    {{-- عنوان ماژول --}}
     <div class="editor-section">
-      <div class="section-title">模块标题</div>
+      <div class="section-title">عنوان ماژول</div>
       <div class="section-content">
-        <text-i18n v-model="form.title" @change="onChange" placeholder="请输入模块标题"></text-i18n>
+        <text-i18n v-model="form.title" @change="onChange" placeholder="لطفا عنوان ماژول را وارد کنید"></text-i18n>
       </div>
     </div>
 
-    {{-- 副标题 --}}
+    {{-- زیر عنوان --}}
     <div class="editor-section">
-      <div class="section-title">副标题</div>
+      <div class="section-title">زیر عنوان</div>
       <div class="section-content">
-        <text-i18n v-model="form.subtitle" @change="onChange" placeholder="请输入副标题"></text-i18n>
+        <text-i18n v-model="form.subtitle" @change="onChange" placeholder="لطفا زیر عنوان را وارد کنید"></text-i18n>
       </div>
     </div>
 
-    {{-- 图片设置 --}}
+    {{-- تنظیم تصاویر --}}
     <div class="editor-section">
-      <div class="section-title">图片设置</div>
+      <div class="section-title">تنظیم تصاویر</div>
       <div class="section-content">
         <div class="setting-tip">
           <i class="el-icon-info"></i>
-          建议上传相同尺寸的图片，支持拖拽排序
+          پیشنهاد می‌شود تصاویر یکسان را بارگذاری کنید، پشتیبانی از رها کردن برای مرتب‌سازی است
         </div>
 
         <draggable ghost-class="dragabble-ghost" :list="form.images"
@@ -60,14 +60,14 @@
           <div class="image-item" v-for="(item, index) in form.images" :key="index">
             <div class="image-header" @click="itemShow(index)">
               <div class="image-info">
-                <el-tooltip class="drag-handle" effect="dark" content="拖动排序" placement="left">
+                <el-tooltip class="drag-handle" effect="dark" content="رها کردن برای مرتب‌سازی" placement="left">
                   <i class="el-icon-rank"></i>
                 </el-tooltip>
                 <img :src="thumbnail(item.image)" class="image-preview">
-                <span class="image-label">图片 @{{ index + 1 }}</span>
+                <span class="image-label">تصویر @{{ index + 1 }}</span>
               </div>
               <div class="image-actions">
-                <el-tooltip effect="dark" content="删除" placement="left">
+                <el-tooltip effect="dark" content="حذف" placement="left">
                   <div class="remove-btn" @click.stop="removeImage(index)">
                     <i class="el-icon-delete"></i>
                   </div>
@@ -79,15 +79,15 @@
               <div class="image-upload-section">
                 <single-image-selector v-model="item.image" :aspectRatio="1" :targetWidth="400"
                   :targetHeight="400" @change="onChange"></single-image-selector>
-                <div class="upload-tip">建议尺寸: 400 x 400，图片比例1:1</div>
+                <div class="upload-tip">پیشنهاد: 400 x 400، نسبت تصویر 1:1</div>
               </div>
               <div class="image-settings">
                 <div class="setting-group">
-                  <div class="setting-label">图片说明</div>
-                  <text-i18n v-model="item.description" @change="onChange" placeholder="请输入图片说明"></text-i18n>
+                  <div class="setting-label">توضیح تصویر</div>
+                  <text-i18n v-model="item.description" @change="onChange" placeholder="لطفا توضیح تصویر را وارد کنید"></text-i18n>
                 </div>
                 <div class="setting-group">
-                  <div class="setting-label">图片链接</div>
+                  <div class="setting-label">لینک تصویر</div>
                   <link-selector :hide-types="['catalog', 'static']" v-model="item.link" @change="onChange"></link-selector>
                 </div>
               </div>
@@ -97,7 +97,7 @@
 
         <div class="add-image-section" v-if="form.images.length < 4">
           <el-button type="primary" size="small" @click="addImage" icon="el-icon-circle-plus-outline">
-            添加图片 (@{{ form.images.length }}/4)
+            افزودن تصویر (@{{ form.images.length }}/4)
           </el-button>
         </div>
       </div>
@@ -105,7 +105,7 @@
   </div>
 </template>
 
-{{-- 一行四图Plus组件脚本 --}}
+{{-- اسکریپت ماژول ویرایش چهار تصویر پلاس --}}
 <script type="text/javascript">
   Vue.component('module-editor-four-image-plus', {
     template: '#module-editor-four-image-plus-template',
@@ -157,12 +157,12 @@
     },
     methods: {
       onChange() {
-        // 清除之前的定时器
+        // پاک کردن زمان‌بندی قبلی
         if (this.debounceTimer) {
           clearTimeout(this.debounceTimer);
         }
         
-        // 设置新的定时器
+        // تنظیم زمان‌بندی جدید
         this.debounceTimer = setTimeout(() => {
           this.$emit('on-changed', this.form);
         }, 300);
@@ -190,7 +190,7 @@
       },
       addImage() {
         if (this.form.images.length >= 4) {
-          this.$message.warning('最多只能添加4张图片');
+          this.$message.warning('حداکثر می‌توانید 4 تصویر اضافه کنید');
           return;
         }
         this.form.images.push({

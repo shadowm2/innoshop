@@ -17,7 +17,7 @@
              class="text-dark text-decoration-none">{{ $product['name'] }}</a></h5>
 
         @if($product['seller_name'])
-          <p class="card-text text-start ">{{ trans('panel/plugin.author') }}：
+          <p class="card-text text-start ">{{ trans('panel/plugin.author') }}:
             <a href="{{ $product['seller_url'] }}" class="text-start" target="_blank">
               <span class="panel-text-primary">{{ $product['seller_name'] }}</span>
             </a>

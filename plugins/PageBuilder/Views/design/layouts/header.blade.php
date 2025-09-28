@@ -1,13 +1,13 @@
 <header class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm">
   <div class="container-fluid">
-    {{-- 左侧返回按钮和品牌 --}}
+    {{-- دکمه بازگشت و برند سمت چپ --}}
     <div class="d-flex align-items-center">
-      {{-- 返回按钮 - 多个选项供选择 --}}
+      {{-- دکمه بازگشت - چندین گزینه برای انتخاب --}}
       <a href="{{ panel_route('dashboard.index') }}" class="btn btn-link text-muted p-0 me-4" :title="lang.back_to_admin">
         <i class="bi bi-arrow-left-circle" style="font-size: 18px;"></i>
       </a>
       
-      {{-- Logo 和插件名称 --}}
+      {{-- لوگو و نام افزونه --}}
       <a href="{{ panel_route('pbuilder.index') }}" class="btn btn-link text-muted p-0 me-4 d-flex align-items-center text-decoration-none">
         <img src="{{ image_origin(system_setting('logo', 'images/logo.png')) }}" alt="InnoShop" height="28" class="me-2">
         <div class="d-flex flex-column">
@@ -16,7 +16,7 @@
       </a>
     </div>
     
-    {{-- 中央设备切换按钮 --}}
+    {{-- دکمه‌های تغییر دستگاه در مرکز --}}
     <div class="device-switch mx-auto">
       <div class="device-wrap">
         <div :class="{ active: design.type === 'pc' }" @click="switchDevice('pc')" :title="lang.pc_preview">
@@ -30,9 +30,9 @@
       </div>
     </div>
     
-    {{-- 右侧操作按钮 --}}
+    {{-- دکمه‌های عملیات سمت راست --}}
     <div class="navbar-nav d-flex align-items-center">
-      {{-- 保存状态指示器 --}}
+      {{-- نشانگر وضعیت ذخیره --}}
       <div class="nav-item me-3">
         <div class="d-flex align-items-center">
           <div class="save-status me-2 d-flex align-items-center">
@@ -42,7 +42,7 @@
         </div>
       </div>
       
-      {{-- 操作按钮组 --}}
+      {{-- گروه دکمه‌های عملیات --}}
       <div class="nav-item me-2">
         <button class="btn btn-outline-secondary action-btn" @click="importDemoData" :title="lang.import_demo + lang.data">
           <i class="el-icon-download"></i>

@@ -40,7 +40,7 @@
           <i class="el-icon-collection"></i> @{{ lang.module_library }}
         </div>
         
-        {{-- 搜索框 --}}
+        {{-- جعبه جستجو --}}
         <div class="modules-search">
           <el-input
             v-model="moduleSearch"
@@ -52,7 +52,7 @@
         </div>
       </div>
       
-      {{-- 分类标签 --}}
+      {{-- برچسب‌های دسته‌بندی --}}
       <div class="modules-categories">
         <el-tag
           v-for="category in moduleCategories"
@@ -83,7 +83,7 @@
       </el-row>
     </div>
     
-    {{-- 无搜索结果提示 --}}
+    {{-- پیام عدم وجود نتیجه جستجو --}}
     <div v-if="filteredModules.length === 0 && (moduleSearch || selectedCategory !== 'all')" class="no-results">
       <i class="el-icon-search"></i>
       <p>@{{ lang.no_matching_modules }}</p>

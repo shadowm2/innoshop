@@ -7,7 +7,7 @@
     <script src="{{ asset('vendor/vuedraggable/vuedraggable.umd.min.js') }}"></script>
 
   <script>
-    // 从 URL 参数获取配置
+    // Get configuration from URL parameters
     const urlParams = new URLSearchParams(window.location.search);
     window.fileManagerConfig = {
       multiple: urlParams.get('multiple') === '1',
@@ -24,7 +24,7 @@
   </script>
 
   <script>
-    // http 请求封装
+    // HTTP request wrapper
     (function(window) {
       'use strict';
 
@@ -34,7 +34,7 @@
         return currentToken || parentToken;
       };
 
-      // 创建 axios 实例
+      // Create axios instance
       const http = axios.create({
         baseURL: '/api/panel/',
         timeout: 30000,
@@ -43,12 +43,12 @@
         }
       });
 
-      // 添加请求拦截器，确保每次请求都使用最新的 token
+      // Add request interceptor to ensure latest token is used
       http.interceptors.request.use(config => {
-        // 每次请求前重新获取 token
+        // Get latest token before each request
         config.headers.Authorization = 'Bearer ' + window.getApiToken();
 
-        // 添加 loading
+        // Add loading
         if (window.layer) {
           layer.load(2, {
             shade: [0.3, '#fff']
@@ -57,7 +57,7 @@
         return config;
       });
 
-      // 响应拦截器
+      // Response interceptor
       http.interceptors.response.use(
         response => {
           if (window.layer) {
@@ -70,33 +70,33 @@
             layer.closeAll('loading');
           }
 
-          // 错误处理
+          // Error handling
           if (error.response) {
-            const message = error.response.data.message || '请求失败';
-            // 使用 Element UI 的消息提示
+            const message = error.response.data.message || 'Request failed';
+            // Use Element UI message notification
             if (window.Vue && window.ELEMENT) {
               ELEMENT.Message.error(message);
             }
 
             switch (error.response.status) {
               case 401:
-                // 未授权处理
+                // Unauthorized handling
                 break;
               case 403:
-                // 禁止访问处理
+                // Forbidden access handling
                 break;
               case 404:
-                // 未找到处理
+                // Not found handling
                 break;
               default:
-                // 其他错误
+                // Other errors
                 break;
             }
           }
           return Promise.reject(error);
         }
       );
-      window.http = http; // 确保 http 也被添加到 window 对象上
+      window.http = http; // Ensure http is also added to window object
     })(window);
   </script>
 
@@ -867,7 +867,7 @@
     }
 
     .file-card[data-is-dir="true"]:hover::after {
-      content: "双击进入";
+      content: "Double-click to enter";
       position: absolute;
       bottom: 5px;
       right: 5px;
@@ -991,7 +991,7 @@
 
     /* 拖拽提示文本 */
     .el-tree-node.is-drop-inner::after {
-      content: "放置到此处";
+      content: "Drop here";
       position: absolute;
       right: 10px;
       color: #8446df;
@@ -1014,7 +1014,7 @@
 
     /* 拖拽提示 */
     .el-tree-node.is-drop-inner::after {
-      content: "放置到此处";
+      content: "Drop here";
       position: absolute;
       right: 10px;
       color: #8446df;
@@ -1090,7 +1090,7 @@
 
     /* 拖拽提示 */
     .el-tree-node.drag-over>.el-tree-node__content::after {
-      content: "放置到此处";
+      content: "Drop here";
       position: absolute;
       right: 10px;
       color: #8446df;
@@ -1158,7 +1158,7 @@
 
     /* 文件夹接收拖拽时的提示 */
     .file-card[data-is-dir="true"].drag-over::after {
-      content: "放置到此处";
+      content: "Drop here";
       position: absolute;
       bottom: 5px;
       right: 5px;
@@ -1364,38 +1364,38 @@
           <el-col :span="12">
             <el-button-group>
               <el-button type="primary" size="small" @click="uploadFile">
-                <i class="el-icon-upload2"></i> 上传文件
+                <i class="el-icon-upload2"></i> Upload File
               </el-button>
               <el-button size="small" @click="createFolder">
-                <i class="el-icon-folder-add"></i> 新建文件夹
+                <i class="el-icon-folder-add"></i> New Folder
               </el-button>
               <el-button size="small" data-bs-toggle="modal" data-bs-target="#storageConfigModal">
                 <i class="el-icon-setting"></i> {{ __('panel/file_manager.storage_config') }}
               </el-button>
               <el-button size="small" :type="isMultiSelectMode ? 'primary' : 'default'" @click="toggleMultiSelectMode">
-                <i class="el-icon-check"></i> 多选模式
+                <i class="el-icon-check"></i> Multi-select Mode
               </el-button>
               <el-button v-if="isMultiSelectMode" size="small" @click="selectAll">
-                <i class="el-icon-finished"></i> 全选
+                <i class="el-icon-finished"></i> Select All
               </el-button>
 
-              <el-button type="primary" size="small"@click="handleConfirm">选择提交</el-button>
+              <el-button type="primary" size="small"@click="handleConfirm">Confirm Selection</el-button>
 
             </el-button-group>
           </el-col>
           <el-col :span="12" style="text-align: right">
             <el-button-group>
               <el-button size="small" :disabled="selectedFiles.length !== 1" @click="renameSelectedFile">
-                <i class="el-icon-edit"></i> 重命
+                <i class="el-icon-edit"></i> Rename
               </el-button>
               <el-button size="small" :disabled="!selectedFiles.length" @click="deleteFiles">
-                <i class="el-icon-delete"></i> 删除
+                <i class="el-icon-delete"></i> Delete
               </el-button>
               <el-button size="small" :disabled="!selectedFiles.length" @click="moveFiles">
-                <i class="el-icon-folder"></i> 移动到
+                <i class="el-icon-folder"></i> Move to
               </el-button>
               <el-button size="small" :disabled="!selectedFiles.length" @click="copyFiles">
-                <i class="el-icon-document-copy"></i> 复制到
+                <i class="el-icon-document-copy"></i> Copy to
               </el-button>
             </el-button-group>
             <!-- 排序选择器 -->

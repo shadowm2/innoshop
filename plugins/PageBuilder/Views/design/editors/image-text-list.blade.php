@@ -1,13 +1,13 @@
-{{-- 图文列表编辑模块 - 现代化风格 --}}
+{{-- ماژول ویرایش لیست تصویر-متن - سبک مدرن --}}
 <template id="module-editor-image-text-list-template">
   <div class="image-text-list-editor">
     <div class="top-spacing"></div>
     
-    {{-- 模块宽度设置 --}}
+    {{-- تنظیمات عرض ماژول --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-monitor"></i>
-        模块宽度
+        عرض ماژول
       </div>
       <div class="section-content">
         <div class="segmented-buttons">
@@ -15,94 +15,94 @@
             :class="['segmented-btn', { active: module.width === 'narrow' }]" 
             @click="setModuleWidth('narrow')"
           >
-            窄屏
+            ضعیف
           </div>
           <div 
             :class="['segmented-btn', { active: module.width === 'wide' }]" 
             @click="setModuleWidth('wide')"
           >
-            宽屏
+            عریض
           </div>
           <div 
             :class="['segmented-btn', { active: module.width === 'full' }]" 
             @click="setModuleWidth('full')"
           >
-            全屏
+            کامل
           </div>
         </div>
       </div>
     </div>
 
-    {{-- 模块标题 --}}
+    {{-- عنوان ماژول --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-edit"></i>
-        模块标题
+        عنوان ماژول
       </div>
       <div class="section-content">
         <text-i18n 
           v-model="module.title" 
           @change="onChange" 
-          placeholder="请输入模块标题"
+          placeholder="لطفا عنوان ماژول را وارد کنید"
         ></text-i18n>
       </div>
     </div>
 
-    {{-- 显示设置 --}}
+    {{-- تنظیمات نمایش --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-setting"></i>
-        显示设置
+        تنظیمات نمایش
       </div>
       <div class="section-content">
-        {{-- 每行显示数量设置 --}}
+        {{-- تنظیم آیتم در هر ردیف --}}
         <div class="setting-group">
-          <div class="setting-label">每行显示数量</div>
+          <div class="setting-label">آیتم در هر ردیف</div>
           <div class="segmented-buttons">
             <div 
               :class="['segmented-btn', { active: module.columns === 3 }]" 
               @click="setColumns(3)"
             >
-              3个
+              3
             </div>
             <div 
               :class="['segmented-btn', { active: module.columns === 4 }]" 
               @click="setColumns(4)"
             >
-              4个
+              4
             </div>
             <div 
               :class="['segmented-btn', { active: module.columns === 5 }]" 
               @click="setColumns(5)"
             >
-              5个
+              5
             </div>
             <div 
               :class="['segmented-btn', { active: module.columns === 6 }]" 
               @click="setColumns(6)"
             >
-              6个
+              6
             </div>
           </div>
         </div>
 
-        {{-- 自动轮播设置 --}}
+        {{-- تنظیمات خودکار پخش --}}
         <div class="setting-group">
-          <div class="setting-label">自动轮播</div>
+          <div class="setting-label">خودکار پخش</div>
           <div class="switch-wrapper">
             <el-switch 
               v-model="module.autoplay" 
               @change="onChange"
-              active-text="启用" 
-              inactive-text="禁用"
+              active-text="فعال" 
+              inactive-text="غیرفعال"
               size="small"
             ></el-switch>
           </div>
         </div>
 
-        {{-- 轮播间隔时间 --}}
+        {{-- زمان پخش خودکار --}}
         <div class="setting-group" v-if="module.autoplay">
-          <div class="setting-label">轮播间隔时间</div>
+          <div class="setting-label">زمان پخش خودکار</div>
           <el-input-number 
             v-model="module.autoplaySpeed" 
             @change="onChange"
@@ -114,27 +114,27 @@
           ></el-input-number>
           <div class="setting-tip">
             <i class="el-icon-info"></i>
-            单位：毫秒，建议设置 3000-5000
+            واحد: میلی ثانیه، پیشنهاد 3000-5000
           </div>
         </div>
 
-        {{-- 显示标题 --}}
+        {{-- نمایش عناوین --}}
         <div class="setting-group">
-          <div class="setting-label">显示标题</div>
+          <div class="setting-label">نمایش عناوین</div>
           <div class="switch-wrapper">
             <el-switch 
               v-model="module.showNames" 
               @change="onChange"
-              active-text="显示" 
-              inactive-text="隐藏"
+              active-text="نمایش" 
+              inactive-text="مخفی"
               size="small"
             ></el-switch>
           </div>
         </div>
 
-        {{-- 图片高度设置 --}}
+        {{-- تنظیم ارتفاع تصویر --}}
         <div class="setting-group">
-          <div class="setting-label">图片高度</div>
+          <div class="setting-label">ارتفاع تصویر</div>
           <el-input-number 
             v-model="module.itemHeight" 
             @change="onChange"
@@ -146,13 +146,13 @@
           ></el-input-number>
           <div class="setting-tip">
             <i class="el-icon-info"></i>
-            单位：像素，建议设置 80-200
+            واحد: پیکسل، پیشنهاد 80-200
           </div>
         </div>
 
-        {{-- 内边距设置 --}}
+        {{-- تنظیم پدینگ --}}
         <div class="setting-group">
-          <div class="setting-label">内边距</div>
+          <div class="setting-label">پدینگ</div>
           <el-input-number 
             v-model="module.padding" 
             @change="onChange"
@@ -164,13 +164,13 @@
           ></el-input-number>
           <div class="setting-tip">
             <i class="el-icon-info"></i>
-            单位：像素，0为无内边距，控制图片和文字与卡片边缘的间距
+            واحد: پیکسل، 0 برای پدینگ صفر، کنترل فاصله بین تصویر/متن و لبه‌های کارت
           </div>
         </div>
 
-        {{-- 边框圆角 --}}
+        {{-- گرد کردن لبه --}}
         <div class="setting-group">
-          <div class="setting-label">边框圆角</div>
+          <div class="setting-label">گرد کردن لبه</div>
           <el-input-number 
             v-model="module.borderRadius" 
             @change="onChange"
@@ -182,13 +182,13 @@
           ></el-input-number>
           <div class="setting-tip">
             <i class="el-icon-info"></i>
-            单位：像素，0为直角，建议设置 4-16
+            واحد: پیکسل، 0 برای لبه‌های حداکثر، پیشنهاد 4-16
           </div>
         </div>
 
-        {{-- 边框宽度 --}}
+        {{-- عرض خط --}}
         <div class="setting-group">
-          <div class="setting-label">边框宽度</div>
+          <div class="setting-label">عرض خط</div>
           <el-input-number 
             v-model="module.borderWidth" 
             @change="onChange"
@@ -200,13 +200,13 @@
           ></el-input-number>
           <div class="setting-tip">
             <i class="el-icon-info"></i>
-            单位：像素，0为无边框
+            واحد: پیکسل، 0 برای خط صفر
           </div>
         </div>
 
-        {{-- 边框颜色 --}}
+        {{-- رنگ خط --}}
         <div class="setting-group">
-          <div class="setting-label">边框颜色</div>
+          <div class="setting-label">رنگ خط</div>
           <el-color-picker 
             v-model="module.borderColor" 
             @change="onChange"
@@ -216,32 +216,32 @@
           ></el-color-picker>
         </div>
 
-        {{-- 边框样式 --}}
+        {{-- سبک خط --}}
         <div class="setting-group">
-          <div class="setting-label">边框样式</div>
+          <div class="setting-label">سبک خط</div>
           <el-select 
             v-model="module.borderStyle" 
             @change="onChange"
             size="small"
             style="width: 100%;"
           >
-            <el-option label="实线" value="solid"></el-option>
-            <el-option label="虚线" value="dashed"></el-option>
-            <el-option label="点线" value="dotted"></el-option>
-            <el-option label="双线" value="double"></el-option>
+            <el-option label="پیوسته" value="solid"></el-option>
+            <el-option label="چینه" value="dashed"></el-option>
+            <el-option label="نقطه‌ای" value="dotted"></el-option>
+            <el-option label="دوگانه" value="double"></el-option>
           </el-select>
         </div>
       </div>
     </div>
 
-    {{-- 图文项管理 --}}
+    {{-- مدیریت آیتم‌های تصویر-متن --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-picture"></i>
-        图文项管理
+        مدیریت آیتم‌های تصویر-متن
       </div>
       <div class="section-content">
-        {{-- 图文项列表 --}}
+        {{-- لیست آیتم‌های تصویر-متن --}}
         <div class="image-text-list" v-loading="loading">
           <template v-if="module.imageTextItems && module.imageTextItems.length">
             <draggable 
@@ -286,15 +286,15 @@
             </draggable>
           </template>
           
-          {{-- 空状态 --}}
+          {{-- حالت خالی --}}
           <div v-else class="empty-state">
             <i class="el-icon-picture-outline"></i>
-            <p>暂无图文项</p>
-            <span>点击下方按钮添加图文项</span>
+            <p>آیتم تصویر-متنی وجود ندارد</p>
+            <span>برای اضافه کردن آیتم‌های تصویر-متن کلیک کنید</span>
           </div>
         </div>
 
-        {{-- 添加图文项按钮 --}}
+        {{-- دکمه اضافه کردن آیتم تصویر-متن --}}
         <div class="add-item-section">
           <el-button 
             type="primary" 
@@ -303,33 +303,33 @@
             size="small"
             style="width: 100%;"
           >
-            添加图文项
+            آیتم تصویر-متن اضافه کنید
           </el-button>
         </div>
       </div>
     </div>
 
-    {{-- 图文项编辑对话框 --}}
+    {{-- دیالوگ ویرایش آیتم تصویر-متن --}}
     <el-dialog 
-      :title="editingItemIndex === -1 ? '添加图文项' : '编辑图文项'" 
+      :title="editingItemIndex === -1 ? 'اضافه کردن آیتم تصویر-متن' : 'ویرایش آیتم تصویر-متن'" 
       :visible.sync="showItemDialog" 
       width="500px"
       @close="closeItemDialog"
     >
       <div class="item-form">
-        {{-- 标题 --}}
+        {{-- عنوان --}}
         <div class="form-group">
-          <label>标题</label>
+          <label>عنوان</label>
           <el-input 
             v-model="editingItem.name" 
-            placeholder="请输入标题"
+            placeholder="لطفا عنوان را وارد کنید"
             size="small"
           ></el-input>
         </div>
 
-        {{-- 图片 --}}
+        {{-- تصویر --}}
         <div class="form-group">
-          <label>图片</label>
+          <label>تصویر</label>
           <single-image-selector 
             v-model="editingItem.image" 
             :aspectRatio="2/1" 
@@ -338,34 +338,34 @@
           ></single-image-selector>
           <div class="form-tip">
             <i class="el-icon-info"></i>
-            建议尺寸: 200 x 100 (2:1比例)
+            پیشنهادی: 200 x 100 (نسبت 2:1)
           </div>
         </div>
 
-        {{-- 链接 --}}
+        {{-- لینک --}}
         <div class="form-group">
-          <label>链接 (可选)</label>
+          <label>لینک (اختیاری)</label>
           <link-selector 
             v-model="editingItem.link" 
-            placeholder="请选择或输入链接"
+            placeholder="لطفا لینک را انتخاب کنید یا وارد کنید"
             :is-title="false"
           ></link-selector>
           <div class="form-tip" v-if="editingItem.link && editingItem.link.value">
             <i class="el-icon-info"></i>
-            当前链接: @{{ getLinkDisplayText(editingItem.link) }}
+            لینک جاری: @{{ getLinkDisplayText(editingItem.link) }}
           </div>
         </div>
       </div>
       
       <div slot="footer" class="dialog-footer">
-        <el-button @click="closeItemDialog">取消</el-button>
-        <el-button type="primary" @click="saveItem">确定</el-button>
+        <el-button @click="closeItemDialog">انصراف</el-button>
+        <el-button type="primary" @click="saveItem">تایید</el-button>
       </div>
     </el-dialog>
   </div>
 </template>
 
-{{-- 图文列表编辑模块脚本 --}}
+{{-- ماژول ویرایش لیست تصویر-متن - اسکریپت --}}
 <script type="text/javascript">
   Vue.component('module-editor-image-text-list', {
     template: '#module-editor-image-text-list-template',
@@ -401,9 +401,9 @@
     },
 
     created: function() {
-      // 初始化默认值
+      // مقادیر پیش‌فرض را مقداردهی کنید
         if (!this.module.title) {
-          this.$set(this.module, 'title', this.languagesFill('图文列表'));
+          this.$set(this.module, 'title', this.languagesFill('لیست تصویر-متن'));
         }
       if (!this.module.imageTextItems) {
         this.$set(this.module, 'imageTextItems', []);
@@ -445,12 +445,12 @@
 
     methods: {
       onChange() {
-        // 清除之前的定时器
+        // زمان پیش‌فرض را پاک کنید
         if (this.debounceTimer) {
           clearTimeout(this.debounceTimer);
         }
         
-        // 设置新的定时器
+        // تنظیم زمان جدید
         this.debounceTimer = setTimeout(() => {
           this.$emit('on-changed', this.module);
         }, 300);
@@ -500,40 +500,40 @@
       },
 
       removeItem(index) {
-        this.$confirm('确定要删除这个图文项吗？', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
+        this.$confirm('آیا از حذف این آیتم تصویر-متن اطمینان دارید؟', 'تایید', {
+          confirmButtonText: 'تایید',
+          cancelButtonText: 'انصراف',
           type: 'warning'
         }).then(() => {
           this.module.imageTextItems.splice(index, 1);
           this.onChange();
-          this.$message.success('删除成功');
+          this.$message.success('با موفقیت حذف شد');
         }).catch(() => {
-          // 用户取消删除
+          // کاربر حذف را لغو کرد
         });
       },
 
       saveItem() {
         if (!this.editingItem.name.trim()) {
-          this.$message.error('请输入标题');
+          this.$message.error('لطفا عنوان را وارد کنید');
           return;
         }
         if (!this.editingItem.image) {
-          this.$message.error('请选择图片');
+          this.$message.error('لطفا تصویر را انتخاب کنید');
           return;
         }
 
         if (this.editingItemIndex === -1) {
-          // 添加新图文项
+          // اضافه کردن آیتم تصویر-متن جدید
           this.module.imageTextItems.push(JSON.parse(JSON.stringify(this.editingItem)));
         } else {
-          // 编辑现有图文项
+          // ویرایش آیتم تصویر-متن موجود
           this.$set(this.module.imageTextItems, this.editingItemIndex, JSON.parse(JSON.stringify(this.editingItem)));
         }
 
         this.onChange();
         this.closeItemDialog();
-        this.$message.success(this.editingItemIndex === -1 ? '添加成功' : '更新成功');
+        this.$message.success(this.editingItemIndex === -1 ? 'با موفقیت اضافه شد' : 'با موفقیت به‌روزرسانی شد');
       },
 
       closeItemDialog() {
@@ -564,27 +564,27 @@
 
         switch (link.type) {
           case 'custom':
-            return link.value || '自定义链接';
+            return link.value || 'لینک سفارشی';
           case 'static':
             const staticLinks = {
-              'account.index': '个人中心',
-              'account.wishlist.index': '我的收藏',
-              'account.order.index': '我的订单',
-              'brands.index': '品牌列表'
+              'account.index': 'مرکز حساب کاربری',
+              'account.wishlist.index': 'لیست علاقه‌مندی‌های من',
+              'account.order.index': 'سفارش‌های من',
+              'brands.index': 'لیست برند'
             };
             return staticLinks[link.value] || link.value;
           case 'product':
-            return link.value ? `商品 #${link.value}` : '商品链接';
+            return link.value ? `محصول #${link.value}` : 'لینک سفارشی محصول';
           case 'category':
-            return link.value ? `分类 #${link.value}` : '商品分类';
+            return link.value ? `دسته‌بندی #${link.value}` : 'دسته‌بندی محصول';
           case 'page':
-            return link.value ? `页面 #${link.value}` : '页面链接';
+            return link.value ? `صفحه #${link.value}` : 'لینک صفحه';
           case 'catalog':
-            return link.value ? `文章分类 #${link.value}` : '文章分类';
+            return link.value ? `دسته‌بندی مقاله #${link.value}` : 'دسته‌بندی مقاله';
           case 'brand':
-            return link.value ? `品牌 #${link.value}` : '品牌链接';
+            return link.value ? `برند #${link.value}` : 'لینک برند';
           default:
-            return link.value || '未知链接';
+            return link.value || 'لینک غیرمعلوم';
         }
       }
     }

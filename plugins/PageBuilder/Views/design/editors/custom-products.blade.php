@@ -1,13 +1,13 @@
-{{-- 自定义商品编辑模块 --}}
+{{-- ماژول ویرایش محصولات سفارشی --}}
 <template id="module-editor-custom-products-template">
   <div class="editor-container">
     <div class="top-spacing"></div>
     
-    {{-- 模块宽度设置 --}}
+    {{-- تنظیم عرض ماژول --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-monitor"></i>
-        模块宽度
+        عرض ماژول
       </div>
       <div class="section-content">
         <div class="segmented-buttons">
@@ -16,84 +16,84 @@
             @click="form.width = 'narrow'"
           >
             <i class="el-icon-copy-document"></i>
-            窄屏
+            طولانی
           </div>
           <div 
             :class="['segmented-btn', { active: form.width === 'wide' }]" 
             @click="form.width = 'wide'"
           >
             <i class="el-icon-copy-document"></i>
-            宽屏
+            عرض
           </div>
           <div 
             :class="['segmented-btn', { active: form.width === 'full' }]" 
             @click="form.width = 'full'"
           >
             <i class="el-icon-full-screen"></i>
-            全屏
+            کامل
           </div>
         </div>
       </div>
     </div>
 
-    {{-- 模块标题设置 --}}
+    {{-- تنظیم عنوان ماژول --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-edit"></i>
-        模块标题
+        عنوان ماژول
       </div>
       <div class="section-content">
-        <text-i18n v-model="form.title" @change="onChange" placeholder="请输入模块标题"></text-i18n>
+        <text-i18n v-model="form.title" @change="onChange" placeholder="لطفاً عنوان ماژول را وارد کنید"></text-i18n>
       </div>
     </div>
 
-    {{-- 显示设置 --}}
+    {{-- تنظیم نمایش --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-setting"></i>
-        显示设置
+        تنظیمات نمایش
       </div>
       <div class="section-content">
-        {{-- 每行显示数量设置 --}}
+        {{-- تنظیم تعداد آیتم در هر سطر --}}
         <div class="setting-group">
-          <div class="setting-label">每行显示数量</div>
+          <div class="setting-label">تعداد آیتم در هر سطر</div>
           <div class="segmented-buttons">
             <div 
               :class="['segmented-btn', { active: form.columns === 3 }]" 
               @click="form.columns = 3"
             >
               <i class="el-icon-grid"></i>
-              3个
+              3 آیتم
             </div>
             <div 
               :class="['segmented-btn', { active: form.columns === 4 }]" 
               @click="form.columns = 4"
             >
               <i class="el-icon-grid"></i>
-              4个
+              4 آیتم
             </div>
             <div 
               :class="['segmented-btn', { active: form.columns === 6 }]" 
               @click="form.columns = 6"
             >
               <i class="el-icon-grid"></i>
-              6个
+              6 آیتم
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    {{-- 商品设置 --}}
+    {{-- تنظیم محصولات --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-shopping-cart-2"></i>
-        商品设置
+        تنظیم محصولات
       </div>
       <div class="section-content">
-        {{-- 商品搜索 --}}
+        {{-- جستجوی محصولات --}}
         <div class="setting-group">
-          <div class="setting-label">搜索商品</div>
+          <div class="setting-label">جستجوی محصولات</div>
           <div class="autocomplete-group-wrapper">
             <el-autocomplete 
               class="inline-input" 
@@ -101,7 +101,7 @@
               value-key="name" 
               size="small"
               :fetch-suggestions="querySearch" 
-              placeholder="请输入关键字搜索商品" 
+              placeholder="لطفاً کلمه کلیدی را برای جستجو وارد کنید" 
               :highlight-first-item="true"
               @select="handleSelect"
               style="width: 100%;"
@@ -109,13 +109,13 @@
           </div>
           <div class="setting-tip">
             <i class="el-icon-info"></i>
-            搜索并添加您想要展示的商品
+            محصولات مورد نظر خود را جستجو کرده و اضافه کنید
           </div>
         </div>
 
-        {{-- 已选商品列表 --}}
+        {{-- لیست محصولات انتخاب شده --}}
         <div class="setting-group">
-          <div class="setting-label">已选商品</div>
+          <div class="setting-label">محصولات انتخاب شده</div>
           <div class="products-list" v-loading="loading">
             <template v-if="productData.length">
               <draggable 
@@ -152,7 +152,7 @@
             </template>
             <div v-else class="empty-state">
               <i class="el-icon-shopping-cart-2"></i>
-              <p>暂无商品，请在上方搜索并添加</p>
+              <p>هیچ محصولی وجود ندارد، لطفاً در بالا جستجو کرده و اضافه کنید</p>
             </div>
           </div>
         </div>
@@ -161,7 +161,7 @@
   </div>
 </template>
 
-{{-- 自定义商品编辑模块脚本 --}}
+{{-- اسکریپت ویرایش محصولات سفارشی --}}
 <script type="text/javascript">
   Vue.component('module-editor-custom-products', {
     delimiters: ['${', '}'],
@@ -216,12 +216,12 @@
 
     methods: {
       onChange() {
-        // 清除之前的定时器
+        // پاک کردن زمانبندی قبلی
         if (this.debounceTimer) {
           clearTimeout(this.debounceTimer);
         }
         
-        // 设置新的定时器
+        // تنظیم زمانبندی جدید
         this.debounceTimer = setTimeout(() => {
           this.$emit('on-changed', this.form);
         }, 300);

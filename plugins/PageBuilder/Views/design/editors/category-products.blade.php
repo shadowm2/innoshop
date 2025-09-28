@@ -1,13 +1,13 @@
-{{-- 分类商品编辑模块 --}}
+{{-- ماژول ویرایش محصولات دسته‌بندی --}}
 <template id="module-editor-category-products-template">
   <div class="editor-container">
     <div class="top-spacing"></div>
     
-    {{-- 模块宽度设置 --}}
+    {{-- تنظیم عرض ماژول --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-monitor"></i>
-        模块宽度
+        عرض ماژول
       </div>
       <div class="section-content">
         <div class="segmented-buttons">
@@ -16,80 +16,80 @@
             @click="form.width = 'narrow'"
           >
             <i class="el-icon-copy-document"></i>
-            窄屏
+            عرض کوتاه
           </div>
           <div 
             :class="['segmented-btn', { active: form.width === 'wide' }]" 
             @click="form.width = 'wide'"
           >
             <i class="el-icon-copy-document"></i>
-            宽屏
+            عرض کامل
           </div>
           <div 
             :class="['segmented-btn', { active: form.width === 'full' }]" 
             @click="form.width = 'full'"
           >
             <i class="el-icon-full-screen"></i>
-            全屏
+            تمام صفحه
           </div>
         </div>
       </div>
     </div>
 
-    {{-- 模块标题设置 --}}
+    {{-- تنظیم عنوان ماژول --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-edit"></i>
-        模块标题
+        عنوان ماژول
       </div>
       <div class="section-content">
         <text-i18n v-model="form.title"></text-i18n>
       </div>
     </div>
 
-    {{-- 显示设置 --}}
+    {{-- تنظیم نمایش --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-setting"></i>
-        显示设置
+        تنظیمات نمایش
       </div>
       <div class="section-content">
-        {{-- 显示数量设置 --}}
+        {{-- تنظیم تعداد نمایش --}}
         <div class="setting-group">
-          <div class="setting-label">每行显示数量</div>
+          <div class="setting-label">تعداد محصول در هر سطر</div>
           <div class="segmented-buttons">
             <div 
               :class="['segmented-btn', { active: form.columns === 3 }]" 
               @click="form.columns = 3"
             >
               <i class="el-icon-grid"></i>
-              3个
+              3 عدد
             </div>
             <div 
               :class="['segmented-btn', { active: form.columns === 4 }]" 
               @click="form.columns = 4"
             >
               <i class="el-icon-grid"></i>
-              4个
+              4 عدد
             </div>
             <div 
               :class="['segmented-btn', { active: form.columns === 6 }]" 
               @click="form.columns = 6"
             >
               <i class="el-icon-grid"></i>
-              6个
+              6 عدد
             </div>
           </div>
         </div>
 
-        {{-- 商品数量设置 --}}
+        {{-- تنظیم تعداد محصول --}}
         <div class="setting-group">
-          <div class="setting-label">商品数量</div>
+          <div class="setting-label">تعداد محصول</div>
           <el-input 
             v-model="form.limit" 
             type="number" 
             size="small" 
-            placeholder="请输入商品数量"
+            placeholder="لطفاً تعداد محصول را وارد کنید"
             @input="limitChange"
             style="width: 100%;"
           ></el-input>
@@ -97,16 +97,16 @@
       </div>
     </div>
 
-    {{-- 分类设置 --}}
+    {{-- تنظیم دسته‌بندی --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-folder"></i>
-        分类设置
+        تنظیمات دسته‌بندی
       </div>
       <div class="section-content">
-        {{-- 当前选择的分类 --}}
+        {{-- دسته‌بندی فعلی انتخاب شده --}}
         <div class="setting-group" v-if="form.category_name">
-          <div class="setting-label">当前分类</div>
+          <div class="setting-label">دسته‌بندی فعلی</div>
           <div class="selected-category">
             <div class="category-info">
               <i class="el-icon-folder"></i>
@@ -119,14 +119,14 @@
               style="color: #f56c6c;"
             >
               <i class="el-icon-delete"></i>
-              清除
+              پاک کردن
             </el-button>
           </div>
         </div>
 
-        {{-- 搜索分类 --}}
+        {{-- جستجوی دسته‌بندی --}}
         <div class="setting-group">
-          <div class="setting-label">搜索分类</div>
+          <div class="setting-label">جستجوی دسته‌بندی</div>
           <div class="autocomplete-group-wrapper">
             <el-autocomplete 
               class="inline-input" 
@@ -134,7 +134,7 @@
               value-key="name" 
               size="small"
               :fetch-suggestions="querySearch" 
-              placeholder="请输入关键字搜索分类" 
+              placeholder="لطفاً کلمه کلیدی را برای جستجوی دسته‌بندی وارد کنید" 
               :highlight-first-item="true"
               @select="handleSelect"
               style="width: 100%;"
@@ -142,18 +142,18 @@
           </div>
         </div>
 
-        {{-- 排序设置 --}}
+        {{-- تنظیم مرتب‌سازی --}}
         <div class="setting-group">
-          <div class="setting-label">排序方式</div>
+          <div class="setting-label">روش مرتب‌سازی</div>
           <el-select v-model="form.sort" size="small" style="width: 100%;" @change="onSortChange">
-            <el-option label="销量最高" value="sales_desc"></el-option>
-            <el-option label="价格最高" value="price_desc"></el-option>
-            <el-option label="价格最低" value="price_asc"></el-option>
-            <el-option label="最新上架" value="created_desc"></el-option>
-            <el-option label="评分最高" value="rating_desc"></el-option>
-            <el-option label="浏览最多" value="viewed_desc"></el-option>
-            <el-option label="最近更新" value="updated_desc"></el-option>
-            <el-option label="推荐排序" value="position_asc"></el-option>
+            <el-option label="پرفروش‌ترین" value="sales_desc"></el-option>
+            <el-option label="قیمت بالاترین" value="price_desc"></el-option>
+            <el-option label="قیمت پایین‌ترین" value="price_asc"></el-option>
+            <el-option label="جدیدترین" value="created_desc"></el-option>
+            <el-option label="برترین امتیاز" value="rating_desc"></el-option>
+            <el-option label="پربازدیدترین" value="viewed_desc"></el-option>
+            <el-option label="آخرین به‌روزرسانی" value="updated_desc"></el-option>
+            <el-option label="پیش‌فرض" value="position_asc"></el-option>
           </el-select>
         </div>
       </div>
@@ -161,7 +161,7 @@
   </div>
 </template>
 
-{{-- 分类商品编辑模块脚本 --}}
+{{-- اسکریپت ماژول ویرایش محصولات دسته‌بندی --}}
 <script type="text/javascript">
   Vue.component('module-editor-category-products', {
     delimiters: ['${', '}'],
@@ -195,7 +195,7 @@
         this.$set(this.form, 'sort', 'sales_desc');
       }
 
-      // 设置已保存的分类名称到搜索框中
+      // تنظیم نام دسته‌بندی فعلی در جستجوی خودکار
       if (this.form.category_name) {
         this.keyword = this.form.category_name;
       }
@@ -220,12 +220,12 @@
       },
 
       handleSelect(item) {
-        console.log('选择分类:', item);
+        console.log('انتخاب دسته‌بندی:', item);
         this.form.category_id = item.id;
         this.form.category_name = item.name;
         this.keyword = item.name;
 
-        // 触发表单更新
+        // تحریک گرفتن به‌روزرسانی فرم
         this.$emit('on-changed', this.form);
       },
 
@@ -237,15 +237,15 @@
       },
 
       onSortChange() {
-        // 排序方式修改时，只触发表单更新
-        console.log('排序方式已修改为:', this.form.sort);
+        // وقتی تغییر مرتب‌سازی اتفاق می‌افتد، فقط به‌روزرسانی فرم را تحریک کنید
+        console.log('روش مرتب‌سازی تغییر کرده است به:', this.form.sort);
         this.$emit('on-changed', this.form);
       },
 
       limitChange(e) {
         this.form.limit = e;
-        // 商品数量修改时，只触发表单更新
-        console.log('商品数量已修改为:', this.form.limit);
+        // وقتی تغییر تعداد محصول اتفاق می‌افتد، فقط به‌روزرسانی فرم را تحریک کنید
+        console.log('تعداد محصول تغییر کرده است به:', this.form.limit);
         this.$emit('on-changed', this.form);
       },
 

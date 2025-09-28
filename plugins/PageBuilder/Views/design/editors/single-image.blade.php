@@ -1,38 +1,38 @@
-{{-- 单图片编辑模块 - 现代化风格 --}}
+{{-- ماژول ویرایش تصویر تکی - سبک مدرن --}}
 <template id="module-editor-single-image-template">
   <div class="image-editor">
     <div class="top-spacing"></div>
     
-    {{-- 模块宽度设置 --}}
+    {{-- تنظیم عرض ماژول --}}
     <div class="editor-section">
-      <div class="section-title">模块宽度</div>
+      <div class="section-title">عرض ماژول</div>
       <div class="section-content">
         <div class="segmented-buttons">
           <div 
             :class="['segmented-btn', { active: module.width === 'narrow' }]" 
             @click="setModuleWidth('narrow')"
           >
-            窄屏
+            طولانی
           </div>
           <div 
             :class="['segmented-btn', { active: module.width === 'wide' }]" 
             @click="setModuleWidth('wide')"
           >
-            宽屏
+            عرضی
           </div>
           <div 
             :class="['segmented-btn', { active: module.width === 'full' }]" 
             @click="setModuleWidth('full')"
           >
-            全屏
+            کامل
           </div>
         </div>
       </div>
     </div>
 
-    {{-- 图片内容 --}}
+    {{-- تنظیمات تصویر --}}
     <div class="editor-section">
-      <div class="section-title">图片设置</div>
+      <div class="section-title">تنظیمات تصویر</div>
       <div class="section-content">
         <div class="image-selector-wrapper">
           <single-image-selector 
@@ -42,14 +42,14 @@
             :targetHeight="480"
             @change="onChange"
           ></single-image-selector>
-          <div class="image-tips">建议尺寸(宽×高): 1000 x 480</div>
+          <div class="image-tips">پیشنهادات اندازه (عرض × ارتفاع): 1000 x 480</div>
         </div>
       </div>
     </div>
 
-    {{-- 链接设置 --}}
+    {{-- تنظیم پیوند --}}
     <div class="editor-section">
-      <div class="section-title">选择链接</div>
+      <div class="section-title">انتخاب پیوند</div>
       <div class="section-content">
         <link-selector 
           :hide-types="['catalog', 'static']" 
@@ -61,7 +61,7 @@
   </div>
 </template>
 
-{{-- 图片编辑模块脚本 --}}
+{{-- اسکریپت ویرایشگر تصویر تکی --}}
 <script type="text/javascript">
   Vue.component('module-editor-single-image', {
     template: '#module-editor-single-image-template',
@@ -86,7 +86,7 @@
     },
 
     created: function() {
-      // 初始化默认值
+      // تنظیم مقادیر پیش‌فرض
       if (!this.module.images) {
         this.module.images = [{
           image: this.languagesFill(''),
@@ -103,12 +103,12 @@
 
     methods: {
       onChange() {
-        // 清除之前的定时器
+        // پاک کردن زمان‌بندی قبلی
         if (this.debounceTimer) {
           clearTimeout(this.debounceTimer);
         }
         
-        // 设置新的定时器
+        // تنظیم زمان‌بندی جدید
         this.debounceTimer = setTimeout(() => {
           this.$emit('on-changed', this.module);
         }, 300);
@@ -178,7 +178,7 @@
   padding: 0;
 }
 
-/* 分段按钮样式 */
+/* طراحی دکمه‌های جداکننده */
 .segmented-buttons {
   display: flex;
   border: 1px solid #ddd;
@@ -221,7 +221,7 @@
   margin-top: 4px;
 }
 
-/* 响应式设计 */
+/* طراحی پاسخگو */
 @media (max-width: 768px) {
   .editor-section {
     margin-bottom: 12px;

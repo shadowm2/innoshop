@@ -102,7 +102,7 @@ class ModuleRepo
                     'limit'    => 8,
                     'floor'    => self::languagesFill(''),
                     'products' => [],
-                    'title'    => self::languagesFill('最新上架'),
+                    'title'    => self::languagesFill('تازه موجود شده'),
                 ],
             ],
             [

@@ -1,6 +1,6 @@
 <div class="tab-pane fade" id="balance-tab-pane" role="tabpanel" tabindex="0">
   <div class="mb-3 fs-5">
-    {{ __('panel/transaction.balance') }}：<span class="fw-bold text-success">{{ currency_format($customer->balance) }}</span>
+    {{ __('panel/transaction.balance') }}: <span class="fw-bold text-success">{{ currency_format($customer->balance) }}</span>
   </div>
   <div class="card">
     <div class="card-header">

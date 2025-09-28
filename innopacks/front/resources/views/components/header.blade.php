@@ -35,7 +35,7 @@
 
       <div class="top-info">
         @hookinsert('layouts.header.news.before')
-        <a href="{{ front_route('articles.index') }}">News</a>
+        <a href="{{ front_route('articles.index') }}">اخبار</a>
 
         @hookupdate('layouts.header.telephone')
         @if (system_setting('telephone'))

@@ -1,13 +1,13 @@
-<!-- 富文本编辑器模块模板 -->
+<!-- قالب ماژول ویرایش متن غنی -->
 <template id="module-editor-rich-text-template">
   <div class="rich-text-editor editor-container">
     <div class="top-spacing"></div>
     
-    {{-- 模块宽度设置 --}}
+    {{-- پیش‌فرض پهنای ماژول --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-monitor"></i>
-        模块宽度
+        پیش‌فرض پهنای ماژول
       </div>
       <div class="section-content">
         <div class="segmented-buttons">
@@ -15,65 +15,65 @@
             :class="['segmented-btn', { active: form.width === 'narrow' }]" 
             @click="form.width = 'narrow'"
           >
-            窄屏
+            پهنای کوتاه
           </div>
           <div 
             :class="['segmented-btn', { active: form.width === 'wide' }]" 
             @click="form.width = 'wide'"
           >
-            宽屏
+            پهنای وسط
           </div>
           <div 
             :class="['segmented-btn', { active: form.width === 'full' }]" 
             @click="form.width = 'full'"
           >
-            全屏
+            پهنای کامل
           </div>
         </div>
       </div>
     </div>
 
-    {{-- 基础设置 --}}
+    {{-- تنظیمات پایه --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-setting"></i>
-        基础设置
+        تنظیمات پایه
       </div>
       <div class="section-content">
         <div class="setting-group">
-          <div class="setting-label">模块标题</div>
-          <text-i18n v-model="form.title" placeholder="请输入模块标题"></text-i18n>
+          <div class="setting-label">عنوان ماژول</div>
+          <text-i18n v-model="form.title" placeholder="عنوان ماژول را وارد کنید"></text-i18n>
         </div>
         
         <div class="setting-group">
-          <div class="setting-label">副标题</div>
-          <text-i18n v-model="form.subtitle" placeholder="请输入副标题"></text-i18n>
+          <div class="setting-label">زیرعنوان</div>
+          <text-i18n v-model="form.subtitle" placeholder="زیرعنوان را وارد کنید"></text-i18n>
         </div>
       </div>
     </div>
 
-    {{-- 内容设置 --}}
+    {{-- تنظیمات محتوا --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-edit"></i>
-        内容设置
+        تنظیمات محتوا
       </div>
       <div class="section-content">
         <div class="setting-group">
-          <div class="setting-label">富文本内容</div>
+          <div class="setting-label">محتوای غنی</div>
           
-          {{-- 内容编辑区域 --}}
+          {{-- جایگاه ویرایش محتوا --}}
           <div class="content-editor">
             <div class="editor-preview">
               <div class="preview-header">
                 <div class="preview-title">
                   <i class="el-icon-document"></i>
-                  <span>富文本内容</span>
+                  <span>محتوای غنی</span>
                 </div>
                 <div class="preview-actions">
-                  <button class="edit-btn" @click="openFloatingEditor" title="编辑内容">
+                  <button class="edit-btn" @click="openFloatingEditor" title="ویرایش محتوا">
                     <i class="el-icon-edit"></i>
-                    <span>编辑内容</span>
+                    <span>ویرایش محتوا</span>
                   </button>
                 </div>
               </div>
@@ -86,8 +86,8 @@
                     <i class="el-icon-edit-outline"></i>
                   </div>
                   <div class="placeholder-text">
-                    <h4>暂无内容</h4>
-                    <p>点击"编辑内容"开始编写富文本</p>
+                    <h4>محتوایی وجود ندارد</h4>
+                    <p>برای ویرایش محتوا کلیک کنید</p>
                   </div>
                 </div>
               </div>
@@ -99,11 +99,11 @@
                 </div>
                 <div class="content-status" v-if="form.content[currentLanguage] && form.content[currentLanguage].trim()">
                   <i class="el-icon-check"></i>
-                  <span>已设置内容</span>
+                  <span>محتوای تنظیم شده</span>
                 </div>
                 <div class="content-status" v-else>
                   <i class="el-icon-warning"></i>
-                  <span>未设置内容</span>
+                  <span>محتوای تنظیم نشده</span>
                 </div>
               </div>
             </div>
@@ -114,7 +114,7 @@
   </div>
 </template>
 
-<!-- 富文本编辑器模块脚本 -->
+<!-- پرونده ماژول ویرایش متن غنی -->
 <script type="text/javascript">
   Vue.component('module-editor-rich-text', {
     template: '#module-editor-rich-text-template',
@@ -154,24 +154,24 @@
       getContentPreview(content) {
         if (!content) return '';
         
-        // 移除HTML标签，只保留文本内容
+        // پاک کردن تگ‌های HTML، فقط متن را نگه دارید
         let text = content.replace(/<[^>]*>/g, '');
         text = text.replace(/&nbsp;/g, ' ');
         text = text.trim();
         
-        // 限制预览长度，确保只显示一行
+        // محدود کردن پیش‌بینی، تضمین کنید فقط یک خط نمایش داده شود
         if (text.length > 60) {
           text = text.substring(0, 60) + '...';
         }
         
-        return text || '富文本内容';
+        return text || 'محتوای غنی';
       },
       openFloatingEditor() {
         const self = this;
-        // 防止重复弹出
+        // جلوگیری از باز کردن مجدد
         if (document.getElementById('floatingEditorModal')) return;
 
-        // 创建悬浮编辑器容器
+        // ایجاد کانتینر پیش‌بینی فلوتینگ
         const editorContainer = document.createElement('div');
         editorContainer.id = 'floatingEditorModal';
         editorContainer.className = 'floating-editor-modal';
@@ -180,7 +180,7 @@
           <div class="floating-editor-modal-content">
             <div class="floating-editor-header">
               <div class="d-flex align-items-center">
-                <span class="me-3">富文本编辑器</span>
+                <span class="me-3">ویرایشگر متن غنی</span>
                 <ul class="nav nav-tabs" role="tablist" style="margin-bottom:0;">
                   ${this.languages.map(lang => `
                     <li class="nav-item">
@@ -192,7 +192,7 @@
               <div class="floating-editor-actions">
                 <button class="floating-save-btn" id="saveFloatingContent">
                   <i class="el-icon-check"></i>
-                  <span>保存内容</span>
+                  <span>ذخیره محتوا</span>
                 </button>
                 <span class="floating-editor-close" id="closeFloatingEditor">×</span>
               </div>
@@ -204,7 +204,7 @@
         `;
         document.body.appendChild(editorContainer);
 
-        // 使用系统后台的编辑器配置
+        // استفاده از تنظیمات ویرایشگر TinyMCE از سیستم پشتیبانی
         const editorConfig = {
           selector: '#floating-tinymce',
           height: '100%',
@@ -220,13 +220,13 @@
           image_caption: true,
           imagetools_toolbar: "",
           toolbar_mode: "wrap",
-          font_formats: "微软雅黑='Microsoft YaHei';黑体=黑体;Arial=arial,helvetica,sans-serif;Arial Black=arial black,avant garde;Georgia=georgia,palatino;Helvetica=helvetica;Times New Roman=times new roman,times;Verdana=verdana,geneva",
+          font_formats: "Microsoft YaHei='Microsoft YaHei';SimHei=黑体;Arial=arial,helvetica,sans-serif;Arial Black=arial black,avant garde;Georgia=georgia,palatino;Helvetica=helvetica;Times New Roman=times new roman,times;Verdana=verdana,geneva",
           fontsize_formats: "10px 12px 14px 16px 18px 24px 36px 48px 56px 72px 96px",
           lineheight_formats: "1 1.1 1.2 1.3 1.4 1.5 1.7 2.4 3 4",
           setup: function(editor) {
             self.floatingEditor = editor;
             
-            // 添加图片按钮
+            // اضافه کردن دکمه تصویر
             editor.ui.registry.addButton("toolbarImageButton", {
               icon: "image",
               onAction: () => {
@@ -241,12 +241,12 @@
                     { type: "image", multiple: false }
                   );
                 } else {
-                  layer.msg('文件管理器未加载，请刷新页面重试', { icon: 2 });
+                  layer.msg('پشتیبانی فایل منیجر فعال نیست، لطفاً صفحه را رفرش کنید', { icon: 2 });
                 }
               },
             });
 
-            // 添加URL图片按钮
+            // اضافه کردن دکمه تصویر URL
             editor.ui.registry.addButton("toolbarImageUrlButton", {
               icon: "image",
               onAction: () => {
@@ -261,14 +261,14 @@
                     { type: "image", multiple: false }
                   );
                 } else {
-                  layer.msg('文件管理器未加载，请刷新页面重试', { icon: 2 });
+                  layer.msg('پشتیبانی فایل منیجر فعال نیست، لطفاً صفحه را رفرش کنید', { icon: 2 });
                 }
               },
             });
 
-            // 移除实时内容更新，只在保存时更新
+            // حذف به‌روزرسانی محتوای پیش‌بینی در همیشه، فقط در زمان ذخیره
 
-            // 粘贴图片处理
+            // پردازش تصویر کپی شده
             editor.on("paste", (e) => {
               const clipboardData = e.clipboardData;
               if (!clipboardData || !clipboardData.items) return;
@@ -292,7 +292,7 @@
                     if (response.data.url) {
                       editor.insertContent(`<img src="${response.data.url}" class="img-fluid" />`);
                     } else {
-                      throw new Error("Upload response missing URL");
+                      throw new Error("پاسخ آپلود برای URL ناقص دارد");
                     }
                   })
                   .catch((error) => {
@@ -318,16 +318,16 @@
           }
         };
 
-        // 确保TinyMCE已加载
+        // تضمین کردن فعالیت TinyMCE
         if (typeof tinymce === "undefined") {
-          layer.msg('编辑器加载失败，请刷新页面重试', { icon: 2 });
+          layer.msg('ویرایشگر بارگذاری نشد، لطفاً صفحه را رفرش کنید', { icon: 2 });
           return;
         }
 
-        // 初始化编辑器
+        // اولیه‌سازی ویرایشگر
         tinymce.init(editorConfig);
 
-        // 关闭事件
+        // رویداد بسته شدن
         editorContainer.querySelector('#closeFloatingEditor').onclick = function() {
           tinymce.get('floating-tinymce')?.destroy();
           editorContainer.remove();
@@ -339,36 +339,36 @@
           self.floatingEditor = null;
         };
 
-        // 保存按钮事件
+        // رویداد کلیک بر روی دکمه ذخیره
         const saveBtn = editorContainer.querySelector('#saveFloatingContent');
         saveBtn.onclick = function() {
           if (self.floatingEditor) {
             self.form.content[self.currentLanguage] = self.floatingEditor.getContent();
             self.$emit('on-changed', JSON.parse(JSON.stringify(self.form)));
             
-            // 更新按钮状态
+            // به‌روزرسانی وضعیت دکمه
             saveBtn.classList.add('saved');
-            saveBtn.innerHTML = '<i class="el-icon-check"></i><span>已保存</span>';
+            saveBtn.innerHTML = '<i class="el-icon-check"></i><span>ذخیره شده</span>';
             
             setTimeout(() => {
               saveBtn.classList.remove('saved');
-              saveBtn.innerHTML = '<i class="el-icon-check"></i><span>保存内容</span>';
+              saveBtn.innerHTML = '<i class="el-icon-check"></i><span>ذخیره محتوا</span>';
             }, 1200);
           }
         };
 
-        // 多语言切换
+        // تغییر زبان
         editorContainer.querySelectorAll('.nav-link[data-lang]').forEach(tab => {
           tab.onclick = function(e) {
             e.preventDefault();
             const lang = this.getAttribute('data-lang');
-            // 切换语言
+            // تغییر زبان
             self.currentLanguage = lang;
-            // 切换tab激活样式
+            // تغییر حالت فعال آیتم پیوند
             editorContainer.querySelectorAll('.nav-link[data-lang]').forEach(t => t.classList.remove(
               'active'));
             this.classList.add('active');
-            // 切换内容
+            // تغییر محتوا
             setTimeout(() => {
               self.floatingEditor.setContent(self.form.content[lang] || '');
             }, 100);
@@ -377,24 +377,24 @@
       }
     },
     mounted: function() {
-      // 初始化form数据
+      // اولیه‌سازی داده‌های form
       if (this.module) {
         this.form = JSON.parse(JSON.stringify(this.module));
       }
       
-      // 确保每个语言都有初始值
+      // تضمین کردن مقدار اولیه برای هر زبان
       this.languages.forEach(lang => {
         if (!this.form.content[lang.code]) {
           this.$set(this.form.content, lang.code, '');
         }
       });
       
-      // 确保width有默认值
+      // تضمین کردن مقدار پیش‌فرض برای width
       if (!this.form.width) {
         this.$set(this.form, 'width', 'wide');
       }
       
-      // 确保title和subtitle有默认值
+      // تضمین کردن مقدار پیش‌فرض برای title و subtitle
       if (!this.form.title) {
         this.$set(this.form, 'title', {});
       }
@@ -402,13 +402,13 @@
         this.$set(this.form, 'subtitle', {});
       }
       
-      // 确保当前语言有值
+      // تضمین کردن مقدار فعلی زبان
       if (!this.currentLanguage) {
         this.currentLanguage = $locale || 'zh-cn';
       }
     },
     beforeDestroy() {
-      // 清理编辑器实例
+      // پاک کردن مثال ویرایشگر
       if (this.floatingEditor) {
         this.floatingEditor.destroy();
       }
@@ -417,12 +417,12 @@
 </script>
 
 <style>
-/* 富文本编辑器特定样式 - 只保留真正特定的样式 */
+/* استایل‌های خاص ویرایشگر متن غنی - فقط استایل‌های واقعی را حفظ کنید */
 .rich-text-editor {
-  /* 继承基础编辑器样式，无需重复定义 */
+  /* ارث‌بری از استایل‌های پایه ویرایشگر، نیازی به تعریف مجدد نیست */
 }
 
-/* 内容编辑区域 */
+/* جایگاه ویرایش محتوا */
 .content-editor {
   border: 1px solid #e1e5e9;
   border-radius: 8px;
@@ -613,12 +613,12 @@
   color: #856404;
 }
 
-/* TinyMCE 对话框样式优化 - 使用系统后台样式 */
+/* استایل‌های TinyMCE پیش‌فرض - استفاده از استایل‌های سیستم پشتیبانی */
 .tox-tinymce-aux {
   z-index: 3000 !important;
 }
 
-/* 悬浮模态样式 */
+/* استایل‌های ماژول پیش‌بینی فلوتینگ */
 .floating-editor-modal {
   position: fixed;
   left: 0;
@@ -754,7 +754,7 @@
   border-bottom: 2px solid #667eea;
 }
 
-/* 响应式设计 */
+/* رابطه‌بندی پاسخگو */
 @media (max-width: 768px) {
   .floating-editor-modal-content {
     width: 95vw;

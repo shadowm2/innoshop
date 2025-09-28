@@ -1,7 +1,7 @@
 @if(collect(system_setting('social'))->where('active', true)->count())
   <div class="d-flex align-items-center mt-3">
     <div class="line"></div>
-    <div class="word fs-3 mb-1 mx-3">or</div>
+    <div class="word fs-3 mb-1 mx-3">یا</div>
     <div class="line"></div>
   </div>
 

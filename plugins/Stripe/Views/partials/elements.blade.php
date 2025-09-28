@@ -70,7 +70,7 @@
         cvv: '',
         remember: false,
 
-        // 以上为以前自定义表单的字段
+        // موارد بالا فیلدهای فرم سفارشی قبلی هستند
         cardholder_Name: '',
       },
 
@@ -91,9 +91,9 @@
     },
 
     methods: {
-      // stripe生成卡号校验部分
+      // قسمت اعتبارسنجی شماره کارت stripe
       createAndMountFormElements() {
-        // stripe 样式，带边框
+        // استایل stripe، با حاشیه
         const style = {
           base: {
             color: "#32325d",
@@ -112,23 +112,23 @@
         }
 
         elements = stripe.elements({
-          locale: "en" // 设置默认显示语种   en 英文 cn 中文 auto 自动获取语种
+          locale: "en" // تنظیم زبان پیش‌فرض نمایش   en انگلیسی cn چینی auto دریافت خودکار زبان
         })
 
-        // 创建cardNumber并实例化
+        // ایجاد و نمونه‌سازی cardNumber
         cardNumberElement = elements.create("cardNumber", {
           style: style,
-          showIcon: true, // 设置卡片icon，默认值为false
+          showIcon: true, // تنظیم آیکون کارت، مقدار پیش‌فرض false است
           placeholder: this.cardNumberplaceholder
         })
 
         cardNumberElement.mount("#card-number-element")
 
-        // 创建cardExpiry并实例化
+        // ایجاد و نمونه‌سازی cardExpiry
         cardExpiryElement = elements.create("cardExpiry", {style: style})
         cardExpiryElement.mount("#card-expiry-element")
 
-        // 创建cardCvc并实例化
+        // ایجاد و نمونه‌سازی cardCvc
         cardCvcElement = elements.create("cardCvc", {style: style, placeholder: 'CVV'})
         cardCvcElement.mount("#card-cvc-element")
       },
@@ -142,7 +142,7 @@
       },
 
       checkedBtnCheckoutConfirm() {
-        // 判断 stripeForm.errors 里面的值是否都为空
+        // تشخیص اینکه آیا تمام مقادیر در stripeForm.errors خالی هستند یا نه
         if (stripeForm.form.cardholder_Name == '') {
           stripeForm.errors.cardholderName = 'Please fill out a cardholder name.'
         }

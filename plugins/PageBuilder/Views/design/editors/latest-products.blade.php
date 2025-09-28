@@ -1,13 +1,13 @@
-{{-- 最新商品编辑模块 --}}
+{{-- ماژول ویرایش جدیدترین محصولات --}}
 <template id="module-editor-latest-products-template">
   <div class="editor-container">
     <div class="top-spacing"></div>
     
-    {{-- 模块宽度设置 --}}
+    {{-- تنظیم عرض ماژول --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-monitor"></i>
-        模块宽度
+        عرض ماژول
       </div>
       <div class="section-content">
         <div class="segmented-buttons">
@@ -16,85 +16,85 @@
             @click="form.width = 'narrow'"
           >
             <i class="el-icon-copy-document"></i>
-            窄屏
+            عرض کوتاه
           </div>
           <div 
             :class="['segmented-btn', { active: form.width === 'wide' }]" 
             @click="form.width = 'wide'"
           >
             <i class="el-icon-copy-document"></i>
-            宽屏
+            عرض کامل
           </div>
           <div 
             :class="['segmented-btn', { active: form.width === 'full' }]" 
             @click="form.width = 'full'"
           >
             <i class="el-icon-full-screen"></i>
-            全屏
+            تمام صفحه
           </div>
         </div>
       </div>
     </div>
 
-    {{-- 模块标题设置 --}}
+    {{-- تنظیم عنوان ماژول --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-edit"></i>
-        模块标题
+        عنوان ماژول
       </div>
       <div class="section-content">
-        <text-i18n v-model="form.title" @change="onChange" placeholder="请输入模块标题"></text-i18n>
+        <text-i18n v-model="form.title" @change="onChange" placeholder="لطفاً عنوان ماژول را وارد کنید"></text-i18n>
       </div>
     </div>
 
-    {{-- 显示设置 --}}
+    {{-- تنظیم نمایش --}}
     <div class="editor-section">
       <div class="section-title">
         <i class="el-icon-setting"></i>
-        显示设置
+        تنظیمات نمایش
       </div>
       <div class="section-content">
-        {{-- 每行显示数量设置 --}}
+        {{-- تنظیم تعداد آیتم در هر سطر --}}
         <div class="setting-group">
-          <div class="setting-label">每行显示数量</div>
+          <div class="setting-label">تعداد آیتم در هر سطر</div>
           <div class="segmented-buttons">
             <div 
               :class="['segmented-btn', { active: form.columns === 3 }]" 
               @click="form.columns = 3"
             >
               <i class="el-icon-grid"></i>
-              3个
+              3 آیتم
             </div>
             <div 
               :class="['segmented-btn', { active: form.columns === 4 }]" 
               @click="form.columns = 4"
             >
               <i class="el-icon-grid"></i>
-              4个
+              4 آیتم
             </div>
             <div 
               :class="['segmented-btn', { active: form.columns === 6 }]" 
               @click="form.columns = 6"
             >
               <i class="el-icon-grid"></i>
-              6个
+              6 آیتم
             </div>
           </div>
         </div>
 
-        {{-- 商品数量设置 --}}
+        {{-- تنظیم تعداد آیتم --}}
         <div class="setting-group">
-          <div class="setting-label">商品数量</div>
+          <div class="setting-label">تعداد آیتم</div>
           <el-input 
             v-model="form.limit" 
             type="number" 
             size="small" 
-            placeholder="请输入商品数量"
+            placeholder="لطفاً تعداد آیتم را وارد کنید"
             style="width: 100%;"
           ></el-input>
           <div class="setting-tip">
             <i class="el-icon-info"></i>
-            显示最新上架的商品数量
+            نمایش آیتم‌های جدیدترین محصولات
           </div>
         </div>
       </div>
@@ -102,7 +102,7 @@
   </div>
 </template>
 
-{{-- 最新商品编辑模块脚本 --}}
+{{-- اسکریپت ویرایش ماژول جدیدترین محصولات --}}
 <script type="text/javascript">
   Vue.component('module-editor-latest-products', {
     delimiters: ['${', '}'],
@@ -155,12 +155,12 @@
 
     methods: {
       onChange() {
-        // 清除之前的定时器
+        // پاک کردن زمانبندی قبلی
         if (this.debounceTimer) {
           clearTimeout(this.debounceTimer);
         }
         
-        // 设置新的定时器
+        // تنظیم زمانبندی جدید
         this.debounceTimer = setTimeout(() => {
           this.$emit('on-changed', this.form);
         }, 300);
