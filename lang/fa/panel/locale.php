@@ -1,13 +1,5 @@
 <?php
-/**
- * Copyright (c) Since 2024 InnoShop - All Rights Reserved
- *
- * @link       https://www.innoshop.com
- * @author     InnoShop <team@innoshop.com>
- * @license    https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
- */
-
 return [
-    'cannot_disable_default_locale'   => 'Cannot disable default locale',
-    'cannot_uninstall_default_locale' => 'Cannot uninstall default locale',
+    'cannot_disable_default_locale'   => 'امکان غیرفعال کردن زبان پیش‌فرض وجود ندارد',
+    'cannot_uninstall_default_locale' => 'امکان حذف زبان پیش‌فرض وجود ندارد',
 ];

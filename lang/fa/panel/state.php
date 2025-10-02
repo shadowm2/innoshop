@@ -1,17 +1,9 @@
 <?php
-/**
- * Copyright (c) Since 2024 InnoShop - All Rights Reserved
- *
- * @link       https://www.innoshop.com
- * @author     InnoShop <team@innoshop.com>
- * @license    https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
- */
-
 return [
-    'country_id'   => 'Country ID',
-    'country_code' => 'Country Code',
-    'name'         => 'Name',
-    'code'         => 'Code',
-    'position'     => 'Position',
-    'active'       => 'Active',
+    'country_id'   => 'شناسه کشور',
+    'country_code' => 'کد کشور',
+    'name'         => 'نام',
+    'code'         => 'کد',
+    'position'     => 'موقعیت',
+    'active'       => 'فعال',
 ];

@@ -1,28 +1,20 @@
 <?php
-/**
- * Copyright (c) Since 2024 InnoShop - All Rights Reserved
- *
- * @link       https://www.innoshop.com
- * @author     InnoShop <team@innoshop.com>
- * @license    https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
- */
-
 return [
-    'author'                   => 'Author',
-    'catalog'                  => 'Catalog',
-    'content'                  => 'Content',
-    'image'                    => 'Image',
-    'locale_image'             => 'Localized image',
-    'locale_image_description' => 'For article images in specific languages, different images can be set for different languages.',
-    'main_image'               => 'Main image',
-    'main_image_description'   => 'The main display image of the article is recommended to be 800x600 pixels in size for the article list display.',
-    'related_articles'         => 'Related Articles',
-    'related_products'         => 'Related Products',
-    'search_related_articles'  => 'Search Related Articles',
-    'search_related_products'  => 'Search Related Products',
-    'tag'                      => 'Tag',
-    'tag_search'               => 'Please search for tags',
-    'title'                    => 'Title',
-    'title_required_hint'      => 'The language with the red border is a required field. Please ensure that the article title in at least that language is completed',
-    'viewed'                   => 'Viewed',
+    'author'                   => 'نویسنده',
+    'catalog'                  => 'کاتالوگ',
+    'content'                  => 'محتوا',
+    'image'                    => 'تصویر',
+    'locale_image'             => 'تصویر زبان‌محور',
+    'locale_image_description' => 'برای تصاویر مقاله در زبان‌های خاص، می‌توان برای زبان‌های مختلف تصاویر متفاوتی تنظیم کرد.',
+    'main_image'               => 'تصویر اصلی',
+    'main_image_description'   => 'تصویر اصلی نمایش مقاله، توصیه می‌شود اندازه 800x600 پیکسل برای نمایش در لیست مقالات باشد.',
+    'related_articles'         => 'مقالات مرتبط',
+    'related_products'         => 'محصولات مرتبط',
+    'search_related_articles'  => 'جستجوی مقالات مرتبط',
+    'search_related_products'  => 'جستجوی محصولات مرتبط',
+    'tag'                      => 'برچسب',
+    'tag_search'               => 'لطفاً برچسب‌ها را جستجو کنید',
+    'title'                    => 'عنوان',
+    'title_required_hint'      => 'زبان با حاشیه قرمز یک فیلد اجباری است. لطفاً اطمینان حاصل کنید که عنوان مقاله حداقل در آن زبان تکمیل شده است.',
+    'viewed'                   => 'بازدید شده',
 ];

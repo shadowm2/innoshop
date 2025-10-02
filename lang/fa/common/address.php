@@ -1,25 +1,17 @@
 <?php
-/**
- * Copyright (c) Since 2024 InnoShop - All Rights Reserved
- *
- * @link       https://www.innoshop.com
- * @author     InnoShop <team@innoshop.com>
- * @license    https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
- */
-
 return [
-    'add_new_address'  => 'Add new address',
-    'address'          => 'Address',
-    'address_1'        => 'Address 1',
-    'address_2'        => 'Address 2',
-    'billing_address'  => 'Billing address',
-    'city'             => 'City',
-    'country'          => 'Country',
-    'email'            => 'Email',
-    'name'             => 'Name',
-    'phone'            => 'Phone',
-    'region'           => 'Region',
-    'shipping_address' => 'Shipping address',
-    'state'            => 'State',
-    'zipcode'          => 'Zip Code',
+    'add_new_address'  => 'افزودن آدرس جدید',
+    'address'          => 'آدرس',
+    'address_1'        => 'آدرس ۱',
+    'address_2'        => 'آدرس ۲',
+    'billing_address'  => 'آدرس صورتحساب',
+    'city'             => 'شهر',
+    'country'          => 'کشور',
+    'email'            => 'ایمیل',
+    'name'             => 'نام',
+    'phone'            => 'تلفن',
+    'region'           => 'منطقه',
+    'shipping_address' => 'آدرس حمل و نقل',
+    'state'            => 'استان',
+    'zipcode'          => 'کد پستی',
 ];

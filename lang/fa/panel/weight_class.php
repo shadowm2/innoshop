@@ -1,31 +1,23 @@
 <?php
-/**
- * Copyright (c) Since 2024 InnoShop - All Rights Reserved
- *
- * @link       https://www.innoshop.com
- * @author     InnoShop <team@innoshop.com>
- * @license    https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
- */
-
 return [
-    'active'       => 'Active',
-    'basic_info'   => 'Basic Information',
-    'code'         => 'Code',
-    'code_help'    => 'Unique code for weight class (e.g. kg, g, lb).',
-    'create'       => 'Create Weight Unit',
-    'description'  => 'Weight units are used for product weight management and shipping calculations.',
-    'edit'         => 'Edit Weight Unit',
-    'error_in_use' => 'This weight unit cannot be deleted because it is in use by products.',
-    'info'         => 'Information',
-    'info_1'       => 'The value field represents how many grams equal one unit.',
-    'info_2'       => 'For example, 1 kg = 1000 g, so the value for kg would be 1000.',
-    'info_3'       => 'The system uses these values to convert between different weight units.',
-    'list'         => 'Weight Units List',
-    'name'         => 'Name',
-    'position'     => 'Position',
-    'status'       => 'Status',
-    'unit'         => 'Unit Symbol',
-    'unit_help'    => 'Symbol used for display (e.g. kg, g, lb).',
-    'value'        => 'Value (in grams)',
-    'value_help'   => 'How many grams equal one unit of this weight class.',
+    'active'       => 'فعال',
+    'basic_info'   => 'اطلاعات پایه',
+    'code'         => 'کد',
+    'code_help'    => 'کد منحصر به فرد برای واحد وزن (مثلاً kg, g, lb).',
+    'create'       => 'ایجاد واحد وزن',
+    'description'  => 'واحدهای وزن برای مدیریت وزن محصولات و محاسبات حمل و نقل استفاده می‌شوند.',
+    'edit'         => 'ویرایش واحد وزن',
+    'error_in_use' => 'این واحد وزن قابل حذف نیست زیرا توسط محصولات استفاده می‌شود.',
+    'info'         => 'اطلاعات',
+    'info_1'       => 'فیلد مقدار نشان می‌دهد که چند گرم برابر با یک واحد است.',
+    'info_2'       => 'به عنوان مثال، 1 کیلوگرم = 1000 گرم، بنابراین مقدار برای kg برابر با 1000 خواهد بود.',
+    'info_3'       => 'سیستم از این مقادیر برای تبدیل بین واحدهای وزن مختلف استفاده می‌کند.',
+    'list'         => 'لیست واحدهای وزن',
+    'name'         => 'نام',
+    'position'     => 'موقعیت',
+    'status'       => 'وضعیت',
+    'unit'         => 'نماد واحد',
+    'unit_help'    => 'نماد مورد استفاده برای نمایش (مثلاً kg, g, lb).',
+    'value'        => 'مقدار (بر حسب گرم)',
+    'value_help'   => 'چند گرم برابر با یک واحد از این کلاس وزن است.',
 ];

@@ -1,20 +1,12 @@
 <?php
-/**
- * Copyright (c) Since 2024 InnoShop - All Rights Reserved
- *
- * @link       https://www.innoshop.com
- * @author     InnoShop <team@innoshop.com>
- * @license    https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
- */
-
 return [
-    'publishable_key'  => 'Publishable Key',
-    'secret_key'       => 'Secret Key',
-    'webhook_secret'   => 'Webhook Secret',
-    'test_mode'        => 'Test Mode',
-    'payment_mode'     => 'Payment Mode',
-    'enabled'          => 'Enabled',
-    'disabled'         => 'Disabled',
-    'on_site_payment'  => 'On-site Payment (Stripe Elements)',
-    'redirect_payment' => 'Redirect Payment (Stripe Checkout)',
+    'publishable_key'  => 'کلید قابل انتشار',
+    'secret_key'       => 'کلید مخفی',
+    'webhook_secret'   => 'مخفی وب‌هوک',
+    'test_mode'        => 'حالت آزمایشی',
+    'payment_mode'     => 'حالت پرداخت',
+    'enabled'          => 'فعال',
+    'disabled'         => 'غیرفعال',
+    'on_site_payment'  => 'پرداخت در سایت (Stripe Elements)',
+    'redirect_payment' => 'پرداخت با انتقال (Stripe Checkout)',
 ];

@@ -1,29 +1,21 @@
 <?php
-/**
- * Copyright (c) Since 2024 InnoShop - All Rights Reserved
- *
- * @link       https://www.innoshop.com
- * @author     InnoShop <team@innoshop.com>
- * @license    https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
- */
-
 return [
-    'address'        => 'Address',
-    'address_id'     => 'Address ID',
-    'address_manage' => 'Address management',
-    'avatar'         => 'Avatar',
-    'balance_manage' => 'Balance Management',
-    'basic_info'     => 'Basic information',
-    'code'           => 'Code',
-    'customer_info'  => 'Customer Information',
-    'discount_rate'  => 'Discount rate',
-    'email'          => 'Email',
-    'from'           => 'From',
-    'group'          => 'Group',
-    'level'          => 'Level',
-    'locale'         => 'Locale',
-    'login_frontend' => 'Login',
-    'mini_cost'      => 'Minimum Consumption Amount',
-    'name'           => 'Name',
-    'password'       => 'Password',
+    'address'        => 'آدرس',
+    'address_id'     => 'شناسه آدرس',
+    'address_manage' => 'مدیریت آدرس',
+    'avatar'         => 'آواتار',
+    'balance_manage' => 'مدیریت موجودی',
+    'basic_info'     => 'اطلاعات پایه',
+    'code'           => 'کد',
+    'customer_info'  => 'اطلاعات مشتری',
+    'discount_rate'  => 'نرخ تخفیف',
+    'email'          => 'ایمیل',
+    'from'           => 'از',
+    'group'          => 'گروه',
+    'level'          => 'سطح',
+    'locale'         => 'زبان محلی',
+    'login_frontend' => 'ورود',
+    'mini_cost'      => 'حداقل مبلغ مصرف',
+    'name'           => 'نام',
+    'password'       => 'رمز عبور',
 ];

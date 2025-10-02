@@ -1,37 +1,29 @@
 <?php
-/**
- * Copyright (c) Since 2024 InnoShop - All Rights Reserved
- *
- * @link       https://www.innoshop.com
- * @author     InnoShop <team@innoshop.com>
- * @license    https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
- */
-
 return [
-    'access_key'                  => 'Access Key',
+    'access_key'                  => 'کلید دسترسی',
     'alibaba_oss'                 => 'Alibaba Cloud OSS',
     'aliyun_oss'                  => 'Alibaba Cloud OSS',
-    'aliyun_oss_config'           => 'Ali Cloud OSS configuration',
+    'aliyun_oss_config'           => 'پیکربندی Alibaba Cloud OSS',
     'bucket'                      => 'Bucket',
-    'cannot_move_to_subdirectory' => 'Cannot move to subdirectory',
-    'cdn_domain'                  => 'CDN domain name',
-    'copy_failed'                 => 'Copy failed',
-    'create_folder'               => 'New folder',
-    'empty_path'                  => 'Address is empty',
+    'cannot_move_to_subdirectory' => 'امکان انتقال به زیرشاخه وجود ندارد',
+    'cdn_domain'                  => 'دامنه CDN',
+    'copy_failed'                 => 'کپی ناموفق بود',
+    'create_folder'               => 'پوشه جدید',
+    'empty_path'                  => 'آدرس خالی است',
     'endpoint'                    => 'Endpoint',
-    'local_storage'               => 'Local storage',
-    'move_failed'                 => 'Move failed',
-    'no_files_selected'           => 'No files selected',
-    'optional'                    => 'selectable',
+    'local_storage'               => 'ذخیره‌سازی محلی',
+    'move_failed'                 => 'انتقال ناموفق بود',
+    'no_files_selected'           => 'هیچ فایلی انتخاب نشده است',
+    'optional'                    => 'اختیاری',
     'region'                      => 'Region',
-    'rename_failed'               => 'Rename failed',
-    'secret_key'                  => 'Secret Key',
-    'source_dir_not_exist'        => 'Source directory does not exist',
-    'source_file_not_exist'       => 'Source file does not exist',
-    'storage_config'              => 'Storage configuration',
-    'storage_type'                => 'Storage type',
-    'target_dir_exist'            => 'Target directory exists',
-    'target_dir_not_exist'        => 'Target directory does not exist',
-    'target_not_exist'            => 'Target does not exist',
-    'title'                       => 'File Manager',
+    'rename_failed'               => 'تغییر نام ناموفق بود',
+    'secret_key'                  => 'کلید مخفی',
+    'source_dir_not_exist'        => 'شاخه مبدأ وجود ندارد',
+    'source_file_not_exist'       => 'فایل مبدأ وجود ندارد',
+    'storage_config'              => 'پیکربندی ذخیره‌سازی',
+    'storage_type'                => 'نوع ذخیره‌سازی',
+    'target_dir_exist'            => 'شاخه مقصد وجود دارد',
+    'target_dir_not_exist'        => 'شاخه مقصد وجود ندارد',
+    'target_not_exist'            => 'مقصد وجود ندارد',
+    'title'                       => 'مدیریت فایل',
 ];

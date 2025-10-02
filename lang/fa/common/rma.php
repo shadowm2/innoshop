@@ -1,27 +1,19 @@
 <?php
-/**
- * Copyright (c) Since 2024 InnoShop - All Rights Reserved
- *
- * @link       https://www.innoshop.com
- * @author     InnoShop <team@innoshop.com>
- * @license    https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
- */
-
 return [
-    'cancelled'           => 'Cancelled',
-    'created'             => 'Created',
-    'customer_email'      => 'Email Address',
-    'customer_id'         => 'Customer Name',
-    'customer_name'       => 'Customer Name',
-    'customer_telephone'  => 'Customer Number',
-    'order_reference'     => 'Order Reference',
-    'pending'             => 'Pending',
-    'product_name'        => 'Product Name',
-    'purchase_commodity'  => 'Purchase Commodity',
-    'purchase_quantity'   => 'Purchase Quantity',
-    'refunded'            => 'Refunded',
-    'return_number'       => 'Return Number',
-    'returnable_quantity' => 'Returnable Quantity',
-    'returned'            => 'Returned',
-    'returned_quantity'   => 'Returned Quantity',
+    'cancelled'           => 'لغو شده',
+    'created'             => 'ایجاد شده',
+    'customer_email'      => 'آدرس ایمیل',
+    'customer_id'         => 'شناسه مشتری',
+    'customer_name'       => 'نام مشتری',
+    'customer_telephone'  => 'شماره مشتری',
+    'order_reference'     => 'مرجع سفارش',
+    'pending'             => 'در انتظار',
+    'product_name'        => 'نام محصول',
+    'purchase_commodity'  => 'کالای خریداری شده',
+    'purchase_quantity'   => 'تعداد خریداری شده',
+    'refunded'            => 'عودت داده شده',
+    'return_number'       => 'شماره مرجوعی',
+    'returnable_quantity' => 'تعداد قابل مرجوع',
+    'returned'            => 'مرجوع شده',
+    'returned_quantity'   => 'تعداد مرجوع شده',
 ];

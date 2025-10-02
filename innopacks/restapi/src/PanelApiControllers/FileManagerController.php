@@ -57,7 +57,7 @@ class FileManagerController extends BaseController
     }
 
     /**
-     * 获取文件管理器的基础配置数据
+     * دریافت داده‌های پیکربندی پایه برای مدیر فایل
      * Get basic configuration data for file manager
      *
      * @return array
@@ -83,7 +83,7 @@ class FileManagerController extends BaseController
             'type'        => $request->query('type', 'all'),
             'base_folder' => '/',
             'driver'      => plugin_setting('file_manager', 'driver', 'local'),
-            'title'       => plugin_setting('file_manager', 'driver') === 'oss' ? 'OSS 文件管理' : '图片空间',
+            'title'       => plugin_setting('file_manager', 'driver') === 'oss' ? 'مدیریت فایل OSS' : 'فضای تصاویر',
             'config'      => [
                 'driver'   => plugin_setting('file_manager', 'driver', 'local'),
                 'endpoint' => plugin_setting('file_manager', 'endpoint', ''),
@@ -145,8 +145,8 @@ class FileManagerController extends BaseController
             $page       = (int) $request->input('page', 1);
             $perPage    = (int) $request->input('per_page', 20);
             $keyword    = (string) $request->input('keyword', '');
-            $sort       = (string) $request->input('sort', 'created');  // 默认按创建时间排序
-            $order      = (string) $request->input('order', 'desc');    // 默认降序，最新的在前面
+            $sort       = (string) $request->input('sort', 'created');  // پیش‌فرض مرتب‌سازی بر اساس زمان ایجاد
+            $order      = (string) $request->input('order', 'desc');    // پیش‌فرض نزولی، جدیدترین در مقدم
 
             $service = $this->getService();
 
@@ -433,14 +433,14 @@ class FileManagerController extends BaseController
                 ],
             ]);
 
-            return json_success('获取存储配置成功', $config);
+            return json_success('دریافت تنظیمات ذخیره‌سازی موفق بود', $config);
         } catch (\Exception $e) {
-            Log::error('获取存储配置失败:', [
+            Log::error('دریافت تنظیمات ذخیره‌سازی ناموفق:', [
                 'error' => $e->getMessage(),
                 'trace' => $e->getTraceAsString(),
             ]);
 
-            return json_fail('获取存储配置失败: '.$e->getMessage());
+            return json_fail('دریافت تنظیمات ذخیره‌سازی ناموفق: '.$e->getMessage());
         }
     }
 
@@ -491,7 +491,7 @@ class FileManagerController extends BaseController
                 'filesystems.file_manager.driver' => $driver,
             ]);
 
-            // 是OSS
+            // OSS است
             if ($driver == 'oss') {
                 config([
                     'filesystems.disks.s3.key'        => $key,
@@ -513,14 +513,14 @@ class FileManagerController extends BaseController
                 'cdn_domain' => $cdn_domain,
             ];
 
-            return json_success('存储配置保存成功', $configData);
+            return json_success('ذخیره تنظیمات ذخیره‌سازی موفق بود', $configData);
         } catch (\Exception $e) {
-            Log::error('存储配置保存失败:', [
+            Log::error('ذخیره تنظیمات ذخیره‌سازی ناموفق:', [
                 'error' => $e->getMessage(),
                 'trace' => $e->getTraceAsString(),
             ]);
 
-            return json_fail('存储配置保存失败: '.$e->getMessage());
+            return json_fail('ذخیره تنظیمات ذخیره‌سازی ناموفق: '.$e->getMessage());
         }
     }
 }

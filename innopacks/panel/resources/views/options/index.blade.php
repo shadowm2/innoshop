@@ -1,27 +1,27 @@
 @extends('panel::layouts.app')
 @section('body-class', 'page-product-option-group')
-@section('title', '选项管理')
+@section('title', 'مدیریت گزینه‌ها')
 
 @section('content')
   <div class="card h-min-600" id="app">
     <div class="card-body">
-      <!-- 导航链接 -->
+      <!-- لینک‌های ناوبری -->
       <ul class="nav nav-tabs mb-4">
         <li class="nav-item">
           <a class="nav-link active" href="{{ panel_route('options.index') }}">
-            <i class="bi bi-collection"></i> 选项组管理
+            <i class="bi bi-collection"></i> مدیریت گروه گزینه‌ها
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ panel_route('option_values.index') }}">
-            <i class="bi bi-list-ul"></i> 选项值管理
+            <i class="bi bi-list-ul"></i> مدیریت مقادیر گزینه‌ها
           </a>
         </li>
       </ul>
 
-      <!-- 选项组管理内容 -->
+      <!-- محتوای مدیریت گروه گزینه‌ها -->
       <div class="d-flex justify-content-between align-items-center mb-3">
-        <h5 class="mb-0">选项组管理</h5>
+        <h5 class="mb-0">مدیریت گروه گزینه‌ها</h5>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#optionGroupModal" onclick="openCreateModal()">
           <i class="bi bi-plus-square"></i> {{ __('panel/common.create') }}
         </button>
@@ -29,7 +29,7 @@
 
       <x-panel-data-criteria :criteria="$criteria ?? []" :action="panel_route('options.index')" />
 
-      <!-- 选项组列表 -->
+      <!-- لیست گروه گزینه‌ها -->
       @if ($option_groups->count())
         <div class="table-responsive">
           <table class="table align-middle">
@@ -37,10 +37,10 @@
             <tr>
               <th>{{ __('panel/common.id') }}</th>
               <th>{{ __('panel/common.name') }}</th>
-              <th>描述</th>
-              <th>类型</th>
-              <th>是否必填</th>
-              <th>排序</th>
+              <th>توضیحات</th>
+              <th>نوع</th>
+              <th>اجباری بودن</th>
+              <th>ترتیب</th>
               <th>{{ __('panel/common.active') }}</th>
               <th>{{ __('panel/common.created_at') }}</th>
               <th>{{ __('panel/common.actions') }}</th>
@@ -54,25 +54,25 @@
                 <td>
                   <div class="text-muted small" style="max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" 
                        title="{{ $optionGroup->getLocalizedDescription() }}">
-                    {{ $optionGroup->getLocalizedDescription() ?: '暂无描述' }}
+                    {{ $optionGroup->getLocalizedDescription() ?: 'بدون توضیحات' }}
                   </div>
                 </td>
                 <td>
                   @switch($optionGroup->type)
                     @case('select')
-                      <span class="badge bg-primary">下拉选择</span>
+                      <span class="badge bg-primary">انتخاب کشویی</span>
                       @break
                     @case('radio')
-                      <span class="badge bg-info">单选按钮</span>
+                      <span class="badge bg-info">دکمه رادیویی</span>
                       @break
                     @case('checkbox')
-                      <span class="badge bg-success">多选框</span>
+                      <span class="badge bg-success">چک باکس</span>
                       @break
                     @case('text')
-                      <span class="badge bg-warning">文本输入</span>
+                      <span class="badge bg-warning">ورودی متن</span>
                       @break
                     @case('textarea')
-                      <span class="badge bg-secondary">文本域</span>
+                      <span class="badge bg-secondary">ناحیه متن</span>
                       @break
                     @default
                       <span class="badge bg-light text-dark">{{ $optionGroup->type }}</span>
@@ -80,9 +80,9 @@
                 </td>
                 <td>
                   @if($optionGroup->required)
-                    <span class="badge bg-danger">必填</span>
+                    <span class="badge bg-danger">اجباری</span>
                   @else
-                    <span class="badge bg-secondary">可选</span>
+                    <span class="badge bg-secondary">اختیاری</span>
                   @endif
                 </td>
                 <td>{{ $optionGroup->position }}</td>
@@ -108,7 +108,7 @@
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-sm btn-outline-danger" 
-                                onclick="return confirm('确定要删除这个选项组吗？')">
+                                onclick="return confirm('آیا مطمئن هستید که می‌خواهید این گروه گزینه را حذف کنید؟')">
                           {{ __('panel/common.delete') }}
                         </button>
                       </form>
@@ -128,12 +128,12 @@
     </div>
   </div>
 
-  <!-- 选项组编辑模态框 -->
+  <!-- مودال ویرایش گروه گزینه -->
   <div class="modal fade" id="optionGroupModal" tabindex="-1" aria-labelledby="optionGroupModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="optionGroupModalLabel">创建选项组</h5>
+          <h5 class="modal-title" id="optionGroupModalLabel">ایجاد گروه گزینه</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <form id="optionGroupForm" method="POST">
@@ -141,32 +141,32 @@
           <input type="hidden" name="_method" value="POST" id="form-method">
           <div class="modal-body">
             <div class="row">
-              <!-- 基本信息 -->
+              <!-- اطلاعات پایه -->
               <div class="col-12">
-                <h6 class="mb-3">基本信息</h6>
+                <h6 class="mb-3">اطلاعات پایه</h6>
               </div>
               
               <div class="col-12 col-md-6">
                 <div class="mb-3">
-                  <label for="type" class="form-label">选项类型 <span class="text-danger">*</span></label>
+                  <label for="type" class="form-label">نوع گزینه <span class="text-danger">*</span></label>
                   <select class="form-select" id="type" name="type" required>
-                    <option value="select" selected>下拉选择</option>
-                    <option value="radio">单选按钮</option>
-                    <option value="checkbox">复选框</option>
+                    <option value="select" selected>انتخاب کشویی</option>
+                    <option value="radio">دکمه رادیویی</option>
+                    <option value="checkbox">چک باکس</option>
                   </select>
                 </div>
               </div>
 
               <div class="col-12 col-md-6">
                 <div class="mb-3">
-                  <label for="position" class="form-label">排序</label>
+                  <label for="position" class="form-label">ترتیب</label>
                   <input type="number" class="form-control" id="position" name="position" value="0">
                 </div>
               </div>
 
               <div class="col-12 col-md-6">
                 <div class="mb-3">
-                  <label class="form-label">是否必填</label>
+                  <label class="form-label">اجباری بودن</label>
                   <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" role="switch" id="required" name="required" value="1">
                   </div>
@@ -175,18 +175,18 @@
 
               <div class="col-12 col-md-6">
                 <div class="mb-3">
-                  <label class="form-label">是否启用</label>
+                  <label class="form-label">فعال بودن</label>
                   <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" role="switch" id="active" name="active" value="1" checked>
                   </div>
                 </div>
               </div>
 
-              <!-- 多语言信息 -->
+              <!-- اطلاعات چندزبانه -->
               <div class="col-12">
-                <h6 class="mb-3 mt-3">多语言信息</h6>
+                <h6 class="mb-3 mt-3">اطلاعات چندزبانه</h6>
                 
-                <!-- 多语言Tab导航 -->
+                <!-- ناوبری تب‌های چندزبانه -->
                 <ul class="nav nav-tabs mb-3" id="languageTab" role="tablist">
                   @foreach (locales() as $locale)
                     <li class="nav-item" role="presentation">
@@ -208,7 +208,7 @@
                   @endforeach
                 </ul>
                 
-                <!-- 多语言Tab内容 -->
+                <!-- محتوای تب‌های چندزبانه -->
                 <div class="tab-content" id="languageTabContent">
                   @foreach (locales() as $locale)
                     <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}" 
@@ -219,7 +219,7 @@
                         <div class="col-12">
                           <div class="mb-3">
                             <label for="name_{{ $locale['code'] }}" class="form-label">
-                              选项组名称 
+                              نام گروه گزینه 
                               <span class="text-danger">*</span>
                             </label>
                             <input type="text" class="form-control" 
@@ -230,12 +230,12 @@
                         </div>
                         <div class="col-12">
                           <div class="mb-3">
-                            <label for="description_{{ $locale['code'] }}" class="form-label">选项组描述</label>
+                            <label for="description_{{ $locale['code'] }}" class="form-label">توضیحات گروه گزینه</label>
                             <textarea class="form-control" 
                                       id="description_{{ $locale['code'] }}" 
                                       name="translations[{{ $locale['code'] }}][description]"
                                       rows="3" 
-                                      placeholder="请输入选项组的描述信息，用于说明该选项的作用"></textarea>
+                                      placeholder="لطفاً توضیحات گروه گزینه را وارد کنید تا کاربرد این گزینه را توضیح دهد"></textarea>
                           </div>
                         </div>
                       </div>
@@ -246,8 +246,8 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
-            <button type="submit" class="btn btn-primary">保存</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">لغو</button>
+            <button type="submit" class="btn btn-primary">ذخیره</button>
           </div>
         </form>
       </div>
@@ -257,9 +257,9 @@
 
 @push('footer')
 <script>
-// Output option group data as JavaScript variable
+// خروجی داده‌های گروه گزینه به عنوان متغیر جاوااسکریپت
 const optionGroupsData = @json($option_groups_data);
-// Extract actual data array (handle pagination structure)
+// استخراج آرایه داده‌های واقعی (مدیریت ساختار صفحه‌بندی)
 const optionGroups = optionGroupsData.data || optionGroupsData;
 
 $(document).ready(function() {
@@ -267,55 +267,55 @@ $(document).ready(function() {
     let currentOptionId = null;
 
     /**
-     * Open create option group modal
+     * باز کردن مودال ایجاد گروه گزینه
      */
     window.openCreateModal = function() {
         isEditMode = false;
         currentOptionId = null;
         
-        // Reset form
+        // بازنشانی فرم
         $('#optionGroupForm')[0].reset();
-        $('#optionGroupModalLabel').text('创建选项组');
+        $('#optionGroupModalLabel').text('ایجاد گروه گزینه');
         $('#optionGroupForm').attr('action', '{{ panel_route("options.store") }}');
-        $('#form-method').val('POST'); // Set to POST method
+        $('#form-method').val('POST'); // تنظیم متد POST
         
-        // Clear all form fields
+        // پاک کردن تمام فیلدهای فرم
         $('#product_id').val('');
         $('#type').val('select');
         $('#position').val('0');
         $('#required').prop('checked', false);
         $('#active').prop('checked', true);
         
-        // Clear multilingual fields
+        // پاک کردن فیلدهای چندزبانه
         $('[id^="name_"]').val('');
         $('[id^="description_"]').val('');
         
-        // Show modal
+        // نمایش مودال
         $('#optionGroupModal').modal('show');
     };
 
     /**
-     * Open edit option group modal
+     * باز کردن مودال ویرایش گروه گزینه
      */
     window.openEditModal = function(optionId) {
         isEditMode = true;
         currentOptionId = optionId;
         
-        // Get option group info from local data (using corrected data array)
+        // دریافت اطلاعات گروه گزینه از داده‌های محلی (استفاده از آرایه داده‌های تصحیح شده)
         const optionGroup = optionGroups.find(group => group.id == optionId);
         
-        // Set form action - use correct route parameter format
+        // تنظیم عمل فرم - استفاده از فرمت پارامتر مسیر صحیح
         $('#optionGroupForm').attr('action', `/panel/options/${optionId}`);
-        $('#form-method').val('PUT'); // Set to PUT method for update
+        $('#form-method').val('PUT'); // تنظیم متد PUT برای به‌روزرسانی
         
-        // Fill basic info
+        // پر کردن اطلاعات پایه
         $('#product_id').val(optionGroup.product_id || '');
         $('#type').val(optionGroup.type || 'select');
         $('#position').val(optionGroup.position || 0);
         $('#required').prop('checked', optionGroup.required == 1);
         $('#active').prop('checked', optionGroup.active == 1);
         
-        // Fill multilingual info - name and description are JSON fields in database
+        // پر کردن اطلاعات چندزبانه - نام و توضیحات فیلدهای JSON در پایگاه داده هستند
         if (optionGroup.name) {
             try {
                 const names = typeof optionGroup.name === 'string' ? JSON.parse(optionGroup.name) : optionGroup.name;
@@ -323,7 +323,7 @@ $(document).ready(function() {
                     $(`#name_${locale}`).val(names[locale] || '');
                 });
             } catch (e) {
-                console.error('Error parsing name JSON:', e);
+                console.error('خطا در تجزیه JSON نام:', e);
             }
         }
         
@@ -334,33 +334,33 @@ $(document).ready(function() {
                     $(`#description_${locale}`).val(descriptions[locale] || '');
                 });
             } catch (e) {
-                console.error('Error parsing description JSON:', e);
+                console.error('خطا در تجزیه JSON توضیحات:', e);
             }
         }
         
-        $('#optionGroupModalLabel').text('编辑选项组');
-        // Show modal
+        $('#optionGroupModalLabel').text('ویرایش گروه گزینه');
+        // نمایش مودال
         $('#optionGroupModal').modal('show');
     };
 
-    // Form submission handling
+    // مدیریت ارسال فرم
     $('#optionGroupForm').on('submit', function(e) {
         e.preventDefault();
         
         const formData = new FormData(this);
         
-        // If in edit mode, add PUT method
+        // اگر در حالت ویرایش است، متد PUT اضافه کنید
         if (isEditMode) {
             formData.append('_method', 'PUT');
         }
         
-        // Add AJAX identifier
+        // اضافه کردن شناسه AJAX
         formData.append('_ajax', '1');
         
-        // Show loading state
+        // نمایش حالت بارگذاری
         const submitBtn = $(this).find('button[type="submit"]');
         const originalText = submitBtn.text();
-        submitBtn.prop('disabled', true).text('处理中...');
+        submitBtn.prop('disabled', true).text('در حال پردازش...');
         
         $.ajax({
             url: $(this).attr('action'),
@@ -369,26 +369,26 @@ $(document).ready(function() {
             processData: false,
             contentType: false,
             success: function(response) {
-                // Close loading state
+                // بستن حالت بارگذاری
                 submitBtn.prop('disabled', false).text(originalText);
                 
-                // Close modal
+                // بستن مودال
                 $('#optionGroupModal').modal('hide');
                 
-                // Use layer to show success message
-                layer.msg(response.message || '操作成功', {
+                // استفاده از layer برای نمایش پیام موفقیت
+                layer.msg(response.message || 'عملیات موفقیت‌آمیز بود', {
                     icon: 1,
                     time: 2000
                 }, function() {
-                    // Refresh page
+                    // تازه‌سازی صفحه
                     window.location.reload();
                 });
             },
             error: function(xhr) {
-                // Close loading state (if operation fails but no error is thrown)
+                // بستن حالت بارگذاری (اگر عملیات ناموفق باشد اما خطایی پرتاب نشود)
                 submitBtn.prop('disabled', false).text(originalText);
                 
-                let errorMessage = '操作失败';
+                let errorMessage = 'عملیات ناموفق بود';
                 if (xhr.responseJSON && xhr.responseJSON.message) {
                     errorMessage = xhr.responseJSON.message;
                 } else if (xhr.responseJSON && xhr.responseJSON.errors) {
@@ -396,7 +396,7 @@ $(document).ready(function() {
                     errorMessage = Object.values(errors).flat().join('<br>');
                 }
                 
-                // Close loading state
+                // بستن حالت بارگذاری
                 layer.msg(errorMessage, {
                     icon: 2,
                     time: 3000

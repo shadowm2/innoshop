@@ -1,15 +1,7 @@
 <?php
-/**
- * Copyright (c) Since 2024 InnoShop - All Rights Reserved
- *
- * @link       https://www.innoshop.com
- * @author     InnoShop <team@innoshop.com>
- * @license    https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
- */
-
 return [
-    '403_title'       => 'Access Denied',
-    '403_description' => 'Sorry, you do not have permission to access this page. Please contact the administrator.',
-    '403_back'        => 'Back',
-    '403_home'        => 'Home',
+    '403_title'       => 'دسترسی ممنوع',
+    '403_description' => 'متأسفانه شما مجوز دسترسی به این صفحه را ندارید. لطفاً با مدیر سیستم تماس بگیرید.',
+    '403_back'        => 'بازگشت',
+    '403_home'        => 'صفحه اصلی',
 ];
