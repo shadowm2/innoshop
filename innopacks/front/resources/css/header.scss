@@ -102,11 +102,12 @@ header {
       .logo {
         max-width: 180px;
         max-height: 60px;
+        min-width: 60px;
         margin-bottom: 0;
       }
 
       .menu {
-        margin-left: 40px;
+        text-wrap: nowrap;
         .navbar {
           padding: 0;
         }
@@ -169,7 +170,7 @@ header {
       .icons {
         display: flex;
         align-items: center;
-
+        margin-inline-start: 10px;
         .account-icon {
           .dropdown-menu {
             left: 50%;
@@ -184,6 +185,7 @@ header {
         }
 
         .item {
+          min-width: 20px;
           margin-left: 26px;
           position: relative;
 

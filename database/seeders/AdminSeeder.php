@@ -11,6 +11,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 use InnoShop\Common\Models\Admin;
 
 class AdminSeeder extends Seeder
@@ -35,7 +36,7 @@ class AdminSeeder extends Seeder
             [
                 'name'     => 'admin',
                 'email'    => 'admin@innoshop.com',
-                'password' => '$2y$10$tsjDyAkcFU0qWuJpo3pAae/6PwtQi/AhSR4giHqmjehTJb4B0W0fi',
+                'password' => Hash::make('admin123'),
                 'active'   => true,
                 'locale'   => 'fa',
             ],

@@ -1222,9 +1222,9 @@ if (! function_exists('innoshop_brand_link')) {
     function innoshop_brand_link(): string
     {
         if (is_admin()) {
-            $default = '<a href="https://www.innoshop.com" class="ms-2" target="_blank">InnoShop</a>';
+            $default = '<a href="https://www.innoshop.com" class="ms-2" target="_blank">Sibzard</a>';
         } else {
-            $default = 'Powered By <a href="https://www.innoshop.com" class="ms-2" target="_blank">InnoShop</a>';
+            $default = 'Powered By <a href="https://www.innoshop.com" class="ms-2" target="_blank">Sibzard</a>';
         }
 
         return fire_hook_filter('innoshop.brand.link.display', $default);

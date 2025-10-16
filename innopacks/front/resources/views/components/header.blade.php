@@ -1,7 +1,7 @@
 @hookinsert('layout.header.top')
 
 <header id="appHeader">
-  <div class="header-top">
+  {{-- <div class="header-top">
     <div class="container d-flex justify-content-between align-items-center">
       <div class="language-switch d-flex align-items-center">
         <div class="dropdown">
@@ -46,7 +46,7 @@
         @endhookupdate
       </div>
     </div>
-  </div>
+  </div> --}}
   <div class="header-desktop">
     <div class="container d-flex justify-content-between align-items-center">
       <div class="left">
