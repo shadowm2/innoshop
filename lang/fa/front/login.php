@@ -21,4 +21,16 @@ return [
     'empty_customer'            => 'حساب موجود نیست',
     'inactive_customer'         => 'حساب شما غیر فعال است.',
     'login_success'             => 'با موفقیت وارد شدید.',
+    // OTP / phone
+    'login_with_phone'          => 'ورود با تلفن',
+    'phone'                     => 'تلفن',
+    'code'                      => 'کد',
+    'request_code'              => 'دریافت کد',
+    'verify_code'               => 'تایید کد',
+    'phone_required'            => 'لطفاً شماره تلفن را وارد کنید',
+    'phone_and_code_required'   => 'لطفاً شماره و کد را وارد کنید',
+    'otp_message'               => 'کد ورود شما: {code}',
+    'otp_sent'                  => 'کد تایید ارسال شد',
+    'otp_sent_recently'         => 'کد اخیراً ارسال شده است، لطفاً کمی صبر کنید',
+    'otp_invalid'               => 'کد تایید معتبر نیست',
 ];
