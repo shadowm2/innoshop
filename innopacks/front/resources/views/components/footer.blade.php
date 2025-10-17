@@ -91,7 +91,7 @@
               </span>
             </div>
           </div>
-          <div class="col-md-6">
+          {{-- <div class="col-md-6">
             <div class="payment-icon">
               <img src="{{ asset('images/demo/payment/1.png') }}" class="img-fluid">
               <img src="{{ asset('images/demo/payment/2.png') }}" class="img-fluid">
@@ -99,7 +99,7 @@
               <img src="{{ asset('images/demo/payment/4.png') }}" class="img-fluid">
               <img src="{{ asset('images/demo/payment/5.png') }}" class="img-fluid">
             </div>
-          </div>
+          </div> --}}
       </div>
       </div>
     </div>
