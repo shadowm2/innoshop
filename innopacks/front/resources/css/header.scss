@@ -182,7 +182,7 @@ header {
       .icons {
         display: flex;
         align-items: center;
-
+        margin-inline-start: 10px;
         .account-icon {
           .dropdown-menu {
             left: 50%;
@@ -197,6 +197,7 @@ header {
         }
 
         .item {
+          min-width: 20px;
           margin-left: 26px;
           position: relative;
 

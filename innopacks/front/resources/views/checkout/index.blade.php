@@ -65,7 +65,8 @@
                     </div>
                   </div>
                   <div v-if="!source.same_as_shipping_address">
-                    <div class="checkout-select-wrap address-select" v-if="source.addresses.length && !source.addressEdit">
+                    <div class="checkout-select-wrap address-select"
+                      v-if="source.addresses.length && !source.addressEdit">
                       <div :class="['select-item', current.billing_address_id == address.id ? 'active' : '']"
                         v-for="address, index in source.addresses" :key="address.id"
                         @click="updateCheckout('billing_address_id', address.id)">
@@ -176,7 +177,7 @@
             <div class="products-table">
 
               @hookinsert('checkout.products.before')
-              
+
               @if (!empty($cart_list))
                 <div class="products-table-title">
                   <span>{{ __('front/cart.product') }}</span>
@@ -205,7 +206,8 @@
                                   <div class="option-item text-muted small">
                                     <strong>{{ $option['option_name'] }}:</strong> {{ $option['option_value_name'] }}
                                     @if ($option['price_adjustment'] != 0)
-                                      <span class="text-primary">({{ $option['price_adjustment'] > 0 ? '+' : '' }}{{ currency_format($option['price_adjustment']) }})</span>
+                                      <span
+                                        class="text-primary">({{ $option['price_adjustment'] > 0 ? '+' : '' }}{{ currency_format($option['price_adjustment']) }})</span>
                                     @endif
                                   </div>
                                 @endforeach
@@ -219,7 +221,7 @@
                   @endforeach
                 </div>
               @endif
-              
+
               @hookinsert('checkout.products.after')
 
             </div>
@@ -240,7 +242,8 @@
                               .balance) >= source.totalAmount || isNaN(parseFloat(current.balance))
                       }"
                       class="input-group-text btn btn-primary py-2" id="addon-wrapping" @click="submitBalance"
-                      :disabled="parseFloat(current.balance) > source.balanceAmount || parseFloat(current.balance) >= source.totalAmount ||
+                      :disabled="parseFloat(current.balance) > source.balanceAmount || parseFloat(current.balance) >= source
+                          .totalAmount ||
                           isNaN(parseFloat(current.balance))"
                       style="cursor: pointer;">
                       {{ __('front/transaction.confirm') }}
@@ -365,7 +368,7 @@
         const updateShippingAddress = (addressId) => {
           current.shipping_method_code = '';
           updateCheckout('shipping_address_id', addressId);
-          
+
           axios.put(api.checkout, current).then(function(res) {
             if (res.success) {
               source.shippingMethods = res.data.shipping_methods;
@@ -382,7 +385,7 @@
           axios[method](url, params).then(function(res) {
             if (res.success) {
               inno.msg(res.message);
-              
+
               if (id) {
                 const index = source.addresses.findIndex(address => address.id === id);
                 source.addresses[index] = res.data;
@@ -427,7 +430,8 @@
         }
 
         const submitBalance = () => {
-          if (parseFloat(current.balance) <= source.balanceAmount && parseFloat(current.balance) < source.totalAmount) {
+          if (parseFloat(current.balance) <= source.balanceAmount && parseFloat(current.balance) < source
+            .totalAmount) {
             axios.put(api.checkout, {
               reference: {
                 balance: parseFloat(current.balance)

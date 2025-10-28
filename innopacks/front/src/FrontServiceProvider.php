@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) Since 2024 InnoShop - All Rights Reserved
  *
@@ -61,6 +62,7 @@ class FrontServiceProvider extends ServiceProvider
         });
     }
 
+
     /**
      * Register guard for frontend.
      */
@@ -85,7 +87,7 @@ class FrontServiceProvider extends ServiceProvider
         Config::set('filesystems.disks.upload', [
             'driver'      => 'local',
             'root'        => public_path('static/uploads'),
-            'url'         => env('APP_URL').'/static/uploads',
+            'url'         => env('APP_URL') . '/static/uploads',
             'visibility'  => 'public',
             'throw'       => true,
             'permissions' => [
@@ -125,7 +127,7 @@ class FrontServiceProvider extends ServiceProvider
         Route::middleware('front')
             ->name('front.')
             ->group(function () {
-                $this->loadRoutesFrom(realpath(__DIR__.'/../routes/root.php'));
+                $this->loadRoutesFrom(realpath(__DIR__ . '/../routes/root.php'));
             });
 
         $locales = locales();
@@ -133,15 +135,15 @@ class FrontServiceProvider extends ServiceProvider
             Route::middleware('front')
                 ->name('front.')
                 ->group(function () {
-                    $this->loadRoutesFrom(realpath(__DIR__.'/../routes/web.php'));
+                    $this->loadRoutesFrom(realpath(__DIR__ . '/../routes/web.php'));
                 });
         } else {
             foreach ($locales as $locale) {
                 Route::middleware('front')
                     ->prefix($locale->code)
-                    ->name($locale->code.'.front.')
+                    ->name($locale->code . '.front.')
                     ->group(function () {
-                        $this->loadRoutesFrom(realpath(__DIR__.'/../routes/web.php'));
+                        $this->loadRoutesFrom(realpath(__DIR__ . '/../routes/web.php'));
                     });
             }
         }
@@ -153,13 +155,13 @@ class FrontServiceProvider extends ServiceProvider
      */
     protected function loadTranslations(): void
     {
-        if (! is_dir(__DIR__.'/../lang')) {
+        if (! is_dir(__DIR__ . '/../lang')) {
             return;
         }
 
-        $this->loadTranslationsFrom(__DIR__.'/../lang', 'front');
+        $this->loadTranslationsFrom(__DIR__ . '/../lang', 'front');
         $this->publishes([
-            __DIR__.'/../lang' => $this->app->langPath('vendor/front'),
+            __DIR__ . '/../lang' => $this->app->langPath('vendor/front'),
         ], 'lang');
     }
 
@@ -171,7 +173,7 @@ class FrontServiceProvider extends ServiceProvider
      */
     protected function publishViewTemplates(): void
     {
-        $originViewPath = __DIR__.'/../resources';
+        $originViewPath = __DIR__ . '/../resources';
         $customViewPath = base_path('themes/default');
 
         $this->publishes([
@@ -194,7 +196,7 @@ class FrontServiceProvider extends ServiceProvider
                     $themePaths[] = $themeViewPath;
                 }
             }
-            $themePaths[] = realpath(__DIR__.'/../resources/views');
+            $themePaths[] = realpath(__DIR__ . '/../resources/views');
 
             $viewPaths = $app['config']['view.paths'];
             $viewPaths = array_merge($themePaths, $viewPaths);

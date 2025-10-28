@@ -1,4 +1,4 @@
-<template id="single-image-selector">
+                              <template id="single-image-selector">
   <div class="image-selector">
     <div class="image-preview" @click="openSelector">
       <img v-if="displayImage" :src="displayImage" class="preview-img" alt="تصویر پیش‌نمایش">

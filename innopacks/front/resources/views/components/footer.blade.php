@@ -27,7 +27,7 @@
                     <div class="footer-link-icon"><i class="bi bi-plus-lg"></i></div>
                   </div>
                   <ul class="footer-item-content">
-                    @foreach($footerMenus['categories'] as $item)
+                    @foreach ($footerMenus['categories'] as $item)
                       <li><a href="{{ $item['url'] }}">{{ $item['name'] }}</a></li>
                     @endforeach
                   </ul>
@@ -40,7 +40,7 @@
                     <div class="footer-link-icon"><i class="bi bi-plus-lg"></i></div>
                   </div>
                   <ul class="footer-item-content">
-                    @foreach($footerMenus['catalogs'] as $item)
+                    @foreach ($footerMenus['catalogs'] as $item)
                       <li><a href="{{ $item['url'] }}">{{ $item['name'] }}</a></li>
                     @endforeach
                   </ul>
@@ -53,7 +53,7 @@
                     <div class="footer-link-icon"><i class="bi bi-plus-lg"></i></div>
                   </div>
                   <ul class="footer-item-content">
-                    @foreach($footerMenus['pages'] as $item)
+                    @foreach ($footerMenus['pages'] as $item)
                       <li><a href="{{ $item['url'] }}">{{ $item['name'] }}</a></li>
                     @endforeach
                   </ul>
@@ -66,7 +66,7 @@
                     <div class="footer-link-icon"><i class="bi bi-plus-lg"></i></div>
                   </div>
                   <ul class="footer-item-content">
-                    @foreach($footerMenus['specials'] as $item)
+                    @foreach ($footerMenus['specials'] as $item)
                       <li><a href="{{ $item['url'] }}">{{ $item['name'] }}</a></li>
                     @endforeach
                   </ul>
@@ -85,8 +85,9 @@
               <span class="copyright-text">
                 <a href="{{ front_route('home.index') }}" class="ms-2" target="_blank">{{ config('app.name') }}</a>
                 &copy; {{ date('Y') }} All Rights Reserved
-                @if(system_setting('icp_number', ''))
-                  <a href="https://beian.miit.gov.cn" class="ms-2" target="_blank">{{ system_setting('icp_number', '') }}</a>
+                @if (system_setting('icp_number', ''))
+                  <a href="https://beian.miit.gov.cn" class="ms-2"
+                    target="_blank">{{ system_setting('icp_number', '') }}</a>
                 @endif
               </span>
             </div>
@@ -100,14 +101,10 @@
               <img src="{{ asset('images/demo/payment/5.png') }}" class="img-fluid">
             </div> --}}
           </div>
-      </div>
-      </div>
-    </div>
-  </div>
-</footer>
+        </div>
 
-@hookinsert('layout.footer.bottom')
+        @hookinsert('layout.footer.bottom')
 
-@if (system_setting('js_code', ''))
-  {!! system_setting('js_code', '') !!}
-@endif
+        @if (system_setting('js_code', ''))
+          {!! system_setting('js_code', '') !!}
+        @endif

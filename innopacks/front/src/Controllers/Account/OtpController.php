@@ -1,4 +1,5 @@
 <?php
+
 namespace InnoShop\Front\Controllers\Account;
 
 use App\Http\Controllers\Controller;

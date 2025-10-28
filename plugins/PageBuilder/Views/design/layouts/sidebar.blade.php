@@ -1,5 +1,6 @@
 <div :class="['sidebar-edit-wrap', !design.sidebar ? 'v-hide' : '']" v-cloak v-loading="!design.ready">
-  <div class="switch-design" :class="['hide-design', !design.sidebar ? 'v-hide' : '']" @click="design.sidebar = !design.sidebar">
+  <div class="switch-design" :class="['hide-design', !design.sidebar ? 'v-hide' : '']"
+    @click="design.sidebar = !design.sidebar">
     <i class="el-icon-arrow-left" v-if="design.sidebar"></i>
     <i class="el-icon-arrow-right" v-else></i>
   </div>
@@ -23,14 +24,10 @@
       </div>
     </div>
   </div>
-  
+
   <div class="module-edit" v-if="form.modules.length > 0 && design.editType == 'module'">
-    <component
-      :is="editingModuleComponent"
-      :key="design.editingModuleIndex"
-      :module="form.modules[design.editingModuleIndex].content"
-      @on-changed="moduleUpdated"
-    ></component>
+    <component :is="editingModuleComponent" :key="design.editingModuleIndex"
+      :module="form.modules[design.editingModuleIndex].content" @on-changed="moduleUpdated"></component>
   </div>
 
   <div class="modules-list" :class="{ 'with-design-head': design.editType != 'add' }">
@@ -39,29 +36,19 @@
         <div class="modules-title">
           <i class="el-icon-collection"></i> @{{ lang.module_library }}
         </div>
-        
+
         {{-- جعبه جستجو --}}
         <div class="modules-search">
-          <el-input
-            v-model="moduleSearch"
-            placeholder="{{ __('PageBuilder::common.search_modules') }}"
-            size="small"
-            {{-- prefix-icon="el-icon-search" --}}
-            clearable
-          ></el-input>
+          <el-input v-model="moduleSearch" placeholder="{{ __('PageBuilder::common.search_modules') }}" size="small"
+            {{-- prefix-icon="el-icon-search" --}} clearable></el-input>
         </div>
       </div>
-      
+
       {{-- برچسب‌های دسته‌بندی --}}
       <div class="modules-categories">
-        <el-tag
-          v-for="category in moduleCategories"
-          :key="category.value"
-          :type="selectedCategory === category.value ? 'primary' : 'info'"
-          size="small"
-          @click="selectedCategory = category.value"
-          style="margin: 2px; cursor: pointer;"
-        >
+        <el-tag v-for="category in moduleCategories" :key="category.value"
+          :type="selectedCategory === category.value ? 'primary' : 'info'" size="small"
+          @click="selectedCategory = category.value" style="margin: 2px; cursor: pointer;">
           @{{ category.label }}
         </el-tag>
       </div>
@@ -69,7 +56,8 @@
 
     <div class="modules-content" v-show="design.editType == 'add'">
       <el-row id="module-list-wrap">
-        <el-col :span="12" v-for="(item, index) in filteredModules" :key="index" class="iframe-modules-sortable-ghost">
+        <el-col :span="12" v-for="(item, index) in filteredModules" :key="index"
+          class="iframe-modules-sortable-ghost">
           <div @click="addModuleButtonClicked(item.code)" class="module-list" :data-code="item.code">
             <div class="module-info">
               <div class="icon">
@@ -82,7 +70,7 @@
         </el-col>
       </el-row>
     </div>
-    
+
     {{-- پیام عدم وجود نتیجه جستجو --}}
     <div v-if="filteredModules.length === 0 && (moduleSearch || selectedCategory !== 'all')" class="no-results">
       <i class="el-icon-search"></i>

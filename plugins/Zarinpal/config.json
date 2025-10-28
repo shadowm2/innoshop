@@ -1,0 +1,18 @@
+{
+  "code": "zarinpal",
+  "name": {
+    "en": "ZarinPal",
+    "fa": "زرین پال"
+  },
+  "description": {
+    "en": "ZarinPal payment gateway plugin",
+    "fa": "درگاه پرداخت زرین پال"
+  },
+  "type": "billing",
+  "version": "1.0.0",
+  "icon": "/images/logo.png",
+  "author": {
+    "name": "InnoShop",
+    "email": "team@example.com"
+  }
+}
