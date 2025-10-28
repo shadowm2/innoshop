@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) Since 2024 InnoShop - All Rights Reserved
  *
@@ -474,7 +475,7 @@ if (! function_exists('pure_route_name')) {
     {
         $name = request()->route()->getName();
 
-        return str_replace([locale_code().'.front.', 'front.'], '', $name);
+        return str_replace([locale_code() . '.front.', 'front.'], '', $name);
     }
 }
 
@@ -487,7 +488,7 @@ if (! function_exists('front_trans')) {
      */
     function front_trans($key = null, array $replace = [], $locale = null): mixed
     {
-        return trans('front/'.$key, $replace, $locale);
+        return trans('front/' . $key, $replace, $locale);
     }
 }
 
@@ -727,7 +728,7 @@ if (! function_exists('sub_string')) {
             return $string;
         }
 
-        return mb_substr($string, 0, $length).$dot;
+        return mb_substr($string, 0, $length) . $dot;
     }
 }
 
@@ -757,7 +758,7 @@ if (! function_exists('create_directories')) {
             if ($path === '' || $path === $ds) {
                 $path .= $directory;
             } else {
-                $path .= $ds.$directory;
+                $path .= $ds . $directory;
             }
 
             if (! is_dir($path)) {
@@ -782,10 +783,10 @@ if (! function_exists('front_route')) {
     function front_route($name, mixed $parameters = [], bool $absolute = true): string
     {
         if (hide_url_locale()) {
-            return route('front.'.$name, $parameters, $absolute);
+            return route('front.' . $name, $parameters, $absolute);
         }
 
-        return route(front_locale_code().'.front.'.$name, $parameters, $absolute);
+        return route(front_locale_code() . '.front.' . $name, $parameters, $absolute);
     }
 }
 
@@ -801,7 +802,7 @@ if (! function_exists('front_root_route')) {
      */
     function front_root_route($name, mixed $parameters = [], bool $absolute = true): string
     {
-        return route('front.'.$name, $parameters, $absolute);
+        return route('front.' . $name, $parameters, $absolute);
     }
 }
 
@@ -816,9 +817,9 @@ if (! function_exists('has_front_route')) {
     function has_front_route($name): bool
     {
         if (hide_url_locale()) {
-            $route = 'front.'.$name;
+            $route = 'front.' . $name;
         } else {
-            $route = front_locale_code().'.front.'.$name;
+            $route = front_locale_code() . '.front.' . $name;
         }
 
         return Route::has($route);
@@ -838,10 +839,10 @@ if (! function_exists('account_route')) {
     function account_route($name, mixed $parameters = [], bool $absolute = true): string
     {
         if (hide_url_locale()) {
-            return route('front.account.'.$name, $parameters, $absolute);
+            return route('front.account.' . $name, $parameters, $absolute);
         }
 
-        return route(front_locale_code().'.front.account.'.$name, $parameters, $absolute);
+        return route(front_locale_code() . '.front.account.' . $name, $parameters, $absolute);
     }
 }
 
@@ -867,7 +868,7 @@ if (! function_exists('cache_key')) {
         $params['customer_id'] = current_customer_id();
         $params['locale_code'] = front_locale_code();
 
-        return $name.'-'.md5(json_encode($params));
+        return $name . '-' . md5(json_encode($params));
     }
 }
 
@@ -884,7 +885,7 @@ if (! function_exists('equal_route_name')) {
         $currentRouteName = Route::getCurrentRoute()->getName();
 
         // Default prefix removal (locale code)
-        $defaultPrefix    = front_locale_code().'.';
+        $defaultPrefix    = front_locale_code() . '.';
         $currentRouteName = str_replace($defaultPrefix, '', $currentRouteName);
 
         // Remove additional prefix if provided
@@ -1046,7 +1047,7 @@ if (! function_exists('theme_path')) {
      */
     function theme_path(string $path): string
     {
-        return base_path('themes/'.$path);
+        return base_path('themes/' . $path);
     }
 }
 
@@ -1115,7 +1116,7 @@ if (! function_exists('theme_asset')) {
         $version   = file_exists($destFile) ? filemtime($destFile) : time();
         $separator = strpos($assetUrl, '?') !== false ? '&' : '?';
 
-        return $assetUrl.$separator.'v='.$version;
+        return $assetUrl . $separator . 'v=' . $version;
     }
 }
 
@@ -1207,7 +1208,7 @@ if (! function_exists('innoshop_version')) {
      */
     function innoshop_version(): string
     {
-        $default = ucfirst(config('innoshop.edition')).' v'.config('innoshop.version').'('.config('innoshop.build').')';
+        $default = ucfirst(config('innoshop.edition')) . ' v' . config('innoshop.version') . '(' . config('innoshop.build') . ')';
 
         return fire_hook_filter('innoshop.version.display', $default);
     }
@@ -1222,9 +1223,9 @@ if (! function_exists('innoshop_brand_link')) {
     function innoshop_brand_link(): string
     {
         if (is_admin()) {
-            $default = '<a href="https://www.innoshop.com" class="ms-2" target="_blank">InnoShop</a>';
+            $default = '<a href="https://www.innoshop.com" class="ms-2" target="_blank">Sh@dow_m2</a>';
         } else {
-            $default = 'Powered By <a href="https://www.innoshop.com" class="ms-2" target="_blank">InnoShop</a>';
+            $default = 'Powered By <a href="https://www.zamanticket.ir" class="ms-2" target="_blank">Sh@dow_M2</a>';
         }
 
         return fire_hook_filter('innoshop.brand.link.display', $default);
@@ -1246,7 +1247,7 @@ if (! function_exists('to_sql')) {
         }
 
         foreach ($builder->getBindings() as $binding) {
-            $value = is_numeric($binding) ? $binding : "'".$binding."'";
+            $value = is_numeric($binding) ? $binding : "'" . $binding . "'";
             $sql   = preg_replace('/\?/', $value, $sql, 1);
         }
 

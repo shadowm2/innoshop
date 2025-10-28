@@ -16,6 +16,17 @@
   <link rel="stylesheet" href="{{ asset('vendor/element-plus/index.css') }}">
   <link rel="stylesheet" href="{{ mix('build/panel/css/bootstrap.css') }}">
   <link rel="stylesheet" href="{{ mix('build/panel/css/app.css') }}">
+  <!-- Persian font: Vazirmatn (admin panel) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Apply Persian font across admin panel */
+    html, body, input, textarea, select, button, .btn, a, p, h1, h2, h3, h4, h5, h6, .nav-link, .page-title-box {
+      font-family: 'Vazirmatn', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+    }
+  </style>
   <script src="{{ asset('vendor/jquery/jquery-3.7.1.min.js') }}"></script>
   <script src="{{ asset('vendor/vue/3.5/vue.global' . (config('app.debug') ? '' : '.prod') . '.js') }}"></script>
   <script src="{{ asset('vendor/element-plus/index.full.js') }}"></script>

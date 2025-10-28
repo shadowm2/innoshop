@@ -1,11 +1,11 @@
 {
     "code": "bank_transfer",
     "name": {
-        "zh-cn": "银行转账",
+        "zh-cn": "انتقال بانکی",
         "en": "Bank Transfer"
     },
     "description": {
-        "zh-cn": "银行转账是一种传统的支付方式，允许用户通过银行进行资金转移。",
+        "zh-cn": "انتقال بانکی یکی از روش‌های سنتی پرداخت است که به کاربران اجازه می‌دهد از طریق بانک‌ها وجوه خود را جابجا کنند.",
         "en": "Bank Transfer is a traditional payment method that allows users to transfer funds through banks."
     },
     "type": "billing",

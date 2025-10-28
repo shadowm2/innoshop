@@ -170,11 +170,11 @@
       const deleteForm = ref(null);
       const open = (id) => {
      ElMessageBox.confirm(
-      '确定要删除吗?',
-      '提示',
+      'مطمئنی می‌خوای حذف کنی؟',
+      'هشدار',
       {
-      confirmButtonText: '确定',
-      cancelButtonText: '取消',
+      confirmButtonText: 'تأیید',
+      cancelButtonText: 'لغو',
       type: 'warning',
       }
      )

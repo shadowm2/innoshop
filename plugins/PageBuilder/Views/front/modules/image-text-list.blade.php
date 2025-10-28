@@ -1,4 +1,4 @@
-{{-- 图文列表模块前台展示模板 --}}
+{{-- لیست متن-تصویر ماژول قالب نمایش جلو --}}
 @php
   $locale = locale_code();
 @endphp
@@ -6,14 +6,19 @@
   <div class="module-content">
     <div class="{{ pb_get_width_class($content['width'] ?? 'wide') }}">
       
-      {{-- 模块标题 --}}
-      @if(!empty($content['title'][$locale] ?? $content['title']))
-        <div class="module-title-wrap text-center">
-          <div class="module-title">{{ $content['title'][$locale] ?? $content['title'] }}</div>
-        </div>
+      {{-- عنوان ماژول --}}
+      @if(isset($content['title']))
+        @php
+          $titleValue = is_array($content['title']) ? ($content['title'][$locale] ?? array_first($content['title'])) : $content['title'];
+        @endphp
+        @if(!empty($titleValue))
+          <div class="module-title-wrap text-center">
+            <div class="module-title">{{ $titleValue }}</div>
+          </div>
+        @endif
       @endif
 
-      {{-- 图文列表展示 --}}
+      {{-- نمایش لیست متن-تصویر --}}
       <div class="image-text-showcase">
         @if(!empty($content['imageTextItems']) && count($content['imageTextItems']) > 0)
           <div class="image-text-grid image-text-grid-{{ $content['columns'] ?? 4 }}" 
@@ -47,11 +52,11 @@
             @endforeach
           </div>
         @else
-          {{-- 空状态 --}}
+          {{-- حالت خالی --}}
           <div class="image-text-empty">
             <i class="bi bi-grid-3x3-gap"></i>
-            <p>暂无图文项</p>
-            <span>请在后台添加图文项</span>
+            <p>هیچ آیتم متن-تصویری موجود نیست</p>
+            <span>لطفاً در پنل مدیریت آیتم‌های متن-تصویر اضافه کنید</span>
           </div>
         @endif
       </div>
@@ -63,11 +68,11 @@
       <div class="edit-wrap">
         <div class="edit" onclick="editModule('{{ $module_id }}')">
           <i class="bi bi-pencil"></i>
-          <span>编辑</span>
+          <span>ویرایش</span>
         </div>
         <div class="delete" onclick="deleteModule('{{ $module_id }}')">
           <i class="bi bi-trash"></i>
-          <span>删除</span>
+          <span>حذف</span>
         </div>
         <div class="up" onclick="moveModule('{{ $module_id }}', 'up')">
           <i class="bi bi-arrow-up"></i>
@@ -194,7 +199,7 @@
   color: #bbb;
 }
 
-/* 轮播动画 */
+/* انیمیشن اسلایدشو */
 @keyframes imageTextSlide {
   0% {
     transform: translateX(0);
@@ -212,7 +217,7 @@
   animation-play-state: paused;
 }
 
-/* 响应式设计 */
+/* طراحی ریسپانسیو */
 @media (max-width: 768px) {
   
   .image-text-title {
@@ -258,7 +263,7 @@
 </style>
 
 <script>
-// 图文列表轮播功能
+// عملکرد اسلایدشو لیست متن-تصویر
 document.addEventListener('DOMContentLoaded', function() {
   const imageTextGrids = document.querySelectorAll('.image-text-grid[data-autoplay="true"]');
   
@@ -267,13 +272,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const items = grid.querySelectorAll('.image-text-item');
     
     if (items.length > 0) {
-      // 克隆图文项以实现无缝轮播
+      // کلون کردن آیتم‌های متن-تصویر برای اسلایدشو بدون وقفه
       items.forEach(function(item) {
         const clone = item.cloneNode(true);
         grid.appendChild(clone);
       });
       
-      // 设置轮播动画
+      // تنظیم انیمیشن اسلایدشو
       grid.style.animationDuration = (items.length * 2) + 's';
     }
   });

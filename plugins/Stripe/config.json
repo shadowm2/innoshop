@@ -1,11 +1,11 @@
 {
     "code": "stripe",
     "name": {
-        "zh-cn": "Stripe 支付",
+        "zh-cn": "پرداخت Stripe",
         "en": "Stripe"
     },
     "description": {
-        "zh-cn": "Stripe 是一个全球领先的在线支付处理平台，支持多种货币和支付方式。它提供了强大的API和工具，帮助商家轻松集成支付功能。",
+        "zh-cn": "استرایپ یک پلتفرم پیشرو جهانی برای پردازش پرداخت آنلاین است که از ارزها و روش‌های پرداخت مختلف پشتیبانی می‌کند. این سرویس API ها و ابزارهای قدرتمندی جهت ادغام آسان پرداخت در اختیار کسب‌وکارها قرار می‌دهد.",
         "en": "Stripe is a leading global online payment processing platform that supports multiple currencies and payment methods. It provides powerful APIs and tools to help merchants easily integrate payment functionalities."
     },
     "type": "billing",

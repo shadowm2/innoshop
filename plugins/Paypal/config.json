@@ -1,11 +1,11 @@
 {
     "code": "paypal",
     "name": {
-        "zh-cn": "PayPal",
+        "zh-cn": "پی‌پل",
         "en": "PayPal"
     },
     "description": {
-        "zh-cn": "PayPal是一个全球领先的在线支付平台，支持多种货币和支付方式。",
+        "zh-cn": "پی‌پل یک پلتفرم پیشرو جهانی برای پرداخت آنلاین است که از ارزها و روش‌های پرداخت مختلف پشتیبانی می‌کند.",
         "en": "PayPal is a global leader in online payment solutions, supporting multiple currencies and payment methods."
     },
     "type": "billing",

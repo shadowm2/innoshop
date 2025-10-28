@@ -59,4 +59,42 @@ body.page-login {
       font-weight: bold;
     }
   }
+
+  /* OTP section styling for modern RTL look */
+  .otp-section {
+    margin-top: 24px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(0,0,0,0.06);
+
+    .login-title {
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+
+    .form-group {
+      display: flex;
+      gap: .5rem;
+      align-items: center;
+
+      input.form-control {
+        height: 44px;
+        border-radius: 6px;
+        border: 1px solid rgba(0,0,0,0.08);
+        padding: 0 12px;
+        background: #fff;
+      }
+
+      button.btn {
+        height: 44px;
+        padding: 0 14px;
+        border-radius: 6px;
+      }
+    }
+  }
+
+  /* RTL adjustments */
+  [dir="rtl"] & {
+    direction: rtl;
+    text-align: right;
+  }
 }

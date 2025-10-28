@@ -14,7 +14,7 @@ use Illuminate\Foundation\Http\FormRequest;
 class OptionRequest extends FormRequest
 {
     /**
-     * 确定用户是否有权限进行此请求
+     * تعیین اینکه آیا کاربر مجاز به انجام این درخواست است یا خیر
      *
      * @return bool
      */
@@ -24,7 +24,7 @@ class OptionRequest extends FormRequest
     }
 
     /**
-     * 获取验证规则
+     * دریافت قوانین اعتبارسنجی
      *
      * @return array
      */
@@ -40,23 +40,23 @@ class OptionRequest extends FormRequest
     }
 
     /**
-     * 获取验证错误消息
+     * دریافت پیام‌های خطای اعتبارسنجی
      *
      * @return array
      */
     public function messages(): array
     {
         return [
-            'type.required'                => '选项类型不能为空',
-            'type.in'                      => '选项类型必须是：select, radio, checkbox 中的一种',
-            'position.integer'             => '排序必须是整数',
-            'position.min'                 => '排序不能小于0',
-            'active.boolean'               => '状态必须是布尔值',
-            'translations.required'        => '翻译信息不能为空',
-            'translations.array'           => '翻译信息必须是数组',
-            'translations.*.name.required' => '选项组名称不能为空',
-            'translations.*.name.string'   => '选项组名称必须是字符串',
-            'translations.*.name.max'      => '选项组名称不能超过255个字符',
+            'type.required'                => 'نوع گزینه نمی‌تواند خالی باشد',
+            'type.in'                      => 'نوع گزینه باید یکی از موارد زیر باشد: select, radio, checkbox',
+            'position.integer'             => 'ترتیب باید عدد صحیح باشد',
+            'position.min'                 => 'ترتیب نمی‌تواند کمتر از 0 باشد',
+            'active.boolean'               => 'وضعیت باید مقدار بولی باشد',
+            'translations.required'        => 'اطلاعات ترجمه نمی‌تواند خالی باشد',
+            'translations.array'           => 'اطلاعات ترجمه باید آرایه باشد',
+            'translations.*.name.required' => 'نام گروه گزینه نمی‌تواند خالی باشد',
+            'translations.*.name.string'   => 'نام گروه گزینه باید رشته باشد',
+            'translations.*.name.max'      => 'نام گروه گزینه نمی‌تواند بیش از 255 کاراکتر باشد',
         ];
     }
 }

@@ -1,4 +1,4 @@
-{{-- 分类详细描述区域 --}}
+{{-- ناحیه توضیحات کامل دسته‌بندی --}}
 @if($category->fallbackName('content'))
 <div class="mt-5">
   <div class="card border-0 shadow-sm">

@@ -8,5 +8,5 @@
  */
 
 return [
-    'title' => 'Page Builder',
+    'title' => 'صفحه طراحی سایت',
 ];

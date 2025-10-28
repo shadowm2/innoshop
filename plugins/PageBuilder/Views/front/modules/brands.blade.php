@@ -1,9 +1,14 @@
 <div class="brands-module">
   <div class="{{ pb_get_width_class($content['width'] ?? 'wide') }}">
-  @if(!empty($content['title']))
-    <div class="module-title-wrap text-center">
-      <div class="module-title">{{ $content['title'] }}</div>
-    </div>
+  @if(isset($content['title']))
+    @php
+      $titleValue = is_array($content['title']) ? ($content['title'][front_locale_code()] ?? array_first($content['title'])) : $content['title'];
+    @endphp
+    @if(!empty($titleValue))
+      <div class="module-title-wrap text-center">
+        <div class="module-title">{{ $titleValue }}</div>
+      </div>
+    @endif
   @endif
 
   <div class="brands-container">
@@ -41,8 +46,8 @@
             <i class="bi bi-award"></i>
           </div>
           <div class="empty-text">
-            <h4>品牌模块</h4>
-            <p>请选择要展示的品牌</p>
+            <h4>ماژول برند</h4>
+            <p>لطفاً برند مورد نظر را انتخاب کنید</p>
           </div>
         </div>
       </div>

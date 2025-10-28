@@ -144,18 +144,43 @@ body {
         background-color: #f5f5f5;
 
         .dropdown-menu {
-          display: block;
-          position: absolute;
-          inset: -2px 0px auto auto;
-          margin: 0px;
-          transform: translate3d(0px, 62px, 0px);
+          display: block !important;
+          position: absolute !important;
+          right: 0 !important;
+          left: auto !important;
+          top: 100% !important;
+          margin: 0px !important;
+          transform: translate3d(0px, 2px, 0px) !important;
+          min-width: 200px !important;
+          z-index: 1000 !important;
           @media (max-width: 992px) {
-            transform: translate3d(0px, 51px, 0px);
+            transform: translate3d(0px, 2px, 0px) !important;
+            right: 0 !important;
+            left: auto !important;
           }
         }
       }
     }
   }
+}
+
+// RTL dropdown fix
+[dir="rtl"] .header-box .right-tool .header-item .dropdown-menu {
+  right: 0 !important;
+  left: auto !important;
+  transform: translate3d(0px, 2px, 0px) !important;
+}
+
+.dropdown-menu.dropdown-menu-end {
+  right: 0 !important;
+  left: auto !important;
+}
+
+// Force dropdown positioning for all states
+.header-box .right-tool .header-item .dropdown-menu {
+  right: 0 !important;
+  left: auto !important;
+  position: absolute !important;
 }
 
 .el-drawer {

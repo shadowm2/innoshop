@@ -74,7 +74,7 @@
                                class="form-control">
                       </td>
                       <td class="text-end">
-                        <button type="button" class="btn btn-danger" onclick="this.closest('tr').remove()">删除</button>
+                        <button type="button" class="btn btn-danger" onclick="this.closest('tr').remove()">حذف</button>
                       </td>
                     </tr>
                   @endforeach
@@ -82,7 +82,7 @@
                   <tfoot>
                   <tr>
                     <td colspan="3" class="text-end">
-                      <button type="button" class="btn btn-primary" onclick="addSlide(this)">添加</button>
+                      <button type="button" class="btn btn-primary" onclick="addSlide(this)">افزودن</button>
                     </td>
                   </tr>
                 </table>
@@ -257,7 +257,7 @@
         var countries = res.data;
         var countrySelect = $('select[name="country_code"]');
         countrySelect.empty();
-        countrySelect.append('<option value="">请选择国家</option>');
+        countrySelect.append('<option value="">کشور را انتخاب کنید</option>');
         countries.forEach(function (country) {
           countrySelect.append('<option value="' + country.code + '"' + (country.code == countryCode ? ' selected' : '') + '>' + country.name + '</option>');
         });
@@ -270,7 +270,7 @@
         var zones = res.data;
         var zoneSelect = $('select[name="state_code"]');
         zoneSelect.prop('disabled', false).empty();
-        zoneSelect.append('<option value="">请选择省份</option>');
+        zoneSelect.append('<option value="">استان را انتخاب کنید</option>');
         zones.forEach(function (zone) {
           zoneSelect.append('<option value="' + zone.code + '"' + (zone.code == stateCode ? ' selected' : '') + '>' + zone.name + '</option>');
         });
@@ -313,7 +313,7 @@
           <input type="text" name="slideshow[${index}][link]" class="form-control">
         </td>
         <td class="text-end">
-          <button type="button" class="btn btn-danger" onclick="this.closest('tr').remove()">删除</button>
+          <button type="button" class="btn btn-danger" onclick="this.closest('tr').remove()">حذف</button>
         </td>
       </tr>
     `;

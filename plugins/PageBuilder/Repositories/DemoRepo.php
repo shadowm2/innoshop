@@ -83,7 +83,7 @@ class DemoRepo
                     'products' => [
                         [
                             'id'           => 1,
-                            'name'         => '都市精英风尚西装外套经典剪裁',
+                            'name'         => 'کت و شلوار شیک شهری با برش کلاسیک',
                             'image_big'    => asset('images/demo/product/1-600x600.png'),
                             'image_format' => '',
                             'price_format' => '$123.50',
@@ -91,7 +91,7 @@ class DemoRepo
                         ],
                         [
                             'id'           => 2,
-                            'name'         => '银河流光璀璨晚礼服闪耀全场',
+                            'name'         => 'لباس مجلسی درخشان کهکشانی',
                             'image_big'    => asset('images/demo/product/2-600x600.png'),
                             'image_format' => '',
                             'price_format' => '$123.50',
@@ -99,7 +99,7 @@ class DemoRepo
                         ],
                         [
                             'id'           => 3,
-                            'name'         => '晨曦漫步轻盈薄款风衣春意盎然',
+                            'name'         => 'بارانی سبک بهاری طلوع صبح',
                             'image_big'    => asset('images/demo/product/3-600x600.png'),
                             'image_format' => '',
                             'price_format' => '$123.50',
@@ -107,7 +107,7 @@ class DemoRepo
                         ],
                         [
                             'id'           => 4,
-                            'name'         => '极简风格主义经典衬衫简约不简单',
+                            'name'         => 'پیراهن کلاسیک مینیمال ساده اما شیک',
                             'image_big'    => asset('images/demo/product/4-600x600.png'),
                             'image_format' => '',
                             'price_format' => '$123.50',
@@ -115,7 +115,7 @@ class DemoRepo
                         ],
                     ],
                     'title' => [
-                        'zh-cn' => '推荐商品',
+                        'zh-cn' => 'محصولات پیشنهادی',
                         'en'    => 'Hot Items',
                     ],
                 ],
@@ -132,7 +132,7 @@ class DemoRepo
                     'limit'         => '4',
                     'order'         => 'asc',
                     'category_id'   => 1,
-                    'category_name' => '时尚潮流',
+                    'category_name' => 'مد و پوشاک',
                     'sort'          => 'sales',
                     'floor'         => [
                         'zh-cn' => '',
@@ -141,7 +141,7 @@ class DemoRepo
                     'products' => [
                         [
                             'id'           => 1,
-                            'name'         => '摩登复风高腰牛仔裤经典再现',
+                            'name'         => 'شلوار جین کمر بالا مدرن کلاسیک',
                             'image_big'    => asset('images/demo/product/5-600x600.png'),
                             'image_format' => '',
                             'price_format' => '$123.50',
@@ -149,7 +149,7 @@ class DemoRepo
                         ],
                         [
                             'id'           => 2,
-                            'name'         => '幻彩流苏时尚个性围巾绚丽多彩',
+                            'name'         => 'شال و روسری رنگارنگ با منگوله‌های فانتزی',
                             'image_big'    => asset('images/demo/product/6-600x600.png'),
                             'image_format' => '',
                             'price_format' => '$123.50',
@@ -157,7 +157,7 @@ class DemoRepo
                         ],
                         [
                             'id'           => 3,
-                            'name'         => '男士白色卫衣套装',
+                            'name'         => 'ست سویشرت سفید مردانه',
                             'image_big'    => asset('images/demo/product/7-600x600.png'),
                             'image_format' => '',
                             'price_format' => '$123.50',
@@ -165,7 +165,7 @@ class DemoRepo
                         ],
                         [
                             'id'           => 4,
-                            'name'         => '优雅蕾丝边透视性感上衣女性魅力',
+                            'name'         => 'بلوز توری زنانه شیک و جذاب',
                             'image_big'    => asset('images/demo/product/8-600x600.png'),
                             'image_format' => '',
                             'price_format' => '$123.50',
@@ -173,7 +173,7 @@ class DemoRepo
                         ],
                     ],
                     'title' => [
-                        'zh-cn' => '分类商品',
+                        'zh-cn' => 'محصولات دسته‌بندی',
                         'en'    => 'New Summer',
                     ],
                 ],
@@ -195,7 +195,7 @@ class DemoRepo
                     'products' => [
                         [
                             'id'           => 1,
-                            'name'         => '都市精英风尚西装外套经典剪裁',
+                            'name'         => 'کت و شلوار شیک شهری با برش کلاسیک',
                             'image_big'    => asset('images/demo/product/1-600x600.png'),
                             'image_format' => '',
                             'price_format' => '$123.50',
@@ -203,7 +203,7 @@ class DemoRepo
                         ],
                         [
                             'id'           => 2,
-                            'name'         => '银河流光璀璨晚礼服闪耀全场',
+                            'name'         => 'لباس مجلسی درخشان کهکشانی',
                             'image_big'    => asset('images/demo/product/2-600x600.png'),
                             'image_format' => '',
                             'price_format' => '$123.50',
@@ -211,7 +211,7 @@ class DemoRepo
                         ],
                         [
                             'id'           => 3,
-                            'name'         => '晨曦漫步轻盈薄款风衣春意盎然',
+                            'name'         => 'بارانی سبک بهاری طلوع صبح',
                             'image_big'    => asset('images/demo/product/3-600x600.png'),
                             'image_format' => '',
                             'price_format' => '$123.50',
@@ -219,7 +219,7 @@ class DemoRepo
                         ],
                         [
                             'id'           => 4,
-                            'name'         => '极简风格主义经典衬衫简约不简单',
+                            'name'         => 'پیراهن کلاسیک مینیمال ساده اما شیک',
                             'image_big'    => asset('images/demo/product/4-600x600.png'),
                             'image_format' => '',
                             'price_format' => '$123.50',
@@ -227,7 +227,7 @@ class DemoRepo
                         ],
                     ],
                     'title' => [
-                        'zh-cn' => '最新商品',
+                        'zh-cn' => 'جدیدترین محصولات',
                         'en'    => 'New Products',
                     ],
                 ],

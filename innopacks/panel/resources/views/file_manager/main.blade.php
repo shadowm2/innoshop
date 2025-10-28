@@ -1364,48 +1364,48 @@
           <el-col :span="12">
             <el-button-group>
               <el-button type="primary" size="small" @click="uploadFile">
-                <i class="el-icon-upload2"></i> Upload File
+                <i class="el-icon-upload2"></i> آپلود فایل
               </el-button>
               <el-button size="small" @click="createFolder">
-                <i class="el-icon-folder-add"></i> New Folder
+                <i class="el-icon-folder-add"></i> پوشه جدید
               </el-button>
               <el-button size="small" data-bs-toggle="modal" data-bs-target="#storageConfigModal">
                 <i class="el-icon-setting"></i> {{ __('panel/file_manager.storage_config') }}
               </el-button>
               <el-button size="small" :type="isMultiSelectMode ? 'primary' : 'default'" @click="toggleMultiSelectMode">
-                <i class="el-icon-check"></i> Multi-select Mode
+                <i class="el-icon-check"></i> حالت انتخاب چندگانه
               </el-button>
               <el-button v-if="isMultiSelectMode" size="small" @click="selectAll">
-                <i class="el-icon-finished"></i> Select All
+                <i class="el-icon-finished"></i> انتخاب همه
               </el-button>
 
-              <el-button type="primary" size="small"@click="handleConfirm">Confirm Selection</el-button>
+              <el-button type="primary" size="small"@click="handleConfirm">تأیید انتخاب</el-button>
 
             </el-button-group>
           </el-col>
           <el-col :span="12" style="text-align: right">
             <el-button-group>
               <el-button size="small" :disabled="selectedFiles.length !== 1" @click="renameSelectedFile">
-                <i class="el-icon-edit"></i> Rename
+                <i class="el-icon-edit"></i> تغییر نام
               </el-button>
               <el-button size="small" :disabled="!selectedFiles.length" @click="deleteFiles">
-                <i class="el-icon-delete"></i> Delete
+                <i class="el-icon-delete"></i> حذف
               </el-button>
               <el-button size="small" :disabled="!selectedFiles.length" @click="moveFiles">
-                <i class="el-icon-folder"></i> Move to
+                <i class="el-icon-folder"></i> انتقال به
               </el-button>
               <el-button size="small" :disabled="!selectedFiles.length" @click="copyFiles">
-                <i class="el-icon-document-copy"></i> Copy to
+                <i class="el-icon-document-copy"></i> کپی به
               </el-button>
             </el-button-group>
             <!-- 排序选择器 -->
             <el-select v-model="sortField" size="small" style="width:110px;margin-left:10px;" @change="onSortChange">
-              <el-option label="按时间" value="created"></el-option>
-              <el-option label="按名称" value="name"></el-option>
+              <el-option label="بر اساس زمان" value="created"></el-option>
+              <el-option label="بر اساس نام" value="name"></el-option>
             </el-select>
             <el-select v-model="sortOrder" size="small" style="width:90px;margin-left:5px;" @change="onSortChange">
-              <el-option label="降序" value="desc"></el-option>
-              <el-option label="升序" value="asc"></el-option>
+              <el-option label="نزولی" value="desc"></el-option>
+              <el-option label="صعودی" value="asc"></el-option>
             </el-select>
           </el-col>
         </el-row>
@@ -1442,7 +1442,7 @@
           :xl="21">
           <div class="file-list">
             <div class="file-list-content">
-              <div v-loading="loading" element-loading-text="加载中...">
+              <div v-loading="loading" element-loading-text="در حال بارگذاری...">
                 <el-row :gutter="20">
                   <el-col :xs="12" :sm="8" :md="6" :lg="4"
                     :xl="4" :xl="3" v-for="file in files" :key="file.id || file.path">
@@ -1467,7 +1467,7 @@
                           <div class="file-thumb">
                             <div v-if="file.mime && file.mime.startsWith('image/')" class="preview-button"
                               @click.stop="$refs['image-' + file.id][0].clickHandler()">
-                              预览
+                              پیش‌نمایش
                             </div>
                             <el-image :ref="'image-' + file.id" :src="file.url" :alt="file.name"
                               fit="contain" :preview-src-list="[file.origin_url || file.url]">
@@ -1477,7 +1477,7 @@
                       </div>
                       <div class="file-info">
                         <p class="file-name" :title="file.name">@{{ file.name }}</p>
-                        <p class="file-type">@{{ file.is_dir ? '文件夹' : file.mime }}</p>
+                        <p class="file-type">@{{ file.is_dir ? 'پوشه' : file.mime }}</p>
                       </div>
                     </div>
                   </el-col>
@@ -1490,7 +1490,7 @@
                   </el-pagination>
                 </div>
                 <!-- 添加空状态 -->
-                <el-empty v-else description="暂无文件" :image-size="120"></el-empty>
+                <el-empty v-else description="فایلی وجود ندارد" :image-size="120"></el-empty>
               </div>
             </div>
           </div>
@@ -1499,48 +1499,48 @@
     </div>
 
     <!-- 新建文件夹对话框 -->
-    <el-dialog title="新建文件夹" :visible.sync="folderDialog.visible" width="400px">
+    <el-dialog title="پوشه جدید" :visible.sync="folderDialog.visible" width="400px">
       <el-form :model="folderDialog.form" label-width="80px">
-        <el-form-item label="文件夹名">
-          <el-input v-model="folderDialog.form.name" placeholder="请输入文件夹名称"></el-input>
+        <el-form-item label="نام پوشه">
+          <el-input v-model="folderDialog.form.name" placeholder="نام پوشه را وارد کنید"></el-input>
         </el-form-item>
       </el-form>
       <span slot="footer">
-        <el-button @click="folderDialog.visible = false">取 消</el-button>
-        <el-button type="primary" @click="submitCreateFolder">确 定</el-button>
+        <el-button @click="folderDialog.visible = false">لغو</el-button>
+        <el-button type="primary" @click="submitCreateFolder">تأیید</el-button>
       </span>
     </el-dialog>
 
     <!-- 上传文件对话框 -->
-    <el-dialog title="上传文件" :visible.sync="uploadDialog.visible" width="500px" @open="onUploadDialogOpen">
+    <el-dialog title="آپلود فایل" :visible.sync="uploadDialog.visible" width="500px" @open="onUploadDialogOpen">
       <el-upload class="file-uploader" drag multiple :action="uploadUrl" :headers="uploadHeaders"
         :data="uploadData" :before-upload="beforeUpload" :on-success="handleUploadSuccess"
         :on-error="handleUploadError" :on-progress="handleUploadProgress">
         <i class="el-icon-upload"></i>
-        <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-        <div class="el-upload__tip" slot="tip">支持 jpg、jpeg、png、gif、webp、mp4 格式的文件</div>
-        <div class="el-upload__tip" slot="tip">服务器最大上传文件大小: {{ $uploadMaxFileSize ?? '未知' }}</div>
-        <div class="el-upload__tip" slot="tip">POST数据最大大小: {{ $postMaxSize ?? '未知' }}</div>
+        <div class="el-upload__text">فایل‌ها را به اینجا بکشید یا <em>کلیک کنید</em></div>
+        <div class="el-upload__tip" slot="tip">فرمت‌های پشتیبانی شده: jpg، jpeg، png، gif، webp، mp4</div>
+        <div class="el-upload__tip" slot="tip">حداکثر اندازه فایل سرور: {{ $uploadMaxFileSize ?? 'نامشخص' }}</div>
+        <div class="el-upload__tip" slot="tip">حداکثر اندازه داده POST: {{ $postMaxSize ?? 'نامشخص' }}</div>
       </el-upload>
     </el-dialog>
 
     <!-- 修改重命名对话框 -->
-    <el-dialog title="重命名" :visible.sync="renameDialog.visible" custom-class="rename-dialog" width="500px">
+    <el-dialog title="تغییر نام" :visible.sync="renameDialog.visible" custom-class="rename-dialog" width="500px">
       <el-form :model="renameDialog.form" label-width="100px">
-        <el-form-item label="文件名称">
-          <el-input v-model="renameDialog.form.newName" placeholder="请输入新名称">
+        <el-form-item label="نام فایل">
+          <el-input v-model="renameDialog.form.newName" placeholder="نام جدید را وارد کنید">
             <template slot="append">.@{{ renameDialog.form.extension }}</template>
           </el-input>
         </el-form-item>
       </el-form>
       <span slot="footer">
-        <el-button @click="renameDialog.visible = false">取 消</el-button>
-        <el-button type="primary" @click="submitRename">确 定</el-button>
+        <el-button @click="renameDialog.visible = false">لغو</el-button>
+        <el-button type="primary" @click="submitRename">تأیید</el-button>
       </span>
     </el-dialog>
 
     <!-- 移动文件对话框 -->
-    <el-dialog title="移动到" :visible.sync="moveDialog.visible" width="400px">
+    <el-dialog title="انتقال به" :visible.sync="moveDialog.visible" width="400px">
       <el-tree :data="folders" :props="defaultProps" @node-click="handleMoveTargetSelect"
         :highlight-current="true" node-key="id">
         <span class="custom-tree-node" slot-scope="{ node, data }">
@@ -1549,23 +1549,23 @@
         </span>
       </el-tree>
       <span slot="footer">
-        <el-button @click="moveDialog.visible = false">取 消</el-button>
-        <el-button type="primary" @click="submitMove">确 定</el-button>
+        <el-button @click="moveDialog.visible = false">لغو</el-button>
+        <el-button type="primary" @click="submitMove">تأیید</el-button>
       </span>
     </el-dialog>
 
     <!-- 在文件卡片上添加右键菜单 -->
     <div class="file-card-context-menu" v-show="contextMenu.visible" :style="contextMenu.style">
       <ul>
-        <li @click="renameFile"><i class="el-icon-edit"></i> 重命名</li>
-        <li @click="deleteFile"><i class="el-icon-delete"></i> 删除</li>
-        <li @click="moveFile"><i class="el-icon-folder"></i> 移动到</li>
-        <li @click="copyFile"><i class="el-icon-document-copy"></i> 复制到</li>
+        <li @click="renameFile"><i class="el-icon-edit"></i> تغییر نام</li>
+        <li @click="deleteFile"><i class="el-icon-delete"></i> حذف</li>
+        <li @click="moveFile"><i class="el-icon-folder"></i> انتقال به</li>
+        <li @click="copyFile"><i class="el-icon-document-copy"></i> کپی به</li>
       </ul>
     </div>
 
     <!-- 复制文件对话框 -->
-    <el-dialog title="复制到" :visible.sync="copyDialog.visible" width="400px">
+    <el-dialog title="کپی به" :visible.sync="copyDialog.visible" width="400px">
       <el-tree :data="folders" :props="defaultProps" @node-click="handleCopyTargetSelect"
         :highlight-current="true" node-key="id">
         <span class="custom-tree-node" slot-scope="{ node, data }">
@@ -1574,8 +1574,8 @@
         </span>
       </el-tree>
       <span slot="footer">
-        <el-button @click="copyDialog.visible = false">取 消</el-button>
-        <el-button type="primary" @click="submitCopy">确 定</el-button>
+        <el-button @click="copyDialog.visible = false">لغو</el-button>
+        <el-button type="primary" @click="submitCopy">تأیید</el-button>
       </span>
     </el-dialog>
 
@@ -1587,32 +1587,32 @@
       }">
       <ul>
         <li @click="renameFolder">
-          <i class="el-icon-edit"></i> 重命名
+          <i class="el-icon-edit"></i> تغییر نام
         </li>
         <li @click="moveFolder">
-          <i class="el-icon-position"></i> 移动到
+          <i class="el-icon-position"></i> انتقال به
         </li>
         <li @click="deleteFolder">
-          <i class="el-icon-delete"></i> 删除
+          <i class="el-icon-delete"></i> حذف
         </li>
       </ul>
     </div>
 
     <!-- 文件夹重命名对话框 -->
-    <el-dialog title="重命名文件夹" :visible.sync="folderRenameDialog.visible" width="400px">
+    <el-dialog title="تغییر نام پوشه" :visible.sync="folderRenameDialog.visible" width="400px">
       <el-form :model="folderRenameDialog.form" label-width="80px">
-        <el-form-item label="文件夹名">
-          <el-input v-model="folderRenameDialog.form.newName" placeholder="请输入新名称"></el-input>
+        <el-form-item label="نام پوشه">
+          <el-input v-model="folderRenameDialog.form.newName" placeholder="نام جدید را وارد کنید"></el-input>
         </el-form-item>
       </el-form>
       <span slot="footer">
-        <el-button @click="folderRenameDialog.visible = false">取 消</el-button>
-        <el-button type="primary" @click="submitFolderRename">确 定</el-button>
+        <el-button @click="folderRenameDialog.visible = false">لغو</el-button>
+        <el-button type="primary" @click="submitFolderRename">تأیید</el-button>
       </span>
     </el-dialog>
 
     <!-- 文件夹移动对话框 -->
-    <el-dialog title="移动文件夹" :visible.sync="folderMoveDialog.visible" width="400px">
+    <el-dialog title="انتقال پوشه" :visible.sync="folderMoveDialog.visible" width="400px">
       <el-tree :data="folders" :props="defaultProps" @node-click="handleFolderMoveTargetSelect"
         :highlight-current="true" node-key="id">
         <span class="custom-tree-node" slot-scope="{ node, data }">
@@ -1621,8 +1621,8 @@
         </span>
       </el-tree>
       <span slot="footer">
-        <el-button @click="folderMoveDialog.visible = false">取 消</el-button>
-        <el-button type="primary" @click="submitFolderMove">确 定</el-button>
+        <el-button @click="folderMoveDialog.visible = false">لغو</el-button>
+        <el-button type="primary" @click="submitFolderMove">تأیید</el-button>
       </span>
     </el-dialog>
 
@@ -1669,7 +1669,7 @@
                 <div class="mb-3">
                   <label for="ossEndpoint" class="form-label">{{ __('panel/file_manager.endpoint') }}</label>
                   <input type="text" class="form-control" id="ossEndpoint" v-model="storageConfig.endpoint"
-                    placeholder="例如: https://innoshop.oss-cn-hangzhou.aliyuncs.com">
+                    placeholder="مثال: https://innoshop.oss-cn-hangzhou.aliyuncs.com">
                 </div>
 
                 <div class="mb-3">
@@ -1680,14 +1680,14 @@
                 <div class="mb-3">
                   <label for="ossRegion" class="form-label">{{ __('panel/file_manager.region') }}</label>
                   <input type="text" class="form-control" id="ossRegion" v-model="storageConfig.region"
-                    placeholder="例如: cn-hangzhou">
+                    placeholder="مثال: cn-hangzhou">
                 </div>
 
                 <div class="mb-3">
                   <label for="ossCdnDomain" class="form-label">{{ __('panel/file_manager.cdn_domain') }} <small
                       class="text-muted">({{ __('panel/file_manager.optional') }})</small></label>
                   <input type="text" class="form-control" id="ossCdnDomain" v-model="storageConfig.cdn_domain"
-                    placeholder="例如: https://cdn.example.com">
+                    placeholder="مثال: https://cdn.example.com">
                 </div>
               </div>
             </form>
@@ -1848,7 +1848,7 @@
         },
         submitCreateFolder() {
           if (!this.folderDialog.form.name) {
-            this.$message.warning('请输入文件夹名称');
+            this.$message.warning('لطفاً نام پوشه را وارد کنید');
             return;
           }
 
@@ -1857,24 +1857,24 @@
             parent_id: this.currentFolder ? this.currentFolder.path : '/'
           }).then(res => {
             if (res.success) {
-              this.$message.success('创建成功');
+              this.$message.success('ایجاد شد');
               this.folderDialog.visible = false;
               this.folderDialog.form.name = '';
               // 重新加载文件夹树
               this.loadFolders();
             } else {
-              this.$message.error(res.message || '创建失败');
+              this.$message.error(res.message || 'ایجاد نشد');
             }
           }).catch(err => {
-            this.$message.error('创建失败：' + err.message);
+            this.$message.error('ایجاد نشد: ' + err.message);
           });
         },
         deleteFiles() {
           if (!this.selectedFiles.length) return;
 
-          this.$confirm('确认删除选中的文件?', '提示', {
-            confirmButtonText: '确定',
-            cancelButtonText: '取消',
+          this.$confirm('آیا از حذف فایل‌های انتخاب شده اطمینان دارید؟', 'هشدار', {
+            confirmButtonText: 'تأیید',
+            cancelButtonText: 'لغو',
             type: 'warning'
           }).then(() => {
             const currentPath = this.currentFolder ? this.currentFolder.path : '/';
@@ -1891,7 +1891,7 @@
               }
             }).then(res => {
               if (res.success) {
-                this.$message.success('删除成功');
+                this.$message.success('حذف شد');
                 this.selectedFiles = [];
                 this.loadFiles(currentPath);
               }
@@ -1975,7 +1975,7 @@
               this.pagination.page = res.image_page;
             })
             .catch(err => {
-              this.$message.error('获取文件列表失败：' + err.message);
+              this.$message.error('دریافت لیست فایل‌ها ناموفق بود: ' + err.message);
             })
             .finally(() => {
               this.loading = false;
@@ -1997,8 +1997,8 @@
         uploadFileToServer(file, path, type) {
           // 验证路径参数
           if (!path) {
-            this.$message.error('上传路径未定义');
-            return Promise.reject(new Error('上传路径未定义'));
+            this.$message.error('مسیر آپلود تعریف نشده است');
+            return Promise.reject(new Error('مسیر آپلود تعریف نشده است'));
           }
 
           const formData = new FormData();
@@ -2009,24 +2009,24 @@
           return http.post('file_manager/upload', formData)
             .then(res => {
               if (res.success) {
-                this.$message.success('上传成功');
+                this.$message.success('آپلود موفق بود');
                 this.uploadDialog.visible = false;
                 // 上传成功后，重置到第一页并重新加载文件列表，确保新上传的文件显示在最前面
                 this.pagination.page = 1;
                 this.loadFiles();
               } else {
-                this.$message.error(res.message || '上传失败');
+                this.$message.error(res.message || 'آپلود ناموفق بود');
               }
             })
             .catch(err => {
-              this.$message.error('上传失败：' + err.message);
+              this.$message.error('آپلود ناموفق بود: ' + err.message);
             });
         },
 
         beforeUpload(file) {
           // 验证路径参数
           if (!this.uploadData.path) {
-            this.$message.error('上传路径未定义，请重新选择文件夹');
+            this.$message.error('مسیر آپلود تعریف نشده است، لطفاً دوباره پوشه را انتخاب کنید');
             return false;
           }
 
@@ -2038,7 +2038,7 @@
             'application/vnd.openxmlformats-officedocument.presentationml.presentation'
           ].includes(file.type)
           if (!isImage && !isVideo && !isDoc) {
-            this.$message.error('只能上传图片或视频文件！');
+            this.$message.error('فقط می‌توانید فایل‌های تصویری یا ویدیویی آپلود کنید!');
             return false;
           }
 
@@ -2071,7 +2071,7 @@
           // 检查文件大小
           if (serverMaxSizeBytes > 0 && file.size > serverMaxSizeBytes) {
             const maxSizeMB = (serverMaxSizeBytes / 1024 / 1024).toFixed(2);
-            this.$message.error(`文件大小不能超过 ${maxSizeMB}MB！`);
+            this.$message.error(`اندازه فایل نمی‌تواند بیش از ${maxSizeMB}MB باشد!`);
             return false;
           }
           if (isVideo || isDoc) {
@@ -2105,8 +2105,8 @@
             <img src="${e.target.result}">
           </div>
           <div class="cropper-controls">
-            <button class="el-button el-button--default el-button--small cancel-btn">取消</button>
-            <button class="el-button el-button--primary el-button--small confirm-btn">确认</button>
+            <button class="el-button el-button--default el-button--small cancel-btn">لغو</button>
+            <button class="el-button el-button--primary el-button--small confirm-btn">تأیید</button>
           </div>
         `;
 
@@ -2148,12 +2148,12 @@
         // 上传成功回调
         handleUploadSuccess(response, file, fileList) {
           if (response.success) {
-            this.$message.success('上传成功');
+            this.$message.success('آپلود موفق بود');
             // 上传成功后，重置到第一页并重新加载文件列表，确保新上传的文件显示在最前面
             this.pagination.page = 1;
             this.loadFiles();
           } else {
-            this.$message.error(response.message || '上传失败');
+            this.$message.error(response.message || 'آپلود ناموفق بود');
           }
 
           // 如果所有文件都上传完成，关闭对话框
@@ -2164,7 +2164,7 @@
 
         // 上传失败回调
         handleUploadError(err, file) {
-          this.$message.error('上传失败：' + (err.message || '未知错误'));
+          this.$message.error('آپلود ناموفق بود: ' + (err.message || 'خطای نامشخص'));
         },
 
         // 上传进度回调
@@ -2190,7 +2190,7 @@
 
             this.folders = [{
               id: '/',
-              name: '图片空间',
+              name: 'فضای تصاویر',
               path: '/',
               isRoot: true,
               children: folders.map(folder => ({
@@ -2209,7 +2209,7 @@
             // 默认选中根目录
             this.currentFolder = {
               id: '/',
-              name: '图片空间',
+              name: 'فضای تصاویر',
               path: '/'
             };
 
@@ -2219,7 +2219,7 @@
             // 加载根目录的文件
             this.loadFiles('/');
           }).catch(err => {
-            this.$message.error('获取文件夹失败：' + err.message);
+            this.$message.error('دریافت پوشه‌ها ناموفق بود: ' + err.message);
           });
         },
 
@@ -2255,7 +2255,7 @@
         // 提交重命名
         submitRename() {
           if (!this.renameDialog.form.newName) {
-            this.$message.warning('请输入新名称');
+            this.$message.warning('لطفاً نام جدید را وارد کنید');
             return;
           }
 
@@ -2269,7 +2269,7 @@
             new_name: newFullName
           }).then(res => {
             if (res.success) {
-              this.$message.success('重命名成功');
+              this.$message.success('تغییر نام موفق بود');
               this.renameDialog.visible = false;
               this.loadFiles(currentPath);
             }
@@ -2279,9 +2279,9 @@
         // 删除单个文件
         deleteFile() {
           const file = this.contextMenu.file;
-          this.$confirm('确认删除该文件?', '提示', {
-            confirmButtonText: '确定',
-            cancelButtonText: '取消',
+          this.$confirm('آیا از حذف این فایل اطمینان دارید؟', 'هشدار', {
+            confirmButtonText: 'تأیید',
+            cancelButtonText: 'لغو',
             type: 'warning'
           }).then(() => {
             const currentPath = this.currentFolder ? this.currentFolder.path : '/';
@@ -2292,7 +2292,7 @@
               }
             }).then(res => {
               if (res.success) {
-                this.$message.success('删除成功');
+                this.$message.success('حذف شد');
                 this.selectedFiles = [];
                 this.loadFiles(currentPath);
               }
@@ -2318,7 +2318,7 @@
         // 提交移动
         submitMove() {
           if (!this.moveDialog.targetPath) {
-            this.$message.warning('请选择目标文件夹');
+            this.$message.warning('لطفاً پوشه مقصد را انتخاب کنید');
             return;
           }
 
@@ -2334,7 +2334,7 @@
             dest_path: this.moveDialog.targetPath
           }).then(res => {
             if (res.success) {
-              this.$message.success('移动成功');
+              this.$message.success('انتقال موفق بود');
               this.moveDialog.visible = false;
               this.selectedFiles = [];
               this.loadFiles(currentPath);
@@ -2381,7 +2381,7 @@
         // 提交复制
         submitCopy() {
           if (!this.copyDialog.targetPath) {
-            this.$message.warning('请选择目标文件夹');
+            this.$message.warning('لطفاً پوشه مقصد را انتخاب کنید');
             return;
           }
 
@@ -2397,7 +2397,7 @@
             dest_path: this.copyDialog.targetPath
           }).then(res => {
             if (res.success) {
-              this.$message.success('复制成功');
+              this.$message.success('کپی موفق بود');
               this.copyDialog.visible = false;
               this.selectedFiles = [];
               this.loadFiles(currentPath);
@@ -2473,7 +2473,7 @@
         // 提交文件夹重命名
         submitFolderRename() {
           if (!this.folderRenameDialog.form.newName) {
-            this.$message.warning('请输入新名称');
+            this.$message.warning('لطفاً نام جدید را وارد کنید');
             return;
           }
 
@@ -2483,7 +2483,7 @@
             new_name: this.folderRenameDialog.form.newName
           }).then(res => {
             if (res.success) {
-              this.$message.success('重命名成功');
+              this.$message.success('تغییر نام موفق بود');
               this.folderRenameDialog.visible = false;
               // 重新加载文件夹树
               this.loadFolders();
@@ -2494,9 +2494,9 @@
         // 删除文件夹
         deleteFolder() {
           const folder = this.folderContextMenu.folder;
-          this.$confirm('确认删除该文件夹?', '提示', {
-            confirmButtonText: '确定',
-            cancelButtonText: '取消',
+          this.$confirm('آیا از حذف این پوشه اطمینان دارید؟', 'هشدار', {
+            confirmButtonText: 'تأیید',
+            cancelButtonText: 'لغو',
             type: 'warning'
           }).then(() => {
             http.delete('file_manager/directories', {
@@ -2505,7 +2505,7 @@
               }
             }).then(res => {
               if (res.success) {
-                this.$message.success('删除成功');
+                this.$message.success('حذف شد');
                 this.loadFolders();
               }
             });
@@ -2526,7 +2526,7 @@
           // 不能移动到自己或自己的子文件夹下
           if (data.path === this.folderMoveDialog.folder.path ||
             data.path.startsWith(this.folderMoveDialog.folder.path + '/')) {
-            this.$message.warning('不能移动到自己或自己的子文件夹下');
+            this.$message.warning('نمی‌توان به خود یا زیرپوشه‌های خود منتقل کرد');
             return;
           }
           this.folderMoveDialog.targetPath = data.path;
@@ -2535,7 +2535,7 @@
         // 提交文件夹移动
         submitFolderMove() {
           if (!this.folderMoveDialog.targetPath) {
-            this.$message.warning('请选择目标文件夹');
+            this.$message.warning('لطفاً پوشه مقصد را انتخاب کنید');
             return;
           }
 
@@ -2545,7 +2545,7 @@
             dest_path: this.folderMoveDialog.targetPath
           }).then(res => {
             if (res.success) {
-              this.$message.success('移动成功');
+              this.$message.success('انتقال موفق بود');
               this.folderMoveDialog.visible = false;
               // 重新加载文件夹树
               this.loadFolders();
@@ -2614,7 +2614,7 @@
             dest_path: targetPath
           }).then(res => {
             if (res.success) {
-              this.$message.success('移动成功');
+              this.$message.success('انتقال موفق بود');
               this.loadFiles(currentPath);
             }
           });
@@ -2639,7 +2639,7 @@
             dest_path: targetPath
           }).then(res => {
             if (res.success) {
-              this.$message.success('移动成功');
+              this.$message.success('انتقال موفق بود');
               this.loadFolders();
               if (this.currentFolder && this.currentFolder.path === sourcePath) {
                 this.loadFiles(targetPath);
@@ -2647,7 +2647,7 @@
             }
           }).catch(err => {
             this.loadFolders();
-            this.$message.error(err.message || '移动失败');
+            this.$message.error(err.message || 'انتقال ناموفق بود');
           });
         },
 
@@ -2845,11 +2845,11 @@
               dest_path: targetPath
             }).then(res => {
               if (res.success) {
-                this.$message.success('移动成功');
+                this.$message.success('انتقال موفق بود');
                 this.loadFiles(currentPath);
               }
             }).catch(err => {
-              this.$message.error(err.message || '移动失败');
+              this.$message.error(err.message || 'انتقال ناموفق بود');
             }).finally(() => {
               this.isDragging = false;
               this.draggedFile = null;
@@ -2873,7 +2873,7 @@
               dest_path: targetPath
             }).then(res => {
               if (res.success) {
-                this.$message.success('移动成功');
+                this.$message.success('انتقال موفق بود');
                 this.loadFolders();
                 if (this.currentFolder && this.currentFolder.path === sourcePath) {
                   this.loadFiles(targetPath);
@@ -2881,7 +2881,7 @@
               }
             }).catch(err => {
               this.loadFolders();
-              this.$message.error(err.message || '移动失败');
+              this.$message.error(err.message || 'انتقال ناموفق بود');
             });
           }
         },
@@ -2956,11 +2956,11 @@
             dest_path: targetPath
           }).then(res => {
             if (res.success) {
-              this.$message.success('移动成功');
+              this.$message.success('انتقال موفق بود');
               this.loadFiles(currentPath);
             }
           }).catch(err => {
-            this.$message.error(err.message || '移动失败');
+            this.$message.error(err.message || 'انتقال ناموفق بود');
           }).finally(() => {
             this.isDragging = false;
             this.draggedFile = null;
@@ -2991,7 +2991,7 @@
         confirmSelection() {
           if (this.isIframeMode && window.parent.fileManagerCallback) {
             if (this.selectedFiles.length === 0) {
-              this.$message.warning('请至少选择一个文件');
+              this.$message.warning('لطفاً حداقل یک فایل انتخاب کنید');
               return;
             }
             const selectedFiles = this.files.filter(file =>
@@ -3024,14 +3024,14 @@
                   window.location.reload();
                 }, 1500);
               } else {
-                layer.msg(response.data ? response.message : '保存失败', {
+                layer.msg(response.data ? response.message : 'ذخیره نشد', {
                   icon: 2
                 });
               }
             })
             .catch(error => {
-              console.error('保存存储配置失败:', error);
-              layer.msg(error.response?.message || '保存失败', {
+              console.error('ذخیره تنظیمات ذخیره‌سازی ناموفق بود:', error);
+              layer.msg(error.response?.message || 'ذخیره نشد', {
                 icon: 2
               });
             });
@@ -3057,7 +3057,7 @@
               }
             })
             .catch(error => {
-              console.error('获取存储配置请求失败:', error);
+              console.error('درخواست دریافت تنظیمات ذخیره‌سازی ناموفق بود:', error);
               // 设置默认值
               this.storageConfig = {
                 driver: 'local',

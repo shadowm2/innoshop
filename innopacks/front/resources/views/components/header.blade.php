@@ -1,54 +1,8 @@
 @hookinsert('layout.header.top')
 
 <header id="appHeader">
-  <div class="header-top">
-    <div class="container d-flex justify-content-between align-items-center">
-      <div class="language-switch d-flex align-items-center">
-        <div class="dropdown">
-          <a class="btn dropdown-toggle" href="javascript:void(0)">
-            <img src="{{ asset($currentLocale->image) }}" class="img-fluid"> {{ $currentLocale->name }}
-          </a>
-          <div class="dropdown-menu">
-            @foreach (locales() as $locale)
-              <a class="dropdown-item d-flex" href="{{ front_route('locales.switch', ['code' => $locale->code]) }}">
-                <div class="wh-20 me-2"><img src="{{ image_origin($locale['image']) }}" class="img-fluid border">
-                </div>
-                {{ $locale->name }}
-              </a>
-            @endforeach
-          </div>
-        </div>
-        <div class="dropdown ms-4">
-          <a class="btn dropdown-toggle" href="javascript:void(0)">
-            {{ current_currency()->name }}
-          </a>
-          <div class="dropdown-menu">
-            @foreach (currencies() as $currency)
-              <a class="dropdown-item" href="{{ front_route('currencies.switch', ['code' => $currency->code]) }}">
-                {{ $currency->name }} ({{ $currency->symbol_left }})
-              </a>
-            @endforeach
-          </div>
-        </div>
-        @hookinsert('layouts.header.currency.after')
-      </div>
-
-      <div class="top-info">
-        @hookinsert('layouts.header.news.before')
-        <a href="{{ front_route('articles.index') }}">اخبار</a>
-
-        @hookupdate('layouts.header.telephone')
-        @if (system_setting('telephone'))
-          <a href="tel:{{ system_setting('telephone') }}">
-            <span><i class="bi bi-telephone-outbound"></i> {{ system_setting('telephone') }}</span>
-          </a>
-        @endif
-        @endhookupdate
-      </div>
-    </div>
-  </div>
   <div class="header-desktop">
-    <div class="container d-flex justify-content-between align-items-center">
+  <div class="container-fluid d-flex justify-content-between align-items-center" style="flex-wrap:nowrap;">
       <div class="left">
         <h1 class="logo">
           <a href="{{ front_route('home.index') }}">
@@ -57,7 +11,7 @@
         </h1>
         <div class="menu">
           <nav class="navbar navbar-expand-md navbar-light">
-            <ul class="navbar-nav">
+              <ul class="navbar-nav" style="display:flex;flex-wrap:nowrap;align-items:center;">
               <li class="nav-item">
                 <a class="nav-link" aria-current="page"
                    href="{{ front_route('home.index') }}">{{ __('front/common.home') }}</a>

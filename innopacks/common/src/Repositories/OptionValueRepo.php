@@ -16,12 +16,12 @@ use Illuminate\Support\Collection;
 use InnoShop\Common\Models\OptionValue;
 
 /**
- * 选项值仓库类
+ * کلاس مخزن مقادیر گزینه
  */
 class OptionValueRepo extends BaseRepo
 {
     /**
-     * 构建查询构造器（重写BaseRepo的builder方法）
+     * ساخت سازنده پرس و جو (بازنویسی متد builder از BaseRepo)
      *
      * @param  array  $filters
      * @return Builder
@@ -34,7 +34,7 @@ class OptionValueRepo extends BaseRepo
     }
 
     /**
-     * 获取选项值列表
+     * دریافت لیست مقادیر گزینه
      *
      * @param  array  $filters
      * @return LengthAwarePaginator
@@ -51,7 +51,7 @@ class OptionValueRepo extends BaseRepo
     }
 
     /**
-     * 构建选项值查询过滤器
+     * ساخت فیلترهای پرس و جو مقادیر گزینه
      *
      * @param  Builder  $query
      * @param  array  $filters
@@ -79,7 +79,7 @@ class OptionValueRepo extends BaseRepo
     }
 
     /**
-     * 创建选项值
+     * ایجاد مقدار گزینه
      *
      * @param  array  $data
      * @return OptionValue
@@ -94,12 +94,12 @@ class OptionValueRepo extends BaseRepo
 
             return $optionValue;
         } catch (Exception $e) {
-            throw new Exception('创建选项值失败: '.$e->getMessage());
+            throw new Exception('ایجاد مقدار گزینه ناموفق بود: '.$e->getMessage());
         }
     }
 
     /**
-     * 更新选项值
+     * به‌روزرسانی مقدار گزینه
      *
      * @param  OptionValue  $optionValue
      * @param  array  $data
@@ -114,12 +114,12 @@ class OptionValueRepo extends BaseRepo
 
             return $optionValue;
         } catch (Exception $e) {
-            throw new Exception('更新选项值失败: '.$e->getMessage());
+            throw new Exception('به‌روزرسانی مقدار گزینه ناموفق بود: '.$e->getMessage());
         }
     }
 
     /**
-     * 删除选项值
+     * حذف مقدار گزینه
      *
      * @param  OptionValue  $optionValue
      * @return bool
@@ -130,12 +130,12 @@ class OptionValueRepo extends BaseRepo
         try {
             return $optionValue->delete();
         } catch (Exception $e) {
-            throw new Exception('删除选项值失败: '.$e->getMessage());
+            throw new Exception('حذف مقدار گزینه ناموفق بود: '.$e->getMessage());
         }
     }
 
     /**
-     * 根据选项ID获取选项值
+     * دریافت مقادیر گزینه بر اساس شناسه گزینه
      *
      * @param  int  $optionId
      * @param  bool  $activeOnly
@@ -153,9 +153,9 @@ class OptionValueRepo extends BaseRepo
     }
 
     /**
-     * 批量更新选项值排序
+     * به‌روزرسانی دسته‌ای ترتیب مقادیر گزینه
      *
-     * @param  array  $sortData  格式: [['id' => 1, 'position' => 10], ...]
+     * @param  array  $sortData  فرمت: [['id' => 1, 'position' => 10], ...]
      * @return bool
      */
     public function updateOptionValuesSort(array $sortData): bool
@@ -173,7 +173,7 @@ class OptionValueRepo extends BaseRepo
     }
 
     /**
-     * 复制选项的选项值到另一个选项
+     * کپی کردن مقادیر گزینه از یک گزینه به گزینه دیگر
      *
      * @param  int  $fromOptionId
      * @param  int  $toOptionId
@@ -197,7 +197,7 @@ class OptionValueRepo extends BaseRepo
     }
 
     /**
-     * 获取选项值统计信息
+     * دریافت اطلاعات آماری مقادیر گزینه
      *
      * @param  int  $optionId
      * @return array

@@ -17,4 +17,5 @@ return [
     'no_order'                    => 'Order information not found',
     'success_title'               => 'Payment successful',
     'view_order'                  => 'View Order',
+    'pay_now'                     => 'Pay now',
 ];

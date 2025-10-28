@@ -89,24 +89,32 @@ header {
   }
 
   .header-desktop {
-    padding: 30px 0;
+  padding: 30px 10px; /* reduced side padding so content goes closer to edges */
 
-    @media (max-width: 992px) {
-      display: none;
+    /* Desktop header: keep everything in a single non-wrapping row */
+    .container-fluid, .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: nowrap; /* prevent wrapping */
+      gap: 12px;
+      min-width: 0; /* allow children to shrink properly */
+      padding-left: 16px;
+      padding-right: 16px;
     }
 
+    /* Left (logo + menu) should be a flex row; menu can grow */
     .left {
       display: flex;
       align-items: center;
-
-      .logo {
-        max-width: 180px;
-        max-height: 60px;
-        margin-bottom: 0;
-      }
+      gap: 16px;
+      min-width: 0;
 
       .menu {
-        margin-left: 40px;
+  margin-left: 16px;
+        flex: 1 1 auto; /* allow menu to take remaining space */
+        min-width: 0;
+
         .navbar {
           padding: 0;
         }
@@ -114,45 +122,50 @@ header {
         .navbar {
           .nav-item {
             > .dropdown > .nav-link, > .nav-link {
-              font-weight: bold;
-              color: #222;
-              font-size: 16px;
-              padding-left: 6px;
-              padding-right: 6px;
-              margin: 0 14px;
-              position: relative;
-
-              &::after {
-                content: "";
-                position: absolute;
-                right: 0;
-                bottom: 0;
-                width: 0;
-                border-bottom: 1px solid;
-                border-bottom-width: 2px;
-                transition: width .3s;
-              }
+              /* allow text to use available space but not wrap */
+              white-space: nowrap;
+              display: inline-block;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              max-width: none; /* no arbitrary truncation here */
             }
-
-            &:hover {
-              > .dropdown > .nav-link, > .nav-link {
-                &::after {
-                  width: 100%;
-                  left: 0;
-                }
+            .navbar-nav {
+              display: flex;
+              flex-direction: row;
+              flex-wrap: nowrap;
+              align-items: center;
+              gap: 8px;
+                /* Keep items on one line but allow shrinking when needed */
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: inline-block;
+                max-width: none;
+                min-width: 0; /* allow shrinking */
               }
-
-              .dropdown-menu {
-                border-radius: 2px;
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-                border: none;
-                display: block;
+              .nav-item {
+                flex: 0 1 auto; /* allow items to shrink */
+                min-width: 0;
               }
-            }
           }
         }
       }
     }
+
+    /* Right side (search / icons) stays compact and non-wrapping */
+    .right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 0 0 auto;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 992px) {
+      display: none;
+    }
+
+    
 
     .right {
       display: flex;

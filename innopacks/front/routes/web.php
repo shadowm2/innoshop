@@ -91,6 +91,8 @@ if (installed()) {
 
 Route::get('/login', [Account\LoginController::class, 'index'])->name('login.index');
 Route::post('/login', [Account\LoginController::class, 'store'])->name('login.store');
+Route::post('/login/otp/request', [Account\OtpController::class, 'request'])->name('login.otp.request');
+Route::post('/login/otp/verify', [Account\OtpController::class, 'verify'])->name('login.otp.verify');
 Route::get('/register', [Account\RegisterController::class, 'index'])->name('register.index');
 Route::post('/register', [Account\RegisterController::class, 'store'])->name('register.store');
 

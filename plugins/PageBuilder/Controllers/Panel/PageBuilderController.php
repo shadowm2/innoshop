@@ -26,9 +26,9 @@ class PageBuilderController extends BaseController
     }
 
     /**
-     * 页面编辑主页面 - 统一处理首页和单页
+     * صفحه اصلی ویرایش صفحه - پردازش یکپارچه صفحه اصلی و صفحات تکی
      *
-     * @param  string|null  $page  页面标识，'home' 表示首页，其他为页面ID或slug，null表示首页
+     * @param  string|null  $page  شناسه صفحه، 'home' نشان‌دهنده صفحه اصلی، سایر موارد ID یا slug صفحه، null به معنای صفحه اصلی
      * @return mixed
      * @throws Exception
      */
@@ -41,10 +41,10 @@ class PageBuilderController extends BaseController
     }
 
     /**
-     * 预览模块HTML
+     * پیش‌نمایش HTML ماژول
      *
      * @param  Request  $request
-     * @param  string|null  $page  页面标识，null表示首页
+     * @param  string|null  $page  شناسه صفحه، null به معنای صفحه اصلی
      * @return string
      * @throws Exception
      */
@@ -62,7 +62,7 @@ class PageBuilderController extends BaseController
             $viewPath = "PageBuilder::front.modules.{$moduleCode}";
         }
 
-        // 使用 DesignService 统一处理模块数据，确保与前台页面一致
+        // استفاده از DesignService برای پردازش یکپارچه داده‌های ماژول، اطمینان از سازگاری با صفحات جلویی
         $processedContent = DesignService::getInstance()->handleModuleContent($moduleCode, $content);
 
         $viewData = [
@@ -73,7 +73,7 @@ class PageBuilderController extends BaseController
             'design'    => $design,
         ];
 
-        // 返回完整的section HTML，包括编辑按钮
+        // بازگرداندن HTML کامل بخش، شامل دکمه ویرایش
         return view('PageBuilder::front.partials.module-section', [
             'module'    => $module,
             'content'   => $viewData['content'],
@@ -83,10 +83,10 @@ class PageBuilderController extends BaseController
     }
 
     /**
-     * 保存页面模块数据
+     * ذخیره داده‌های ماژول صفحه
      *
      * @param  Request  $request
-     * @param  string|null  $page  页面标识，null表示首页
+     * @param  string|null  $page  شناسه صفحه، null به معنای صفحه اصلی
      * @return JsonResponse
      */
     public function update(Request $request, ?string $page = null): JsonResponse
@@ -95,16 +95,16 @@ class PageBuilderController extends BaseController
             $modules = $request->input('modules', []);
             $this->pageBuilderService->savePageModules($modules, $page);
 
-            return json_success('保存成功');
+            return json_success('ذخیره با موفقیت انجام شد');
         } catch (Exception $e) {
             return json_fail($e->getMessage());
         }
     }
 
     /**
-     * 导入演示数据
+     * وارد کردن داده‌های نمونه
      *
-     * @param  string|null  $page  页面标识，null表示首页
+     * @param  string|null  $page  شناسه صفحه، null به معنای صفحه اصلی
      * @return JsonResponse
      */
     public function importDemo(?string $page = null): JsonResponse
@@ -112,7 +112,7 @@ class PageBuilderController extends BaseController
         try {
             $moduleData = $this->pageBuilderService->importDemoData($page);
 
-            return json_success('演示数据导入成功', $moduleData);
+            return json_success('داده‌های نمونه با موفقیت وارد شد', $moduleData);
         } catch (Exception $e) {
             return json_fail($e->getMessage());
         }

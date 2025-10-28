@@ -1,5 +1,5 @@
 <script>
-  // 创建 Vue 实例
+  // ایجاد نمونه Vue
   const app = new Vue({
     el: '#app',
     data: {
@@ -10,7 +10,7 @@
         locale: $locale || 'zh_cn',
         modules: []
       },
-      lang: lang, // 挂载全局 lang 对象
+      lang: lang, // نصب شی lang سراسری
       design: {
         type: 'pc',
         editType: 'add',
@@ -18,11 +18,11 @@
         editingModuleIndex: 0,
         ready: false,
         moduleLoadCount: 0,
-        editorInitialized: false, // 新增：跟踪编辑器是否已真正初始化
+        editorInitialized: false, // جدید: ردیابی اینکه آیا ویرایشگر واقعاً مقداردهی اولیه شده است
       },
       showPropertyPanel: false,
       saveStatus: 'saved', // saved, unsaved, saving
-      saveStatusText: '已保存',
+      saveStatusText: 'ذخیره شده',
       lastSavedTime: null,
       moduleSearch: '',
       selectedCategory: null,
@@ -55,7 +55,7 @@
       filteredModules() {
         let modules = this.source.modules;
         
-        // 按分类过滤
+        // فیلتر بر اساس دسته‌بندی
         if (this.selectedCategory) {
           modules = modules.filter(module => {
             const category = this.getModuleCategory(module.code);
@@ -63,7 +63,7 @@
           });
         }
         
-        // 按搜索关键词过滤
+        // فیلتر بر اساس کلمه کلیدی جستجو
         if (this.moduleSearch) {
           const search = this.moduleSearch.toLowerCase();
           modules = modules.filter(module => {
@@ -96,13 +96,13 @@
     },
 
     methods: {
-      // 使用 inno.debounce 保持 this 上下文
-      moduleUpdated: inno.debounce(function(val) {
-        // 防止编辑器初始化时触发 AJAX
+      // استفاده از inno.debounce برای حفظ زمینه this
+      moduleUpdated: (window.inno && window.inno.debounce) ? window.inno.debounce(function(val) {
+        // جلوگیری از فعال شدن AJAX هنگام مقداردهی اولیه ویرایشگر
         if (!this.design || !this.design.editorInitialized) {
           if (this.design) {
             this.design.moduleLoadCount = 1;
-            this.design.editorInitialized = true; // 标记编辑器已初始化
+            this.design.editorInitialized = true; // علامت‌گذاری ویرایشگر به عنوان مقداردهی اولیه شده
           }
           return;
         }
@@ -110,9 +110,9 @@
         this.form.modules[this.design.editingModuleIndex].content = val;
         const data = this.form.modules[this.design.editingModuleIndex];
         
-        // 更新保存状态
+        // به‌روزرسانی وضعیت ذخیره
         this.saveStatus = 'unsaved';
-        this.saveStatusText = '未保存';
+        this.saveStatusText = 'ذخیره نشده';
         
         const page = '{{ $page ?? "home" }}';
         const url = page === 'home' ? '{{ panel_route('pbuilder.modules.preview', ['page' => 'home']) }}' : '{{ panel_route('pbuilder.modules.preview', ['page' => ':page']) }}'.replace(':page', page);
@@ -122,43 +122,49 @@
           const tooltipTriggerList = previewWindow.document.querySelectorAll('[data-bs-toggle="tooltip"]')
           const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new previewWindow.bootstrap.Tooltip(tooltipTriggerEl))
         }).catch((error) => {
-          // 处理模块更新错误
-          let errorMessage = '更新模块失败';
+          // مدیریت خطای به‌روزرسانی ماژول
+          let errorMessage = 'به‌روزرسانی ماژول ناموفق بود';
           
           if (error.response) {
-            // 服务器返回了错误状态码
+            // سرور کد وضعیت خطا را برگردانده است
             const status = error.response.status;
             const data = error.response.data;
             
             if (status === 404) {
-              errorMessage = '模块模板文件不存在，请联系管理员';
+              errorMessage = 'فایل قالب ماژول وجود ندارد، لطفاً با مدیر تماس بگیرید';
             } else if (status === 500) {
-              errorMessage = '服务器内部错误，请稍后重试';
+              errorMessage = 'خطای داخلی سرور، لطفاً بعداً دوباره تلاش کنید';
             } else if (status === 422) {
-              errorMessage = '模块数据格式错误：' + (data.message || '未知错误');
+              errorMessage = 'خطا در فرمت داده‌های ماژول: ' + (data.message || 'خطای نامشخص');
             } else if (data && data.message) {
               errorMessage = data.message;
             } else {
-              errorMessage = `请求失败 (${status})`;
+              errorMessage = `درخواست ناموفق (${status})`;
             }
           } else if (error.request) {
-            // 请求已发出但没有收到响应
-            errorMessage = '网络连接失败，请检查网络连接';
+            // درخواست ارسال شده اما پاسخی دریافت نشده
+            errorMessage = 'اتصال شبکه ناموفق، لطفاً اتصال شبکه را بررسی کنید';
           } else {
-            // 其他错误
-            errorMessage = error.message || '未知错误';
+            // سایر خطاها
+            errorMessage = error.message || 'خطای نامشخص';
           }
           
-          // 使用layer弹窗显示错误信息
+          // استفاده از پنجره layer برای نمایش اطلاعات خطا
           layer.msg(errorMessage, {
             icon: 2,
             time: 3000,
             shade: [0.3, '#000']
           });
           
-          console.error('更新模块失败:', error);
+          console.error('به‌روزرسانی ماژول ناموفق:', error);
         })
-      }, 300),
+      }, 300) : function(val) {
+        // fallback اگر inno.debounce موجود نباشد
+        this.form.modules[this.design.editingModuleIndex].content = val;
+        const data = this.form.modules[this.design.editingModuleIndex];
+        this.saveStatus = 'unsaved';
+        this.saveStatusText = 'ذخیره نشده';
+      },
 
       addModuleButtonClicked(code, moduleItemIndex = null, callback = null) {
         const sourceModule = this.source.modules.find(e => e.code == code)
@@ -171,9 +177,9 @@
           view_path: sourceModule.view_path || '',
         }
 
-        // 更新保存状态
+        // به‌روزرسانی وضعیت ذخیره
         this.saveStatus = 'unsaved';
-        this.saveStatusText = '未保存';
+        this.saveStatusText = 'ذخیره نشده';
 
         const page = '{{ $page ?? "home" }}';
         const url = page === 'home' ? '{{ panel_route('pbuilder.modules.preview', ['page' => 'home']) }}' : '{{ panel_route('pbuilder.modules.preview', ['page' => ':page']) }}'.replace(':page', page);
@@ -199,41 +205,41 @@
             }
           }, 200)
         }).catch((error) => {
-          // 处理AJAX错误
-          let errorMessage = '添加模块失败';
+          // مدیریت خطای AJAX
+          let errorMessage = 'افزودن ماژول ناموفق بود';
           
           if (error.response) {
-            // 服务器返回了错误状态码
+            // سرور کد وضعیت خطا را برگردانده است
             const status = error.response.status;
             const data = error.response.data;
             
             if (status === 404) {
-              errorMessage = '模块模板文件不存在，请联系管理员';
+              errorMessage = 'فایل قالب ماژول وجود ندارد، لطفاً با مدیر تماس بگیرید';
             } else if (status === 500) {
-              errorMessage = '服务器内部错误，请稍后重试';
+              errorMessage = 'خطای داخلی سرور، لطفاً بعداً دوباره تلاش کنید';
             } else if (status === 422) {
-              errorMessage = '模块数据格式错误：' + (data.message || '未知错误');
+              errorMessage = 'خطا در فرمت داده‌های ماژول: ' + (data.message || 'خطای نامشخص');
             } else if (data && data.message) {
               errorMessage = data.message;
             } else {
-              errorMessage = `请求失败 (${status})`;
+              errorMessage = `درخواست ناموفق (${status})`;
             }
           } else if (error.request) {
-            // 请求已发出但没有收到响应
-            errorMessage = '网络连接失败，请检查网络连接';
+            // درخواست ارسال شده اما پاسخی دریافت نشده
+            errorMessage = 'اتصال شبکه ناموفق، لطفاً اتصال شبکه را بررسی کنید';
           } else {
-            // 其他错误
-            errorMessage = error.message || '未知错误';
+            // سایر خطاها
+            errorMessage = error.message || 'خطای نامشخص';
           }
           
-          // 使用layer弹窗显示错误信息
+          // استفاده از پنجره layer برای نمایش اطلاعات خطا
           layer.msg(errorMessage, {
             icon: 2,
             time: 3000,
             shade: [0.3, '#000']
           });
           
-          console.error('添加模块失败:', error);
+          console.error('افزودن ماژول ناموفق:', error);
         }).finally(() => {
           if (callback) {
             callback();
@@ -243,55 +249,55 @@
 
       editModuleButtonClicked(index) {
         if (this.design) {
-          // 如果已经是当前编辑的模块，不重复处理
+          // اگر قبلاً ماژول فعلی در حال ویرایش است، پردازش تکراری انجام نده
           if (this.design.editingModuleIndex === index && this.design.editType === 'module') {
-            console.log('已经是当前编辑的模块，跳过重复处理', index);
+            console.log('قبلاً ماژول فعلی در حال ویرایش است، پردازش تکراری رد شد', index);
             return;
           }
           
           this.design.moduleLoadCount = 0;
           this.design.editingModuleIndex = index;
           this.design.editType = 'module';
-          this.design.editorInitialized = false; // 重置编辑器初始化状态
+          this.design.editorInitialized = false; // بازنشانی وضعیت مقداردهی اولیه ویرایشگر
         }
       },
 
       saveButtonClicked() {
         this.saveStatus = 'saving';
-        this.saveStatusText = '保存中...';
+        this.saveStatusText = 'در حال ذخیره...';
         
         const page = '{{ $page ?? "home" }}';
         const url = page === 'home' ? '{{ panel_route('pbuilder.modules.update', ['page' => 'home']) }}' : '{{ panel_route('pbuilder.modules.update', ['page' => ':page']) }}'.replace(':page', page);
         
         axios.put(url, this.form).then((res) => {
           this.saveStatus = 'saved';
-          this.saveStatusText = '已保存';
+          this.saveStatusText = 'ذخیره شده';
           this.lastSavedTime = new Date();
           layer.msg(res.message, {icon: 1});
         }).catch((error) => {
           this.saveStatus = 'unsaved';
-          this.saveStatusText = '保存失败';
-          layer.msg('保存失败：' + (error.response?.data?.message || error.message), {icon: 2});
+          this.saveStatusText = 'ذخیره ناموفق';
+          layer.msg('ذخیره ناموفق: ' + (error.response?.data?.message || error.message), {icon: 2});
         });
       },
 
       importDemoData() {
         const page = '{{ $page ?? "home" }}';
         if (page !== 'home') {
-          layer.msg('演示数据仅支持首页');
+          layer.msg('داده‌های نمایشی فقط صفحه اصلی را پشتیبانی می‌کند');
           return;
         }
         
-        if (confirm('确定要导入演示数据吗？这将覆盖当前的页面设计。')) {
+        if (confirm('آیا مطمئن هستید که می‌خواهید داده‌های نمایشی را وارد کنید؟ این کار طراحی فعلی صفحه را بازنویسی خواهد کرد.')) {
           const url = '{{ panel_route('pbuilder.demo.import', ['page' => 'home']) }}';
           axios.post(url).then((res) => {
             layer.msg(res.message);
-            // 重新加载页面以显示演示数据
+            // بارگذاری مجدد صفحه برای نمایش داده‌های نمایشی
             setTimeout(() => {
               location.reload();
             }, 1000);
           }).catch((error) => {
-            layer.msg('导入失败：' + (error.response?.data?.message || error.message));
+            layer.msg('وارد کردن ناموفق: ' + (error.response?.data?.message || error.message));
           });
         }
       },
@@ -301,7 +307,7 @@
       },
 
       isIcon(code) {
-        // 判断是否为 HTML 标签格式的图标
+        // تشخیص اینکه آیا فرمت آیکون برچسب HTML است
         return typeof code === 'string' && (code.indexOf('<i') === 0 || code.indexOf('&#') === 0);
       },
       
@@ -320,9 +326,9 @@
       },
       
       getModuleCategory(code) {
-        // 定义模块的单分类映射
+        // تعریف نقشه‌برداری دسته‌بندی واحد ماژول
         const moduleCategories = {
-          // 媒体模块 - 图片、视频等媒体内容
+          // ماژول‌های رسانه - تصاویر، ویدیوها و سایر محتوای رسانه‌ای
           'slideshow': 'media',
           'single-image': 'media',
           'four-image': 'media',
@@ -330,24 +336,24 @@
           'multi-row-images': 'media',
           'video': 'media',
           
-          // 商品模块 - 与商品相关的模块
+          // ماژول‌های محصول - ماژول‌های مرتبط با محصولات
           'custom-products': 'product',
           'category-products': 'product',
           'latest-products': 'product',
           'brand-products': 'product',
           'card-slider': 'product',
           
-          // 内容模块 - 文字、文章等内容
+          // ماژول‌های محتوا - متن، مقالات و سایر محتوا
           'rich-text': 'content',
           'article': 'content',
           'brands': 'content',
           
-          // 布局模块 - 布局和结构相关的模块
+          // ماژول‌های چیدمان - ماژول‌های مرتبط با چیدمان و ساختار
           'left-image-right-text': 'layout',
           'image-text-list': 'layout'
         };
         
-        // 返回模块的分类，如果没有找到则返回 'layout'
+        // بازگرداندن دسته‌بندی ماژول، اگر یافت نشد 'layout' را برگردان
         return moduleCategories[code] || 'layout';
       },
 
@@ -365,13 +371,13 @@
         const iframe = document.getElementById('preview-iframe');
         const previewContainer = document.querySelector('.preview-iframe');
         
-        // 检查 previewContainer 是否存在
+        // بررسی اینکه آیا previewContainer وجود دارد
         if (!previewContainer) {
-          console.warn('Preview container not found');
+          console.warn('کانتینر پیش‌نمایش یافت نشد');
           return;
         }
         
-        // 移除所有设备类
+        // حذف تمام کلاس‌های دستگاه
         previewContainer.classList.remove('device-pc', 'device-mobile');
         
         if (type === 'mobile') {
@@ -383,7 +389,7 @@
             iframe.style.maxHeight = '667px';
           }
         } else {
-          // PC 设备
+          // دستگاه PC
           previewContainer.classList.add('device-pc');
           if (iframe) {
             iframe.style.width = '100%';
@@ -394,39 +400,39 @@
         }
       },
 
-      // 初始化键盘快捷键
+      // مقداردهی اولیه میانبرهای صفحه‌کلید
       initKeyboardShortcuts() {
         document.addEventListener('keydown', (e) => {
-          // 只在非输入框中生效
+          // فقط در غیر کادرهای ورودی اعمال شود
           if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
             return;
           }
           
-          // Ctrl+S 保存
+          // Ctrl+S ذخیره
           if (e.ctrlKey && e.key === 's') {
             e.preventDefault();
             this.saveButtonClicked();
           }
           
-          // Delete 删除选中的模块
+          // Delete حذف ماژول انتخاب شده
           if (e.key === 'Delete' && this.design.editingModuleIndex >= 0) {
             e.preventDefault();
             this.deleteCurrentModule();
           }
           
-          // Ctrl+Z 撤销（预留）
+          // Ctrl+Z واگرد (رزرو شده)
           if (e.ctrlKey && e.key === 'z') {
             e.preventDefault();
             // this.undo();
           }
           
-          // Ctrl+Y 重做（预留）
+          // Ctrl+Y انجام مجدد (رزرو شده)
           if (e.ctrlKey && e.key === 'y') {
             e.preventDefault();
             // this.redo();
           }
           
-          // Esc 退出编辑模式
+          // Esc خروج از حالت ویرایش
           if (e.key === 'Escape') {
             e.preventDefault();
             this.showAllModuleButtonClicked();
@@ -434,15 +440,15 @@
         });
       },
       
-      // 删除当前模块
+      // حذف ماژول فعلی
       deleteCurrentModule() {
         if (this.design.editingModuleIndex >= 0 && this.form.modules[this.design.editingModuleIndex]) {
-          if (confirm('确定要删除该模块吗？')) {
+          if (confirm('آیا مطمئن هستید که می‌خواهید این ماژول را حذف کنید؟')) {
             this.design.editType = 'add';
             this.design.editingModuleIndex = 0;
             this.form.modules.splice(this.design.editingModuleIndex, 1);
             this.saveStatus = 'unsaved';
-            this.saveStatusText = '未保存';
+            this.saveStatusText = 'ذخیره نشده';
           }
         }
       }
@@ -454,17 +460,17 @@
     },
     
     mounted () {
-      // 初始化设备类型
+      // مقداردهی اولیه نوع دستگاه
       this.switchDevice(this.design.type);
       
-      // 确保 iframe 加载完成后设置 ready 状态
+      // اطمینان از اینکه iframe پس از بارگذاری کامل وضعیت ready را تنظیم کند
       setTimeout(() => {
         if (this.design) {
           this.design.ready = true;
         }
       }, 1000);
       
-      // 添加键盘快捷键
+      // افزودن میانبرهای صفحه‌کلید
       this.initKeyboardShortcuts();
     },
   })

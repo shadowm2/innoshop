@@ -1,6 +1,6 @@
 @extends('panel::layouts.app')
 @section('body-class', 'page-product-option-form')
-@section('title', $option->id ? '编辑选项' : '创建选项')
+@section('title', $option->id ? 'ویرایش گزینه' : 'ایجاد گزینه')
 
 <x-panel::form.right-btns formid="option-form" />
 
@@ -19,23 +19,23 @@
               <li class="nav-item" role="presentation">
                 <button class="nav-link active" id="basic-tab" data-bs-toggle="tab" data-bs-target="#basic-tab-pane"
                   type="button" role="tab" aria-controls="basic-tab-pane"
-                  aria-selected="true">基本信息</button>
+                  aria-selected="true">اطلاعات پایه</button>
               </li>
               <li class="nav-item" role="presentation">
                 <button class="nav-link" id="translation-tab" data-bs-toggle="tab" data-bs-target="#translation-tab-pane"
                   type="button" role="tab" aria-controls="translation-tab-pane"
-                  aria-selected="false">多语言</button>
+                  aria-selected="false">چند زبانه</button>
               </li>
             </ul>
 
             <div class="tab-content" id="myTabContent">
-              <!-- 基本信息标签页 -->
+              <!-- اطلاعات پایه تب -->
               <div class="tab-pane fade show active" id="basic-tab-pane" role="tabpanel" aria-labelledby="basic-tab">
                 <div class="row">
                   <div class="col-12 col-md-6">
-                    <x-panel-form-input name="option_group_id" title="选项组" :value="old('option_group_id', $option->option_group_id ?? '')" required>
+                    <x-panel-form-input name="option_group_id" title="گروه گزینه" :value="old('option_group_id', $option->option_group_id ?? '')" required>
                       <select name="option_group_id" class="form-select" required>
-                        <option value="">请选择选项组</option>
+                        <option value="">لطفا گروه گزینه را انتخاب کنید</option>
                         @foreach($optionGroups as $group)
                           <option value="{{ $group->id }}" {{ old('option_group_id', $option->option_group_id ?? '') == $group->id ? 'selected' : '' }}>
                             {{ $group->getCurrentName() }} ({{ $group->type }})
@@ -46,19 +46,19 @@
                   </div>
 
                   <div class="col-12 col-md-6">
-                    <x-panel-form-input name="price" title="价格调整" :value="old('price', $option->price ?? 0)" type="number" step="0.01">
+                    <x-panel-form-input name="price" title="تنظیم قیمت" :value="old('price', $option->price ?? 0)" type="number" step="0.01">
                       <div class="input-group">
                         <input type="number" name="price" class="form-control" 
                                value="{{ old('price', $option->price ?? 0) }}" 
                                step="0.01" placeholder="0.00">
                         <span class="input-group-text">{{ currency_symbol() }}</span>
                       </div>
-                      <div class="form-text">正数表示增加价格，负数表示减少价格</div>
+                      <div class="form-text">عدد مثبت نشان دهنده افزایش قیمت، عدد منفی نشان دهنده کاهش قیمت</div>
                     </x-panel-form-input>
                   </div>
 
                   <div class="col-12 col-md-6">
-                    <x-panel-form-input name="position" title="排序" :value="old('position', $option->position ?? 0)" type="number">
+                    <x-panel-form-input name="position" title="ترتیب" :value="old('position', $option->position ?? 0)" type="number">
                     </x-panel-form-input>
                   </div>
 
@@ -68,21 +68,21 @@
                   </div>
 
                   <div class="col-12">
-                    <x-panel-form-input name="image" title="选项图片" type="file">
+                    <x-panel-form-input name="image" title="تصویر گزینه" type="file">
                       @if($option->image ?? false)
                         <div class="mb-2">
                           <img src="{{ image_resize($option->image, 100, 100) }}" class="img-thumbnail" style="max-width: 100px;">
-                          <div class="form-text">当前图片</div>
+                          <div class="form-text">تصویر فعلی</div>
                         </div>
                       @endif
                       <input type="file" name="image" class="form-control" accept="image/*">
-                      <div class="form-text">支持 JPG、PNG、GIF 格式，建议尺寸 200x200 像素</div>
+                      <div class="form-text">پشتیبانی از فرمت های JPG، PNG، GIF، اندازه پیشنهادی 200x200 پیکسل</div>
                     </x-panel-form-input>
                   </div>
                 </div>
               </div>
 
-              <!-- 多语言标签页 -->
+              <!-- تب چند زبانه -->
               <div class="tab-pane fade" id="translation-tab-pane" role="tabpanel" aria-labelledby="translation-tab">
                 @foreach (locales() as $locale)
                   <div class="mb-4">
@@ -91,7 +91,7 @@
                       <div class="col-12">
                         <x-panel-form-input 
                           name="translations[{{ $locale['code'] }}][name]" 
-                          title="选项名称" 
+                          title="نام گزینه" 
                           :value="old('translations.' . $locale['code'] . '.name', $option->translate($locale['code'])->name ?? '')"
                           :required="$locale['code'] == locale_code()">
                         </x-panel-form-input>
@@ -127,7 +127,7 @@
         if (file) {
           const reader = new FileReader();
           reader.onload = function(e) {
-            const preview = $('<div class="mt-2"><img src="' + e.target.result + '" class="img-thumbnail" style="max-width: 100px;"><div class="form-text">预览图片</div></div>');
+            const preview = $('<div class="mt-2"><img src="' + e.target.result + '" class="img-thumbnail" style="max-width: 100px;"><div class="form-text">پیش نمایش تصویر</div></div>');
             $('input[name="image"]').parent().find('.mt-2').remove();
             $('input[name="image"]').parent().append(preview);
           };

@@ -54,6 +54,11 @@ class FrontServiceProvider extends ServiceProvider
     public function register(): void
     {
         app('router')->aliasMiddleware('customer_auth', CustomerAuthentication::class);
+
+        // Bind SMS sender - default to a logger implementation. Can be overridden in app service provider.
+        $this->app->bind(\InnoShop\Front\Services\Sms\SmsSenderInterface::class, function ($app) {
+            return new \InnoShop\Front\Services\Sms\LogSmsSender();
+        });
     }
 
     /**
