@@ -22,6 +22,25 @@
   <link rel="stylesheet" href="{{ plugin_asset('PageBuilder', 'css/design/preview.css') }}">
   <link rel="stylesheet" href="{{ plugin_asset('PageBuilder', 'css/design/components.css') }}">
   <link rel="stylesheet" href="{{ plugin_asset('PageBuilder', 'css/design/link-selector.css') }}">
+  <style>
+    .el-input__inner {
+      color: #606266 !important;
+      background-color: #fff !important;
+      border: 1px solid #dcdfe6 !important;
+      border-radius: 4px !important;
+      padding: 0 15px !important;
+      height: 40px !important;
+      line-height: 40px !important;
+      font-size: 14px !important;
+    }
+    .el-input__inner:focus {
+      border-color: #409eff !important;
+      outline: none !important;
+    }
+    .el-input__inner::placeholder {
+      color: #c0c4cc !important;
+    }
+  </style>
 
   <script src="{{ asset('vendor/jquery/jquery-3.7.1.min.js') }}"></script>
   <script src="{{ asset('vendor/vue/2.7/vue.min.js') }}"></script>

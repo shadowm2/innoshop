@@ -1,5 +1,5 @@
 <script>
-  // iframe 操作
+  // عملیات iframe
   var previewWindow = null;
   $('#preview-iframe').on('load', function(event) {
     previewWindow = document.getElementById("preview-iframe").contentWindow;
@@ -7,7 +7,7 @@
       app.design.ready = true;
     }
 
-    // 编辑模块
+    // ویرایش ماژول
     $(previewWindow.document).on('click', '.module-edit .edit', function(event) {
       // if (typeof app === 'undefined' || !app.form || !app.form.modules) return;
       const module_id = $(this).parents('.module-item').prop('id').replace('module-', '');
@@ -18,13 +18,13 @@
       }
     });
 
-    // 删除模块
+    // حذف ماژول
     $(previewWindow.document).on('click', '.module-edit .delete', function(event) {
       if (typeof app === 'undefined' || !app.form || !app.form.modules) return;
       const module_id = $(this).parents('.module-item').prop('id').replace('module-', '');
       const editingModuleIndex = app.form.modules.findIndex(e => e.module_id == module_id);
       if (editingModuleIndex >= 0) {
-        if (confirm('确定要删除该模块吗？')) {
+        if (confirm('آیا مطمئن هستید که می‌خواهید این ماژول را حذف کنید؟')) {
           app.design.editType = 'add';
           app.design.editingModuleIndex = 0;
           $(previewWindow.document).find('.tooltip').remove();
@@ -34,7 +34,7 @@
       }
     });
 
-    // 上移模块
+    // انتقال ماژول به بالا
     $(previewWindow.document).on('click', '.module-edit .up', function(event) {
       if (typeof app === 'undefined' || !app.form || !app.form.modules) return;
       const module_id = $(this).parents('.module-item').prop('id').replace('module-', '');
@@ -49,7 +49,7 @@
       }
     });
 
-    // 下移模块
+    // انتقال ماژول به پایین
     $(previewWindow.document).on('click', '.module-edit .down', function(event) {
       if (typeof app === 'undefined' || !app.form || !app.form.modules) return;
       const module_id = $(this).parents('.module-item').prop('id').replace('module-', '');
@@ -68,17 +68,17 @@
         group: {
           name: 'shared',
           pull: 'clone',
-          put: false // 不允许拖拽进这个列表
+          put: false // اجازه کشیدن و رها کردن در این لیست داده نمی‌شود
         },
         // ghostClass: 'iframe-modules-sortable-ghost',
         animation: 150,
-        sort: false, // 设为false，禁止sort
+        sort: false, // تنظیم بر false، غیرفعال کردن مرتب‌سازی
         onEnd: function (evt) {
           if (evt.to.id != 'home-modules-box') {
             return;
           }
 
-          // 获取 当前位置 在modules-box 是第几个
+          // دریافت موقعیت فعلی در modules-box که چندمین است
           const index = $(previewWindow.document).find('.modules-box').children().index(evt.item);
           const moduleCode = $(evt.item).find('.module-list').data('code');
 

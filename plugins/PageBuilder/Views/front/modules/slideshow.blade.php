@@ -58,6 +58,8 @@
         font-weight: bold;
         line-height: 1.2;
         margin-bottom: 1rem;
+        color: #ffffff !important;
+        display: block !important;
       }
 
       .slideshow-subtitle {
@@ -65,6 +67,8 @@
         font-weight: 500;
         line-height: 1.3;
         margin-bottom: 1.5rem;
+        color: #ffffff !important;
+        display: block !important;
       }
 
       .slideshow-content .btn {

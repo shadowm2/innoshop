@@ -21,4 +21,16 @@ return [
     'empty_customer'            => 'Empty account',
     'inactive_customer'         => 'Your account is inactive.',
     'login_success'             => 'Login successfully.',
+    // OTP / phone
+    'login_with_phone'          => 'Login with phone',
+    'phone'                     => 'Phone',
+    'code'                      => 'Code',
+    'request_code'              => 'Request code',
+    'verify_code'               => 'Verify code',
+    'phone_required'            => 'Please enter phone number',
+    'phone_and_code_required'   => 'Please enter phone and code',
+    'otp_message'               => 'Your login code is: {code}',
+    'otp_sent'                  => 'Verification code sent',
+    'otp_sent_recently'         => 'Code sent recently, please wait',
+    'otp_invalid'               => 'Invalid verification code',
 ];

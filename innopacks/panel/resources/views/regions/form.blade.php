@@ -22,8 +22,8 @@
           <table class="table table-bordered regions-table">
             <thead>
               <tr>
-                <th width="40%">国家/地区</th>
-                <th width="40%">省份</th>
+                <th width="40%">کشور/منطقه</th>
+                <th width="40%">استان</th>
                 <th width="20%" class="text-end"></th>
               </tr>
             </thead>
@@ -76,13 +76,13 @@
         <tr>
           <td>
             <select class="form-select form-select-sm country-select" name="region_states[${index}][country_id]" required>
-              <option value="">请选择国家</option>
+              <option value="">کشور را انتخاب کنید</option>
               ${countries.map(country => `<option value="${country.id}">${country.name}</option>`).join('')}
             </select>
           </td>
           <td>
             <select class="form-select form-select-sm" name="region_states[${index}][state_id]" required>
-              <option value="">请选择省份</option>
+              <option value="">استان را انتخاب کنید</option>
             </select>
           </td>
           <td class="text-end">
@@ -122,7 +122,7 @@
       var states = res.data;
       var stateSelect = $('select[name="region_states[' + index + '][state_id]"]');
       stateSelect.prop('disabled', false).empty();
-      stateSelect.append('<option value="">请选择省份</option>');
+      stateSelect.append('<option value="">استان را انتخاب کنید</option>');
       states.forEach(function(state) {
         stateSelect.append('<option value="' + state.id + '"' + (state.id == id ? ' selected' : '') + '>' + state.name + '</option>');
       });

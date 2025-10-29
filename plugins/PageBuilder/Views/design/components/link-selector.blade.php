@@ -1,16 +1,17 @@
 <template id="link-selector">
   <div class="link-selector-wrap">
     <div class="selector-type" @blur="selectorContentShow = false" tabindex="1">
-      <div class="title" v-if="!link.type || link.type === '' || !value.value"
-        @click="toggleSelector">لطفا نوع لینک را انتخاب کنید
+      <div class="title" v-if="!link.type || link.type === '' || !value.value" @click="toggleSelector">لطفاً نوع لینک را
+        انتخاب کنید
       </div>
-      <div class="title" @click="toggleSelector" v-else :title="name"
-        v-loading="nameLoading">@{{ selectorTitle }}: @{{ name[0]?.name ?? '' }}
+      <div class="title" @click="toggleSelector" v-else :title="name" v-loading="nameLoading">
+        @{{ selectorTitle }}: @{{ name[0]?.name ?? '' }}
       </div>
-      <div :class="'selector-content ' + (selectorContentShow ? 'active' : '') + (shouldShowUpward ? ' bottom-up' : '')">
+      <div
+        :class="'selector-content ' + (selectorContentShow ? 'active' : '') + (shouldShowUpward ? ' bottom-up' : '')">
         <div @click="selectorType()">
           <i class="el-icon-close"></i>
-          هیچکدام
+          هیچ
         </div>
         <div v-for="(type, index) in types" :key="index" @click="selectorType(type.type)">
           <i :class="getTypeIcon(type.type)"></i>
@@ -23,32 +24,36 @@
       :close-on-click-modal="false" @open="linkDialogOpen" @closed="linkDialogClose" width="460px">
       <div slot="title" class="link-dialog-header">
         <div class="title">انتخاب @{{ dialogTitle }}</div>
+        <div class="title">انتخاب @{{ dialogTitle }}</div>
         <div class="input-with-select" v-if="link.type != 'custom'">
-          <input type="text" placeholder="لطفا کلمه کلیدی را وارد کنید" v-model="keyword" @keyup.enter="searchProduct"
-            class="form-control">
+          <input type="text" placeholder="لطفاً کلمه کلیدی برای جستجو وارد کنید" v-model="keyword"
+            @keyup.enter="searchProduct" class="form-control">
+          <el-button @click="searchProduct"><i class="el-icon-search"></i> جستجو</el-button>
           <el-button @click="searchProduct"><i class="el-icon-search"></i> جستجو</el-button>
         </div>
       </div>
       <div class="link-dialog-content">
         <div class="product-search">
           <div class="link-top-new">
-            <span>باز شدن در پنجره جدید:</span>
+            <span>در پنجره جدید باز شود:</span>
             <el-switch :width="36" @change="linksNewBack" v-model="link.new_window"></el-switch>
           </div>
 
-          <a :href="linkTypeAdmin" target="_blank"
-            v-if="link.type != 'custom' && link.type != 'static'">مدیریت @{{ dialogTitle }}</a>
+          <a :href="linkTypeAdmin" target="_blank" v-if="link.type != 'custom' && link.type != 'static'">مدیریت
+            @{{ dialogTitle }}</a>
+          v-if="link.type != 'custom' && link.type != 'static'">مدیریت @{{ dialogTitle }}</a>
         </div>
 
         <div class="link-text" v-if="isCustomName">
           <div class="module-edit-group edit-group-margin">
+            <div class="module-edit-title">نام سفارشی</div>
             <div class="module-edit-title">نام سفارشی</div>
             <text-i18n v-model="link.text"></text-i18n>
           </div>
         </div>
         <template v-if="link.type == 'custom'">
           <div class="linkDialog-custom">
-            <el-input v-model="link.value" placeholder="لطفا آدرس لینک را وارد کنید"></el-input>
+            <el-input v-model="link.value" placeholder="لطفاً آدرس لینک را وارد کنید"></el-input>
           </div>
         </template>
         <template v-else-if="link.type == 'static'">
@@ -71,11 +76,14 @@
               <div class="product-info-title">
                 <span>محتوا</span>
                 <span>وضعیت</span>
+                <span>محتوا</span>
+                <span>وضعیت</span>
               </div>
 
               <ul class="product-list">
                 <li v-for="(product, index) in linkDialog.data"
-                  @click="product.active ? link.value = product.id : false" :class="!product.active ? 'no-status' : ''">
+                  @click="product.active ? link.value = product.id : false"
+                  :class="!product.active ? 'no-status' : ''">
                   <div class="content-cell">
                     <span
                       :class="'radio-plus ' + (link.value == product.id ? 'active' : '') + (!product.active ? 'no-status' :
@@ -86,20 +94,23 @@
                   <div :class="'status-cell ' + (product.active ? 'ok' : 'no')">
                     <template v-if="product.active">فعال</template>
                     <template v-else>غیرفعال</template>
+                    <template v-if="product.active">فعال</template>
+                    <template v-else>غیرفعال</template>
                   </div>
                 </li>
               </ul>
             </template>
             <div class="product-info-no" v-if="!linkDialog.data.length && loading === false">
               <div class="icon"><i class="el-icon-warning"></i></div>
-              <div class="no-text">داده‌ای وجود ندارد یا حذف شده است، <a :href="linkTypeAdmin" target="_blank">برای افزودن @{{ dialogTitle }} کلیک کنید</a>
+              <div class="no-text">داده وجود ندارد یا حذف شده است، <a :href="linkTypeAdmin" target="_blank">برای
+                  افزودن @{{ dialogTitle }} کلیک کنید</a>
               </div>
             </div>
           </div>
         </template>
       </div>
       <div slot="footer" class="link-dialog-footer">
-        <el-button type="primary" @click="linkDialogConfirm">تایید</el-button>
+        <el-button type="primary" @click="linkDialogConfirm">تأیید</el-button>
       </div>
     </el-dialog>
   </div>
@@ -141,49 +152,60 @@
         types: [{
             type: 'product',
             label: 'لینک محصول'
+            label: 'لینک محصول'
           },
           {
             type: 'category',
+            label: 'دسته‌بندی محصول'
             label: 'دسته‌بندی محصول'
           },
           {
             type: 'page',
             label: 'صفحه خاص'
+            label: 'صفحه خاص'
           },
           {
             type: 'catalog',
+            label: 'دسته‌بندی مقاله'
             label: 'دسته‌بندی مقاله'
           },
           {
             type: 'brand',
             label: 'برند محصول'
+            label: 'برند محصول'
           },
           {
             type: 'static',
+            label: 'لینک ثابت'
             label: 'لینک ثابت'
           },
           {
             type: 'custom',
             label: 'سفارشی'
+            label: 'سفارشی'
           }
         ],
         static: [{
-            name: 'پنل کاربری',
+            name: 'مرکز شخصی',
             value: 'account.index'
           },
           {
+            name: 'علاقه‌مندی‌های من',
             name: 'علاقه‌مندی‌های من',
             value: 'account.wishlist.index'
           },
           {
             name: 'سفارش‌های من',
+            name: 'سفارش‌های من',
             value: 'account.order.index'
           },
           {
             name: 'جدیدترین محصولات',
+            name: 'جدیدترین محصولات',
             value: 'account.index'
           },
           {
+            name: 'فهرست برندها',
             name: 'فهرست برندها',
             value: 'brands.index'
           },
@@ -211,12 +233,12 @@
         });
       }
     },
-    
+
     mounted() {
       // 监听窗口大小改变，重新计算显示方向
       window.addEventListener('resize', this.handleResize);
     },
-    
+
     beforeDestroy() {
       // 移除事件监听器
       window.removeEventListener('resize', this.handleResize);
@@ -232,13 +254,15 @@
       dialogTitle: function() {
         const foundType = this.types.find(e => e.type == this.link.type);
         return foundType ? foundType.label : 'انتخاب لینک';
+        return foundType ? foundType.label : 'انتخاب لینک';
       },
       selectorTitle() {
         // 添加安全检查，防止value或value.type为undefined
         if (!this.value || !this.value.type) {
-          return 'لطفا نوع لینک را انتخاب کنید';
+          return 'لطفاً نوع لینک را انتخاب کنید';
         }
         const foundType = this.types.find(e => e.type == this.value.type);
+        return foundType ? foundType.label : 'نوع نامشخص';
         return foundType ? foundType.label : 'نوع نامشخص';
       },
       linkTypeAdmin: function() {
@@ -296,20 +320,20 @@
         this.$nextTick(() => {
           const selectorElement = this.$el.querySelector('.selector-type');
           if (!selectorElement) return;
-          
+
           const rect = selectorElement.getBoundingClientRect();
           const viewportHeight = window.innerHeight;
           const dropdownHeight = 200; // 最大高度
           const margin = 20; // 预留边距
-          
+
           // 计算下方可用空间
           const spaceBelow = viewportHeight - rect.bottom - margin;
           // 计算上方可用空间
           const spaceAbove = rect.top - margin;
-          
+
           // 如果下方空间不足且上方空间足够，则向上显示
           this.shouldShowUpward = spaceBelow < dropdownHeight && spaceAbove >= dropdownHeight;
-          
+
           // 调试信息（可选）
           console.log('Dropdown direction calculation:', {
             spaceBelow,
@@ -409,7 +433,7 @@
         this.selectorContentShow = false;
         this.$emit("input", {
           link: '',
-          type: '',  // 设置为空字符串而不是'category'
+          type: '', // 设置为空字符串而不是'category'
           value: '',
           new_window: false
         });
@@ -553,11 +577,13 @@
           } else {
             self.name = [{
               name: 'داده وجود ندارد یا حذف شده است'
+              name: 'داده وجود ندارد یا حذف شده است'
             }];
           }
         }).catch((error) => {
           console.warn('Failed to load link name:', error);
           self.name = [{
+            name: 'داده وجود ندارد یا حذف شده است'
             name: 'داده وجود ندارد یا حذف شده است'
           }];
         }).finally(() => {
@@ -567,5 +593,3 @@
     }
   });
 </script>
-
-

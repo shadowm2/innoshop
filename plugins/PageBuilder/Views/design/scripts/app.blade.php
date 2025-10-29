@@ -67,6 +67,11 @@
   window.inno = window.inno || {};
   window.inno.randomString = randomString;
   window.inno.debounce = debounce; // 添加 debounce 到 inno 对象
+  
+  // 确保 inno 对象 در دسترس است
+  if (typeof window.inno === 'undefined') {
+    window.inno = {};
+  }
 
   // 多语言填充函数
   function languagesFill(text) {

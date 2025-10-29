@@ -9,7 +9,7 @@
             :options="source.categories"
             size="medium"
             ref="refCascader"
-            placeholder="请选择/搜索分类"
+            placeholder="دسته‌بندی را انتخاب یا جستجو کنید"
             :props="{ label: 'label', value: 'value', children: 'children', checkStrictly: true}"
             @change="categoriesChange"
             filterable
@@ -149,7 +149,7 @@
 
         // 检查是否已经选择过该分类
         if (last && this.form.categories.includes(last)) {
-          this.$message.warning('该分类已经选择过了');
+          this.$message.warning('این دسته‌بندی قبلاً انتخاب شده است');
           return;
         }
 

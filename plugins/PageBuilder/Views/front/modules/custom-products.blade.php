@@ -23,7 +23,7 @@
           <div class="module-product-empty">
             <div class="module-product-empty-text">
               <i class="bi bi-box"></i>
-              <span>暂无商品,请配置商品</span>
+              <span>هنوز محصولی وجود ندارد، لطفاً محصولات را پیکربندی کنید</span>
             </div>
           </div>
         @endif

@@ -1,54 +1,8 @@
 @hookinsert('layout.header.top')
 
 <header id="appHeader">
-  {{-- <div class="header-top">
-    <div class="container d-flex justify-content-between align-items-center">
-      <div class="language-switch d-flex align-items-center">
-        <div class="dropdown">
-          <a class="btn dropdown-toggle" href="javascript:void(0)">
-            <img src="{{ asset($currentLocale->image) }}" class="img-fluid"> {{ $currentLocale->name }}
-          </a>
-          <div class="dropdown-menu">
-            @foreach (locales() as $locale)
-              <a class="dropdown-item d-flex" href="{{ front_route('locales.switch', ['code' => $locale->code]) }}">
-                <div class="wh-20 me-2"><img src="{{ image_origin($locale['image']) }}" class="img-fluid border">
-                </div>
-                {{ $locale->name }}
-              </a>
-            @endforeach
-          </div>
-        </div>
-        <div class="dropdown ms-4">
-          <a class="btn dropdown-toggle" href="javascript:void(0)">
-            {{ current_currency()->name }}
-          </a>
-          <div class="dropdown-menu">
-            @foreach (currencies() as $currency)
-              <a class="dropdown-item" href="{{ front_route('currencies.switch', ['code' => $currency->code]) }}">
-                {{ $currency->name }} ({{ $currency->symbol_left }})
-              </a>
-            @endforeach
-          </div>
-        </div>
-        @hookinsert('layouts.header.currency.after')
-      </div>
-
-      <div class="top-info">
-        @hookinsert('layouts.header.news.before')
-        <a href="{{ front_route('articles.index') }}">اخبار</a>
-
-        @hookupdate('layouts.header.telephone')
-        @if (system_setting('telephone'))
-          <a href="tel:{{ system_setting('telephone') }}">
-            <span><i class="bi bi-telephone-outbound"></i> {{ system_setting('telephone') }}</span>
-          </a>
-        @endif
-        @endhookupdate
-      </div>
-    </div>
-  </div> --}}
   <div class="header-desktop">
-    <div class="container d-flex justify-content-between align-items-center">
+    <div class="container-fluid d-flex justify-content-between align-items-center" style="flex-wrap:nowrap;">
       <div class="left">
         <h1 class="logo">
           <a href="{{ front_route('home.index') }}">
@@ -57,39 +11,39 @@
         </h1>
         <div class="menu">
           <nav class="navbar navbar-expand-md navbar-light">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav" style="display:flex;flex-wrap:nowrap;align-items:center;">
               <li class="nav-item">
                 <a class="nav-link" aria-current="page"
-                   href="{{ front_route('home.index') }}">{{ __('front/common.home') }}</a>
+                  href="{{ front_route('home.index') }}">{{ __('front/common.home') }}</a>
               </li>
 
               @hookupdate('layouts.header.menu.pc')
-              @foreach ($headerMenus as $menu)
-                @if ($menu['children'] ?? [])
-                  <li class="nav-item">
-                    <div class="dropdown">
-                      @if ($menu['name'])
-                        <a class="nav-link {{ equal_url($menu['url']) ? 'active' : '' }}"
-                           href="{{ $menu['url'] }}">{{ $menu['name'] }}</a>
-                      @endif
-                      <ul class="dropdown-menu">
-                        @foreach ($menu['children'] as $child)
-                          @if ($child['name'])
-                            <li><a class="dropdown-item" href="{{ $child['url'] }}">{{ $child['name'] }}</a></li>
-                          @endif
-                        @endforeach
-                      </ul>
-                    </div>
-                  </li>
-                @else
-                  @if ($menu['name'])
+                @foreach ($headerMenus as $menu)
+                  @if ($menu['children'] ?? [])
                     <li class="nav-item">
-                      <a class="nav-link {{ equal_url($menu['url']) ? 'active' : '' }}"
-                         href="{{ $menu['url'] }}">{{ $menu['name'] }}</a>
+                      <div class="dropdown">
+                        @if ($menu['name'])
+                          <a class="nav-link {{ equal_url($menu['url']) ? 'active' : '' }}"
+                            href="{{ $menu['url'] }}">{{ $menu['name'] }}</a>
+                        @endif
+                        <ul class="dropdown-menu">
+                          @foreach ($menu['children'] as $child)
+                            @if ($child['name'])
+                              <li><a class="dropdown-item" href="{{ $child['url'] }}">{{ $child['name'] }}</a></li>
+                            @endif
+                          @endforeach
+                        </ul>
+                      </div>
                     </li>
+                  @else
+                    @if ($menu['name'])
+                      <li class="nav-item">
+                        <a class="nav-link {{ equal_url($menu['url']) ? 'active' : '' }}"
+                          href="{{ $menu['url'] }}">{{ $menu['name'] }}</a>
+                      </li>
+                    @endif
                   @endif
-                @endif
-              @endforeach
+                @endforeach
               @endhookupdate
             </ul>
           </nav>
@@ -98,7 +52,7 @@
       <div class="right">
         <form action="{{ front_route('products.index') }}" method="get" class="search-group">
           <input type="text" class="form-control" name="keyword" placeholder="{{ __('front/common.search') }}"
-                 value="{{ request('keyword') }}">
+            value="{{ request('keyword') }}">
           <button type="submit" class="btn"><i class="bi bi-search"></i></button>
         </form>
         <div class="icons">
@@ -111,29 +65,28 @@
               <div class="dropdown-menu dropdown-menu-end">
                 @if ($customer)
                   <a href="{{ front_route('account.index') }}"
-                     class="dropdown-item">{{ __('front/account.account') }}</a>
+                    class="dropdown-item">{{ __('front/account.account') }}</a>
                   <a href="{{ front_route('account.orders.index') }}"
-                     class="dropdown-item">{{ __('front/account.orders') }}</a>
+                    class="dropdown-item">{{ __('front/account.orders') }}</a>
                   <a href="{{ front_route('account.favorites.index') }}"
-                     class="dropdown-item">{{ __('front/account.favorites') }}</a>
+                    class="dropdown-item">{{ __('front/account.favorites') }}</a>
                   <a href="{{ front_route('account.logout') }}"
-                     class="dropdown-item">{{ __('front/account.logout') }}</a>
+                    class="dropdown-item">{{ __('front/account.logout') }}</a>
                 @else
                   <a href="{{ front_route('login.index') }}" class="dropdown-item">{{ __('front/common.login') }}</a>
                   <a href="{{ front_route('register.index') }}"
-                     class="dropdown-item">{{ __('front/common.register') }}</a>
+                    class="dropdown-item">{{ __('front/common.register') }}</a>
                 @endif
               </div>
             </div>
           </div>
           <div class="item">
             <a href="{{ account_route('favorites.index') }}"><img src="{{ asset('images/icons/love.svg') }}"
-                                                                  class="img-fluid"><span
-                class="icon-quantity">{{ $favTotal }}</span></a>
+                class="img-fluid"><span class="icon-quantity">{{ $favTotal }}</span></a>
           </div>
           <div class="item">
-            <a href="javascript:void(0)" class="header-cart-icon" data-bs-toggle="offcanvas"
-               data-bs-target="#miniCart" aria-controls="miniCart">
+            <a href="javascript:void(0)" class="header-cart-icon" data-bs-toggle="offcanvas" data-bs-target="#miniCart"
+              aria-controls="miniCart">
               <img src="{{ asset('images/icons/cart.svg') }}" class="img-fluid">
               <span class="icon-quantity">0</span>
             </a>
@@ -145,7 +98,7 @@
   </div>
   <div class="header-mobile">
     <div class="mb-icon" data-bs-toggle="offcanvas" data-bs-target="#mobile-menu-offcanvas"
-         aria-controls="offcanvasExample">
+      aria-controls="offcanvasExample">
       <i class="bi bi-list"></i>
     </div>
 
@@ -155,15 +108,14 @@
       </a>
     </div>
 
-    <a href="{{ front_route('carts.index') }}" class="header-cart-icon"><img src="{{ asset('images/icons/cart.svg') }}"
-                                                                             class="img-fluid"><span
-        class="icon-quantity">0</span></a>
+    <a href="{{ front_route('carts.index') }}" class="header-cart-icon"><img
+        src="{{ asset('images/icons/cart.svg') }}" class="img-fluid"><span class="icon-quantity">0</span></a>
 
     <div class="offcanvas offcanvas-start" tabindex="-1" id="mobile-menu-offcanvas">
       <div class="offcanvas-header">
         <form action="{{ front_route('products.index') }}" method="get" class="search-group">
           <input type="text" class="form-control" name="keyword" placeholder="{{ __('front/common.search') }}"
-                 value="{{ request('keyword') }}">
+            value="{{ request('keyword') }}">
           <button type="submit" class="btn"><i class="bi bi-search"></i></button>
         </form>
         <a class="account-icon" href="{{ front_route('account.index') }}">
@@ -176,44 +128,44 @@
           <div class="accordion-item">
             <div class="nav-item-text">
               <a class="nav-link {{ equal_route_name('home.index') ? 'active' : '' }}" aria-current="page"
-                 href="{{ front_route('home.index') }}">{{ __('front/common.home') }}</a>
+                href="{{ front_route('home.index') }}">{{ __('front/common.home') }}</a>
             </div>
           </div>
 
           @hookupdate('layouts.header.menu.mobile')
-          @foreach ($headerMenus as $key => $menu)
-            @if ($menu['name'])
-              <div class="accordion-item">
-                <div class="nav-item-text">
-                  <a class="nav-link" href="{{ $menu['url'] }}"
-                     data-bs-toggle="{{ !$menu['url'] ? 'collapse' : '' }}">
-                    {{ $menu['name'] }}
-                  </a>
+            @foreach ($headerMenus as $key => $menu)
+              @if ($menu['name'])
+                <div class="accordion-item">
+                  <div class="nav-item-text">
+                    <a class="nav-link" href="{{ $menu['url'] }}"
+                      data-bs-toggle="{{ !$menu['url'] ? 'collapse' : '' }}">
+                      {{ $menu['name'] }}
+                    </a>
+                    @if (isset($menu['children']) && $menu['children'])
+                      <span class="collapsed" data-bs-toggle="collapse"
+                        data-bs-target="#flush-menu-{{ $key }}"><i class="bi bi-chevron-down"></i></span>
+                    @endif
+                  </div>
+
                   @if (isset($menu['children']) && $menu['children'])
-                    <span class="collapsed" data-bs-toggle="collapse"
-                          data-bs-target="#flush-menu-{{ $key }}"><i class="bi bi-chevron-down"></i></span>
+                    <div class="accordion-collapse collapse" id="flush-menu-{{ $key }}"
+                      data-bs-parent="#menu-accordion">
+                      <div class="children-group">
+                        <ul class="nav flex-column ul-children">
+                          @foreach ($menu['children'] as $c_key => $child)
+                            @if ($child['name'])
+                              <li class="nav-item">
+                                <a class="nav-link" href="{{ $child['url'] }}">{{ $child['name'] }}</a>
+                              </li>
+                            @endif
+                          @endforeach
+                        </ul>
+                      </div>
+                    </div>
                   @endif
                 </div>
-
-                @if (isset($menu['children']) && $menu['children'])
-                  <div class="accordion-collapse collapse" id="flush-menu-{{ $key }}"
-                       data-bs-parent="#menu-accordion">
-                    <div class="children-group">
-                      <ul class="nav flex-column ul-children">
-                        @foreach ($menu['children'] as $c_key => $child)
-                          @if ($child['name'])
-                            <li class="nav-item">
-                              <a class="nav-link" href="{{ $child['url'] }}">{{ $child['name'] }}</a>
-                            </li>
-                          @endif
-                        @endforeach
-                      </ul>
-                    </div>
-                  </div>
-                @endif
-              </div>
-            @endif
-          @endforeach
+              @endif
+            @endforeach
           @endhookupdate
 
         </div>

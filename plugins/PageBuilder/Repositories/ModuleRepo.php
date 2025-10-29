@@ -68,6 +68,7 @@ class ModuleRepo
                     'floor'    => self::languagesFill(''),
                     'products' => [],
                     'title'    => self::languagesFill('محصولات پیشنهادی'),
+                    'title'    => self::languagesFill('محصولات پیشنهادی'),
                     'subtitle' => self::languagesFill(''),
                     'columns'  => 4,
                 ],
@@ -87,6 +88,7 @@ class ModuleRepo
                     'sort'          => 'sales',
                     'floor'         => self::languagesFill(''),
                     'products'      => [],
+                    'title'         => self::languagesFill('محصولات دسته‌بندی'),
                     'title'         => self::languagesFill('محصولات دسته‌بندی'),
                     'columns'       => 4,
                 ],
@@ -148,11 +150,12 @@ class ModuleRepo
                     'style' => [
                         'background_color' => '',
                     ],
-                    'title'    => self::languagesFill('چیدمان افقی چهار تصویر'),
-                    'subtitle' => self::languagesFill('شما می‌توانید زیرعنوان تنظیم کنید'),
+                    'title'    => self::languagesFill('چهار تصویر افقی'),
+                    'subtitle' => self::languagesFill('می‌توانید زیرعنوان تنظیم کنید'),
                     'images'   => [
                         [
                             'image'       => '',
+                            'description' => self::languagesFill('اینجا توضیحات متنی است'),
                             'description' => self::languagesFill('اینجا توضیحات متنی است'),
                             'show'        => true,
                             'link'        => [
@@ -163,14 +166,6 @@ class ModuleRepo
                         [
                             'image'       => '',
                             'description' => self::languagesFill('اینجا توضیحات متنی است'),
-                            'show'        => false,
-                            'link'        => [
-                                'type'  => 'product',
-                                'value' => '',
-                            ],
-                        ],
-                        [
-                            'image'       => '',
                             'description' => self::languagesFill('اینجا توضیحات متنی است'),
                             'show'        => false,
                             'link'        => [
@@ -180,6 +175,17 @@ class ModuleRepo
                         ],
                         [
                             'image'       => '',
+                            'description' => self::languagesFill('اینجا توضیحات متنی است'),
+                            'description' => self::languagesFill('اینجا توضیحات متنی است'),
+                            'show'        => false,
+                            'link'        => [
+                                'type'  => 'product',
+                                'value' => '',
+                            ],
+                        ],
+                        [
+                            'image'       => '',
+                            'description' => self::languagesFill('اینجا توضیحات متنی است'),
                             'description' => self::languagesFill('اینجا توضیحات متنی است'),
                             'show'        => false,
                             'link'        => [
@@ -197,10 +203,11 @@ class ModuleRepo
                 'content' => [
                     'style'          => ['background_color' => ''],
                     'image_position' => 'left',
-                    'title'          => self::languagesFill('چیدمان تصویر و متن چپ و راست'),
-                    'subtitle'       => 'شما می‌توانید زیرعنوان تنظیم کنید',
+                    'title'          => self::languagesFill('چیدمان چپ تصویر راست متن'),
+                    'subtitle'       => 'می‌توانید زیرعنوان تنظیم کنید',
                     'description'    => 'اینجا محتوای توضیحات است',
                     'image'          => '',
+                    'button_text'    => 'متن دکمه',
                     'button_text'    => 'متن دکمه',
                     'button_link'    => '',
                 ],
@@ -213,6 +220,7 @@ class ModuleRepo
                     'style' => [
                         'background_color' => '',
                     ],
+                    'title'         => self::languagesFill('برندهای همکار'),
                     'title'         => self::languagesFill('برندهای همکار'),
                     'brands'        => [],
                     'columns'       => 6,
@@ -245,6 +253,7 @@ class ModuleRepo
                     'floor'      => self::languagesFill(''),
                     'products'   => [],
                     'title'      => self::languagesFill('محصولات برند'),
+                    'title'      => self::languagesFill('محصولات برند'),
                     'subtitle'   => self::languagesFill(''),
                     'columns'    => 4,
                 ],
@@ -259,6 +268,7 @@ class ModuleRepo
                     ],
                     'floor'    => self::languagesFill(''),
                     'products' => [],
+                    'title'    => self::languagesFill('عنوان ماژول'),
                     'title'    => self::languagesFill('عنوان ماژول'),
                     'subtitle' => self::languagesFill(''),
                     'screens'  => [
@@ -276,8 +286,8 @@ class ModuleRepo
                     'style' => [
                         'background_color' => '',
                     ],
-                    'title'    => self::languagesFill('چیدمان تصاویر چند ردیفه'),
-                    'subtitle' => self::languagesFill('زیرعنوان تصاویر چند ردیفه'),
+                    'title'    => self::languagesFill('چیدمان چند ردیفه تصاویر'),
+                    'subtitle' => self::languagesFill('زیرعنوان چند ردیفه تصاویر'),
                     'images'   => [],
                 ],
             ],
@@ -289,6 +299,7 @@ class ModuleRepo
                     'style' => [
                         'background_color' => '',
                     ],
+                    'title'          => self::languagesFill('فهرست تصویر و متن'),
                     'title'          => self::languagesFill('فهرست تصویر و متن'),
                     'imageTextItems' => [],
                     'columns'        => 4,
@@ -314,11 +325,12 @@ class ModuleRepo
                     'style' => [
                         'background_color' => '',
                     ],
-                    'title'    => self::languagesFill('چیدمان چهار تصویر نسخه پیشرفته'),
-                    'subtitle' => self::languagesFill('زیرعنوان چیدمان چهار تصویر نسخه پیشرفته'),
+                    'title'    => self::languagesFill('چهار تصویر نسخه پیشرفته'),
+                    'subtitle' => self::languagesFill('زیرعنوان چهار تصویر نسخه پیشرفته'),
                     'images'   => [
                         [
                             'image'       => '',
+                            'description' => self::languagesFill('اینجا توضیحات متنی است'),
                             'description' => self::languagesFill('اینجا توضیحات متنی است'),
                             'show'        => true,
                             'link'        => [
@@ -329,14 +341,6 @@ class ModuleRepo
                         [
                             'image'       => '',
                             'description' => self::languagesFill('اینجا توضیحات متنی است'),
-                            'show'        => false,
-                            'link'        => [
-                                'type'  => 'product',
-                                'value' => '',
-                            ],
-                        ],
-                        [
-                            'image'       => '',
                             'description' => self::languagesFill('اینجا توضیحات متنی است'),
                             'show'        => false,
                             'link'        => [
@@ -346,6 +350,17 @@ class ModuleRepo
                         ],
                         [
                             'image'       => '',
+                            'description' => self::languagesFill('اینجا توضیحات متنی است'),
+                            'description' => self::languagesFill('اینجا توضیحات متنی است'),
+                            'show'        => false,
+                            'link'        => [
+                                'type'  => 'product',
+                                'value' => '',
+                            ],
+                        ],
+                        [
+                            'image'       => '',
+                            'description' => self::languagesFill('اینجا توضیحات متنی است'),
                             'description' => self::languagesFill('اینجا توضیحات متنی است'),
                             'show'        => false,
                             'link'        => [
@@ -366,6 +381,8 @@ class ModuleRepo
                     ],
                     'title'    => self::languagesFill('ماژول مقاله'),
                     'subtitle' => self::languagesFill('زیرعنوان مقاله'),
+                    'title'    => self::languagesFill('ماژول مقاله'),
+                    'subtitle' => self::languagesFill('زیرعنوان مقاله'),
                     'articles' => [],
                     'columns'  => 4,
                 ],
@@ -381,6 +398,8 @@ class ModuleRepo
                     'videoType'   => 'local',
                     'videoUrl'    => '',
                     'coverImage'  => self::languagesFill(''),
+                    'title'       => self::languagesFill('عنوان ویدیو'),
+                    'description' => self::languagesFill('توضیحات ویدیو'),
                     'title'       => self::languagesFill('عنوان ویدیو'),
                     'description' => self::languagesFill('توضیحات ویدیو'),
                     'autoplay'    => false,

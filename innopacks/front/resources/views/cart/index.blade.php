@@ -63,7 +63,7 @@
                           <template v-if="item.variant_label">
                             - @{{ item.variant_label }}
                           </template>
-                          <!-- 显示选项值 -->
+                          <!-- نمایش مقادیر گزینه‌ها -->
                           <template v-if="item.options && item.options.length">
                             <div class="product-options mt-2">
                               <div v-for="option in item.options" :key="option.option_id" class="option-item">

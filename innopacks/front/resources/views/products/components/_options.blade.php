@@ -21,7 +21,7 @@
           </label>
           
           @if($optionType === 'select')
-            {{-- 下拉选择框 --}}
+            {{-- کادر انتخاب کشویی --}}
             <select class="form-select option-select mt-2" 
                     name="option_{{ $option->id }}" 
                     data-option-id="{{ $option->id }}">
@@ -49,7 +49,7 @@
             </select>
             
           @elseif($optionType === 'radio')
-            {{-- 单选按钮 --}}
+            {{-- دکمه‌های رادیویی --}}
             <div class="option-values radio-group mt-2 d-flex flex-wrap gap-2">
               @foreach($productOptionValues as $productOptionValue)
                 @php
@@ -90,7 +90,7 @@
             </div>
             
           @elseif($optionType === 'checkbox')
-            {{-- 多选复选框 --}}
+            {{-- چک‌باکس‌های چندگانه --}}
             <div class="option-values checkbox-group mt-2 d-flex flex-wrap gap-2">
               @foreach($productOptionValues as $productOptionValue)
                 @php
@@ -131,7 +131,7 @@
             </div>
           @endif
           
-          {{-- 选项描述放在选项值列表下方 --}}
+          {{-- توضیحات گزینه در زیر لیست مقادیر گزینه قرار می‌گیرد --}}
           @if($option->description && is_array($option->description))
             <div class="option-description mt-3">
               <small class="text-muted">
@@ -143,7 +143,7 @@
       @endif
     @endforeach
     
-    <!-- 当前选择和总价显示区域 -->
+    <!-- منطقه نمایش انتخاب فعلی و قیمت کل -->
     <div class="current-selection-summary mb-4" style="display: none;">
       <div class="card">
         <div class="card-body p-3">
@@ -151,7 +151,7 @@
             <i class="fas fa-check-circle text-success me-2"></i>{{ __('front/product.current_selection') }}
           </h6>
           <div class="selected-options-list mb-3">
-            <!-- 动态显示选中的选项 -->
+            <!-- نمایش پویای گزینه‌های انتخاب شده -->
           </div>
           <div class="total-price-display">
             <div class="row align-items-center">
@@ -175,24 +175,24 @@
   @push('footer')
   <script>
     $(document).ready(function() {
-      // 获取基础价格 - 优先从当前SKU获取，否则使用产品默认价格
+      // دریافت قیمت پایه - اولویت با دریافت از SKU فعلی، در غیر این صورت از قیمت پیش‌فرض محصول استفاده می‌شود
       let basePrice = {{ $sku['price'] ?? 0 }};
       
-      // 全局函数，用于更新基础价格（规格切换时调用）
+      // تابع سراسری برای به‌روزرسانی قیمت پایه (هنگام تغییر مشخصات فراخوانی می‌شود)
       window.updateBasePrice = function(newPrice) {
         basePrice = parseFloat(newPrice);
-        updateProductPrice(); // 重新计算总价
+        updateProductPrice(); // محاسبه مجدد قیمت کل
       };
       
-      // 存储选中的选项
+      // ذخیره گزینه‌های انتخاب شده
       let selectedOptions = {};
       
-      // 全局验证函数，供外部调用
+      // تابع اعتبارسنجی سراسری برای فراخوانی خارجی
       window.validateRequiredOptions = function() {
         return validateRequiredOptions();
       };
       
-      // 下拉选择框事件
+      // رویداد کادر انتخاب کشویی
       $('.option-select').change(function() {
         const $this = $(this);
         const optionId = $this.data('option-id');
@@ -209,28 +209,28 @@
         validateRequiredOptions();
       });
       
-      // 单选按钮事件 - 支持点击整个选项区域和标签文字
+      // رویداد دکمه رادیویی - پشتیبانی از کلیک روی کل منطقه گزینه و متن برچسب
       $('.option-radio-item, .option-radio-item label').on('click', function(e) {
-        e.preventDefault(); // 阻止默认的label点击行为
-        e.stopPropagation(); // 阻止事件冒泡
+        e.preventDefault(); // جلوگیری از رفتار پیش‌فرض کلیک برچسب
+        e.stopPropagation(); // جلوگیری از انتشار رویداد
         
         const $item = $(this).hasClass('option-radio-item') ? $(this) : $(this).closest('.option-radio-item');
         const $input = $item.find('input[type="radio"]');
         
-        // 检查是否禁用（缺货）
+        // بررسی غیرفعال بودن (ناموجود)
         if ($input.prop('disabled') || $item.hasClass('out-of-stock')) {
-          return false; // 如果禁用则不执行任何操作
+          return false; // اگر غیرفعال باشد هیچ عملیاتی انجام نمی‌دهد
         }
         
         const optionId = $input.data('option-id');
         const optionValue = $input.val();
         const priceAdjustment = parseFloat($input.data('price-adjustment')) || 0;
         
-        // 取消同组其他选项的选中状态
+        // لغو حالت انتخاب سایر گزینه‌های همان گروه
         $item.siblings('.option-radio-item').removeClass('selected');
         $item.addClass('selected');
         
-        // 设置单选框选中
+        // تنظیم انتخاب دکمه رادیویی
         $input.prop('checked', true);
         
         selectedOptions[optionId] = [optionValue];
@@ -239,29 +239,29 @@
         validateRequiredOptions();
       });
       
-      // 多选复选框事件 - 支持点击整个选项区域和标签文字
+      // رویداد چک‌باکس چندگانه - پشتیبانی از کلیک روی کل منطقه گزینه و متن برچسب
       $('.option-checkbox-item, .option-checkbox-item label').on('click', function(e) {
-        e.preventDefault(); // 阻止默认的label点击行为
-        e.stopPropagation(); // 阻止事件冒泡
+        e.preventDefault(); // جلوگیری از رفتار پیش‌فرض کلیک برچسب
+        e.stopPropagation(); // جلوگیری از انتشار رویداد
         
         const $item = $(this).hasClass('option-checkbox-item') ? $(this) : $(this).closest('.option-checkbox-item');
         const $input = $item.find('input[type="checkbox"]');
         
-        // 检查是否禁用（缺货）
+        // بررسی غیرفعال بودن (ناموجود)
         if ($input.prop('disabled') || $item.hasClass('out-of-stock')) {
-          return false; // 如果禁用则不执行任何操作
+          return false; // اگر غیرفعال باشد هیچ عملیاتی انجام نمی‌دهد
         }
         
         const optionId = $input.data('option-id');
         const optionValue = $input.val();
         const priceAdjustment = parseFloat($input.data('price-adjustment')) || 0;
         
-        // 切换选中状态
+        // تغییر حالت انتخاب
         if ($item.hasClass('selected')) {
           $item.removeClass('selected');
           $input.prop('checked', false);
           
-          // 从选中选项中移除
+          // حذف از گزینه‌های انتخاب شده
           if (selectedOptions[optionId]) {
             selectedOptions[optionId] = selectedOptions[optionId].filter(id => id !== optionValue);
             if (selectedOptions[optionId].length === 0) {
@@ -272,7 +272,7 @@
           $item.addClass('selected');
           $input.prop('checked', true);
           
-          // 添加到选中选项
+          // اضافه کردن به گزینه‌های انتخاب شده
           if (!selectedOptions[optionId]) {
             selectedOptions[optionId] = [];
           }
@@ -283,11 +283,11 @@
         validateRequiredOptions();
       });
       
-      // 更新产品价格和选择显示
+      // به‌روزرسانی قیمت محصول و نمایش انتخاب
       function updateProductPrice() {
         let totalAdjustment = 0;
         
-        // 计算下拉选择框的价格调整
+        // محاسبه تعدیل قیمت کادر انتخاب کشویی
         $('.option-select').each(function() {
           const selectedOption = $(this).find('option:selected');
           if (selectedOption.val()) {
@@ -295,28 +295,28 @@
           }
         });
         
-        // 计算单选按钮的价格调整
+        // محاسبه تعدیل قیمت دکمه رادیویی
         $('.option-radio-item input[type="radio"]:checked').each(function() {
           totalAdjustment += parseFloat($(this).data('price-adjustment')) || 0;
         });
         
-        // 计算多选复选框的价格调整
+        // محاسبه تعدیل قیمت چک‌باکس چندگانه
         $('.option-checkbox-item input[type="checkbox"]:checked').each(function() {
           totalAdjustment += parseFloat($(this).data('price-adjustment')) || 0;
         });
         
         const finalPrice = basePrice + totalAdjustment;
         
-        // 使用全局货币格式化函数
+        // استفاده از تابع قالب‌بندی ارز سراسری
         const formattedPrice = window.inno.formatCurrency(finalPrice);
         $('.product-price .price').text(formattedPrice);
         $('.current-total-price').text(formattedPrice);
         
-        // 更新当前选择显示
+        // به‌روزرسانی نمایش انتخاب فعلی
         updateCurrentSelectionDisplay();
       }
       
-      // 更新当前选择显示
+      // به‌روزرسانی نمایش انتخاب فعلی
       function updateCurrentSelectionDisplay() {
         const $selectionList = $('.selected-options-list');
         const $summaryCard = $('.current-selection-summary');
@@ -324,7 +324,7 @@
         $selectionList.empty();
         let hasSelections = false;
         
-        // 显示下拉选择框的选择
+        // نمایش انتخاب کادر انتخاب کشویی
         $('.option-select').each(function() {
           const $select = $(this);
           const selectedOption = $select.find('option:selected');
@@ -345,7 +345,7 @@
           }
         });
         
-        // 显示单选按钮的选择
+        // نمایش انتخاب دکمه رادیویی
         $('.option-radio-item input[type="radio"]:checked').each(function() {
           const $input = $(this);
           const optionName = $input.closest('.option-group').find('.option-label').text().trim().replace('*', '');
@@ -364,7 +364,7 @@
           `);
         });
         
-        // 显示多选复选框的选择
+        // نمایش انتخاب چک‌باکس چندگانه
         $('.option-checkbox-item input[type="checkbox"]:checked').each(function() {
           const $input = $(this);
           const optionName = $input.closest('.option-group').find('.option-label').text().trim().replace('*', '');
@@ -383,7 +383,7 @@
           `);
         });
         
-        // 显示或隐藏选择摘要卡片
+        // نمایش یا مخفی کردن کارت خلاصه انتخاب
         if (hasSelections) {
           $summaryCard.show();
         } else {
@@ -391,7 +391,7 @@
         }
       }
       
-      // 验证必选项
+      // اعتبارسنجی گزینه‌های اجباری
       function validateRequiredOptions() {
         let allValid = true;
         let hasRequiredOptions = false;
@@ -404,7 +404,7 @@
           const isRequired = $group.data('required');
           const optionName = $group.find('.option-label').text().trim().replace('*', '');
           
-          // 移除之前的错误消息
+          // حذف پیام‌های خطای قبلی
           $group.find('.option-error-message').remove();
           
           if (isRequired) {
@@ -427,42 +427,42 @@
               $group.addClass('has-error');
               missingOptions.push(optionName);
               
-              // 添加错误提示消息
+              // اضافه کردن پیام خطای راهنما
               const errorMessage = `<div class="option-error-message">
                 <i class="bi bi-exclamation-circle"></i>
-                请选择 ${optionName}
+                لطفاً ${optionName} را انتخاب کنید
               </div>`;
               $group.append(errorMessage);
             } else {
               $group.removeClass('has-error');
             }
           } else {
-            // 非必选项移除错误状态
+            // حذف حالت خطا از گزینه‌های غیراجباری
             $group.removeClass('has-error');
           }
         });
         
-        // 如果没有必选项，则总是返回true
+        // اگر گزینه اجباری وجود نداشته باشد، همیشه true برمی‌گرداند
         if (!hasRequiredOptions) {
           allValid = true;
         }
         
-        // 更新购买按钮状态和提示
+        // به‌روزرسانی وضعیت دکمه خرید و راهنما
         if (allValid) {
           $('.add-cart, .buy-now').removeClass('disabled').attr('title', '');
         } else {
-          $('.add-cart, .buy-now').addClass('disabled').attr('title', `请先选择：${missingOptions.join('、')}`);
+          $('.add-cart, .buy-now').addClass('disabled').attr('title', `لطفاً ابتدا انتخاب کنید: ${missingOptions.join('، ')}`);
         }
         
         return allValid;
       }
       
-      // 注意：加入购物车的事件处理已在show.blade.php中定义，这里不再重复定义
+      // توجه: مدیریت رویداد افزودن به سبد خرید در show.blade.php تعریف شده است، اینجا دوباره تعریف نمی‌شود
     });
   </script>
   
   <style>
-    /* 移动端选项优化样式 */
+    /* استایل‌های بهینه‌سازی گزینه موبایل */
     .mobile-option-item {
       width: 120px;
       min-height: 60px;
@@ -479,7 +479,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      flex: 0 0 auto; /* 防止flex项目收缩 */
+      flex: 0 0 auto; /* جلوگیری از کوچک شدن آیتم‌های flex */
     }
     
     .mobile-option-item:hover {
@@ -547,7 +547,7 @@
       border-radius: 4px;
     }
     
-    /* 响应式调整 */
+    /* تنظیمات واکنش‌گرا */
      @media (max-width: 576px) {
        .radio-group, .checkbox-group {
          gap: 6px !important;
@@ -596,7 +596,7 @@
       }
     }
     
-    /* 错误状态样式 */
+    /* استایل‌های حالت خطا */
     .option-group.has-error .mobile-option-item {
       border-color: #dc3545;
     }

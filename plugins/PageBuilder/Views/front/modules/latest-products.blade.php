@@ -27,7 +27,7 @@
           <div class="module-category-empty">
             <div class="module-category-empty-text">
               <i class="bi bi-collection"></i>
-              <span>暂无商品,请配置分类</span>
+              <span>محصولی موجود نیست، لطفاً دسته‌بندی را پیکربندی کنید</span>
             </div>
           </div>
         @endif

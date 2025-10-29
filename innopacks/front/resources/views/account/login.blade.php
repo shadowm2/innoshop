@@ -41,11 +41,10 @@
       <div class="otp-section">
         <div class="login-title">{{ __('front/login.login_with_phone') }}</div>
         <div class="form-group mb-3">
-          <input id="otp_phone" type="text" class="form-control" name="phone"
-            placeholder="{{ __('front/login.phone') }}" />
+          <iwwwwwnput id="otp_phone" type="text" class="form-control" name="phone" placeholder="{{ __('front/login.phone') }}"/>
         </div>
         <div class="form-group mb-3">
-          <input id="otp_code" type="text" class="form-control" placeholder="{{ __('front/login.code') }}" />
+          <input id="otp_code" type="text" class="form-control" placeholder="{{ __('front/login.code') }}"/>
           <button id="btn_request_otp" class="btn btn-outline-primary">{{ __('front/login.request_code') }}</button>
           <button id="btn_verify_otp" class="btn btn-primary">{{ __('front/login.verify_code') }}</button>
         </div>
@@ -97,71 +96,46 @@
   </script>
   <script>
     // OTP handlers
-    $('#btn_request_otp').on('click', function(e) {
+    $('#btn_request_otp').on('click', function (e) {
       e.preventDefault();
       const phone = $('#otp_phone').val();
       if (!phone) {
-        layer.msg('{{ __('front/login.phone_required') }}', {
-          icon: 2
-        });
+        layer.msg('{{ __('front/login.phone_required') }}', {icon: 2});
         return;
       }
-      layer.load(2, {
-        shade: [0.3, '#fff']
-      });
+      layer.load(2, {shade: [0.3, '#fff']});
       const $btn = $(this);
-      axios.post('{{ front_route('login.otp.request') }}', {
-        phone: phone
-      }).then(function(res) {
+      axios.post('{{ front_route('login.otp.request') }}', {phone: phone}).then(function (res) {
         if (res.success) {
-          layer.msg(res.message, {
-            icon: 1
-          });
+          layer.msg(res.message, {icon: 1});
           startOtpCooldown($btn, 60);
         } else {
-          layer.msg(res.message, {
-            icon: 2
-          });
+          layer.msg(res.message, {icon: 2});
         }
-      }).finally(function() {
-        layer.closeAll('loading')
-      });
+      }).finally(function () { layer.closeAll('loading') });
     });
 
-    $('#btn_verify_otp').on('click', function(e) {
+    $('#btn_verify_otp').on('click', function (e) {
       e.preventDefault();
       const phone = $('#otp_phone').val();
       const code = $('#otp_code').val();
       if (!phone || !code) {
-        layer.msg('{{ __('front/login.phone_and_code_required') }}', {
-          icon: 2
-        });
+        layer.msg('{{ __('front/login.phone_and_code_required') }}', {icon: 2});
         return;
       }
-      layer.load(2, {
-        shade: [0.3, '#fff']
-      });
-      axios.post('{{ front_route('login.otp.verify') }}', {
-        phone: phone,
-        code: code
-      }).then(function(res) {
+      layer.load(2, {shade: [0.3, '#fff']});
+      axios.post('{{ front_route('login.otp.verify') }}', {phone: phone, code: code}).then(function (res) {
         if (res.success) {
-          layer.msg(res.message, {
-            icon: 1
-          });
+          layer.msg(res.message, {icon: 1});
           if (res.data.redirect_uri) {
             location.href = res.data.redirect_uri;
           } else {
             location.href = '{{ front_route('account.index') }}';
           }
         } else {
-          layer.msg(res.message, {
-            icon: 2
-          });
+          layer.msg(res.message, {icon: 2});
         }
-      }).finally(function() {
-        layer.closeAll('loading')
-      });
+      }).finally(function () { layer.closeAll('loading') });
     });
 
     function startOtpCooldown($btn, seconds) {
@@ -169,7 +143,7 @@
       const original = $btn.text();
       let remaining = seconds;
       $btn.text(original + ' (' + remaining + 's)');
-      const t = setInterval(function() {
+      const t = setInterval(function () {
         remaining--;
         if (remaining <= 0) {
           clearInterval(t);

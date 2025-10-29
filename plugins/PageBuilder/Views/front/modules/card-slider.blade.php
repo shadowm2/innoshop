@@ -1,5 +1,5 @@
 @php
-  // 检查是否有商品数据
+  // بررسی وجود داده‌های محصول
   $hasProducts = false;
   if (!empty($content['screens'])) {
     foreach ($content['screens'] as $screen) {
@@ -10,7 +10,7 @@
     }
   }
   
-  // 检查是否在设计模式下
+  // بررسی حالت طراحی
   $isDesignMode = request()->has('design') && request()->get('design') == 1;
 @endphp
 
@@ -18,13 +18,23 @@
   <section class="module-line">
     <div class="module-product">
       <div class="{{ $content['width_class'] ?? 'container' }}">
-        @if (!empty($content['title']))
-          <div class="module-title-wrap text-center">
-            <div class="module-title">{{ $content['title'][front_locale_code()] ?? '' }}</div>
-            @if (!empty($content['subtitle']))
-              <div class="module-sub-title">{{ $content['subtitle'][front_locale_code()] ?? '' }}</div>
-            @endif
-          </div>
+        @if(isset($content['title']))
+          @php
+            $titleValue = is_array($content['title']) ? ($content['title'][front_locale_code()] ?? array_first($content['title'])) : $content['title'];
+          @endphp
+          @if(!empty($titleValue))
+            <div class="module-title-wrap text-center">
+              <div class="module-title">{{ $titleValue }}</div>
+              @if(isset($content['subtitle']))
+                @php
+                  $subtitleValue = is_array($content['subtitle']) ? ($content['subtitle'][front_locale_code()] ?? array_first($content['subtitle'])) : $content['subtitle'];
+                @endphp
+                @if(!empty($subtitleValue))
+                  <div class="module-sub-title">{{ $subtitleValue }}</div>
+                @endif
+              @endif
+            </div>
+          @endif
         @endif
 
         <div class="card-slider-container position-relative overflow-hidden">
@@ -118,7 +128,7 @@
             updateSlider();
           });
 
-          // 根据 autoplay 设置决定是否自动轮播
+          // بر اساس تنظیمات autoplay تصمیم‌گیری برای چرخش خودکار
           @if (!empty($content['autoplay']) && $content['autoplay'])
             startAutoplay();
           @endif
@@ -133,17 +143,27 @@
     });
   </script>
 @elseif ($isDesignMode)
-  {{-- 设计模式下的空数据提示 --}}
+  {{-- پیام خالی بودن داده‌ها در حالت طراحی --}}
   <section class="module-line">
     <div class="module-product">
       <div class="{{ $content['width_class'] ?? 'container' }}">
-        @if (!empty($content['title']))
-          <div class="module-title-wrap text-center">
-            <div class="module-title">{{ $content['title'][front_locale_code()] ?? '' }}</div>
-            @if (!empty($content['subtitle']))
-              <div class="module-sub-title">{{ $content['subtitle'][front_locale_code()] ?? '' }}</div>
-            @endif
-          </div>
+        @if(isset($content['title']))
+          @php
+            $titleValue = is_array($content['title']) ? ($content['title'][front_locale_code()] ?? array_first($content['title'])) : $content['title'];
+          @endphp
+          @if(!empty($titleValue))
+            <div class="module-title-wrap text-center">
+              <div class="module-title">{{ $titleValue }}</div>
+              @if(isset($content['subtitle']))
+                @php
+                  $subtitleValue = is_array($content['subtitle']) ? ($content['subtitle'][front_locale_code()] ?? array_first($content['subtitle'])) : $content['subtitle'];
+                @endphp
+                @if(!empty($subtitleValue))
+                  <div class="module-sub-title">{{ $subtitleValue }}</div>
+                @endif
+              @endif
+            </div>
+          @endif
         @endif
         
         <div class="text-center py-5">
@@ -152,8 +172,8 @@
               <i class="el-icon-shopping-cart-2" style="font-size: 48px; color: #dee2e6;"></i>
             </div>
             <div>
-              <p class="text-muted mb-1">暂无商品数据</p>
-              <p class="text-muted small">请在后台编辑器中添加商品</p>
+              <p class="text-muted mb-1">هیچ داده محصولی موجود نیست</p>
+              <p class="text-muted small">لطفاً در ویرایشگر پنل مدیریت محصولات اضافه کنید</p>
             </div>
           </div>
         </div>

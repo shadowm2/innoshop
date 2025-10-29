@@ -2,13 +2,23 @@
   <section class="module-line">
     <div class="module-category">
       <div class="{{ pb_get_width_class($content['width'] ?? 'wide') }}">
-        @if (!empty($content['title']))
-          <div class="module-title-wrap text-center">
-            <div class="module-title">{{ $content['title'] ?? '' }}</div>
-            @if (!empty($content['subtitle']))
-              <div class="module-sub-title">{{ $content['subtitle'] ?? '' }}</div>
-            @endif
-          </div>
+        @if(isset($content['title']))
+          @php
+            $titleValue = is_array($content['title']) ? ($content['title'][front_locale_code()] ?? array_first($content['title'])) : $content['title'];
+          @endphp
+          @if(!empty($titleValue))
+            <div class="module-title-wrap text-center">
+              <div class="module-title">{{ $titleValue }}</div>
+              @if(isset($content['subtitle']))
+                @php
+                  $subtitleValue = is_array($content['subtitle']) ? ($content['subtitle'][front_locale_code()] ?? array_first($content['subtitle'])) : $content['subtitle'];
+                @endphp
+                @if(!empty($subtitleValue))
+                  <div class="module-sub-title">{{ $subtitleValue }}</div>
+                @endif
+              @endif
+            </div>
+          @endif
         @endif
 
         @if (!empty($content['products']) && $content['products']->count() > 0)
@@ -27,7 +37,7 @@
           <div class="module-category-empty">
             <div class="module-category-empty-text">
               <i class="bi bi-collection"></i>
-              <span>暂无商品,请配置分类</span>
+              <span>هیچ محصولی موجود نیست، لطفاً دسته‌بندی را پیکربندی کنید</span>
             </div>
           </div>
         @endif

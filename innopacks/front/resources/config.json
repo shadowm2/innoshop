@@ -1,17 +1,17 @@
 {
     "code": "default",
     "name": {
-        "zh-cn": "InnoShop 默认模板",
+        "zh-cn": "قالب پیش‌فرض آژانس تبلیغاتی روما",
         "en": "InnoShop Default Theme"
     },
     "description": {
-        "zh-cn": "InnoShop 默认模板",
+        "zh-cn": "قالب پیش‌فرض آژانس تبلیغاتی روما",
         "en": "InnoShop Default Theme"
     },
     "version": "v1.0.0",
     "icon": "/images/logo.png",
     "author": {
-        "name": "InnoShop",
+        "name": "آژانس تبلیغاتی روما",
         "email": "team@innoshop.com"
     }
 }

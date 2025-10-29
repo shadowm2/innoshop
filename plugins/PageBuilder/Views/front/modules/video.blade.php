@@ -1,4 +1,4 @@
-{{-- 视频模块前台展示模板 --}}
+{{-- ماژول ویدیو قالب نمایش جلو --}}
 @php
   $locale = locale_code();
 @endphp
@@ -6,20 +6,26 @@
   <div class="module-content">
     <div class="video-container" style="width: {{ $content['width'] ?? 'wide' === 'narrow' ? '800px' : ($content['width'] === 'full' ? '100%' : '1200px') }}; margin: 0 auto;">
       
-      {{-- 模块标题 --}}
-      @if(!empty($content['title'][$locale] ?? $content['title']))
-        <div class="video-header">
-          <h2 class="video-title">{{ $content['title'][$locale] ?? $content['title'] }}</h2>
-          @if(!empty($content['description'][$locale] ?? $content['description']))
-            <p class="video-description">{{ $content['description'][$locale] ?? $content['description'] }}</p>
-          @endif
-        </div>
+      {{-- عنوان ماژول --}}
+      @if(isset($content['title']))
+        @php
+          $titleValue = is_array($content['title']) ? ($content['title'][$locale] ?? array_first($content['title'])) : $content['title'];
+          $descValue = isset($content['description']) ? (is_array($content['description']) ? ($content['description'][$locale] ?? array_first($content['description'])) : $content['description']) : null;
+        @endphp
+        @if(!empty($titleValue))
+          <div class="video-header">
+            <h2 class="video-title">{{ $titleValue }}</h2>
+            @if(!empty($descValue))
+              <p class="video-description">{{ $descValue }}</p>
+            @endif
+          </div>
+        @endif
       @endif
 
-      {{-- 视频播放器 --}}
+      {{-- پخش کننده ویدیو --}}
       <div class="video-player-wrapper">
         @if($content['videoType'] === 'local' && !empty($content['videoUrl']))
-          {{-- 本地视频 --}}
+          {{-- ویدیو محلی --}}
           <video 
             class="video-player"
             @if($content['autoplay']) autoplay @endif
@@ -32,11 +38,11 @@
             <source src="{{ $content['videoUrl'] }}" type="video/mp4">
             <source src="{{ $content['videoUrl'] }}" type="video/webm">
             <source src="{{ $content['videoUrl'] }}" type="video/ogg">
-            您的浏览器不支持视频播放。
+            مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.
           </video>
           
         @elseif($content['videoType'] === 'youtube' && !empty($content['videoUrl']))
-          {{-- YouTube视频 --}}
+          {{-- ویدیو یوتیوب --}}
           @php
             $youtubeId = '';
             if (preg_match('/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/', $content['videoUrl'], $matches)) {
@@ -64,12 +70,12 @@
             </div>
           @else
             <div class="video-error">
-              <p>YouTube视频链接格式不正确</p>
+              <p>فرمت لینک ویدیو یوتیوب صحیح نیست</p>
             </div>
           @endif
           
         @elseif($content['videoType'] === 'vimeo' && !empty($content['videoUrl']))
-          {{-- Vimeo视频 --}}
+          {{-- ویدیو ویمیو --}}
           @php
             $vimeoId = '';
             if (preg_match('/vimeo\.com\/(\d+)/', $content['videoUrl'], $matches)) {
@@ -94,17 +100,17 @@
             </div>
           @else
             <div class="video-error">
-              <p>Vimeo视频链接格式不正确</p>
+              <p>فرمت لینک ویدیو ویمیو صحیح نیست</p>
             </div>
           @endif
           
         @else
-          {{-- 无视频或封面图片 --}}
+          {{-- بدون ویدیو یا تصویر پوشش --}}
           @if(!empty($content['coverImage'][$locale] ?? $content['coverImage']))
             <div class="video-placeholder" style="position: relative; border-radius: 8px; overflow: hidden;">
               <img 
                 src="{{ $content['coverImage'][$locale] ?? ($content['coverImage'] ?? image_resize()) }}" 
-                alt="视频封面"
+                alt="پوشش ویدیو"
                 style="width: 100%; height: auto; display: block;"
               >
               <div class="play-button-overlay" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.7); border-radius: 50%; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
@@ -114,7 +120,7 @@
           @else
             <div class="video-placeholder" style="background: #f5f5f5; border-radius: 8px; padding: 60px 20px; text-align: center; color: #999;">
               <i class="bi bi-camera-video" style="font-size: 48px; margin-bottom: 16px; display: block;"></i>
-              <p>请添加视频内容</p>
+              <p>لطفاً محتوای ویدیو اضافه کنید</p>
             </div>
           @endif
         @endif
