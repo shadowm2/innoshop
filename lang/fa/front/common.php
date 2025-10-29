@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) Since 2024 InnoShop - All Rights Reserved
  *
@@ -57,4 +58,5 @@ return [
     'updated_success'   => 'با موفقیت به‌روزرسانی شد',
     'view'              => 'مشاهده',
     'yes'               => 'بله',
+    'error'             => 'خطا',
 ];
