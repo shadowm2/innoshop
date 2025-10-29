@@ -1,11 +1,11 @@
 {
     "code": "fixed_shipping",
     "name": {
-        "zh-cn": "固定运费",
+        "zh-cn": "ارسال با هزینه ثابت",
         "en": "Fixed Shipping"
     },
     "description": {
-        "zh-cn": "固定运费",
+        "zh-cn": "ارسال با هزینه ثابت",
         "en": "Fixed Shipping"
     },
     "type": "shipping",
