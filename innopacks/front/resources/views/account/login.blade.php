@@ -41,7 +41,7 @@
       <div class="otp-section">
         <div class="login-title">{{ __('front/login.login_with_phone') }}</div>
         <div class="form-group mb-3">
-          <iwwwwwnput id="otp_phone" type="text" class="form-control" name="phone" placeholder="{{ __('front/login.phone') }}"/>
+          <input id="otp_phone" type="text" class="form-control" name="phone" placeholder="{{ __('front/login.phone') }}"/>
         </div>
         <div class="form-group mb-3">
           <input id="otp_code" type="text" class="form-control" placeholder="{{ __('front/login.code') }}"/>

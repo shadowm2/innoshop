@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) Since 2024 InnoShop - All Rights Reserved
  *
@@ -425,7 +426,7 @@ return new class extends Migration
             $table->bigIncrements('id')->comment('ID');
             $table->integer('order_id')->index('ot_order_id')->comment('Order ID');
             $table->string('code')->comment('Code');
-            $table->decimal('value')->comment('Value');
+            $table->decimal('value', 12)->comment('Value');
             $table->string('title')->comment('Name');
             $table->json('reference')->nullable()->comment('Reference Information');
             $table->timestamps();
