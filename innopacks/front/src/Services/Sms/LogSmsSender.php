@@ -9,13 +9,11 @@ use Illuminate\Support\Facades\Http;
 class LogSmsSender implements SmsSenderInterface
 {
 
-    private $from, $username, $password, $isFlash, $api, $templates;
+    private $username, $password, $api, $templates;
     function configure()
     {
-        // $this->from     = config('payamoon.from');
         $this->username = config('payamoon.username');
         $this->password = config('payamoon.password');
-        // $this->isFlash  = config('payamoon.isFlash');
         $this->api      = config('payamoon.api');
 
         $templates = config('payamoon.templates');
@@ -31,12 +29,19 @@ class LogSmsSender implements SmsSenderInterface
         ];
     }
 
+    public function configureMissing(): bool
+    {
+        if (!$this->username || !$this->password || !$this->api) {
+            $this->configure();
+            return true;
+        }
+        return false;
+    }
+
 
     public function send($to, $text): mixed
     {
-        if (!$this->from || !$this->username || !$this->password || !$this->isFlash || !$this->api) {
-            $this->configure();
-        }
+
 
         $sendSMSUrl = $this->api . "/SendSMS/SendSMS";
         $data = array_merge($this->getCommonData(), [
@@ -52,14 +57,12 @@ class LogSmsSender implements SmsSenderInterface
 
     public function sendSMSTemplate($templateName, $to, $params): mixed
     {
-        if (!$this->from || !$this->username || !$this->password || !$this->isFlash || !$this->api) {
-            $this->configure();
-        }
-        
+        $this->configureMissing();
+
         if (!$this->templates->has($templateName)) {
             throw new Exception("پترن پایامون " . $templateName . " یافت نشد");
         }
-        $template = $templateCode = $this->templates->get($templateName);            
+        $template = $templateCode = $this->templates->get($templateName);
         $templateSmsUrl = $this->api . "/SendSMS/BaseServiceNumber";
 
         $data = array_merge($this->getCommonData(), [
