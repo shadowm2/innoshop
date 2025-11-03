@@ -32,9 +32,9 @@ class OtpController extends Controller
 
             // Rate limit: allow one send per 60 seconds per phone
             $lastKey = "sms_otp_last:{$phone}";
-            if (Cache::has($lastKey)) {
-                return json_fail(front_trans('login.otp_sent_recently'));
-            }
+            // if (Cache::has($lastKey)) {
+            //     return json_fail(front_trans('login.otp_sent_recently'));
+            // }
 
             $code = $this->generateCode();
             $key  = "sms_otp:{$phone}";
@@ -43,9 +43,10 @@ class OtpController extends Controller
             Cache::put($key, $code, now()->addMinutes(5));
             Cache::put($lastKey, true, now()->addSeconds(60));
 
-            $message = str_replace(['{code}'], [$code], front_trans('login.otp_message'));
+            // $message = str_replace(['{code}'], [$code], front_trans('login.otp_message'));
 
-            $this->smsSender->send($phone, $message);
+            Log::info("GENERATE CODE FOR PHONE $phone: $code");
+            $this->smsSender->sendSMSTemplate('auth-code', $phone, [$code]);
 
             return json_success(front_trans('login.otp_sent'));
         } catch (Exception $e) {

@@ -11,5 +11,6 @@ interface SmsSenderInterface
      * @param string $message
      * @return bool
      */
-    public function send(string $phone, string $message): bool;
+    public function send(string $phone, string $message): mixed;
+    public function sendSMSTemplate(string $template, string $to, array $params): mixed;
 }
