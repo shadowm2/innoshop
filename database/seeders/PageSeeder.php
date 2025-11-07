@@ -269,7 +269,7 @@ class PageSeeder extends Seeder
       ],
       [
         'page_id'          => 1,
-        'locale'           => 'en',
+        'locale'           => 'fa',
         'title'            => 'محصولات',
         'content'          => 'صفحه محصولات به فارسی',
         'meta_title'       => 'محصولات',
