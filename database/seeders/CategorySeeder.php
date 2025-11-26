@@ -51,6 +51,11 @@ class CategorySeeder extends Seeder
                         'name'    => 'Women',
                         'content' => 'Fashion clothing for women',
                     ],
+                    [
+                        'locale'  => 'fa',
+                        'name'    => 'بانوان',
+                        'content' => 'لباس زنانه',
+                    ],
                 ],
                 'children' => [
                     [
@@ -67,6 +72,11 @@ class CategorySeeder extends Seeder
                                 'locale'  => 'en',
                                 'name'    => 'Casual Wear',
                                 'content' => 'Casual style women\'s clothing',
+                            ],
+                            [
+                                'locale'  => 'fa',
+                                'name'    => 'زنانه',
+                                'content' => 'لباس روزمره زنانه',
                             ],
                         ],
                     ],

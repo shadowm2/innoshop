@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) Since 2024 InnoShop - All Rights Reserved
  *
@@ -14,70 +15,70 @@ use InnoShop\Common\Models\Page;
 
 class PageSeeder extends Seeder
 {
-    public function run(): void
-    {
-        $items = $this->getPages();
-        if ($items) {
-            Page::query()->truncate();
-            foreach ($items as $item) {
-                Page::query()->create($item);
-            }
-        }
-
-        $items = $this->getPageTranslations();
-        if ($items) {
-            Page\Translation::query()->truncate();
-            foreach ($items as $item) {
-                Page\Translation::query()->create($item);
-            }
-        }
+  public function run(): void
+  {
+    $items = $this->getPages();
+    if ($items) {
+      Page::query()->truncate();
+      foreach ($items as $item) {
+        Page::query()->create($item);
+      }
     }
 
-    /**
-     * @return array[]
-     */
-    private function getPages(): array
-    {
-        return [
-            [
-                'id'     => 1,
-                'slug'   => 'creations',
-                'viewed' => 666,
-                'active' => 1,
-            ],
-            [
-                'id'     => 2,
-                'slug'   => 'services',
-                'viewed' => 888,
-                'active' => 1,
-            ],
-            [
-                'id'     => 3,
-                'slug'   => 'about',
-                'viewed' => 999,
-                'active' => 1,
-            ],
-            [
-                'id'     => 4,
-                'slug'   => 'privacy-policy',
-                'viewed' => 0,
-                'active' => 1,
-            ],
-        ];
+    $items = $this->getPageTranslations();
+    if ($items) {
+      Page\Translation::query()->truncate();
+      foreach ($items as $item) {
+        Page\Translation::query()->create($item);
+      }
     }
+  }
 
-    /**
-     * @return array[]
-     */
-    private function getPageTranslations(): array
-    {
-        return [
-            [
-                'page_id'  => 1,
-                'locale'   => 'zh-cn',
-                'title'    => 'محصولات',
-                'content'  => '',
-                'template' => '<div class="page-product-content">
+  /**
+   * @return array[]
+   */
+  private function getPages(): array
+  {
+    return [
+      [
+        'id'     => 1,
+        'slug'   => 'creations',
+        'viewed' => 666,
+        'active' => 1,
+      ],
+      [
+        'id'     => 2,
+        'slug'   => 'services',
+        'viewed' => 888,
+        'active' => 1,
+      ],
+      [
+        'id'     => 3,
+        'slug'   => 'about',
+        'viewed' => 999,
+        'active' => 1,
+      ],
+      [
+        'id'     => 4,
+        'slug'   => 'privacy-policy',
+        'viewed' => 0,
+        'active' => 1,
+      ],
+    ];
+  }
+
+  /**
+   * @return array[]
+   */
+  private function getPageTranslations(): array
+  {
+    return [
+      [
+        'page_id'  => 1,
+        'locale'   => 'zh-cn',
+        'title'    => 'محصولات',
+        'content'  => '',
+        'template' => '<div class="page-product-content">
     <div class="container">
       <div class="title-box">
         <div class="title">محصولات ما</div>
@@ -131,16 +132,16 @@ class PageSeeder extends Seeder
       </div>
     </div>
   </div>',
-                'meta_title'       => 'محصولات',
-                'meta_description' => 'محصولات',
-                'meta_keywords'    => 'محصولات',
-            ],
-            [
-                'page_id'  => 2,
-                'locale'   => 'zh-cn',
-                'title'    => 'خدمات',
-                'content'  => '',
-                'template' => "<div class=\"page-service-content\">
+        'meta_title'       => 'محصولات',
+        'meta_description' => 'محصولات',
+        'meta_keywords'    => 'محصولات',
+      ],
+      [
+        'page_id'  => 2,
+        'locale'   => 'zh-cn',
+        'title'    => 'خدمات',
+        'content'  => '',
+        'template' => "<div class=\"page-service-content\">
     <div class=\"container\">
       <div class=\"row\">
         <div class=\"col-12 col-md-5\">
@@ -201,16 +202,16 @@ class PageSeeder extends Seeder
       </div>
     </div>
   </div>",
-                'meta_title'       => 'خدمات',
-                'meta_description' => 'خدمات',
-                'meta_keywords'    => 'خدمات',
-            ],
-            [
-                'page_id'  => 3,
-                'locale'   => 'zh-cn',
-                'title'    => 'درباره ما',
-                'content'  => '',
-                'template' => "<div class=\"page-about-content\">
+        'meta_title'       => 'خدمات',
+        'meta_description' => 'خدمات',
+        'meta_keywords'    => 'خدمات',
+      ],
+      [
+        'page_id'  => 3,
+        'locale'   => 'zh-cn',
+        'title'    => 'درباره ما',
+        'content'  => '',
+        'template' => "<div class=\"page-about-content\">
   <div class=\"container\">
     <div class=\"row\">
       <div class=\"col-12 col-md-6\">
@@ -253,42 +254,69 @@ class PageSeeder extends Seeder
     </div>
   </div>
 </div>",
-                'meta_title'       => 'درباره ما',
-                'meta_description' => 'درباره ما',
-                'meta_keywords'    => 'درباره ما',
-            ],
-            [
-                'page_id'          => 1,
-                'locale'           => 'en',
-                'title'            => 'Creations',
-                'content'          => 'This is Creations page for English',
-                'meta_title'       => 'Creations',
-                'meta_description' => 'Creations',
-                'meta_keywords'    => 'Creations',
-            ],
-            [
-                'page_id'          => 2,
-                'locale'           => 'en',
-                'title'            => 'Services',
-                'content'          => 'This is Services page for English',
-                'meta_title'       => 'Services',
-                'meta_description' => 'Services',
-                'meta_keywords'    => 'Services',
-            ],
-            [
-                'page_id'          => 3,
-                'locale'           => 'en',
-                'title'            => 'About',
-                'content'          => 'This is About page for English',
-                'meta_title'       => 'About Us',
-                'meta_description' => 'About Us',
-                'meta_keywords'    => 'About Us',
-            ],
-            [
-                'page_id' => 4,
-                'locale'  => 'zh-cn',
-                'title'   => 'سیاست حفظ حریم خصوصی',
-                'content' => '<p>InnoShop بسیار به حفاظت از حریم خصوصی کاربران اهمیت می‌دهد. این سیاست حفظ حریم خصوصی نحوه جمع‌آوری، استفاده و حفاظت از اطلاعات شخصی شما را توضیح می‌دهد.</p>
+        'meta_title'       => 'درباره ما',
+        'meta_description' => 'درباره ما',
+        'meta_keywords'    => 'درباره ما',
+      ],
+      [
+        'page_id'          => 1,
+        'locale'           => 'en',
+        'title'            => 'Creations',
+        'content'          => 'This is Creations page for English',
+        'meta_title'       => 'Creations',
+        'meta_description' => 'Creations',
+        'meta_keywords'    => 'Creations',
+      ],
+      [
+        'page_id'          => 1,
+        'locale'           => 'fa',
+        'title'            => 'محصولات',
+        'content'          => 'صفحه محصولات به فارسی',
+        'meta_title'       => 'محصولات',
+        'meta_description' => 'محصولات',
+        'meta_keywords'    => 'محصولات',
+      ],
+      [
+        'page_id'          => 2,
+        'locale'           => 'en',
+        'title'            => 'Services',
+        'content'          => 'This is Services page for English',
+        'meta_title'       => 'Services',
+        'meta_description' => 'Services',
+        'meta_keywords'    => 'Services',
+      ],
+      [
+        'page_id'          => 2,
+        'locale'           => 'fa',
+        'title'            => 'خدمات',
+        'content'          => 'صفحه خدمات به فارسی',
+        'meta_title'       => 'خدمات',
+        'meta_description' => 'خدمات',
+        'meta_keywords'    => 'خدمات',
+      ],
+      [
+        'page_id'          => 3,
+        'locale'           => 'en',
+        'title'            => 'About',
+        'content'          => 'This is About page for English',
+        'meta_title'       => 'About Us',
+        'meta_description' => 'About Us',
+        'meta_keywords'    => 'About Us',
+      ],
+      [
+        'page_id'          => 3,
+        'locale'           => 'fa',
+        'title'            => 'درباره ما',
+        'content'          => 'صفحه درباره ما فارسی',
+        'meta_title'       => 'درباره ما',
+        'meta_description' => 'درباره ما',
+        'meta_keywords'    => 'درباره ما',
+      ],
+      [
+        'page_id' => 4,
+        'locale'  => 'zh-cn',
+        'title'   => 'سیاست حفظ حریم خصوصی',
+        'content' => '<p>InnoShop بسیار به حفاظت از حریم خصوصی کاربران اهمیت می‌دهد. این سیاست حفظ حریم خصوصی نحوه جمع‌آوری، استفاده و حفاظت از اطلاعات شخصی شما را توضیح می‌دهد.</p>
 
 <h3>۱. جمع‌آوری اطلاعات</h3>
 <p>اطلاعاتی که ما جمع‌آوری می‌کنیم شامل:</p>
@@ -334,15 +362,69 @@ class PageSeeder extends Seeder
 <h3>۶. تماس با ما</h3>
 <p>اگر سوالی درباره سیاست حفظ حریم خصوصی دارید، لطفاً با ما تماس بگیرید:</p>
 <p>ایمیل: privacy@innoshop.com</p>',
-                'meta_title'       => 'سیاست حفظ حریم خصوصی - InnoShop',
-                'meta_description' => 'توضیح سیاست حفظ حریم خصوصی InnoShop',
-                'meta_keywords'    => 'سیاست حفظ حریم خصوصی,حفاظت از داده‌ها,اطلاعات شخصی',
-            ],
-            [
-                'page_id' => 4,
-                'locale'  => 'en',
-                'title'   => 'Privacy Policy',
-                'content' => '<p>InnoShop takes your privacy seriously. This Privacy Policy explains how we collect, use, and protect your personal information.</p>
+        'meta_title'       => 'سیاست حفظ حریم خصوصی - InnoShop',
+        'meta_description' => 'توضیح سیاست حفظ حریم خصوصی InnoShop',
+        'meta_keywords'    => 'سیاست حفظ حریم خصوصی,حفاظت از داده‌ها,اطلاعات شخصی',
+      ],
+      [
+        'page_id' => 4,
+        'locale'  => 'fa',
+        'title'   => 'سیاست حفظ حریم خصوصی',
+        'content' => '<p>InnoShop بسیار به حفاظت از حریم خصوصی کاربران اهمیت می‌دهد. این سیاست حفظ حریم خصوصی نحوه جمع‌آوری، استفاده و حفاظت از اطلاعات شخصی شما را توضیح می‌دهد.</p>
+
+<h3>۱. جمع‌آوری اطلاعات</h3>
+<p>اطلاعاتی که ما جمع‌آوری می‌کنیم شامل:</p>
+<ul>
+    <li>اطلاعات حساب کاربری: ایمیل، نام کاربری و غیره</li>
+    <li>اطلاعات دستگاه: آدرس IP، نوع مرورگر و غیره</li>
+    <li>داده‌های استفاده: سوابق دسترسی، گزارش‌های عملیات و غیره</li>
+</ul>
+
+<h3>۲. استفاده از اطلاعات</h3>
+<p>ما از اطلاعات جمع‌آوری شده برای موارد زیر استفاده می‌کنیم:</p>
+<ul>
+    <li>ارائه و بهبود خدمات</li>
+    <li>ارسال اطلاعیه‌های مهم</li>
+    <li>جلوگیری از کلاهبرداری و سوءاستفاده</li>
+</ul>
+
+<h3>۳. حفاظت از اطلاعات</h3>
+<p>ما اقدامات امنیتی سختگیرانه‌ای برای حفاظت از اطلاعات شما اتخاذ می‌کنیم، از جمله:</p>
+<ul>
+    <li>ذخیره‌سازی رمزگذاری شده داده‌ها</li>
+    <li>کنترل دسترسی</li>
+    <li>ممیزی امنیتی منظم</li>
+</ul>
+
+<h3>۴. اشتراک‌گذاری اطلاعات</h3>
+<p>ما اطلاعات شخصی شما را نمی‌فروشیم. تنها در موارد زیر ممکن است اطلاعات را به اشتراک بگذاریم:</p>
+<ul>
+    <li>دریافت رضایت صریح شما</li>
+    <li>الزامات قانونی</li>
+    <li>حفاظت از منافع قانونی ما</li>
+</ul>
+
+<h3>۵. حقوق شما</h3>
+<p>شما حق دارید:</p>
+<ul>
+    <li>به اطلاعات شخصی خود دسترسی داشته باشید</li>
+    <li>اطلاعات نادرست را تصحیح کنید</li>
+    <li>درخواست حذف اطلاعات خود کنید</li>
+    <li>پردازش اطلاعات را محدود کنید</li>
+</ul>
+
+<h3>۶. تماس با ما</h3>
+<p>اگر سوالی درباره سیاست حفظ حریم خصوصی دارید، لطفاً با ما تماس بگیرید:</p>
+<p>ایمیل: privacy@innoshop.com</p>',
+        'meta_title'       => 'سیاست حفظ حریم خصوصی - InnoShop',
+        'meta_description' => 'توضیح سیاست حفظ حریم خصوصی InnoShop',
+        'meta_keywords'    => 'سیاست حفظ حریم خصوصی,حفاظت از داده‌ها,اطلاعات شخصی',
+      ],
+      [
+        'page_id' => 4,
+        'locale'  => 'en',
+        'title'   => 'Privacy Policy',
+        'content' => '<p>InnoShop takes your privacy seriously. This Privacy Policy explains how we collect, use, and protect your personal information.</p>
 
 <h3>1. Information Collection</h3>
 <p>We collect the following information:</p>
@@ -388,10 +470,10 @@ class PageSeeder extends Seeder
 <h3>6. Contact Us</h3>
 <p>If you have any questions about our Privacy Policy, please contact us:</p>
 <p>Email: privacy@innoshop.com</p>',
-                'meta_title'       => 'Privacy Policy - InnoShop',
-                'meta_description' => 'InnoShop Privacy Policy',
-                'meta_keywords'    => 'Privacy Policy, Data Protection, Personal Information',
-            ],
-        ];
-    }
+        'meta_title'       => 'Privacy Policy - InnoShop',
+        'meta_description' => 'InnoShop Privacy Policy',
+        'meta_keywords'    => 'Privacy Policy, Data Protection, Personal Information',
+      ],
+    ];
+  }
 }

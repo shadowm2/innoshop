@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) Since 2024 InnoShop - All Rights Reserved
  *
@@ -81,6 +82,15 @@ class CatalogSeeder extends Seeder
                 'meta_keywords'    => 'Product, Updates, News',
             ],
             [
+                'catalog_id'       => 1,
+                'locale'           => 'fa',
+                'title'            => 'بروزرسانی محصولات',
+                'summary'          => 'بروزرسانی محصولات',
+                'meta_title'       => 'بروزرسانی محصولات',
+                'meta_description' => 'آخرین اخبار و بروزرسانی های محصولات',
+                'meta_keywords'    => 'محصول, بروزرسانی, اخبار',
+            ],
+            [
                 'catalog_id'       => 2,
                 'locale'           => 'zh-cn',
                 'title'            => '行业资讯',
@@ -97,6 +107,15 @@ class CatalogSeeder extends Seeder
                 'meta_title'       => 'Industry News',
                 'meta_description' => 'Industry information',
                 'meta_keywords'    => 'Industry News',
+            ],
+            [
+                'catalog_id'       => 2,
+                'locale'           => 'fa',
+                'title'            => 'اخبار صنعت',
+                'summary'          => 'اخبار صنعت',
+                'meta_title'       => 'اخبار صنعت',
+                'meta_description' => 'اطلاعات صنعت',
+                'meta_keywords'    => 'خبر,صنعت',
             ],
         ];
     }
