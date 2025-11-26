@@ -97,77 +97,113 @@
     </div>
   </div>
   <div class="header-mobile">
-    <div class="mb-icon" data-bs-toggle="offcanvas" data-bs-target="#mobile-menu-offcanvas"
-      aria-controls="offcanvasExample">
-      <i class="bi bi-list"></i>
-    </div>
-
-    <div class="logo">
-      <a href="{{ front_route('home.index') }}">
-        <img src="{{ image_origin(system_setting('front_logo', 'images/logo.svg')) }}" class="img-fluid">
-      </a>
-    </div>
-
-    <a href="{{ front_route('carts.index') }}" class="header-cart-icon"><img
-        src="{{ asset('images/icons/cart.svg') }}" class="img-fluid"><span class="icon-quantity">0</span></a>
-
-    <div class="offcanvas offcanvas-start" tabindex="-1" id="mobile-menu-offcanvas">
-      <div class="offcanvas-header">
-        <form action="{{ front_route('products.index') }}" method="get" class="search-group">
-          <input type="text" class="form-control" name="keyword" placeholder="{{ __('front/common.search') }}"
-            value="{{ request('keyword') }}">
-          <button type="submit" class="btn"><i class="bi bi-search"></i></button>
-        </form>
-        <a class="account-icon" href="{{ front_route('account.index') }}">
-          <img src="{{ asset('images/icons/account.svg') }}" class="img-fluid">
+    <div class="mobile-header-container">
+      <div class="mobile-menu-toggle" data-bs-toggle="offcanvas" data-bs-target="#mobileMenuOffcanvas">
+        <i class="bi bi-list"></i>
+      </div>
+      
+      <div class="mobile-logo">
+        <a href="{{ front_route('home.index') }}">
+          <img src="{{ image_origin(system_setting('front_logo', 'images/logo.svg')) }}" alt="Logo">
         </a>
       </div>
-      <div class="close-offcanvas" data-bs-dismiss="offcanvas"><i class="bi bi-chevron-compact-left"></i></div>
-      <div class="offcanvas-body mobile-menu-wrap">
-        <div class="accordion accordion-flush" id="menu-accordion">
-          <div class="accordion-item">
-            <div class="nav-item-text">
-              <a class="nav-link {{ equal_route_name('home.index') ? 'active' : '' }}" aria-current="page"
-                href="{{ front_route('home.index') }}">{{ __('front/common.home') }}</a>
-            </div>
+      
+      <div class="mobile-icons">
+        <a href="{{ front_route('account.index') }}" class="mobile-icon">
+          <i class="bi bi-person"></i>
+        </a>
+        <a href="{{ front_route('carts.index') }}" class="mobile-icon">
+          <i class="bi bi-cart"></i>
+          <span class="cart-badge">0</span>
+        </a>
+      </div>
+    </div>
+    
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenuOffcanvas">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title">{{ __('front/common.menu') }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div class="mobile-menu-content">
+          <div class="mobile-search">
+            <form action="{{ front_route('products.index') }}" method="get">
+              <div class="input-group">
+                <input type="text" class="form-control" name="keyword" placeholder="{{ __('front/common.search') }}">
+                <button class="btn btn-outline-primary" type="submit">
+                  <i class="bi bi-search"></i>
+                </button>
+              </div>
+            </form>
           </div>
-
-          @hookupdate('layouts.header.menu.mobile')
-            @foreach ($headerMenus as $key => $menu)
-              @if ($menu['name'])
-                <div class="accordion-item">
-                  <div class="nav-item-text">
-                    <a class="nav-link" href="{{ $menu['url'] }}"
-                      data-bs-toggle="{{ !$menu['url'] ? 'collapse' : '' }}">
-                      {{ $menu['name'] }}
-                    </a>
-                    @if (isset($menu['children']) && $menu['children'])
-                      <span class="collapsed" data-bs-toggle="collapse"
-                        data-bs-target="#flush-menu-{{ $key }}"><i class="bi bi-chevron-down"></i></span>
-                    @endif
-                  </div>
-
-                  @if (isset($menu['children']) && $menu['children'])
-                    <div class="accordion-collapse collapse" id="flush-menu-{{ $key }}"
-                      data-bs-parent="#menu-accordion">
-                      <div class="children-group">
-                        <ul class="nav flex-column ul-children">
-                          @foreach ($menu['children'] as $c_key => $child)
-                            @if ($child['name'])
-                              <li class="nav-item">
-                                <a class="nav-link" href="{{ $child['url'] }}">{{ $child['name'] }}</a>
-                              </li>
-                            @endif
-                          @endforeach
-                        </ul>
-                      </div>
-                    </div>
+          
+          <nav class="mobile-nav">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link {{ equal_route_name('home.index') ? 'active' : '' }}" href="{{ front_route('home.index') }}">
+                  <i class="bi bi-house-door me-2"></i>
+                  {{ __('front/common.home') }}
+                </a>
+              </li>
+              
+              @hookupdate('layouts.header.menu.mobile')
+                @foreach ($headerMenus as $menu)
+                  @if ($menu['name'])
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{ $menu['url'] }}">
+                        @if (isset($menu['icon']) && $menu['icon'])
+                          <i class="{{ $menu['icon'] }} me-2"></i>
+                        @else
+                          <i class="bi bi-grid me-2"></i>
+                        @endif
+                        {{ $menu['name'] }}
+                      </a>
+                    </li>
                   @endif
-                </div>
+                @endforeach
+              @endhookupdate
+              
+              @if ($customer)
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ front_route('account.index') }}">
+                    <i class="bi bi-person me-2"></i>
+                    {{ __('front/account.account') }}
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ front_route('account.orders.index') }}">
+                    <i class="bi bi-clipboard-check me-2"></i>
+                    {{ __('front/account.orders') }}
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ front_route('account.favorites.index') }}">
+                    <i class="bi bi-heart me-2"></i>
+                    {{ __('front/account.favorites') }}
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ front_route('account.logout') }}">
+                    <i class="bi bi-box-arrow-right me-2"></i>
+                    {{ __('front/account.logout') }}
+                  </a>
+                </li>
+              @else
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ front_route('login.index') }}">
+                    <i class="bi bi-box-arrow-in-right me-2"></i>
+                    {{ __('front/common.login') }}
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ front_route('register.index') }}">
+                    <i class="bi bi-person-plus me-2"></i>
+                    {{ __('front/common.register') }}
+                  </a>
+                </li>
               @endif
-            @endforeach
-          @endhookupdate
-
+            </ul>
+          </nav>
         </div>
       </div>
     </div>
