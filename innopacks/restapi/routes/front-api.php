@@ -2,7 +2,7 @@
 /**
  * Copyright (c) Since 2024 InnoShop - All Rights Reserved
  *
- * @link       https://www.innoshop.com
+ * @link       https://www.sibzard.com
  * @author     InnoShop <team@innoshop.com>
  * @license    https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
  */
@@ -37,6 +37,7 @@ Route::get('/products/{product}/reviews', [FrontApiControllers\ProductController
 Route::get('/countries', [FrontApiControllers\CountryController::class, 'index'])->name('countries.index');
 Route::get('/countries/{country}/states', [FrontApiControllers\CountryController::class, 'states'])->name('countries.states');
 Route::get('/states', [FrontApiControllers\StateController::class, 'index'])->name('states.index');
+Route::get('/states/{stateId}/cities', [FrontApiControllers\CityController::class, 'getByState'])->name('states.cities');
 
 Route::get('/checkout/billing_methods', [FrontApiControllers\CheckoutController::class, 'billingMethods'])->name('checkout.billing_methods');
 Route::post('/checkout/quick_confirm', [FrontApiControllers\CheckoutController::class, 'quickConfirm'])->name('checkout.quick_confirm');

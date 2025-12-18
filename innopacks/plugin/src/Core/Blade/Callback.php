@@ -4,7 +4,7 @@
  *
  * Inspired by https://github.com/esemve/Hook
  *
- * @link       https://www.innoshop.com
+ * @link       https://www.sibzard.com
  * @author     InnoShop <team@innoshop.com>
  * @license    https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
  */

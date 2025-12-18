@@ -60,6 +60,13 @@
         </div>
       </section>
     @endif
+    <style>
+      .module-title {
+        color: #333 !important;
+        font-size: 2rem !important;
+        font-weight: bold !important;
+      }
+    </style>
 
     <section class="module-line">
       <div class="module-product-tab">

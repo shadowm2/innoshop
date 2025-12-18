@@ -40,7 +40,7 @@
       <div class="login-wrap">
         <div class="card login-content">
             <div class="card-header">
-              <h3 class="fw-bold text-center">{{ __('panel/login.login_index') }}</h3>
+              <h3 class="fw-bold text-center">{{ __('panel/login.login_index', ['name' => config('app.name', 'سیب زرد')]) }}</h3>
             </div>
 
             <div class="card-body">

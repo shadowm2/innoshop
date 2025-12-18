@@ -40,6 +40,9 @@
             </div>
           </div>
           <div class="wallet-actions mt-3">
+            <a href="{{ account_route('wallet.recharge.form') }}" class="btn btn-success ms-2">
+              <i class="bi bi-wallet2"></i> {{ __('front/withdrawal.wallet_recharge') }}
+            </a>
             <a href="{{ account_route('wallet.withdrawals.create') }}" 
                class="btn btn-primary {{ $has_pending_withdrawal ? 'disabled' : '' }}">
               <i class="bi bi-cash-coin"></i> {{ __('front/withdrawal.apply_withdrawal') }}

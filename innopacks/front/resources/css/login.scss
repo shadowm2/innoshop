@@ -1,5 +1,6 @@
 body.page-login {
   margin-bottom: 0 !important;
+  text-decoration: none !important;
 }
 
 .login-register-box {
@@ -41,22 +42,47 @@ body.page-login {
 
   .btn-submit {
     margin-top: 30px;
+    display: flex !important;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    visibility: visible !important;
+    opacity: 1 !important;
 
     @media (min-width: 400px) {
-      display: flex;
+      flex-direction: row;
       justify-content: space-between;
       align-items: center;
+      gap: 16px;
     }
 
     .form-submit {
-      width: 50%;
-      display: block;
+      width: 100% !important;
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      min-height: 44px;
+      
+      @media (min-width: 400px) {
+        width: 50%;
+      }
     }
 
-    a {
-      color: #222;
-      display: block;
+    > a {
+      color: #222 !important;
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
       font-weight: bold;
+      text-align: center;
+      padding: 8px 0;
+      width: 100%;
+      
+      @media (min-width: 400px) {
+        text-align: right;
+        padding: 0;
+        width: auto;
+      }
     }
   }
 
@@ -75,6 +101,7 @@ body.page-login {
       display: flex;
       gap: .5rem;
       align-items: center;
+      flex-wrap: wrap;
 
       input.form-control {
         height: 44px;
@@ -82,12 +109,29 @@ body.page-login {
         border: 1px solid rgba(0,0,0,0.08);
         padding: 0 12px;
         background: #fff;
+        flex: 1 1 auto;
+        min-width: 200px;
+        
+        @media (max-width: 576px) {
+          min-width: 100%;
+        }
       }
 
       button.btn {
         height: 44px;
         padding: 0 14px;
         border-radius: 6px;
+        flex: 0 0 auto;
+        white-space: nowrap;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        
+        @media (max-width: 576px) {
+          width: 100% !important;
+          margin-top: 8px;
+          flex: 1 1 100%;
+        }
       }
     }
   }

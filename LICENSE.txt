@@ -1,4 +1,4 @@
-Copyright (c) Since 2024 InnoShop.
+Copyright (c) Since 2024 sibzard
 
 This system is open source and free for commercial use. The open-source license is based on the Open Software License version 3.0 (OSL-3.0) available at https://opensource.org/license/osl-3-0. Users of this system must adhere to the following conditions:
 

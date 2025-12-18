@@ -2,7 +2,7 @@
 /**
  * Copyright (c) Since 2024 InnoShop - All Rights Reserved
  *
- * @link       https://www.innoshop.com
+ * @link       https://www.sibzard.com
  * @author     InnoShop <team@innoshop.com>
  * @license    https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
  */
@@ -76,6 +76,31 @@ class WithdrawalController extends BaseController
         try {
             $customer       = current_customer();
             $withdrawalRepo = new WithdrawalRepo;
+            // Normalize amount input to support localized digits and separators
+            if ($request->has('amount')) {
+                $raw = (string) $request->input('amount');
+                // replace Arabic/Persian digits with ASCII
+                $digitMap = [
+                    '\u06F0'=>'0','\u06F1'=>'1','\u06F2'=>'2','\u06F3'=>'3','\u06F4'=>'4','\u06F5'=>'5','\u06F6'=>'6','\u06F7'=>'7','\u06F8'=>'8','\u06F9'=>'9',
+                    '\u0660'=>'0','\u0661'=>'1','\u0662'=>'2','\u0663'=>'3','\u0664'=>'4','\u0665'=>'5','\u0666'=>'6','\u0667'=>'7','\u0668'=>'8','\u0669'=>'9',
+                ];
+                // apply replacements for Persian/Arabic digits (fallback to mb_ functions)
+                $normalized = $raw;
+                $normalized = str_replace(["\u00A0", ' '], '', $normalized); // remove NBSP and spaces
+                // Replace Persian digits
+                $persianDigits = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+                $arabicDigits  = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+                foreach ($persianDigits as $i => $d) { $normalized = str_replace($d, (string)$i, $normalized); }
+                foreach ($arabicDigits as $i => $d) { $normalized = str_replace($d, (string)$i, $normalized); }
+                // Remove thousands separators (commas, thin space, Arabic thousands separator)
+                $normalized = str_replace([',', '٬', ' ', "\u200F"], '', $normalized);
+                // Replace comma decimal separator with dot
+                $normalized = preg_replace('/,(?=\d{1,2}$)/u', '.', $normalized);
+                // Trim
+                $normalized = trim($normalized);
+                // If resulting string is empty or not numeric, leave as-is (validation will catch)
+                $request->merge(['amount' => $normalized]);
+            }
 
             // Validate request data
             $validated = $request->validate([

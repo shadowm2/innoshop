@@ -138,6 +138,6 @@
 }
 
 .cm-s-moxer .CodeMirror-matchingbracket {
-  text-decoration: underline;
+  text-decoration: none !important;
   color: white !important;
 }

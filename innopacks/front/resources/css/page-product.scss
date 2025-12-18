@@ -429,7 +429,7 @@ body.page-product {
         cursor: pointer;
 
         &:hover {
-          text-decoration: underline;
+          text-decoration: none !important;
         }
       }
     }

@@ -41,6 +41,6 @@
 
 .cm-s-oceanic-next .CodeMirror-activeline-background { background: rgba(101, 115, 126, 0.33); }
 .cm-s-oceanic-next .CodeMirror-matchingbracket {
-  text-decoration: underline;
+  text-decoration: none !important;
   color: white !important;
 }

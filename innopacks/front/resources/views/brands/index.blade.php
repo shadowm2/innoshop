@@ -20,7 +20,7 @@
         @foreach($items as $brand)
         <li>
           <a href="{{ $brand->url }}" class="text-secondary">
-            <div class="img"><img src="{{ image_resize($brand->logo, 200, 200) }}" class="img-fluid" /></div>
+            <div class="img" style="width: 99px !important; height: 99px !important; display: flex !important; align-items: center !important; justify-content: center !important; padding: 8px !important; overflow: hidden !important; border: 1px solid #e8e8e8 !important; background-color: #fff !important; border-radius: 4px !important; flex-shrink: 0 !important;"><img src="{{ image_resize($brand->logo, 200, 200) }}" alt="{{ $brand->name }}" style="width: 100% !important; height: 100% !important; max-width: 100% !important; max-height: 100% !important; object-fit: contain !important; object-position: center !important; display: block !important;" /></div>
             <span>{{ $brand->name }} </span>
           </a>
         </li>

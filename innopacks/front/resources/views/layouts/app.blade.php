@@ -60,6 +60,46 @@
   .header-desktop .right .search-group input { width: 100%; box-sizing: border-box; }
   /* If space is tight, allow menu items to shrink earlier */
   .header-desktop .left .menu { flex: 1 1 40%; }
+  
+  /* Fix product name display on mobile */
+  @media (max-width: 767px) {
+    .product-name {
+      white-space: normal !important;
+      overflow: visible !important;
+      text-overflow: clip !important;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 4 !important;
+      -webkit-box-orient: vertical !important;
+      max-height: 6em !important;
+      line-height: 1.5 !important;
+      word-wrap: break-word !important;
+      word-break: break-word !important;
+    }
+  }
+  
+  /* Fix brand logo display */
+  .brands-wrap .img,
+  .page-brands .brands-wrap .img,
+  [class*="brand"] .img {
+    width: 99px !important;
+    height: 99px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 8px !important;
+    overflow: hidden !important;
+  }
+  
+  .brands-wrap .img img,
+  .page-brands .brands-wrap .img img,
+  [class*="brand"] .img img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+  }
   </style>
   <script>
     let urls = {
@@ -88,6 +128,46 @@
 
     let asset_url = '{{ asset('') }}';
   </script>
+
+  <script>
+    // Temporary client-side JS error reporter (remove after debugging)
+    window.__frontendErrorReporter = function (message, source, lineno, colno, error) {
+      try {
+        var payload = {
+          message: message,
+          source: source,
+          lineno: lineno,
+          colno: colno,
+          stack: error && error.stack ? error.stack : null,
+          userAgent: navigator.userAgent,
+          url: window.location.href,
+          timestamp: new Date().toISOString()
+        };
+        // Use sendBeacon when available to avoid blocking navigation
+        var endpoint = '/_debug/client-errors';
+        if (navigator.sendBeacon) {
+          navigator.sendBeacon(endpoint, JSON.stringify(payload));
+        } else {
+          fetch(endpoint, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(payload),
+            keepalive: true
+          }).catch(function(){});
+        }
+        console.log('[frontend-error-reporter] sent error', payload);
+      } catch (e) {
+        console.error('[frontend-error-reporter] failed', e);
+      }
+    };
+
+    window.onerror = function (message, source, lineno, colno, error) {
+      window.__frontendErrorReporter(message, source, lineno, colno, error);
+      // still show default handling
+      return false;
+    };
+  </script>
+
   @stack('header')
   @hookinsert('front.layout.app.head.bottom')
 </head>

@@ -39,8 +39,7 @@
                           <div class="address-name mb-1">@{{ address.name }} @{{ address.phone }}
                             @{{ address.zipcode }}
                           </div>
-                          <div class="address-info">@{{ address.address_1 }} @{{ address.address_2 }} @{{ address.city }}
-                            @{{ address.state }} @{{ address.country_name }}
+                          <div class="address-info">@{{ address.address_1 }} @{{ address.address_2 }} {{ __('common/address.city') }}: @{{ address.city }}, {{ __('common/address.state') }}: @{{ address.state }}, {{ __('common/address.country') }}: @{{ address.country_name }}
                           </div>
                         </div>
                       </div>
@@ -76,8 +75,7 @@
                             <div class="address-name mb-1">@{{ address.name }} @{{ address.phone }}
                               @{{ address.zipcode }}
                             </div>
-                            <div class="address-info">@{{ address.address_1 }} @{{ address.address_2 }}
-                              @{{ address.state }} @{{ address.city }} @{{ address.country_id }}
+                            <div class="address-info">@{{ address.address_1 }} @{{ address.address_2 }} {{ __('common/address.city') }}: @{{ address.city }}, {{ __('common/address.state') }}: @{{ address.state }}, {{ __('common/address.country') }}: @{{ address.country_name }}
                             </div>
                           </div>
                         </div>
@@ -330,15 +328,26 @@
             current.billing_method_code
         })
 
-        editAddress = (index) => {
+        const editAddress = (index) => {
           source.addressEdit = true
           const address = source.addresses[index]
 
-          getZones(address.country_code, function() {
-            $('.address-form').find('input, select').each(function() {
-              $(this).val(address[$(this).attr('name')])
-            })
-          })
+          // Load state and city data for the selected address
+          const address_form = $('.address-form');
+          address_form.find('select[name="country_code"]').val(address.country_code).trigger('change');
+          setTimeout(() => {
+            address_form.find('select[name="state_code"]').val(address.state_code).trigger('change');
+            setTimeout(() => {
+              address_form.find('select[name="city_id"]').val(address.city_id);
+              // Fill other fields
+              address_form.find('input').each(function() {
+                const field = $(this).attr('name');
+                if (field && address[field] !== undefined) {
+                  $(this).val(address[field]);
+                }
+              });
+            }, 500);
+          }, 500);
         }
 
         const updateCheckout = (key, value) => {

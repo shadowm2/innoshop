@@ -30,5 +30,5 @@
 .cm-s-railscasts span.cm-tag {color: #da4939;}
 .cm-s-railscasts span.cm-link {color: #b6b3eb;}
 
-.cm-s-railscasts .CodeMirror-matchingbracket { text-decoration: underline; color: white !important;}
+.cm-s-railscasts .CodeMirror-matchingbracket { text-decoration: none !important; color: white !important;}
 .cm-s-railscasts .CodeMirror-activeline-background { background: #303040; }

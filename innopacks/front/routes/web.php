@@ -2,7 +2,7 @@
 /**
  * Copyright (c) Since 2024 InnoShop - All Rights Reserved
  *
- * @link       https://www.innoshop.com
+ * @link       https://www.sibzard.com
  * @author     InnoShop <team@innoshop.com>
  * @license    https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
  */
@@ -65,6 +65,18 @@ Route::delete('/addresses/{address}', [Controllers\AddressesController::class, '
 // Countries and States
 Route::get('/countries', [Controllers\CountryController::class, 'index'])->name('countries.index');
 Route::get('/countries/{country}', [Controllers\CountryController::class, 'show'])->name('countries.show');
+
+// Temporary endpoint to collect frontend JS errors (debug only)
+Route::post('/_debug/client-errors', function () {
+    try {
+        $payload = request()->getContent();
+        $logFile = storage_path('logs/frontend_js_errors.log');
+        file_put_contents($logFile, '[' . date('c') . '] ' . $payload . PHP_EOL, FILE_APPEND | LOCK_EX);
+    } catch (\Exception $e) {
+        // ignore
+    }
+    return response()->json(['ok' => true]);
+});
 
 // Catalogs
 Route::get('/catalogs', [Controllers\CatalogController::class, 'index'])->name('catalogs.index');
@@ -132,6 +144,9 @@ Route::prefix('account')
             Route::get('/withdrawals/create', [Account\WithdrawalController::class, 'create'])->name('withdrawals.create');
             Route::post('/withdrawals', [Account\WithdrawalController::class, 'store'])->name('withdrawals.store');
             Route::get('/withdrawals/{withdrawal}', [Account\WithdrawalController::class, 'show'])->name('withdrawals.show');
+            Route::get('/recharge', [Account\WalletRechargeController::class, 'form'])->name('recharge.form');
+            Route::post('/recharge/pay', [Account\WalletRechargeController::class, 'pay'])->name('recharge.pay');
+            Route::get('/recharge/callback/{id}', [Account\WalletRechargeController::class, 'callback'])->name('recharge.callback');
         });
 
         // Reviews

@@ -1,4 +1,10 @@
 @hookinsert('layout.header.top')
+<style>
+  .dropdown-menu .dropdown-item {
+    direction: rtl !important;
+    text-align: right !important;
+  }
+</style>
 
 <header id="appHeader">
   <div class="header-desktop">

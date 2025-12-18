@@ -9,23 +9,35 @@
 </div>
 
 <script>
-  $('#zarinpayBtn').on('click', function () {
+  $('#zarinpayBtn').on('click', function() {
     const token = $('meta[name="csrf-token"]').attr('content');
-    layer.load(2, {shade: [0.3, '#fff']});
+    layer.load(2, {
+      shade: [0.3, '#fff']
+    });
     fetch('{{ front_route('zarinpal.create') }}', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'X-CSRF-Token': token
       },
-      body: JSON.stringify({orderNumber: '{{$order->number}}'})
-    }).then(r => r.json()).then(function (data) {
+      body: JSON.stringify({
+        orderNumber: '{{ $order->number }}'
+      })
+    }).then(r => r.json()).then(function(data) {
       layer.closeAll('loading');
       if (data.url) {
         window.location.href = data.url;
       } else {
-        layer.alert('خطا در ایجاد پرداخت', {title: 'خطا'});
+        layer.alert('خطا در ایجاد پرداخت', {
+          title: 'خطا'
+        });
       }
-    }).catch(function () { layer.closeAll('loading'); layer.alert('خطا در اتصال'); });
+    }).catch(function() {
+      layer.closeAll('loading');
+      layer.alert('خطا در اتصال', {
+        title: '{{ __('front/common.error') }}',
+        btn: ['{{ __('front/common.confirm') }}']
+      });
+    });
   });
 </script>

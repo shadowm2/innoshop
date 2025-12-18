@@ -37,6 +37,6 @@
 
 .cm-s-nord .CodeMirror-activeline-background { background: #3b4252; }
 .cm-s-nord .CodeMirror-matchingbracket {
-  text-decoration: underline;
+  text-decoration: none !important;
   color: white !important;
 }

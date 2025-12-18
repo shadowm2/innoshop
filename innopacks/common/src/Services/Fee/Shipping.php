@@ -2,7 +2,7 @@
 /**
  * Copyright (c) Since 2024 InnoShop - All Rights Reserved
  *
- * @link       https://www.innoshop.com
+ * @link       https://www.sibzard.com
  * @author     InnoShop <team@innoshop.com>
  * @license    https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
  */
@@ -27,7 +27,7 @@ class Shipping extends BaseService
 
         $shippingFee = [
             'code'         => 'shipping',
-            'title'        => 'Shipping',
+            'title'        => front_trans('checkout.shipping_cost'),
             'total'        => $total,
             'total_format' => currency_format($total),
         ];

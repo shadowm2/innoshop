@@ -1,6 +1,8 @@
 body.page-home {
+  text-decoration: none !important;
   .module-title-wrap {
     margin-bottom: 30px;
+    text-decoration: none !important;
 
     .module-title {
       text-align: center;
@@ -9,10 +11,13 @@ body.page-home {
       margin-bottom: .7rem;
       position: relative;
       color: #222;
+      text-decoration: none !important;
+
 
       @media (max-width: 768px) {
         font-size: 1.4rem;
         margin-bottom: .2rem;
+        text-decoration: none !important;
       }
     }
 
@@ -28,14 +33,16 @@ body.page-home {
       @media (max-width: 768px) {
         font-size: .87rem;
       }
+      text-decoration: none !important;
     }
   }
 
   .module-line {
     margin-bottom: 20px;
-
+    text-decoration: none !important;     
     @media (min-width: 768px) {
       margin-bottom: 40px;
+      text-decoration: none !important;
     }
   }
 }

@@ -3,7 +3,7 @@
 .cm-s-ttcn .cm-positive { color: #292; }
 .cm-s-ttcn .cm-header, .cm-strong { font-weight: bold; }
 .cm-s-ttcn .cm-em { font-style: italic; }
-.cm-s-ttcn .cm-link { text-decoration: underline; }
+.cm-s-ttcn .cm-link { text-decoration: none !important; }
 .cm-s-ttcn .cm-strikethrough { text-decoration: line-through; }
 .cm-s-ttcn .cm-header { color: #00f; font-weight: bold; }
 
@@ -17,7 +17,7 @@
 .cm-s-ttcn .cm-hr { color: #999; }
 .cm-s-ttcn .cm-invalidchar { color: #f00; }
 .cm-s-ttcn .cm-keyword { font-weight:bold; }
-.cm-s-ttcn .cm-link { color: #00c; text-decoration: underline; }
+.cm-s-ttcn .cm-link { color: #00c; text-decoration: none !important; }
 .cm-s-ttcn .cm-meta { color: #555; }
 .cm-s-ttcn .cm-negative { color: #d44; }
 .cm-s-ttcn .cm-positive { color: #292; }

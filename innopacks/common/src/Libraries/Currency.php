@@ -3,7 +3,7 @@
  * Copyright (c) Since 2024 InnoShop - All Rights Reserved
  * Inspired by https://github.com/opencart/opencart/blob/master/upload/system/library/cart/currency.php
  *
- * @link       https://www.innoshop.com
+ * @link       https://www.sibzard.com
  * @author     InnoShop <team@innoshop.com>
  * @license    https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
  */

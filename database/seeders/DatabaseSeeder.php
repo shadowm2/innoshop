@@ -5,7 +5,7 @@
  * Run all seeders: `php artisan db:seed`
  * Run one seeder: `php artisan db:seed --class=ProductSeeder`
  *
- * @link       https://www.innoshop.com
+ * @link       https://www.sibzard.com
  * @author     InnoShop <team@innoshop.com>
  * @license    https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
  */
@@ -38,6 +38,7 @@ class DatabaseSeeder extends Seeder
             PageSeeder::class,
             ProductSeeder::class,
             StateSeeder::class,
+            CitySeeder::class,
             TagSeeder::class,
             RegionSeeder::class,
             TaxSeeder::class,

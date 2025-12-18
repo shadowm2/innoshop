@@ -35,7 +35,8 @@
         "stripe/stripe-php": "^15.10",
         "tormjens/eventy": "^0.9.3",
         "w7corp/easywechat": "^6.7",
-        "wikimedia/composer-merge-plugin": "^2.1"
+        "wikimedia/composer-merge-plugin": "^2.1",
+        "zarinpal/zarinpal": "^1.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.13",

@@ -2,7 +2,7 @@
 /**
  * Copyright (c) Since 2024 InnoShop - All Rights Reserved
  *
- * @link       https://www.innoshop.com
+ * @link       https://www.sibzard.com
  * @author     InnoShop <team@innoshop.com>
  * @license    https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
  */
@@ -19,7 +19,8 @@ return [
     'quantity'    => 'تعداد',
     'select_all'  => 'انتخاب همه',
     'selected'    => 'انتخاب‌شده',
-    'subtotal'    => 'جمع جزء',
+    'subtotal'    => 'قیمت محصول',
     'total'       => 'جمع کل',
     'view_cart'   => 'مشاهده سبد',
+    'Balance'     => 'شارژ کیف پول',
 ];

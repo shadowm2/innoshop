@@ -12,39 +12,39 @@
           <small class="text-muted">{{ __('panel/product.product_options_description') }}</small>
         </div>
         <div class="card-body">
-          <!-- 隐藏字段用于表单提交 -->
+          <!-- فیلدهای پنهان برای ارسال فرم -->
           <input type="hidden" name="product_options" :value="JSON.stringify(getFormData())">
           
           <div class="row">
-            <!-- 左侧：可用选项 -->
+            <!-- ستون سمت چپ: گزینه‌های در دسترس -->
             <div class="col-md-6">
               <div class="border rounded p-3 h-100">
                 <h6 class="mb-3">
-                  <i class="bi bi-list-ul me-2"></i>可用选项
+                  <i class="bi bi-list-ul me-2"></i>گزینه‌های در دسترس
                   <span class="badge bg-secondary ms-2">@{{ availableOptionsFiltered.length }}</span>
                 </h6>
                 
-                <!-- 搜索框 -->
+                <!-- جعبه جستجو -->
                 <div class="mb-3">
                   <div class="input-group">
                     <span class="input-group-text">
                       <i class="bi bi-search"></i>
                     </span>
-                    <input type="text" class="form-control" v-model="searchTerm" 
-                           placeholder="搜索选项...">
+          <input type="text" class="form-control" v-model="searchTerm" 
+            placeholder="جستجوی گزینه...">
                   </div>
                 </div>
 
-                <!-- 可用选项列表 -->
+                <!-- فهرست گزینه‌های در دسترس -->
                 <div style="max-height: 500px; overflow-y: auto;">
                   <div v-if="loading" class="text-center py-4">
                     <div class="spinner-border spinner-border-sm me-2" role="status"></div>
-                    <span>加载中...</span>
+                    <span>در حال بارگذاری...</span>
                   </div>
                   
                   <div v-else-if="availableOptionsFiltered.length === 0" class="text-center py-4 text-muted">
                     <i class="bi bi-inbox display-6 d-block mb-2"></i>
-                    <p class="mb-0">暂无可用选项</p>
+                    <p class="mb-0">هیچ گزینه‌ای در دسترس نیست</p>
                   </div>
                   
                   <div v-else>
@@ -60,7 +60,7 @@
                                 @{{ option.name }}
                               </label>
                               <div class="text-muted small">
-                                @{{ option.type }} • @{{ option.option_values_count || 0 }} 个选项值
+                                @{{ option.type }} • @{{ option.option_values_count || 0 }} مقدار
                               </div>
                             </div>
                           </div>
@@ -72,20 +72,20 @@
               </div>
             </div>
 
-            <!-- 右侧：已选项 -->
+            <!-- ستون سمت راست: گزینه‌های انتخاب‌شده -->
             <div class="col-md-6">
               <div class="border rounded p-3 h-100">
                 <h6 class="mb-3">
-                  <i class="bi bi-check-square me-2"></i>已选项
+                  <i class="bi bi-check-square me-2"></i>گزینه‌های انتخاب‌شده
                   <span class="badge bg-primary ms-2">@{{ selectedOptions.length }}</span>
                 </h6>
 
-                <!-- 已选项列表 -->
+                <!-- فهرست گزینه‌های انتخاب‌شده -->
                 <div style="max-height: 500px; overflow-y: auto;">
                   <div v-if="selectedOptions.length === 0" class="text-center py-4 text-muted">
                     <i class="bi bi-inbox display-6 d-block mb-2"></i>
-                    <p class="mb-0">暂无选项</p>
-                    <small>从左侧选择选项</small>
+                    <p class="mb-0">هیچ گزینه‌ای وجود ندارد</p>
+                    <small>از ستون سمت چپ گزینه‌ها را انتخاب کنید</small>
                   </div>
                   
                   <div v-else>
@@ -112,9 +112,9 @@
                                              :indeterminate="isSomeValuesSelected(option)"
                                              @change="toggleAllValues(option)">
                                     </th>
-                                    <th>选项值</th>
-                                    <th width="120">加价金额</th>
-                                    <th width="100">库存</th>
+                                    <th>مقادیر گزینه</th>
+                                    <th width="120">افزایش قیمت</th>
+                                    <th width="100">موجودی</th>
                                   </tr>
                                 </thead>
                                 <tbody>
@@ -169,7 +169,7 @@
 
 @push('footer')
 <script>
-// 产品选项页面的Vue应用 - 使用唯一的应用名称避免冲突
+// برنامه Vue برای صفحه گزینه‌های محصول - از نام اپلیکیشن یکتا برای جلوگیری از تداخل استفاده می‌شود
 const { 
   createApp: createOptionsApp, 
   ref: optionsRef, 
@@ -179,19 +179,19 @@ const {
 
 createOptionsApp({
   setup() {
-    // 响应式数据
+  // داده‌های پاسخگو
     const availableOptions = optionsRef([]);
     const selectedOptions = optionsRef([]);
     const searchTerm = optionsRef('');
     const loading = optionsRef(false);
 
-    // 计算属性
+  // خصوصیات محاسباتی
     const availableOptionsFiltered = optionsComputed(() => {
       const selectedIds = selectedOptions.value.map(opt => opt.id);
-      // 过滤掉已选择的选项和没有选项值的选项
+      // فیلتر کردن گزینه‌های انتخاب‌شده و گزینه‌هایی که مقدار ندارند
       const filtered = availableOptions.value.filter(opt => 
         !selectedIds.includes(opt.id) && 
-        opt.option_values_count > 0  // 只显示有选项值的选项
+        opt.option_values_count > 0  // فقط گزینه‌هایی که مقدار دارند نمایش داده می‌شوند
       );
       
       if (!searchTerm.value) {
@@ -203,14 +203,14 @@ createOptionsApp({
       );
     });
 
-    // 初始化数据
+  // مقداردهی اولیه داده‌ها
     optionsOnMounted(() => {
       loadAvailableOptions();
       loadSelectedOptions();
     });
 
-    // 加载可用选项
-    const loadAvailableOptions = async () => {
+  // بارگذاری گزینه‌های در دسترس
+  const loadAvailableOptions = async () => {
       loading.value = true;
       try {
         const response = await fetch(urls.base_url + '/options/available', {
@@ -225,20 +225,20 @@ createOptionsApp({
         if (data.success) {
           availableOptions.value = data.data.options || [];
         } else {
-          showError('加载选项失败');
+          showError('بارگذاری گزینه‌ها ناموفق بود');
         }
       } catch (error) {
         console.error('Error loading options:', error);
-        showError('加载选项失败');
+        showError('بارگذاری گزینه‌ها ناموفق بود');
       } finally {
         loading.value = false;
       }
     };
 
-    // 预先准备已存在的产品选项数据（从控制器传递）
-    const existingProductOptions = @json($existingProductOptions ?? []);
+  // آماده‌سازی اولیه گزینه‌های محصول موجود (داده‌شده از کنترلر)
+  const existingProductOptions = @json($existingProductOptions ?? []);
 
-    // 加载已选项（从现有产品数据）
+  // بارگذاری گزینه‌های انتخاب‌شده (از داده‌های محصول موجود)
     const loadSelectedOptions = async () => {
       for (const productOption of existingProductOptions) {
         const option = {
@@ -249,17 +249,17 @@ createOptionsApp({
           values: []
         };
         
-        // 加载选项值
+  // بارگذاری مقادیر گزینه
         await loadOptionValues(option);
         selectedOptions.value.push(option);
       }
     };
 
-    // 预先准备已存在的选项值配置数据（从控制器传递）
-    const existingOptionValues = @json($existingOptionValues ?? []);
+  // آماده‌سازی اولیه تنظیمات مقادیر گزینه‌ای موجود (از کنترلر)
+  const existingOptionValues = @json($existingOptionValues ?? []);
 
-    // 加载选项值
-    const loadOptionValues = async (option) => {
+  // بارگذاری مقادیر مربوط به یک گزینه
+  const loadOptionValues = async (option) => {
       try {
         const response = await fetch(urls.base_url + '/options/' + option.id + '/values', {
           method: 'GET',
@@ -272,7 +272,7 @@ createOptionsApp({
         const data = await response.json();
         if (data.success) {
           option.values = data.data.option_values.map(value => {
-            // 检查是否已存在的选项值配置
+            // بررسی وجود پیکربندی مقدار گزینه در محصول
             const existingValue = existingOptionValues.find(pov => 
               pov.option_value_id === value.id && pov.option_id === option.id
             );
@@ -299,19 +299,19 @@ createOptionsApp({
       }
     };
 
-    // 选择选项
+  // انتخاب یک گزینه
     const selectOption = async (option) => {
       const newOption = { ...option, values: [] };
       await loadOptionValues(newOption);
       selectedOptions.value.push(newOption);
     };
 
-    // 移除选项
+  // حذف یک گزینه
     const removeOption = (optionId) => {
       selectedOptions.value = selectedOptions.value.filter(opt => opt.id !== optionId);
     };
 
-    // 切换选项值输入框状态
+  // تغییر حالت فیلدهای ورودی مقادیر گزینه
     const toggleValueInputs = (value) => {
       if (!value.selected) {
         value.price_adjustment = 0;
@@ -319,18 +319,18 @@ createOptionsApp({
       }
     };
 
-    // 检查是否所有选项值都被选中
+  // بررسی اینکه آیا همه مقادیر گزینه انتخاب شده‌اند
     const isAllValuesSelected = (option) => {
       return option.values.length > 0 && option.values.every(value => value.selected);
     };
 
-    // 检查是否部分选项值被选中
+  // بررسی اینکه آیا بخشی از مقادیر گزینه انتخاب شده‌اند
     const isSomeValuesSelected = (option) => {
       const selectedCount = option.values.filter(value => value.selected).length;
       return selectedCount > 0 && selectedCount < option.values.length;
     };
 
-    // 全选/取消全选选项值
+  // انتخاب همه/لغو انتخاب همه مقادیر گزینه
     const toggleAllValues = (option) => {
       const allSelected = isAllValuesSelected(option);
       option.values.forEach(value => {
@@ -342,7 +342,7 @@ createOptionsApp({
       });
     };
 
-    // 获取表单数据
+  // گرفتن داده‌های فرم
     const getFormData = () => {
       return selectedOptions.value.map(option => ({
         option_id: option.id,
@@ -354,7 +354,7 @@ createOptionsApp({
       }));
     };
 
-    // 显示错误信息
+  // نمایش پیام خطا
     const showError = (message) => {
       if (typeof inno !== 'undefined' && inno.msg) {
         inno.msg(message, 'error');

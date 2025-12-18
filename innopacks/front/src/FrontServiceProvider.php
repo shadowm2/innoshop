@@ -3,7 +3,7 @@
 /**
  * Copyright (c) Since 2024 InnoShop - All Rights Reserved
  *
- * @link       https://www.innoshop.com
+ * @link       https://www.sibzard.com
  * @author     InnoShop <team@innoshop.com>
  * @license    https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
  */
@@ -56,9 +56,9 @@ class FrontServiceProvider extends ServiceProvider
     {
         app('router')->aliasMiddleware('customer_auth', CustomerAuthentication::class);
 
-        // Bind SMS sender - default to a logger implementation. Can be overridden in app service provider.
+        // Bind SMS sender - using Melipayamak SMS service
         $this->app->bind(\InnoShop\Front\Services\Sms\SmsSenderInterface::class, function ($app) {
-            return new \InnoShop\Front\Services\Sms\LogSmsSender();
+            return new \InnoShop\Front\Services\Sms\MelipayamakSmsSender();
         });
     }
 
@@ -122,6 +122,11 @@ class FrontServiceProvider extends ServiceProvider
 
         foreach ($middlewares as $middleware) {
             $router->pushMiddlewareToGroup('front', $middleware);
+        }
+
+        // Load API routes
+        if (file_exists($apiPath = realpath(__DIR__ . '/../routes/api.php'))) {
+            $this->loadRoutesFrom($apiPath);
         }
 
         Route::middleware('front')

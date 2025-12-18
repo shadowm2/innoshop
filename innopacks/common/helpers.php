@@ -3,7 +3,7 @@
 /**
  * Copyright (c) Since 2024 InnoShop - All Rights Reserved
  *
- * @link       https://www.innoshop.com
+ * @link       https://www.sibzard.com
  * @author     InnoShop <team@innoshop.com>
  * @license    https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
  */
@@ -1223,7 +1223,7 @@ if (! function_exists('innoshop_brand_link')) {
     function innoshop_brand_link(): string
     {
         if (is_admin()) {
-            $default = '<a href="https://www.innoshop.com" class="ms-2" target="_blank">Sh@dow_m2</a>';
+            $default = '<a href="https://www.sibzard.com" class="ms-2" target="_blank">Sh@dow_m2</a>';
         } else {
             $default = 'Powered By <a href="https://www.zamanticket.ir" class="ms-2" target="_blank">Sh@dow_M2</a>';
         }

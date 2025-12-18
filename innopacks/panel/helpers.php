@@ -2,7 +2,7 @@
 /**
  * Copyright (c) Since 2024 InnoShop - All Rights Reserved
  *
- * @link       https://www.innoshop.com
+ * @link       https://www.sibzard.com
  * @author     InnoShop <team@innoshop.com>
  * @license    https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
  */
@@ -173,7 +173,7 @@ if (! function_exists('is_admin')) {
 if (! function_exists('dashboard_url')) {
     /**
      * Get dashboard url
-     * like https://www.innoshop.com/install/dashboard.jpg?edition=community&version=1.0.0&build_date=20250909
+     * like https://www.sibzard.com/install/dashboard.jpg?edition=community&version=1.0.0&build_date=20250909
      *
      * @return string
      */

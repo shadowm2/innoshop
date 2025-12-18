@@ -30,5 +30,5 @@
 .cm-s-bespin span.cm-tag {color: #cf6a4c;}
 .cm-s-bespin span.cm-link {color: #9b859d;}
 
-.cm-s-bespin .CodeMirror-matchingbracket { text-decoration: underline; color: white !important;}
+.cm-s-bespin .CodeMirror-matchingbracket { text-decoration: none !important; color: white !important;}
 .cm-s-bespin .CodeMirror-activeline-background { background: #404040; }

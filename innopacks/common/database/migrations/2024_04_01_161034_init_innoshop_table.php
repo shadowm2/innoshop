@@ -1,8 +1,9 @@
 <?php
+
 /**
  * Copyright (c) Since 2024 InnoShop - All Rights Reserved
  *
- * @link       https://www.innoshop.com
+ * @link       https://www.sibzard.com
  * @author     InnoShop <team@innoshop.com>
  * @license    https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
  *
@@ -425,7 +426,7 @@ return new class extends Migration
             $table->bigIncrements('id')->comment('ID');
             $table->integer('order_id')->index('ot_order_id')->comment('Order ID');
             $table->string('code')->comment('Code');
-            $table->decimal('value')->comment('Value');
+            $table->decimal('value', 12)->comment('Value');
             $table->string('title')->comment('Name');
             $table->json('reference')->nullable()->comment('Reference Information');
             $table->timestamps();

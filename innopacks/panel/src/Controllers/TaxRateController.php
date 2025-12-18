@@ -2,7 +2,7 @@
 /**
  * Copyright (c) Since 2024 InnoShop - All Rights Reserved
  *
- * @link       https://www.innoshop.com
+ * @link       https://www.sibzard.com
  * @author     InnoShop <team@innoshop.com>
  * @license    https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
  */
@@ -29,7 +29,7 @@ class TaxRateController extends BaseController
         $filters = $request->all();
         $data    = [
             'criteria'  => TaxRateRepo::getCriteria(),
-            'types'     => [['value' => 'percent', 'label' => '百分比'], ['value' => 'fixed', 'label' => '固定']],
+            'types'     => [['value' => 'percent', 'label' => 'درصد'], ['value' => 'fixed', 'label' => 'مبلغ ثابت']],
             'regions'   => RegionRepo::getInstance()->all()->toArray(),
             'tax_rates' => TaxRateRepo::getInstance()->list($filters),
         ];
@@ -94,7 +94,7 @@ class TaxRateController extends BaseController
     {
         $data = [
             'tax_rate' => $taxRate,
-            'types'    => [['value' => 'percent', 'label' => '百分比'], ['value' => 'fixed', 'label' => '固定']],
+            'types'    => [['value' => 'percent', 'label' => 'درصد'], ['value' => 'fixed', 'label' => 'مبلغ ثابت']],
             'regions'  => RegionRepo::getInstance()->all()->toArray(),
         ];
 

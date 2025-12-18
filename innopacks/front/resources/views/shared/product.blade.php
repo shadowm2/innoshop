@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="product-item-info">
-      <div class="product-name">
+      <div class="product-name" style="white-space: normal !important; overflow: visible !important; text-overflow: clip !important; display: -webkit-box !important; -webkit-line-clamp: 3 !important; -webkit-box-orient: vertical !important; max-height: 4.5em !important; line-height: 1.5 !important; word-wrap: break-word !important; word-break: break-word !important;">
         <a href="{{ $product->url }}" data-bs-toggle="tooltip" title="{{ $product->fallbackName() }}"
            data-placement="top">
           {{ $product->fallbackName() }}

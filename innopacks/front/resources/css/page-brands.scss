@@ -33,8 +33,34 @@ body.page-brands {
 
             .img {
               width: 99px;
+              height: 99px;
               border: 1px solid #e8e8e8;
               margin-bottom: 10px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              background-color: #fff;
+              padding: 8px;
+              border-radius: 4px;
+              overflow: hidden;
+              flex-shrink: 0;
+
+              @media (max-width: 576px) {
+                width: 80px;
+                height: 80px;
+                padding: 6px;
+              }
+
+              img {
+                width: 100% !important;
+                height: 100% !important;
+                max-width: 100% !important;
+                max-height: 100% !important;
+                object-fit: contain !important;
+                object-position: center !important;
+                display: block !important;
+                margin: 0 auto;
+              }
             }
           }
         }

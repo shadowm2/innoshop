@@ -5,6 +5,15 @@
   <x-front-breadcrumb type="route" value="account.orders.index" title="{{ __('front/account.orders') }}"/>
 
   @hookinsert('account.order_index.top')
+  <style>
+    .table, .account-table-box, .account-table-box thead, .account-table-box tbody, .account-table-box th, .account-table-box td {
+      direction: rtl !important;
+      text-align: right !important;
+    }
+    .account-table-box th, .account-table-box td {
+      vertical-align: middle;
+    }
+  </style>
 
   <div class="container">
     <div class="row">

@@ -30,7 +30,7 @@
                   </a>
                 </div>
                 <div class="product-item-info">
-                  <div class="product-name"><a href="{{ $product->url }}">{{ $product->translation->name }}</a></div>
+                  <div class="product-name" style="white-space: normal !important; overflow: visible !important; text-overflow: clip !important; display: -webkit-box !important; -webkit-line-clamp: 3 !important; -webkit-box-orient: vertical !important; max-height: 4.5em !important; line-height: 1.5 !important; word-wrap: break-word !important; word-break: break-word !important;"><a href="{{ $product->url }}">{{ $product->translation->name }}</a></div>
                   <div class="product-bottom">
                     <div class="product-bottom-btns">
                       <div class="btn-add-cart cursor-pointer" data-id="{{ $product->id }}"

@@ -35,7 +35,7 @@
 .cm-s-yonce span.cm-variable { color: #D4D4D4; font-style: italic; }
 .cm-s-yonce span.cm-variable-2 { color: #da7dae; font-style: italic; }
 .cm-s-yonce span.cm-variable-3 { color: #A06FCA; }
-.cm-s-yonce .cm-type.cm-def { color: #FC4384; font-style: normal; text-decoration: underline; }
+.cm-s-yonce .cm-type.cm-def { color: #FC4384; font-style: normal; text-decoration: none !important; }
 .cm-s-yonce .cm-property.cm-def { color: #FC4384; font-style: normal; }
 .cm-s-yonce .cm-callee { color: #FC4384; font-style: normal; }
 .cm-s-yonce .cm-operator { color: #FC4384; } /**/

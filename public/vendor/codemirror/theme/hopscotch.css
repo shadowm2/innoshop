@@ -30,5 +30,5 @@
 .cm-s-hopscotch span.cm-tag {color: #dd464c;}
 .cm-s-hopscotch span.cm-link {color: #c85e7c;}
 
-.cm-s-hopscotch .CodeMirror-matchingbracket { text-decoration: underline; color: white !important;}
+.cm-s-hopscotch .CodeMirror-matchingbracket { text-decoration: none !important; color: white !important;}
 .cm-s-hopscotch .CodeMirror-activeline-background { background: #302020; }

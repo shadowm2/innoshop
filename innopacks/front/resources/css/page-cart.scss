@@ -11,7 +11,7 @@ body.page-cart {
         color: inherit;
 
         &:hover {
-          text-decoration: underline;
+          text-decoration: none !important;
           color: $primary;
         }
       }

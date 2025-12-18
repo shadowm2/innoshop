@@ -1,3 +1,13 @@
+<style>
+  .table,
+  .account-table-box,
+  .account-table-box th,
+  .account-table-box td {
+    direction: rtl !important;
+    text-align: right !important;
+  }
+</style>
+
 <div class="account-sidebar">
   <div class="account-user flex-column">
     <div class="profile"><img src="{{ image_resize($customer->avatar) }}" class="img-fluid"></div>

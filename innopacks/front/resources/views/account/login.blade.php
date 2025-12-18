@@ -31,9 +31,9 @@
               class="bi bi-question-circle"></i></a>
         @endif
 
-        <div class="btn-submit">
-          <button type="button" class="btn btn-primary form-submit btn-lg">{{ __('front/login.login_submit') }}</button>
-          <a href="{{ front_route('register.index') }}{{ request('iframe') ? '?iframe=true' : '' }}">{{ __('front/login.no_account') }}
+        <div class="btn-submit" style="display: flex !important; flex-direction: column; gap: 12px; width: 100%;">
+          <button type="button" class="btn btn-primary form-submit btn-lg" style="width: 100% !important; display: block !important; visibility: visible !important;">{{ __('front/login.login_submit') }}</button>
+          <a href="{{ front_route('register.index') }}{{ request('iframe') ? '?iframe=true' : '' }}" style="display: block !important; visibility: visible !important; text-align: center; padding: 8px 0;">{{ __('front/login.no_account') }}
             <i class="bi bi-arrow-up-right-square"></i></a>
         </div>
       </form>
@@ -41,12 +41,12 @@
       <div class="otp-section">
         <div class="login-title">{{ __('front/login.login_with_phone') }}</div>
         <div class="form-group mb-3">
-          <iwwwwwnput id="otp_phone" type="text" class="form-control" name="phone" placeholder="{{ __('front/login.phone') }}"/>
+          <input id="otp_phone" type="text" class="form-control" name="phone" placeholder="{{ __('front/login.phone') }}"/>
         </div>
-        <div class="form-group mb-3">
-          <input id="otp_code" type="text" class="form-control" placeholder="{{ __('front/login.code') }}"/>
-          <button id="btn_request_otp" class="btn btn-outline-primary">{{ __('front/login.request_code') }}</button>
-          <button id="btn_verify_otp" class="btn btn-primary">{{ __('front/login.verify_code') }}</button>
+        <div class="form-group mb-3" style="display: flex; flex-wrap: wrap; gap: 8px;">
+          <input id="otp_code" type="text" class="form-control" placeholder="{{ __('front/login.code') }}" style="flex: 1 1 auto; min-width: 100%;"/>
+          <button id="btn_request_otp" class="btn btn-outline-primary" style="flex: 1 1 48%; min-width: 48%; display: block !important; visibility: visible !important;">{{ __('front/login.request_code') }}</button>
+          <button id="btn_verify_otp" class="btn btn-primary" style="flex: 1 1 48%; min-width: 48%; display: block !important; visibility: visible !important;">{{ __('front/login.verify_code') }}</button>
         </div>
       </div>
 
