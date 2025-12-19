@@ -319,7 +319,9 @@ class DesignService
         if (Arr::accessible($content['title'])) {
             $content['title']    = $content['title'][locale_code()] ?? '';
         }
-        $content['subtitle'] = $content['subtitle'][locale_code()] ?? '';
+        if (Arr::accessible($content['subtitle'])) {
+            $content['subtitle']    = $content['subtitle'][locale_code()] ?? '';
+        }
 
         // 从 articles 字段获取文章ID数组
         $articleIds = [];
@@ -423,7 +425,9 @@ class DesignService
         if (Arr::accessible($content['title'])) {
             $content['title']    = $content['title'][locale_code()] ?? '';
         }
-        $content['subtitle'] = $content['subtitle'][locale_code()] ?? '';
+        if (Arr::accessible($content['subtitle'])) {
+            $content['subtitle']    = $content['subtitle'][locale_code()] ?? '';
+        }
 
         return $content;
     }
@@ -490,7 +494,9 @@ class DesignService
         if (Arr::accessible($content['title'])) {
             $content['title']    = $content['title'][locale_code()] ?? '';
         }
-        $content['subtitle'] = $content['subtitle'][locale_code()] ?? '';
+        if (Arr::accessible($content['subtitle'])) {
+            $content['subtitle']    = $content['subtitle'][locale_code()] ?? '';
+        }
 
         return $content;
     }
@@ -527,7 +533,9 @@ class DesignService
         }
 
 
-        $content['subtitle'] = $content['subtitle'][locale_code()] ?? '';
+        if (Arr::accessible($content['subtitle'])) {
+            $content['subtitle']    = $content['subtitle'][locale_code()] ?? '';
+        }
 
         
         return $content;
@@ -570,7 +578,9 @@ class DesignService
         if (Arr::accessible($content['title'])) {
             $content['title']    = $content['title'][locale_code()] ?? '';
         }
-        $content['subtitle'] = $content['subtitle'][locale_code()] ?? '';
+        if (Arr::accessible($content['subtitle'])) {
+            $content['subtitle']    = $content['subtitle'][locale_code()] ?? '';
+        }
 
         return $content;
     }
