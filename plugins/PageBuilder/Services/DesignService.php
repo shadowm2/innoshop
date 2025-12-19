@@ -319,7 +319,7 @@ class DesignService
         if (Arr::accessible($content['title'])) {
             $content['title']    = $content['title'][locale_code()] ?? '';
         }
-        if (Arr::accessible($content['subtitle'])) {
+        if (Arr::accessible($content['subtitle'] ?? '')) {
             $content['subtitle']    = $content['subtitle'][locale_code()] ?? '';
         }
 
@@ -425,7 +425,7 @@ class DesignService
         if (Arr::accessible($content['title'])) {
             $content['title']    = $content['title'][locale_code()] ?? '';
         }
-        if (Arr::accessible($content['subtitle'])) {
+        if (Arr::accessible($content['subtitle'] ?? '')) {
             $content['subtitle']    = $content['subtitle'][locale_code()] ?? '';
         }
 
@@ -494,7 +494,7 @@ class DesignService
         if (Arr::accessible($content['title'])) {
             $content['title']    = $content['title'][locale_code()] ?? '';
         }
-        if (Arr::accessible($content['subtitle'])) {
+        if (Arr::accessible($content['subtitle'] ?? '')) {
             $content['subtitle']    = $content['subtitle'][locale_code()] ?? '';
         }
 
@@ -533,7 +533,7 @@ class DesignService
         }
 
 
-        if (Arr::accessible($content['subtitle'])) {
+        if (Arr::accessible($content['subtitle'] ?? '')) {
             $content['subtitle']    = $content['subtitle'][locale_code()] ?? '';
         }
 
@@ -578,7 +578,7 @@ class DesignService
         if (Arr::accessible($content['title'])) {
             $content['title']    = $content['title'][locale_code()] ?? '';
         }
-        if (Arr::accessible($content['subtitle'])) {
+        if (Arr::accessible($content['subtitle'] ?? '')) {
             $content['subtitle']    = $content['subtitle'][locale_code()] ?? '';
         }
 
