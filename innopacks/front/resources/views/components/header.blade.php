@@ -104,14 +104,16 @@
   </div>
   <div class="header-mobile">
     <div class="mobile-header-container">
-      <div class="mobile-menu-toggle" data-bs-toggle="offcanvas" data-bs-target="#mobileMenuOffcanvas">
-        <i class="bi bi-list"></i>
-      </div>
-      
-      <div class="mobile-logo">
-        <a href="{{ front_route('home.index') }}">
-          <img src="{{ image_origin(system_setting('front_logo', 'images/logo.svg')) }}" alt="Logo">
-        </a>
+      <div style="display: flex; flex-direction: row">
+        <div class="mobile-menu-toggle" data-bs-toggle="offcanvas" data-bs-target="#mobileMenuOffcanvas">
+          <i class="bi bi-list"></i>
+        </div>
+        
+        <div class="mobile-logo">
+          <a href="{{ front_route('home.index') }}">
+            <img src="{{ image_origin(system_setting('front_logo', 'images/logo.svg')) }}" alt="Logo">
+          </a>
+        </div>
       </div>
       
       <div class="mobile-icons">
