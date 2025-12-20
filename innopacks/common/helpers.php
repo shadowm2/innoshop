@@ -1222,11 +1222,7 @@ if (! function_exists('innoshop_brand_link')) {
      */
     function innoshop_brand_link(): string
     {
-        if (is_admin()) {
-            $default = '<a href="'.config('app.url').'" class="ms-2" target="_blank">Sh@dow_m2</a>';
-        } else {
-            $default = trans('common/base.powered_by').' <a href="'.config('app.url').'" class="ms-2" target="_blank">Sh@dow_M2</a>';
-        }
+        $default = '<a href="'.(config('app.contact_link') ?? config('app.url')).'" class="ms-2" target="_blank">shadow_m2</a>';
 
         return fire_hook_filter('innoshop.brand.link.display', $default);
     }
