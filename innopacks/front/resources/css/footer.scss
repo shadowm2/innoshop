@@ -1,6 +1,6 @@
 footer {
   position: relative;
-  background-color: #222222;
+  /* background-color: #b62323; */ /* Removed hardcoded color - now set via inline style from settings */
   overflow: hidden;
   margin-top: 20px;
 
@@ -8,12 +8,13 @@ footer {
     margin-top: 50px;
   }
 
-  &::after, &::before {
-    content: '';
+  &::after,
+  &::before {
+    content: "";
     position: absolute;
     width: 20%;
     height: 300px;
-    background-image: url('/images/icons/footer-1.svg');
+    background-image: url("/images/icons/footer-1.svg");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: top;
@@ -23,7 +24,7 @@ footer {
     top: 0;
     left: 0;
     width: 50%;
-    background-image: url('/images/icons/footer-1.svg');
+    background-image: url("/images/icons/footer-1.svg");
 
     @media (min-width: 768px) {
       top: -5%;
@@ -36,7 +37,7 @@ footer {
     right: 0;
     width: 36%;
     background-position: bottom;
-    background-image: url('/images/icons/footer-2.svg');
+    background-image: url("/images/icons/footer-2.svg");
 
     @media (min-width: 768px) {
       bottom: -5%;
@@ -67,7 +68,7 @@ footer {
         bottom: 0;
         width: 0;
         border-bottom: 1px solid;
-        transition: width .3s;
+        transition: width 0.3s;
       }
     }
 
@@ -149,9 +150,8 @@ footer {
       }
     }
 
-
     .bottom-box {
-      border-top: 1px solid #4A4A4A;
+      border-top: 1px solid #4a4a4a;
       padding: 26px 0;
 
       @media (max-width: 768px) {

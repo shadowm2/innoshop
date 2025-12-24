@@ -12,7 +12,7 @@ header {
   }
 
   .header-top {
-    background-color: #1B1F22;
+    background-color: #ec1111;
     color: #fff;
     height: $headerToph;
     display: flex;
@@ -58,7 +58,7 @@ header {
 
   // 与移动端公用搜索框样式
   .search-group {
-    background-color: #F1F3F5;
+    background-color: #f1f3f5;
     position: relative;
     &:hover {
       input {
@@ -89,10 +89,11 @@ header {
   }
 
   .header-desktop {
-  padding: 30px 10px; /* reduced side padding so content goes closer to edges */
+    padding: 30px 10px; /* reduced side padding so content goes closer to edges */
 
     /* Desktop header: keep everything in a single non-wrapping row */
-    .container-fluid, .container {
+    .container-fluid,
+    .container {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -111,7 +112,7 @@ header {
       min-width: 0;
 
       .menu {
-  margin-left: 16px;
+        margin-left: 16px;
         flex: 1 1 auto; /* allow menu to take remaining space */
         min-width: 0;
 
@@ -121,7 +122,8 @@ header {
 
         .navbar {
           .nav-item {
-            > .dropdown > .nav-link, > .nav-link {
+            > .dropdown > .nav-link,
+            > .nav-link {
               /* allow text to use available space but not wrap */
               white-space: nowrap;
               display: inline-block;
@@ -135,18 +137,18 @@ header {
               flex-wrap: nowrap;
               align-items: center;
               gap: 8px;
-                /* Keep items on one line but allow shrinking when needed */
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                display: inline-block;
-                max-width: none;
-                min-width: 0; /* allow shrinking */
-              }
-              .nav-item {
-                flex: 0 1 auto; /* allow items to shrink */
-                min-width: 0;
-              }
+              /* Keep items on one line but allow shrinking when needed */
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              display: inline-block;
+              max-width: none;
+              min-width: 0; /* allow shrinking */
+            }
+            .nav-item {
+              flex: 0 1 auto; /* allow items to shrink */
+              min-width: 0;
+            }
           }
         }
       }
@@ -164,8 +166,6 @@ header {
     @media (max-width: 992px) {
       display: none;
     }
-
-    
 
     .right {
       display: flex;
@@ -219,7 +219,7 @@ header {
       }
     }
   }
-  
+
   // Hide mobile header on desktop
   @media (min-width: 992px) {
     .header-mobile {

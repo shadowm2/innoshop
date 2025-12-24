@@ -1,4 +1,5 @@
 <?php
+
 return [
     'advanced_settings'                 => 'تنظیمات پیشرفته',
     'advanced_settings_desc'            => 'پیکربندی مسیر دسترسی بک‌اند، شماره رکورد و اسکریپت سفارشی',
@@ -144,4 +145,39 @@ return [
     'title_to_tdk_desc'                 => 'تولید خودکار اطلاعات TDK (عنوان، توضیحات، کلمه کلیدی) با استفاده از عناوین محصول',
     'user_experience'                   => 'تجربه کاربری',
     'website_data'                      => 'داده‌های وب‌سایت',
+
+    // Header Top Settings
+    'header_top_settings'              => 'تنظیمات نوار بالای هدر',
+    'header_top_settings_desc'         => 'پیکربندی نمایش و محتوای نوار بالای هدر',
+    'header_top_enable'                => 'فعال‌سازی نوار بالای هدر',
+    'header_top_enable_desc'           => 'نمایش یا مخفی کردن نوار بالای هدر',
+    'header_top_bg_color'              => 'رنگ پس‌زمینه نوار بالای هدر',
+    'header_top_bg_color_desc'         => 'تنظیم رنگ پس‌زمینه برای نوار بالای هدر',
+    'header_top_bg_color_placeholder'  => '#1B1F22',
+    'header_top_instagram'             => 'نام کاربری اینستاگرام',
+    'header_top_instagram_desc'        => 'نام کاربری اینستاگرام خود را وارد کنید (بدون @)',
+    'header_top_instagram_placeholder' => 'your_instagram_username',
+    'header_top_telegram'              => 'نام کاربری تلگرام',
+    'header_top_telegram_desc'         => 'نام کاربری تلگرام خود را وارد کنید (بدون @)',
+    'header_top_telegram_placeholder'  => 'your_telegram_username',
+
+    // Footer Settings
+    'footer_settings'             => 'تنظیمات فوتر',
+    'footer_settings_desc'        => 'پیکربندی ظاهر فوتر',
+    'footer_bg_color'             => 'رنگ پس‌زمینه فوتر',
+    'footer_bg_color_desc'        => 'تنظیم رنگ پس‌زمینه برای فوتر',
+    'footer_bg_color_placeholder' => '#b62323',
+
+    // Font Settings
+    'font_settings'           => 'تنظیمات فونت',
+    'font_settings_desc'      => 'پیکربندی خانواده فونت، اندازه و رنگ را برای فرانت‌اند تنظیم کنید',
+    'font_family'             => 'خانواده فونت',
+    'font_family_desc'        => 'خانواده فونت را برای فرانت‌اند تنظیم کنید (مثلاً Vazirmatn، Arial و غیره)',
+    'font_family_placeholder' => 'Vazirmatn',
+    'font_size'               => 'اندازه فونت',
+    'font_size_desc'          => 'اندازه پیش‌فرض فونت را برای فرانت‌اند تنظیم کنید (مثلاً 14px، 16px و غیره)',
+    'font_size_placeholder'   => '14px',
+    'font_color'              => 'رنگ فونت',
+    'font_color_desc'         => 'رنگ پیش‌فرض فونت را برای فرانت‌اند تنظیم کنید',
+    'font_color_placeholder'  => '#000000',
 ];

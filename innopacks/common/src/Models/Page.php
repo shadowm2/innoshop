@@ -36,6 +36,7 @@ class Page extends BaseModel
             if ($this->slug) {
                 return front_route('pages.'.$this->slug);
             }
+            
 
             return front_route('pages.show', $this);
         } catch (Exception $e) {

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) Since 2024 InnoShop - All Rights Reserved
  *
@@ -403,11 +404,11 @@ class CheckoutService
             'checkout'              => $this->getCheckoutData(),
             'fee_list'              => $this->getFeeList(),
             'amount'                => $cartAmount,
-            'amount_format'         => currency_format($cartAmount),
+            'amount_format'         => $cartAmount !== null ? currency_format($cartAmount) : '0',
             'total_number'          => $this->getTotalNumber(),
             'is_virtual'            => $this->checkIsVirtual(),
             'balance_amount'        => $this->getBalanceAmount(),
-            'balance_amount_format' => currency_format($balanceAmount, setting_currency_code()),
+            'balance_amount_format' => $balanceAmount !== null ? currency_format($balanceAmount, setting_currency_code()) : '0',
         ];
 
         return fire_hook_filter('service.checkout.checkout.result', $result);

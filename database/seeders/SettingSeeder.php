@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) Since 2024 InnoShop - All Rights Reserved
  *
@@ -153,6 +154,14 @@ class SettingSeeder extends Seeder
                 'name'  => 'ai_prompt_product_summary',
                 'value' => '请为该商品撰写一份简洁而引人注目的产品摘要。摘要应突出产品的核心功能、主要特点和独特卖点，根据目标用户，并且能够激发他们的购买欲望。请确保摘要语言简洁明了，同时能清楚地传达产品的价值和优势。输出为1-2句吸引用户的精炼内容。',
             ],
+            ['space' => 'system', 'name' => 'header_top_enable', 'value' => '1'],
+            ['space' => 'system', 'name' => 'header_top_bg_color', 'value' => '#1B1F22'],
+            ['space' => 'system', 'name' => 'header_top_instagram', 'value' => ''],
+            ['space' => 'system', 'name' => 'header_top_telegram', 'value' => ''],
+            ['space' => 'system', 'name' => 'footer_bg_color', 'value' => '#b62323'],
+            ['space' => 'system', 'name' => 'font_family', 'value' => 'Vazirmatn'],
+            ['space' => 'system', 'name' => 'font_size', 'value' => '14px'],
+            ['space' => 'system', 'name' => 'font_color', 'value' => '#000000'],
         ];
     }
 }

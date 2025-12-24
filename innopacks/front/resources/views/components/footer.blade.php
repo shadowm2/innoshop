@@ -1,6 +1,6 @@
 @hookinsert('layout.footer.top')
 
-<footer id="appFooter">
+<footer id="appFooter" style="background-color: {{ system_setting('footer_bg_color', '#b62323') }};">
     <div class="footer-box">
         <div class="container">
             <div class="footer-top-links">

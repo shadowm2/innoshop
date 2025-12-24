@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) Since 2024 InnoShop - All Rights Reserved
  *
@@ -152,4 +153,39 @@ return [
     'title_to_tdk_desc'                 => 'Automatically generate TDK (title, description, keyword) information using product titles',
     'user_experience'                   => 'User experience',
     'website_data'                      => 'Website Data',
+
+    // Header Top Settings
+    'header_top_settings'              => 'Header Top Bar Settings',
+    'header_top_settings_desc'         => 'Configure the header top bar display and content',
+    'header_top_enable'                => 'Enable Header Top Bar',
+    'header_top_enable_desc'           => 'Show or hide the header top bar',
+    'header_top_bg_color'              => 'Header Top Background Color',
+    'header_top_bg_color_desc'         => 'Set the background color for the header top bar',
+    'header_top_bg_color_placeholder'  => '#1B1F22',
+    'header_top_instagram'             => 'Instagram Username',
+    'header_top_instagram_desc'        => 'Enter your Instagram username (without @)',
+    'header_top_instagram_placeholder' => 'your_instagram_username',
+    'header_top_telegram'              => 'Telegram Username',
+    'header_top_telegram_desc'         => 'Enter your Telegram username (without @)',
+    'header_top_telegram_placeholder'  => 'your_telegram_username',
+
+    // Footer Settings
+    'footer_settings'             => 'Footer Settings',
+    'footer_settings_desc'        => 'Configure the footer appearance',
+    'footer_bg_color'             => 'Footer Background Color',
+    'footer_bg_color_desc'        => 'Set the background color for the footer',
+    'footer_bg_color_placeholder' => '#b62323',
+
+    // Font Settings
+    'font_settings'           => 'Font Settings',
+    'font_settings_desc'      => 'Configure the font family, size, and color for the frontend',
+    'font_family'             => 'Font Family',
+    'font_family_desc'        => 'Set the font family for the frontend (e.g., Vazirmatn, Arial, etc.)',
+    'font_family_placeholder' => 'Vazirmatn',
+    'font_size'               => 'Font Size',
+    'font_size_desc'          => 'Set the default font size for the frontend (e.g., 14px, 16px, etc.)',
+    'font_size_placeholder'   => '14px',
+    'font_color'              => 'Font Color',
+    'font_color_desc'         => 'Set the default font color for the frontend',
+    'font_color_placeholder'  => '#000000',
 ];
