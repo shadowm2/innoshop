@@ -1,4 +1,5 @@
 <?php
+
 return [
     'account'            => 'حساب',
     'admins'             => 'مدیران',
@@ -59,6 +60,7 @@ return [
     'upload'            => 'آپلود',
     'weight_classes'    => 'واحدهای وزن',
     'withdrawals'       => 'برداشت‌ها',
+    'options'           => 'گزینه ها',
 
-    'add_slideshow' => 'افزودن اسلاید'
+    'add_slideshow' => 'افزودن اسلاید',
 ];
