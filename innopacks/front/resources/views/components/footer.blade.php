@@ -97,7 +97,7 @@
       <div class="bottom-box">
         <div class="row">
           <div class="col-md-6">
-            <div class="left-links">
+            <div class="left-links" style="color: {{system_setting('footer_color')}}">
               {!! innoshop_brand_link() !!}
               <!-- Powered By InnoShop {{ innoshop_version() }} -->
               <span class="copyright-text" style="color: {{system_setting('footer_color')}}">
