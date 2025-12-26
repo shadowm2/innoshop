@@ -1222,7 +1222,8 @@ if (! function_exists('innoshop_brand_link')) {
      */
     function innoshop_brand_link(): string
     {
-        $default = '<a href="'.(config('app.contact_link') ?? config('app.url')).'" class="ms-2" target="_blank">shadow_m2</a>';
+        $default = '<a style="color: '.system_setting('footer_color').'" '.
+            'href="'.(config('app.contact_link') ?? config('app.url')).'" class="ms-2" target="_blank">shadow_m2</a>';
 
         return fire_hook_filter('innoshop.brand.link.display', $default);
     }
