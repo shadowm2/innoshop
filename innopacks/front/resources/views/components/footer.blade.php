@@ -102,7 +102,9 @@
               <!-- Powered By InnoShop {{ innoshop_version() }} -->
               <span class="copyright-text" style="color: {{system_setting('footer_color')}}">
                                 <a href="{{ front_route('home.index') }}" class="ms-2"
-                                   target="_blank">{{ config('app.name') }}</a>
+                                   style="color: {{system_setting('footer_color')}}"
+                                   target="_blank">{{ config('app.name') }}
+                                </a>
                                 &copy; {{ date('Y') }} تمام حقوق مادی و معنوی سایت محفوظ است
                             </span>
             </div>
