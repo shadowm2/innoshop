@@ -89,60 +89,6 @@
   <div class="header-desktop">
     <div class="container-fluid d-flex justify-content-between align-items-center" style="flex-wrap:nowrap;">
       <div class="left">
-        <h1 class="logo">
-          <a href="{{ front_route('home.index') }}">
-            <img src="{{ image_origin(system_setting('front_logo', 'images/logo.svg')) }}"
-                 class="img-fluid">
-          </a>
-        </h1>
-        <div class="menu">
-          <nav class="navbar navbar-expand-md navbar-light">
-            <ul class="navbar-nav" style="display:flex;flex-wrap:nowrap;align-items:center;">
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page"
-                   href="{{ front_route('home.index') }}">{{ __('front/common.home') }}</a>
-              </li>
-
-              @hookupdate('layouts.header.menu.pc')
-              @foreach ($headerMenus as $menu)
-                @if ($menu['children'] ?? [])
-                  <li class="nav-item">
-                    <div class="dropdown">
-                      @if ($menu['name'])
-                        <a class="nav-link {{ equal_url($menu['url']) ? 'active' : '' }}"
-                           href="{{ $menu['url'] }}">{{ $menu['name'] }}</a>
-                      @endif
-                      <ul class="dropdown-menu">
-                        @foreach ($menu['children'] as $child)
-                          @if ($child['name'])
-                            <li><a class="dropdown-item"
-                                   href="{{ $child['url'] }}">{{ $child['name'] }}</a>
-                            </li>
-                          @endif
-                        @endforeach
-                      </ul>
-                    </div>
-                  </li>
-                @else
-                  @if ($menu['name'])
-                    <li class="nav-item">
-                      <a class="nav-link {{ equal_url($menu['url']) ? 'active' : '' }}"
-                         href="{{ $menu['url'] }}">{{ $menu['name'] }}</a>
-                    </li>
-                  @endif
-                @endif
-              @endforeach
-              @endhookupdate
-            </ul>
-          </nav>
-        </div>
-      </div>
-      <div class="right">
-        <form action="{{ front_route('products.index') }}" method="get" class="search-group">
-          <input type="text" class="form-control" name="keyword"
-                 placeholder="{{ __('front/common.search') }}" value="{{ request('keyword') }}">
-          <button type="submit" class="btn"><i class="bi bi-search"></i></button>
-        </form>
         <div class="icons">
           <div class="item">
             <div class="dropdown account-icon">
@@ -183,6 +129,62 @@
           </div>
           @hookinsert('layouts.header.cart.after')
         </div>
+        <form action="{{ front_route('products.index') }}" method="get" class="search-group">
+          <input type="text" class="form-control" name="keyword"
+                 placeholder="{{ __('front/common.search') }}" value="{{ request('keyword') }}">
+          <button type="submit" class="btn"><i class="bi bi-search"></i></button>
+        </form>
+      </div>
+      <div class="right">
+
+
+        <div class="menu">
+          <nav class="navbar navbar-expand-md navbar-light">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page"
+                   href="{{ front_route('home.index') }}">{{ __('front/common.home') }}</a>
+              </li>
+
+              @hookupdate('layouts.header.menu.pc')
+              @foreach ($headerMenus as $menu)
+                @if ($menu['children'] ?? [])
+                  <li class="nav-item">
+                    <div class="dropdown">
+                      @if ($menu['name'])
+                        <a class="nav-link {{ equal_url($menu['url']) ? 'active' : '' }}"
+                           href="{{ $menu['url'] }}">{{ $menu['name'] }}</a>
+                      @endif
+                      <ul class="dropdown-menu">
+                        @foreach ($menu['children'] as $child)
+                          @if ($child['name'])
+                            <li><a class="dropdown-item"
+                                   href="{{ $child['url'] }}">{{ $child['name'] }}</a>
+                            </li>
+                          @endif
+                        @endforeach
+                      </ul>
+                    </div>
+                  </li>
+                @else
+                  @if ($menu['name'])
+                    <li class="nav-item">
+                      <a class="nav-link {{ equal_url($menu['url']) ? 'active' : '' }}"
+                         href="{{ $menu['url'] }}">{{ $menu['name'] }}</a>
+                    </li>
+                  @endif
+                @endif
+              @endforeach
+              @endhookupdate
+            </ul>
+          </nav>
+        </div>
+        <h1 class="logo">
+          <a href="{{ front_route('home.index') }}">
+            <img src="{{ image_origin(system_setting('front_logo', 'images/logo.svg')) }}"
+                 class="img-fluid">
+          </a>
+        </h1>
       </div>
     </div>
   </div>
