@@ -24,6 +24,7 @@ class ThemeRepo
         'menu_footer_catalogs',
         'menu_footer_pages',
         'menu_footer_specials',
+        'category_carousel',
     ];
 
     /**

@@ -104,4 +104,5 @@ return [
     'yes'                          => 'بله',
     'category_parent_self'         => 'والد دسته نمی‌تواند خود آن باشد',
     'category_circular_reference'  => 'ارجاع حلقه‌ای در سلسله‌مراتب دسته کشف شد',
+    'submit'                       => 'ذخیره تغییرات',
 ];

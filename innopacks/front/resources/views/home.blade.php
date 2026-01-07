@@ -44,6 +44,69 @@
 
     @hookinsert('home.swiper.after')
 
+    @if (!empty($category_carousel))
+      <section class="module-line">
+        <div class="module-category-carousel">
+          <div class="container">
+            <div class="module-title-wrap">
+              <div class="module-title">{{ __('panel/setting.category_carousel') }}</div>
+            </div>
+            
+            <div class="swiper" id="module-category-swiper">
+              <div class="swiper-wrapper">
+                @foreach ($category_carousel as $catId => $catData)
+                  @php
+                    $category = \InnoShop\Common\Models\Category::find($catId);
+                    if (!$category) continue;
+                    $image = $catData['image'] ?? $category->image ?? null;
+                  @endphp
+                  <div class="swiper-slide">
+                    <a href="{{ $category->url }}" class="category-item">
+                      <div class="category-image-wrap">
+                        @if($image)
+                          <img src="{{ image_resize($image, 200, 200) }}" class="category-image" alt="{{ $category->fallbackName() }}">
+                        @else
+                          <img src="{{ asset('images/no-image.png') }}" class="category-image" alt="{{ $category->fallbackName() }}">
+                        @endif
+                      </div>
+                      <div class="category-name">{{ $category->fallbackName() }}</div>
+                    </a>
+                  </div>
+                @endforeach
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <script>
+        new Swiper('#module-category-swiper', {
+          slidesPerView: 2,
+          spaceBetween: 15,
+          loop: {{ count($category_carousel) > 6 ? 'true' : 'false' }},
+          autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+          },
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          breakpoints: {
+            640: {
+              slidesPerView: 3,
+            },
+            768: {
+              slidesPerView: 4,
+            },
+            1024: {
+              slidesPerView: 6,
+            },
+          },
+        });
+      </script>
+    @endif
+
     @if (0)
       <section class="module-line">
         <div class="module-banner-2">

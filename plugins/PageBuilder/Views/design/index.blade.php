@@ -84,6 +84,7 @@
   @include('PageBuilder::design.editors.single-image')
   @include('PageBuilder::design.editors.custom-products')
   @include('PageBuilder::design.editors.category-products')
+  @include('PageBuilder::design.editors.category-carousel')
   @include('PageBuilder::design.editors.latest-products')
   @include('PageBuilder::design.editors.four-image')
   @include('PageBuilder::design.editors.four-image-plus')

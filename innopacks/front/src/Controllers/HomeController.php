@@ -34,6 +34,7 @@ class HomeController extends Controller
             'slideshow'    => HomeRepo::getInstance()->getSlideShow(),
             'tab_products' => $tabProducts,
             'news'         => $news,
+            'category_carousel' => system_setting('category_carousel', []),
         ];
 
         $data = fire_hook_filter('home.index.data', $data);

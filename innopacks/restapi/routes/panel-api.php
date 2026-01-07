@@ -31,6 +31,7 @@ Route::middleware($middlewares)->group(function () {
     Route::get('/categories', [PanelApiControllers\CategoryController::class, 'index'])->name('categories.index');
     Route::get('/categories/names', [PanelApiControllers\CategoryController::class, 'names'])->name('categories.names');
     Route::get('/categories/autocomplete', [PanelApiControllers\CategoryController::class, 'autocomplete'])->name('categories.autocomplete');
+    Route::post('/categories/get-list-by-ids', [PanelApiControllers\CategoryController::class, 'names'])->name('categories.get_list_by_ids');
 
     Route::get('/brands', [PanelApiControllers\BrandController::class, 'index'])->name('brands.index');
     Route::get('/brands/names', [PanelApiControllers\BrandController::class, 'names'])->name('brands.name');

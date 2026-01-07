@@ -32,4 +32,5 @@ return [
     'move_down'             => 'Move Down',
     'edit'                  => 'Edit',
     'delete'                => 'Delete',
+    'category_carousel'     => 'Category Carousel Module',
 ];

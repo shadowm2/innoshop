@@ -123,6 +123,26 @@ class ModuleRepo
 
             // ===== Important Modules (Commonly Used) =====
             [
+                'title'   => trans('PageBuilder::modules.category_carousel'),
+                'code'    => 'category-carousel',
+                'icon'    => '<i class="bi bi-collection-play"></i>',
+                'content' => [
+                    'style' => [
+                        'background_color' => '',
+                    ],
+                    'title'         => self::languagesFill('دسته‌بندی‌های برگزیده'),
+                    'subtitle'      => self::languagesFill(''),
+                    'category_ids'  => [],
+                    'limit'         => 12,
+                    'autoplay'      => true,
+                    'autoplaySpeed' => 3000,
+                    'showImage'     => true,
+                    'showName'      => true,
+                    'columns'       => 6,
+                    'width'         => 'wide',
+                ],
+            ],
+            [
                 'title'   => trans('PageBuilder::modules.single_image'),
                 'code'    => 'single-image',
                 'icon'    => '<i class="bi bi-image"></i>',

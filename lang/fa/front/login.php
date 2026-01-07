@@ -22,7 +22,7 @@ return [
     'inactive_customer'         => 'حساب شما غیر فعال است.',
     'login_success'             => 'با موفقیت وارد شدید.',
     // OTP / phone
-    'login_with_phone'          => 'ورود با تلفن',
+    'login_with_phone'          => 'ورود با شماره موبایل(کد یکبار مصرف)',
     'phone'                     => 'تلفن',
     'code'                      => 'کد',
     'request_code'              => 'دریافت کد',

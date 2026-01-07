@@ -22,6 +22,8 @@
                  data-bs-target="#tab-setting-header-menu">{{ __('panel/setting.header_menu') }}</a>
               <a class="nav-link" href="#" data-bs-toggle="tab"
                  data-bs-target="#tab-setting-footer-menu">{{ __('panel/setting.footer_menu') }}</a>
+              <a class="nav-link" href="#" data-bs-toggle="tab"
+                 data-bs-target="#tab-setting-category-carousel">{{ __('panel/setting.category_carousel') }}</a>
             </ul>
           </div>
         </div>
@@ -225,6 +227,38 @@
                   </div>
                 </div>
               </div>
+
+              <div class="tab-pane fade" id="tab-setting-category-carousel">
+                  <div class="row">
+                      <div class="col-12">
+                          <label class="form-label">{{ __('panel/menu.categories') }}</label>
+                          <div class="card">
+                              <div class="card-body hp-400 overflow-y-auto">
+                                  @foreach ($categories as $item)
+                                      <div class="d-flex align-items-center mb-2 p-2 border rounded">
+                                          <div class="form-check me-3">
+                                              <input class="form-check-input" type="checkbox" name="category_carousel[{{ $item['id'] }}][id]"
+                                                     value="{{ $item['id'] }}"
+                                                     id="category-carousel-{{ $item['id'] }}"
+                                                     {{ isset(old('category_carousel', system_setting('category_carousel', []))[$item['id']]) ? 'checked' : '' }}
+                                                     onchange="toggleCategoryUpload(this, {{ $item['id'] }})">
+                                              <label class="form-check-label ms-2" for="category-carousel-{{ $item['id'] }}">
+                                                  {{ $item['name'] }}
+                                              </label>
+                                          </div>
+
+                                          <div class="ms-auto category-upload-wrapper {{ isset(old('category_carousel', system_setting('category_carousel', []))[$item['id']]) ? '' : 'd-none' }}" id="category-upload-{{ $item['id'] }}">
+                                            <x-common-form-image title=""
+                                                name="category_carousel[{{ $item['id'] }}][image]"
+                                                value="{{ old('category_carousel', system_setting('category_carousel', []))[$item['id']]['image'] ?? '' }}"/>
+                                          </div>
+                                      </div>
+                                  @endforeach
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
             </div>
           </div>
         </div>
@@ -338,5 +372,14 @@
       var text = $(this).text();
       $('.setting-header').text(text);
     });
+
+    function toggleCategoryUpload(checkbox, id) {
+        const uploadWrapper = document.getElementById(`category-upload-${id}`);
+        if (checkbox.checked) {
+            uploadWrapper.classList.remove('d-none');
+        } else {
+            uploadWrapper.classList.add('d-none');
+        }
+    }
   </script>
 @endpush

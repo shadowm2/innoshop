@@ -189,4 +189,5 @@ return [
     'page_bg_color'             => 'رنگ پس‌زمینه صفحه',
     'page_bg_color_desc'        => 'تنظیم رنگ پس‌زمینه برای کل صفحه',
     'page_bg_color_placeholder' => '#ffffff',
+    'category_carousel'         => 'اسلایدر دسته‌بندی‌ها',
 ];
