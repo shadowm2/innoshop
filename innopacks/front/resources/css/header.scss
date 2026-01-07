@@ -22,6 +22,7 @@ header {
       a {
         color: inherit;
         margin-right: 10px;
+
         &:hover {
           > a {
             color: $primary;
@@ -60,6 +61,7 @@ header {
   .search-group {
     background-color: #f1f3f5;
     position: relative;
+
     &:hover {
       input {
         background-color: #eee;
@@ -82,6 +84,7 @@ header {
       right: 0;
       top: 50%;
       transform: translateY(-50%);
+
       i {
         font-size: 22px;
       }
@@ -111,78 +114,11 @@ header {
       gap: 16px;
       min-width: 0;
 
-      .menu {
-        margin-left: 16px;
-        flex: 1 1 auto; /* allow menu to take remaining space */
-        min-width: 0;
-
-        .navbar {
-          padding: 0;
-        }
-
-        .navbar {
-          .nav-item {
-            > .dropdown > .nav-link,
-            > .nav-link {
-              /* allow text to use available space but not wrap */
-              white-space: nowrap;
-              display: inline-block;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              max-width: none; /* no arbitrary truncation here */
-            }
-            .navbar-nav {
-              display: flex;
-              flex-direction: row;
-              flex-wrap: nowrap;
-              align-items: center;
-              gap: 8px;
-              /* Keep items on one line but allow shrinking when needed */
-              white-space: nowrap;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              display: inline-block;
-              max-width: none;
-              min-width: 0; /* allow shrinking */
-            }
-            .nav-item {
-              flex: 0 1 auto; /* allow items to shrink */
-              min-width: 0;
-            }
-          }
-        }
-      }
-    }
-
-    /* Right side (search / icons) stays compact and non-wrapping */
-    .right {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex: 0 0 auto;
-      white-space: nowrap;
-    }
-
-    @media (max-width: 992px) {
-      display: none;
-    }
-
-    .right {
-      display: flex;
-      align-items: center;
-
-      .dropdown {
-        .dropdown-toggle {
-          &::after {
-            display: none;
-          }
-        }
-      }
-
       .icons {
         display: flex;
         align-items: center;
         margin-inline-start: 10px;
+
         .account-icon {
           .dropdown-menu {
             left: 50%;
@@ -190,6 +126,7 @@ header {
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             border: none;
             text-align: center;
+
             a {
               padding: 10px 0;
             }
@@ -217,6 +154,61 @@ header {
           }
         }
       }
+    }
+
+    /* Right side (search / icons) stays compact and non-wrapping */
+    .right {
+      display: flex;
+      flex-grow: 1;
+      align-items: center;
+      gap: 2rem;
+      white-space: nowrap;
+
+      .menu {
+        flex: 1 1 auto; /* allow menu to take remaining space */
+        min-width: 0;
+
+
+        .navbar {
+          .nav-item {
+            margin-top: 1rem;
+
+            > .dropdown > .nav-link,
+            > .nav-link {
+              /* allow text to use available space but not wrap */
+              white-space: nowrap;
+              display: inline-block;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              max-width: none; /* no arbitrary truncation here */
+            }
+          }
+
+          .navbar-nav {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-items: center;
+            gap: 1rem;
+            /* Keep items on one line but allow shrinking when needed */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: none;
+            min-width: 0; /* allow shrinking */
+          }
+
+          .nav-item {
+            flex: 0 1 auto; /* allow items to shrink */
+            min-width: 0;
+          }
+        }
+      }
+    }
+
+
+    @media (max-width: 992px) {
+      display: none;
     }
   }
 

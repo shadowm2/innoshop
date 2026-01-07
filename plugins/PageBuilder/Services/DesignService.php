@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) Since 2024 InnoShop - All Rights Reserved
  *
@@ -10,9 +11,10 @@
 namespace Plugin\PageBuilder\Services;
 
 use Exception;
-use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use InnoShop\Common\Libraries\Link;
+use InnoShop\Common\Models\Category;
 use InnoShop\Common\Repositories\ArticleRepo;
 use InnoShop\Common\Repositories\BrandRepo;
 use InnoShop\Common\Repositories\PageRepo;
@@ -136,7 +138,7 @@ class DesignService
 
         $content['brands'] = $brands;
         if (Arr::accessible($content['title'])) {
-            $content['title']    = $content['title'][locale_code()] ?? '';
+            $content['title'] = $content['title'][locale_code()] ?? '';
         }
 
         return $content;
@@ -152,7 +154,7 @@ class DesignService
     private function handleImageTextList($content): array
     {
         if (Arr::accessible($content['title'])) {
-            $content['title']    = $content['title'][locale_code()] ?? '';
+            $content['title'] = $content['title'][locale_code()] ?? '';
         }
 
         // 处理图文项数据
@@ -217,7 +219,7 @@ class DesignService
     private function handleIcons($content): array
     {
         if (Arr::accessible($content['title'])) {
-            $content['title']    = $content['title'][locale_code()] ?? '';
+            $content['title'] = $content['title'][locale_code()] ?? '';
         }
 
         $images = $content['images'] ?? [];
@@ -301,9 +303,9 @@ class DesignService
                 $tabs[$index]['products'] = $productItems;
             }
         }
-        $content['tabs']  = $tabs;
+        $content['tabs'] = $tabs;
         if (Arr::accessible($content['title'])) {
-            $content['title']    = $content['title'][locale_code()] ?? '';
+            $content['title'] = $content['title'][locale_code()] ?? '';
         }
 
         return $content;
@@ -319,10 +321,10 @@ class DesignService
     private function handleArticle($content): array
     {
         if (Arr::accessible($content['title'])) {
-            $content['title']    = $content['title'][locale_code()] ?? '';
+            $content['title'] = $content['title'][locale_code()] ?? '';
         }
         if (Arr::accessible($content['subtitle'] ?? '')) {
-            $content['subtitle']    = $content['subtitle'][locale_code()] ?? '';
+            $content['subtitle'] = $content['subtitle'][locale_code()] ?? '';
         }
 
         // 从 articles 字段获取文章ID数组
@@ -358,7 +360,7 @@ class DesignService
     private function handlePage($content): array
     {
         if (Arr::accessible($content['title'])) {
-            $content['title']    = $content['title'][locale_code()] ?? '';
+            $content['title'] = $content['title'][locale_code()] ?? '';
         }
 
         // 检查 items 键是否存在，如果不存在则初始化为空数组
@@ -425,10 +427,10 @@ class DesignService
         }
 
         if (Arr::accessible($content['title'])) {
-            $content['title']    = $content['title'][locale_code()] ?? '';
+            $content['title'] = $content['title'][locale_code()] ?? '';
         }
         if (Arr::accessible($content['subtitle'] ?? '')) {
-            $content['subtitle']    = $content['subtitle'][locale_code()] ?? '';
+            $content['subtitle'] = $content['subtitle'][locale_code()] ?? '';
         }
 
         return $content;
@@ -494,10 +496,10 @@ class DesignService
         }
 
         if (Arr::accessible($content['title'])) {
-            $content['title']    = $content['title'][locale_code()] ?? '';
+            $content['title'] = $content['title'][locale_code()] ?? '';
         }
         if (Arr::accessible($content['subtitle'] ?? '')) {
-            $content['subtitle']    = $content['subtitle'][locale_code()] ?? '';
+            $content['subtitle'] = $content['subtitle'][locale_code()] ?? '';
         }
 
         return $content;
@@ -512,7 +514,7 @@ class DesignService
      */
     private function handleLatest($content): array
     {
-        
+
         $limit   = $content['limit'] ?? 8;
         $columns = $content['columns'] ?? 4;
 
@@ -531,15 +533,13 @@ class DesignService
         // 保持为 Product 对象集合，不转换为数组
         $content['products'] = $productItems;
         if (Arr::accessible($content['title'])) {
-            $content['title']    = $content['title'][locale_code()] ?? '';
+            $content['title'] = $content['title'][locale_code()] ?? '';
         }
-
 
         if (Arr::accessible($content['subtitle'] ?? '')) {
-            $content['subtitle']    = $content['subtitle'][locale_code()] ?? '';
+            $content['subtitle'] = $content['subtitle'][locale_code()] ?? '';
         }
 
-        
         return $content;
     }
 
@@ -578,10 +578,10 @@ class DesignService
         // 保持为 Product 对象集合，不转换为数组
         $content['products'] = $productItems;
         if (Arr::accessible($content['title'])) {
-            $content['title']    = $content['title'][locale_code()] ?? '';
+            $content['title'] = $content['title'][locale_code()] ?? '';
         }
         if (Arr::accessible($content['subtitle'] ?? '')) {
-            $content['subtitle']    = $content['subtitle'][locale_code()] ?? '';
+            $content['subtitle'] = $content['subtitle'][locale_code()] ?? '';
         }
 
         return $content;
@@ -635,7 +635,7 @@ class DesignService
     private function handleBrands($content): array
     {
         if (Arr::accessible($content['title'])) {
-            $content['title']    = $content['title'][locale_code()] ?? '';
+            $content['title'] = $content['title'][locale_code()] ?? '';
         }
 
         // 确保样式设置存在
