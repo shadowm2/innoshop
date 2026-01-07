@@ -91,6 +91,8 @@ class DesignService
             $content = $this->handlePage($content);
         } elseif ($moduleCode == 'article') {
             $content = $this->handleArticle($content);
+        } elseif ($moduleCode == 'category-carousel') {
+            $content = $this->handleCategoryCarousel($content);
         }
 
         $content['width_class'] = pb_get_width_class($content['width'] ?? 'wide');
@@ -658,5 +660,36 @@ class DesignService
     private function handleLink($type, $value): string
     {
         return Link::getInstance()->link($type, $value);
+    }
+
+    /**
+     * Handle category carousel - Fetch categories by IDs
+     *
+     * @param  $content
+     * @return array
+     * @throws Exception
+     */
+    private function handleCategoryCarousel($content): array
+    {
+        $categoryIds = $content['category_ids'] ?? [];
+        
+        if (!empty($categoryIds)) {
+            // Use Repository to fetch categories, which handles string/array and ordering
+            $categories = \InnoShop\Common\Repositories\CategoryRepo::getInstance()->getListByCategoryIDs($categoryIds);
+            
+            $content['categories'] = $categories;
+        } else {
+            $content['categories'] = collect();
+        }
+
+        if (Arr::accessible($content['title'])) {
+            $content['title'] = $content['title'][locale_code()] ?? '';
+        }
+        
+        if (Arr::accessible($content['subtitle'] ?? '')) {
+            $content['subtitle'] = $content['subtitle'][locale_code()] ?? '';
+        }
+
+        return $content;
     }
 }
