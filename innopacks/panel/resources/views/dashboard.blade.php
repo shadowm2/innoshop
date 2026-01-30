@@ -72,7 +72,7 @@
     </div>
   </div>
 </div>
-<img src="{{ dashboard_url() }}" class="d-none" alt="dashboard"/>
+{{--<img src="{{ dashboard_url() }}" class="d-none" alt="dashboard"/>--}}
 @endsection
 
 @push('footer')

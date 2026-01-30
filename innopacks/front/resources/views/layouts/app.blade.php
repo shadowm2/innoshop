@@ -19,11 +19,15 @@
     $fontFamily = system_setting('font_family', 'Vazirmatn');
     $fontFamilyUrl = str_replace(' ', '+', $fontFamily);
   @endphp
-  @if($fontFamily && $fontFamily !== 'system-ui' && $fontFamily !== 'Arial' && $fontFamily !== 'Helvetica' && $fontFamily !== 'Times New Roman' && $fontFamily !== 'Courier New')
+  @if($fontFamily && $fontFamily !== "Vazirmatn" && $fontFamily !== 'system-ui' && $fontFamily !== 'Arial' && $fontFamily !== 'Helvetica' && $fontFamily !== 'Times New Roman' && $fontFamily !== 'Courier New')
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
       href="https://fonts.googleapis.com/css2?family={{ $fontFamilyUrl }}:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet">
+  @elseif($fontFamily && $fontFamily == "Vazirmatn")
+    <link
+      href="/vendor/font/vazir/vazirmatn.css"
       rel="stylesheet">
   @endif
   @if (front_locale_direction() == 'ltr')
@@ -38,16 +42,6 @@
   <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
   <link rel="stylesheet" href="{{ mix('build/front/css/app.css') }}">
   <!-- Dynamic font loading based on admin settings (backup) -->
-  @php
-    $fontFamily = system_setting('font_family', 'Vazirmatn');
-    $fontFamilyUrl = str_replace(' ', '+', $fontFamily);
-  @endphp
-  @if($fontFamily && $fontFamily !== 'system-ui' && $fontFamily !== 'Arial' && $fontFamily !== 'Helvetica' && $fontFamily !== 'Times New Roman' && $fontFamily !== 'Courier New')
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family={{ $fontFamilyUrl }}:wght@300;400;500;700&display=swap"
-          rel="stylesheet">
-  @endif
 
   <style>
     /* Apply Persian font site-wide (includes form controls and buttons) */

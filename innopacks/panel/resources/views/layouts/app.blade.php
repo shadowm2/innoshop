@@ -17,9 +17,10 @@
     <link rel="stylesheet" href="{{ mix('build/panel/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ mix('build/panel/css/app.css') }}">
     <!-- Persian font: Vazirmatn (admin panel) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap" rel="stylesheet">
+{{--    <link rel="preconnect" href="https://fonts.googleapis.com">--}}
+{{--    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>--}}
+{{--    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap" rel="stylesheet">--}}
+  <link href="{{asset("/vendor/font/vazir/vazirmatn.css")}}" rel="stylesheet">
 
     <style>
         /* Apply Persian font across admin panel */
